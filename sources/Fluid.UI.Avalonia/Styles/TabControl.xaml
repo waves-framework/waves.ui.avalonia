@@ -1,0 +1,51 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <ResourceDictionary.MergedDictionaries>
+    
+        <!-- Opacity.. -->
+        <ResourceInclude Source="avares://Fluid.UI.Avalonia/Styles/Opacity.xaml" />
+
+        <!-- Padding. -->
+        <ResourceInclude Source="avares://Fluid.UI.Avalonia/Styles/Padding.xaml" />
+    
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style Selector="TabControl">
+                
+        <Setter Property="Template">
+            
+            <ControlTemplate>
+                
+                <Border Margin="{TemplateBinding Margin}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                    
+                    <DockPanel>
+                        
+                        <ItemsPresenter Name="PART_ItemsPresenter"
+                                        Items="{TemplateBinding Items}"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}"
+                                        ItemTemplate="{TemplateBinding ItemTemplate}"/>
+                        
+                        <!-- <ContentPresenter Name="PART_SelectedContentHost" -->
+                        <!--                   Margin="{TemplateBinding Padding}" -->
+                        <!--                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" -->
+                        <!--                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" -->
+                        <!--                   Content="{TemplateBinding SelectedContent}" -->
+                        <!--                   ContentTemplate="{TemplateBinding SelectedContentTemplate}"/> -->
+                        
+                    </DockPanel>
+                    
+                </Border>
+                
+            </ControlTemplate>
+            
+        </Setter>
+        
+    </Style>
+    
+</ResourceDictionary>

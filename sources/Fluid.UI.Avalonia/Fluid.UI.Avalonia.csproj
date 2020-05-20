@@ -1,21 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Compile Update="**\*.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <AvaloniaResource Include="**\*.xaml">
-      <SubType>Designer</SubType>
-    </AvaloniaResource>
-    <AvaloniaResource Include="Assets\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.0" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.0" />
-  </ItemGroup>
+
+    <Import Project="..\..\props\Fluid.UI.Avalonia.props" />
+    
+    <ItemGroup>
+        <AvaloniaResource Include="**\*.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="0.9.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Theme\BorderStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\ButtonStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\CalendarStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\CheckBoxStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\ComboBoxStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\ExpanderStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\ListBoxStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\MenuStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\NumericUpDownStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\ProgressBarStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\RadioButtonStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\SliderStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\TabControlStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\TextBlockStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\TextBoxStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\ToggleButtonStyles.xaml" />
+      <UpToDateCheckInput Remove="Theme\TreeViewStyles.xaml" />
+    </ItemGroup>
+
 </Project>

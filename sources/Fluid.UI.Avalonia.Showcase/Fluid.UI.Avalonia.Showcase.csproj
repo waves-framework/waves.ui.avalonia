@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <Import Project="..\..\props\Fluid.UI.Avalonia.props" />
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.9.10" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.10" />
+    <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.9.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.9.10" />
+    <PackageReference Include="ReactiveUI.Validation" Version="1.4.15" />
+    <PackageReference Include="ReactiveUI.Fody" Version="11.4.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Fluid.UI.Avalonia\Fluid.UI.Avalonia.csproj" />
+  </ItemGroup>
+
+</Project>
