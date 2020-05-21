@@ -4,11 +4,22 @@
         Width="920" Height="630">
     
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+
+      <!--<Grid.ColumnDefinitions>
+        <ColumnDefinition Width="120"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>-->
+
+      <Grid Grid.Column="0">
         
+        <TabControl TabStripPlacement="Top">
+          <TabItem Content="Element 1"/>
+          <TabItem Content="Element 2"/>
+          <TabItem Content="Element 3"/>
+        </TabControl>
+        
+      </Grid>
+      
     </Grid>
     
 </Window>
