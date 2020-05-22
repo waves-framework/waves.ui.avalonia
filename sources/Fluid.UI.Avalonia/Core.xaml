@@ -16,7 +16,11 @@
 
   </Styles.Resources>
 
+  <!-- Default avalonia styles -->
   <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
+  
+  <!-- Fluid styles -->
   <StyleInclude Source="avares://Fluid.UI.Avalonia/Styles/TabControl.xaml"/>
+  <StyleInclude Source="avares://Fluid.UI.Avalonia/Styles/Window.xaml"/>
 
 </Styles>

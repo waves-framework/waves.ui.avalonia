@@ -65,36 +65,36 @@
         <Grid>
 
           <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
           </Grid.ColumnDefinitions>
 
           <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
           
-          <!--<DockPanel x:Name="DockPanel">
+          <Grid x:Name="ContentGrid">
+            
+            <Canvas x:Name="BackgroundCanvas" Background="{TemplateBinding Background}"/>
 
-            <Grid>
+            <Canvas x:Name="HighlightCanvas"/>
 
-              <Canvas x:Name="BackgroundCanvas" Background="{TemplateBinding Background}"/>
-
-              <Canvas x:Name="HighlightCanvas"/>
-
-              <ContentPresenter x:Name="ContentSite"
-                                Margin="{TemplateBinding Padding}"
-                                Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Opacity="{StaticResource Opacity4}"/>
-
-            </Grid>
+            <ContentPresenter x:Name="ContentSite"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{TemplateBinding Header}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Opacity="{StaticResource Opacity4}"/>
+            
+          </Grid>
+          
+          <Grid x:Name="SelectionCanvasGrid">
 
             <Canvas x:Name="SelectionCanvas"/>
 
-          </DockPanel>-->
+          </Grid>
 
         </Grid>
 
@@ -160,61 +160,65 @@
     <Setter Property="Opacity" Value="{StaticResource Opacity1}"/>
 
   </Style>
-
-  <!-- Selection canvas - Tab item placement - Left -->
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Canvas#SelectionCanvas">
-
+  
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Grid#ContentGrid">
+    
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
+    
+  </Style>
+  
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Grid#SelectionCanvasGrid">
+    
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="1"/>
     <Setter Property="Width" Value="3"/>
-
+    
   </Style>
-
-  <!-- Dock panel - Tab item placement - Left -->
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ DockPanel#DockPanel">
-
-    <Setter Property="Dock" Value="Left"/>
-
+  
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Grid#ContentGrid">
+    
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
+    
   </Style>
-
-  <!-- Selection canvas - Tab item placement - Right -->
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Canvas#SelectionCanvas">
-
+  
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Grid#SelectionCanvasGrid">
+    
+    <Setter Property="Grid.Row" Value="1"/>
+    <Setter Property="Grid.Column" Value="0"/>
+    <Setter Property="Height" Value="3"/>
+    
+  </Style>
+  
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Grid#ContentGrid">
+    
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="1"/>
+    
+  </Style>
+  
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Grid#SelectionCanvasGrid">
+    
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
     <Setter Property="Width" Value="3"/>
-
+    
   </Style>
-
-  <!-- Dock panel - Tab item placement - Right -->
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ DockPanel#DockPanel">
-
-    <Setter Property="Dock" Value="Right"/>
-
+  
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Grid#ContentGrid">
+    
+    <Setter Property="Grid.Row" Value="1"/>
+    <Setter Property="Grid.Column" Value="0"/>
+    
   </Style>
-
-  <!-- Selection canvas - Tab item placement - Top -->
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Canvas#SelectionCanvas">
-
+  
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Grid#SelectionCanvasGrid">
+    
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
     <Setter Property="Height" Value="3"/>
-
-  </Style>
-
-  <!-- Dock panel - Tab item placement - Top -->
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ DockPanel#DockPanel">
-
-    <Setter Property="Dock" Value="Top"/>
-
-  </Style>
-
-  <!-- Selection canvas - Tab item placement - Bottom -->
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Canvas#SelectionCanvas">
-
-    <Setter Property="Height" Value="3"/>
-
-  </Style>
-
-  <!-- Dock panel - Tab item placement - Bottom -->
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ DockPanel#DockPanel">
-
-    <Setter Property="Dock" Value="Bottom"/>
-
+    
   </Style>
 
 </Styles>

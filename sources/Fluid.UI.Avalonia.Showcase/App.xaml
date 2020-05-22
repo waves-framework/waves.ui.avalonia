@@ -1,6 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Fluid.UI.Avalonia.Showcase.App">
+             x:Class="Fluid.UI.Avalonia.Showcase.App"
+             Name="Fluid Avalonia UI Showcase">
     
     <Application.Styles>
         <!-- 
@@ -11,5 +12,13 @@
         <StyleInclude Source="avares://Fluid.UI.Avalonia/Core.xaml"/>
         
     </Application.Styles>
+    
+    <NativeMenu.Menu>
+        
+        <NativeMenu>
+            <NativeMenuItem Header="About Fluid UI" />
+        </NativeMenu>
+        
+    </NativeMenu.Menu>
     
 </Application>
