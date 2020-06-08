@@ -1,4 +1,4 @@
-namespace Fluid.UI.Avalonia.Styles.Enums
+namespace Waves.UI.Avalonia.Styles.Enums
 {
     /// <summary>
     ///     Enum for specified value from the WNDCLASSEX structure associated with the specified window.

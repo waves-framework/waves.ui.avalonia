@@ -8,7 +8,7 @@
       <ResourceDictionary.MergedDictionaries>
 
         <!-- Opacity.. -->
-        <ResourceInclude Source="avares://Fluid.UI.Avalonia/Styles/Opacity.xaml" />
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.xaml" />
 
       </ResourceDictionary.MergedDictionaries>
 
@@ -19,8 +19,8 @@
   <!-- Default avalonia styles -->
   <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
   
-  <!-- Fluid styles -->
-  <StyleInclude Source="avares://Fluid.UI.Avalonia/Styles/TabControl.xaml"/>
-  <StyleInclude Source="avares://Fluid.UI.Avalonia/Styles/Window.xaml"/>
+  <!-- Waves styles -->
+  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.xaml"/>
+  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.xaml"/>
 
 </Styles>

@@ -1,12 +1,12 @@
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
-using Fluid.UI.Avalonia.Showcase;
-using Fluid.UI.Avalonia.Styles;
+using Waves.UI.Avalonia.Showcase;
+using Waves.UI.Avalonia.Styles;
 using ReactiveUI;
 
-namespace Fluid.UI.Avalonia.Sandbox
+namespace Waves.UI.Avalonia.Sandbox
 {
-    public class MainWindow : FluidWindow
+    public class MainWindow : WavesWindow
     {
         public MainWindow()
         {

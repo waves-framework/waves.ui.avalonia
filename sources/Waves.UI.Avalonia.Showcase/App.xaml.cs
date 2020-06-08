@@ -1,9 +1,9 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Fluid.UI.Avalonia.Sandbox;
+using Waves.UI.Avalonia.Sandbox;
 
-namespace Fluid.UI.Avalonia.Showcase
+namespace Waves.UI.Avalonia.Showcase
 {
     public class App : Application
     {

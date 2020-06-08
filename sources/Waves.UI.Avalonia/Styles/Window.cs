@@ -8,14 +8,14 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Styling;
-using Fluid.UI.Avalonia.Styles.Enums;
+using Waves.UI.Avalonia.Styles.Enums;
 
-namespace Fluid.UI.Avalonia.Styles
+namespace Waves.UI.Avalonia.Styles
 {
     /// <summary>
-    /// Fluid window.
+    /// Waves window.
     /// </summary>
-    public class FluidWindow: Window, IStyleable
+    public class WavesWindow: Window, IStyleable
     {
         private Grid _bottomHorizontalGrip;
         private Grid _bottomLeftGrip;
@@ -109,9 +109,9 @@ namespace Fluid.UI.Avalonia.Styles
         }
 
         /// <summary>
-        /// Creates new instance of <see cref="FluidWindow"/>
+        /// Creates new instance of <see cref="WavesWindow"/>
         /// </summary>
-        protected FluidWindow()
+        protected WavesWindow()
         {
             HasSystemDecorations = false;
             ClientDecorations = true;
@@ -133,7 +133,7 @@ namespace Fluid.UI.Avalonia.Styles
         }
 
         public static readonly StyledProperty<bool> ClientDecorationsProperty =
-            AvaloniaProperty.Register<FluidWindow, bool>(nameof(ClientDecorations));
+            AvaloniaProperty.Register<WavesWindow, bool>(nameof(ClientDecorations));
         
         public bool ClientDecorations
         {
@@ -141,7 +141,7 @@ namespace Fluid.UI.Avalonia.Styles
             set => SetValue(ClientDecorationsProperty, value);
         }
 
-        Type IStyleable.StyleKey => typeof(FluidWindow);
+        Type IStyleable.StyleKey => typeof(WavesWindow);
         
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {

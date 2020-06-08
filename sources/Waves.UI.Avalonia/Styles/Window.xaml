@@ -1,5 +1,5 @@
 <Styles xmlns="https://github.com/avaloniaui"
-        xmlns:local="clr-namespace:Fluid.UI.Avalonia.Styles;assembly=Fluid.UI.Avalonia"
+        xmlns:local="clr-namespace:Waves.UI.Avalonia.Styles;assembly=Waves.UI.Avalonia"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Styles.Resources>
@@ -9,7 +9,7 @@
       <ResourceDictionary.MergedDictionaries>
 
         <!-- Opacity.. -->
-        <ResourceInclude Source="avares://Fluid.UI.Avalonia/Styles/Opacity.xaml" />
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.xaml" />
 
       </ResourceDictionary.MergedDictionaries>
 
@@ -17,7 +17,7 @@
 
   </Styles.Resources>
 
-  <Style Selector="local|FluidWindow">
+  <Style Selector="local|WavesWindow">
     
     <Setter Property="Background" Value="White" />
     <Setter Property="BorderBrush" Value="Red" />
@@ -125,13 +125,13 @@
     
   </Style>
   
-  <Style Selector="local|FluidWindow[HasSystemDecorations=False] /template/ Border#WindowBorder">
+  <Style Selector="local|WavesWindow[HasSystemDecorations=False] /template/ Border#WindowBorder">
 
     <Setter Property="CornerRadius" Value="6"/>
 
   </Style>
   
-  <Style Selector="local|FluidWindow[HasSystemDecorations=True] /template/ Border#WindowBorder">
+  <Style Selector="local|WavesWindow[HasSystemDecorations=True] /template/ Border#WindowBorder">
 
     <Setter Property="CornerRadius" Value="0"/>
 

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluid.UI.Avalonia", "..\sources\Fluid.UI.Avalonia\Fluid.UI.Avalonia.csproj", "{D9171D2B-3C3E-4B49-AA03-4305D72167CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waves.UI.Avalonia", "..\sources\Waves.UI.Avalonia\Waves.UI.Avalonia.csproj", "{D9171D2B-3C3E-4B49-AA03-4305D72167CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluid.UI.Avalonia.Showcase", "..\sources\Fluid.UI.Avalonia.Showcase\Fluid.UI.Avalonia.Showcase.csproj", "{E1F2AE65-5984-49D3-9936-9262C813983F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waves.UI.Avalonia.Showcase", "..\sources\Waves.UI.Avalonia.Showcase\Waves.UI.Avalonia.Showcase.csproj", "{E1F2AE65-5984-49D3-9936-9262C813983F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

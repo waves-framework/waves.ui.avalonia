@@ -5,12 +5,12 @@
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86;x64</Platforms>
-    <Authors>Fluid</Authors>
-    <Company>Fluid</Company>
-    <Description>Fluid UI</Description>
+    <Authors>Waves</Authors>
+    <Company>Waves</Company>
+    <Description>Waves UI</Description>
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />
-    <Copyright>Fluid 2020</Copyright>
+    <Copyright>Waves 2020</Copyright>
     <Version>2020.1</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>

@@ -1,9 +1,9 @@
 ﻿using Avalonia;
 using Avalonia.Dialogs;
 using Avalonia.ReactiveUI;
-using Fluid.UI.Avalonia.Sandbox;
+using Waves.UI.Avalonia.Sandbox;
 
-namespace Fluid.UI.Avalonia.Showcase
+namespace Waves.UI.Avalonia.Showcase
 {
     public static class Program
     {
