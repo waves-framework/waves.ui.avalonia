@@ -18,6 +18,9 @@ namespace Waves.UI.Avalonia.Showcase
                 desktopLifetime.MainWindow = window;
             }
             
+            var core = new Core();
+            core.Start(this);
+            
             base.OnFrameworkInitializationCompleted();
         }
     }

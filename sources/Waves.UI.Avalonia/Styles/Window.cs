@@ -8,6 +8,7 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Styling;
+using PropertyChanged;
 using Waves.UI.Avalonia.Styles.Enums;
 
 namespace Waves.UI.Avalonia.Styles
@@ -15,6 +16,7 @@ namespace Waves.UI.Avalonia.Styles
     /// <summary>
     /// Waves window.
     /// </summary>
+    [DoNotNotify]
     public class WavesWindow: Window, IStyleable
     {
         private Grid _bottomHorizontalGrip;

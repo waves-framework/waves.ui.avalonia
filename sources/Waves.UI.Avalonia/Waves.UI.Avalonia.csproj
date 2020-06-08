@@ -35,4 +35,9 @@
       <UpToDateCheckInput Remove="Theme\TreeViewStyles.xaml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="NLog.config" />
+      <EmbeddedResource Include="NLog.config" />
+    </ItemGroup>
+
 </Project>
