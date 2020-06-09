@@ -10,6 +10,10 @@
         section, see the 'MainWindowViewModel.cs' file for more info.
         -->
         <StyleInclude Source="avares://Waves.UI.Avalonia/Core.xaml"/>
+
+        <StyleInclude Source="avares://Waves.UI.Avalonia/Colors/Primary.Light.xaml"/>
+        <StyleInclude Source="avares://Waves.UI.Avalonia/Colors/Accent.Ronchi.xaml"/>
+        <StyleInclude Source="avares://Waves.UI.Avalonia/Colors/Miscellaneous.Classic.xaml"/>
         
     </Application.Styles>
     

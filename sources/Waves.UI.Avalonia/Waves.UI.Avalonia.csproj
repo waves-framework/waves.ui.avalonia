@@ -37,7 +37,9 @@
 
     <ItemGroup>
       <None Remove="NLog.config" />
-      <EmbeddedResource Include="NLog.config" />
+      <Resource Include="NLog.config">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>

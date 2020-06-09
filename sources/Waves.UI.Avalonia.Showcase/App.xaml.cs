@@ -16,11 +16,11 @@ namespace Waves.UI.Avalonia.Showcase
                 var window = new MainWindow();
                 window.DataContext = new MainWindowViewModel();
                 desktopLifetime.MainWindow = window;
+
+                var core = new Core();
+                core.Start(this, window);
             }
-            
-            var core = new Core();
-            core.Start(this);
-            
+
             base.OnFrameworkInitializationCompleted();
         }
     }

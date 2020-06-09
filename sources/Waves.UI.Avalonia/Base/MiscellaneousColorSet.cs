@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml.Styling;
 
 namespace Waves.UI.Avalonia.Base
 {
@@ -13,18 +14,18 @@ namespace Waves.UI.Avalonia.Base
         /// </summary>
         /// <param name="id">Color set's id.</param>
         /// <param name="name">Color set's name.</param>
-        /// <param name="resourceDictionary">Resource dictionary.</param>
-        public MiscellaneousColorSet(Guid id, string name, ResourceDictionary resourceDictionary) : base(id, name)
+        /// <param name="styleInclude">Style include.</param>
+        public MiscellaneousColorSet(Guid id, string name, StyleInclude styleInclude) : base(id, name)
         {
-            ResourceDictionary = resourceDictionary;
+            StyleInclude = styleInclude;
 
             InitializeColors();
         }
 
         /// <summary>
-        /// Gets color resource dictionary.
+        /// Gets color style include.
         /// </summary>
-        public ResourceDictionary ResourceDictionary { get; private set; }
+        public StyleInclude StyleInclude { get; private set; }
 
         /// <summary>
         /// Initializes colors.
@@ -34,8 +35,8 @@ namespace Waves.UI.Avalonia.Base
             ColorDictionary.Clear();
             ForegroundColorDictionary.Clear();
 
-            var colorDictionary = Extensions.ResourceDictionaryExtensions.GetColorsDictionary(ResourceDictionary);
-            var foregroundColorDictionary = Extensions.ResourceDictionaryExtensions.GetForegroundColorsDictionary(ResourceDictionary);
+            var colorDictionary = Extensions.StyleIncludeExtesions.GetColorsDictionary(StyleInclude);
+            var foregroundColorDictionary = Extensions.StyleIncludeExtesions.GetForegroundColorsDictionary(StyleInclude);
 
             foreach (var pair in colorDictionary)
                 ColorDictionary.Add(pair.Key, pair.Value);

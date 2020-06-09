@@ -22,8 +22,16 @@
           <TabItem Header="Element 2"/>
           <TabItem Header="Element 3"/>
         </TabControl>
+
+        
         
       </Grid>
+
+    <Grid Grid.Column="0" Grid.ColumnSpan="2">
+
+      <Canvas Width="100" Height="100" Background="{DynamicResource Accent-500-Brush}"/>
+      
+    </Grid>
       
     </Grid>
     

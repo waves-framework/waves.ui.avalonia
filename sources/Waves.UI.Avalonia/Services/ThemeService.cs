@@ -36,15 +36,17 @@ namespace Waves.UI.Avalonia.Services
 
         private bool _useDarkScheme = false;
 
-        private ResourceDictionary _oldPrimaryResourceDictionary;
-        private ResourceDictionary _oldAccentResourceDictionary;
-        private ResourceDictionary _oldMiscellaneousResourceDictionary;
+        private global::Avalonia.Styling.Styles _oldStyles;
+
+        private StyleInclude _oldPrimaryStyleInclude;
+        private StyleInclude _oldAccentStyleInclude;
+        private StyleInclude _oldMiscellaneousStyleInclude;
 
         private Guid _selectedThemeId = Guid.Empty;
 
         private ITheme _selectedTheme;
 
-        private Application _application;
+        private Window _window;
         
         /// <inheritdoc />
         public event EventHandler ThemeChanged;
@@ -108,18 +110,18 @@ namespace Waves.UI.Avalonia.Services
         public ObservableCollection<ITheme> Themes { get; private set; } = new ObservableCollection<ITheme>();
 
         /// <summary>
-        /// Attaches application.
+        /// Attaches window.
         /// </summary>
-        /// <param name="application">Application.</param>
-        public void AttachApplication(Application application)
+        /// <param name="window">Window.</param>
+        public void AttachWindow(Window window)
         {
-            _application = application;
+            _window = window;
 
             InitializeSelectedTheme();
             //InitializeSystemThemeCheckerDaemon();
 
             OnMessageReceived(this,
-                new Message("Initialization", "Application attached - " + application, Name, MessageType.Information));
+                new Message("Initialization", "Window attached - " + window.Name, Name, MessageType.Information));
         }
 
         /// <inheritdoc />
@@ -230,72 +232,71 @@ namespace Waves.UI.Avalonia.Services
             var accentRedColorSetId = Guid.Parse((string)accentRedColorsStylesInclude.FindResource("ColorSetId"));
             var accentYellowColorSetId = Guid.Parse((string)accentYellowColorsStylesInclude.FindResource("ColorSetId"));
             var miscellaneousColorSetId = Guid.Parse((string)miscellaneousColorsStylesInclude.FindResource("ColorSetId"));
+
+            var lightPrimaryColorSet = new PrimaryColorSet(primaryLightColorSetId,
+            primaryLightColorName,
+            lightPrimaryColorsStylesInclude);
+
+            var darkPrimaryColorSet = new PrimaryColorSet(primaryDarkColorSetId,
+                primaryDarkColorName,
+                darkPrimaryColorsStylesInclude);
+
+            var greenAccentColorSet = new AccentColorSet(accentGreenColorSetId,
+                accentGreenColorName,
+                accentGreenColorsStylesInclude);
+
+            var blueAccentColorSet = new AccentColorSet(accentBlueColorSetId,
+                accentBlueColorName,
+                accentBlueColorsStylesInclude);
+
+            var redAccentColorSet = new AccentColorSet(accentRedColorSetId,
+                accentRedColorName,
+                accentRedColorsStylesInclude);
+
+            var yellowAccentColorSet = new AccentColorSet(accentYellowColorSetId,
+                accentYellowColorName,
+                accentYellowColorsStylesInclude);
+
+            var miscellaneousColorSet = new MiscellaneousColorSet(miscellaneousColorSetId,
+                miscellaneousColorName,
+                miscellaneousColorsStylesInclude);
+
+            Themes.Add(new Theme(
+                Guid.Parse("12E87107-C2FC-4D68-908C-377B80A4056A"),
+                accentGreenColorName,
+                lightPrimaryColorSet,
+                darkPrimaryColorSet,
+                greenAccentColorSet,
+                miscellaneousColorSet));
+
+            Themes.Add(new Theme(
+                Guid.Parse("2549DD92-C094-4EF5-B50D-0DD187DFE154"),
+                accentBlueColorName,
+                lightPrimaryColorSet,
+                darkPrimaryColorSet,
+                blueAccentColorSet,
+                miscellaneousColorSet));
+
+            Themes.Add(new Theme(
+                Guid.Parse("07B33F24-141B-4D9A-9C3A-946B0FC6BC82"),
+                accentRedColorName,
+                lightPrimaryColorSet,
+                darkPrimaryColorSet,
+                redAccentColorSet,
+                miscellaneousColorSet));
+
+            Themes.Add(new Theme(
+                Guid.Parse("4F7E14EA-B219-40C6-8870-D9D080756D15"),
+                accentYellowColorName,
+                lightPrimaryColorSet,
+                darkPrimaryColorSet,
+                yellowAccentColorSet,
+                miscellaneousColorSet));
             
-            //
-            //     var lightPrimaryColorSet = new PrimaryColorSet(primaryLightColorSetId,
-            //     primaryLightColorName,
-            //     lightPrimaryColorsResourceDictionary);
-            //
-            // var darkPrimaryColorSet = new PrimaryColorSet(primaryDarkColorSetId,
-            //     primaryDarkColorName,
-            //     darkPrimaryColorsResourceDictionary);
-            //
-            // var greenAccentColorSet = new AccentColorSet(accentGreenColorSetId,
-            //     accentGreenColorName,
-            //     accentGreenColorsResourceDictionary);
-            //
-            // var blueAccentColorSet = new AccentColorSet(accentBlueColorSetId,
-            //     accentBlueColorName,
-            //     accentBlueColorsResourceDictionary);
-            //
-            // var redAccentColorSet = new AccentColorSet(accentRedColorSetId,
-            //     accentRedColorName,
-            //     accentRedColorsResourceDictionary);
-            //
-            // var yellowAccentColorSet = new AccentColorSet(accentYellowColorSetId,
-            //     accentYellowColorName,
-            //     accentYellowColorsResourceDictionary);
-            //
-            // var miscellaneousColorSet = new MiscellaneousColorSet(miscellaneousColorSetId,
-            //     miscellaneousColorName,
-            //     miscellaneousColorsResourceDictionary);
-            //
-            // Themes.Add(new Theme(
-            //     Guid.Parse("12E87107-C2FC-4D68-908C-377B80A4056A"),
-            //     accentGreenColorName,
-            //     lightPrimaryColorSet,
-            //     darkPrimaryColorSet,
-            //     greenAccentColorSet,
-            //     miscellaneousColorSet));
-            //
-            // Themes.Add(new Theme(
-            //     Guid.Parse("2549DD92-C094-4EF5-B50D-0DD187DFE154"),
-            //     accentBlueColorName,
-            //     lightPrimaryColorSet,
-            //     darkPrimaryColorSet,
-            //     blueAccentColorSet,
-            //     miscellaneousColorSet));
-            //
-            // Themes.Add(new Theme(
-            //     Guid.Parse("07B33F24-141B-4D9A-9C3A-946B0FC6BC82"),
-            //     accentRedColorName,
-            //     lightPrimaryColorSet,
-            //     darkPrimaryColorSet,
-            //     redAccentColorSet,
-            //     miscellaneousColorSet));
-            //
-            // Themes.Add(new Theme(
-            //     Guid.Parse("4F7E14EA-B219-40C6-8870-D9D080756D15"),
-            //     accentYellowColorName,
-            //     lightPrimaryColorSet,
-            //     darkPrimaryColorSet,
-            //     yellowAccentColorSet,
-            //     miscellaneousColorSet));
-            //
-            // foreach (var theme in Themes)
-            // {
-            //     theme.PrimaryColorSetChanged += OnThemePrimaryColorSetChanged;
-            // }
+            foreach (var theme in Themes)
+            {
+                theme.PrimaryColorSetChanged += OnThemePrimaryColorSetChanged;
+            }
         }
 
         /// <summary>
@@ -315,17 +316,20 @@ namespace Waves.UI.Avalonia.Services
         /// </summary>
         private void UpdateTheme()
         {
-            if (_application == null) return;
+            if (_window == null) return;
 
             try
             {
-                var dictionaries = _application.Resources.MergedDictionaries;
+                var styles = _window.Styles;
 
-                if (dictionaries.Count > 1)
+                if (styles.Count > 1)
                 {
-                    dictionaries.Remove(_oldPrimaryResourceDictionary);
-                    dictionaries.Remove(_oldAccentResourceDictionary);
-                    dictionaries.Remove(_oldMiscellaneousResourceDictionary);
+                    styles.RemoveAt(1);
+                    styles.RemoveAt(1);
+                    styles.RemoveAt(1);
+                    //styles.Remove(_oldPrimaryStyleInclude);
+                    //styles.Remove(_oldAccentStyleInclude);
+                    //styles.Remove(_oldMiscellaneousStyleInclude);
                 }
 
                 var primaryColorSet = SelectedTheme.PrimaryColorSet as PrimaryColorSet;
@@ -337,13 +341,13 @@ namespace Waves.UI.Avalonia.Services
                 var miscellaneousColorSet = SelectedTheme.MiscellaneousColorSet as MiscellaneousColorSet;
                 if (miscellaneousColorSet == null) return;
 
-                dictionaries.Add(primaryColorSet.ResourceDictionary);
-                dictionaries.Add(accentColorSet.ResourceDictionary);
-                dictionaries.Add(miscellaneousColorSet.ResourceDictionary);
+                styles.Insert(0, primaryColorSet.StyleInclude);
+                styles.Insert(1, accentColorSet.StyleInclude);
+                styles.Insert(2, miscellaneousColorSet.StyleInclude);
 
-                _oldPrimaryResourceDictionary = primaryColorSet.ResourceDictionary;
-                _oldAccentResourceDictionary = accentColorSet.ResourceDictionary;
-                _oldMiscellaneousResourceDictionary = miscellaneousColorSet.ResourceDictionary;
+                _oldPrimaryStyleInclude = primaryColorSet.StyleInclude;
+                _oldAccentStyleInclude = accentColorSet.StyleInclude;
+                _oldMiscellaneousStyleInclude = miscellaneousColorSet.StyleInclude;
 
                 OnMessageReceived(this,
                     SelectedTheme.UseDarkSet
@@ -406,7 +410,8 @@ namespace Waves.UI.Avalonia.Services
         /// <returns>Style.</returns>
         private static StyleInclude CreateStyle(string url)
         {
-            var self = new Uri("resm:Styles?assembly=Waves.UI.Avalonia");
+            var self = new Uri("resm:Colors?assembly=Waves.UI.Avalonia");
+
             return new StyleInclude(self)
             {
                 Source = new Uri(url)

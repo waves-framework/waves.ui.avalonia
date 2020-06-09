@@ -7,15 +7,15 @@
         <system:String x:Key="ColorSetId">3F37F6CF-995C-4B78-9E7A-0605B98B1E64</system:String>
         <system:String x:Key="ColorSetName">Haiti</system:String>
 
-        <Color x:Key="Accent-Color-100">#0B132B</Color>
-        <Color x:Key="Accent-Color-200">#192137</Color>
-        <Color x:Key="Accent-Color-300">#293045</Color>
-        <Color x:Key="Accent-Color-400">#373E51</Color>
-        <Color x:Key="Accent-Color-500">#454B5E</Color>
-        <Color x:Key="Accent-Color-600">#636878</Color>
-        <Color x:Key="Accent-Color-700">#808491</Color>
-        <Color x:Key="Accent-Color-800">#9497A2</Color>
-        <Color x:Key="Accent-Color-900">#A7AAB2</Color>
+        <Color x:Key="Accent-Color-100">#FF0B132B</Color>
+        <Color x:Key="Accent-Color-200">#FF192137</Color>
+        <Color x:Key="Accent-Color-300">#FF293045</Color>
+        <Color x:Key="Accent-Color-400">#FF373E51</Color>
+        <Color x:Key="Accent-Color-500">#FF454B5E</Color>
+        <Color x:Key="Accent-Color-600">#FF636878</Color>
+        <Color x:Key="Accent-Color-700">#FF808491</Color>
+        <Color x:Key="Accent-Color-800">#FF9497A2</Color>
+        <Color x:Key="Accent-Color-900">#FFA7AAB2</Color>
 
         <Color x:Key="Accent-Color-Foreground-100">#FFFFFF</Color>
         <Color x:Key="Accent-Color-Foreground-500">#E1E2E5</Color>

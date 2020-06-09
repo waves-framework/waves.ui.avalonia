@@ -22,12 +22,19 @@ namespace Waves.UI.Avalonia
         public Application Application { get; private set; }
 
         /// <summary>
+        /// Gets instance of main window.
+        /// </summary>
+        public Window MainWindow { get; private set; }
+
+        /// <summary>
         ///     Starts UI core.
         /// </summary>
         /// <param name="application">Application instance.</param>
-        public void Start(Application application)
+        /// <param name="mainWindow">Instance of main window.</param>
+        public void Start(Application application, Window mainWindow)
         {
             Application = application;
+            MainWindow = mainWindow;
             
             // Application.DispatcherUnhandledException += OnDispatcherUnhandledException;
             // TaskScheduler.UnobservedTaskException += OnTaskSchedulerUnobservedTaskException;
@@ -87,7 +94,7 @@ namespace Waves.UI.Avalonia
                 WriteLogMessage(
                     new Message("Service", "Theme service is not initialized.", "UI Core", MessageType.Fatal));
             else
-                service.AttachApplication(Application);
+                service.AttachWindow(MainWindow);
         }
 
         // /// <summary>
