@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\props\Waves.UI.Avalonia.props" />
-    
-    <ItemGroup>
+  <Import Project="../../props/Waves.UI.Avalonia.props" />
+
+  <ItemGroup>
         <AvaloniaResource Include="**\*.xaml" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="0.9.10" />
-        <PackageReference Include="Waves.Core" Version="2020.1.160" />
-        <PackageReference Include="Waves.Presentation" Version="2020.1.29" />
-        <PackageReference Include="Waves.UI" Version="2020.1.38" />
-        <PackageReference Include="Waves.UI.Drawing" Version="2020.1.38" />
-        <PackageReference Include="Waves.UI.Drawing.Charting" Version="2020.1.38" />
+        <PackageReference Include="Avalonia" Version="0.9.12" />
+        <PackageReference Include="Waves.Core" Version="2020.2.1.189" />
+        <PackageReference Include="Waves.Presentation" Version="2020.2.1.39" />
+        <PackageReference Include="Waves.UI" Version="2020.2.1.82" />
+        <PackageReference Include="Waves.UI.Drawing" Version="2020.2.1.82" />
+        <PackageReference Include="Waves.UI.Drawing.Charting" Version="2020.2.1.82" />
     </ItemGroup>
 
     <ItemGroup>

@@ -20,7 +20,7 @@
   <Style Selector="local|WavesWindow">
     
     <Setter Property="Background" Value="White" />
-    <Setter Property="BorderBrush" Value="Red" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Primary-500-Brush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="FontSize" Value="12" />
     
