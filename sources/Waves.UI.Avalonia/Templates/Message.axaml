@@ -1,0 +1,120 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:interfaces="clr-namespace:Waves.Core.Base.Interfaces;assembly=Waves.Core.Base"
+                    xmlns:enums="clr-namespace:Waves.Core.Base.Enums;assembly=Waves.Core.Base"
+                    xmlns:base="clr-namespace:Waves.Core.Base;assembly=Waves.Core.Base">
+
+  <DataTemplate x:Key="MessageItemListDataTemplate" DataType="{x:Type interfaces:IMessage}">
+
+    <Grid Margin="0,0,0,6">
+
+      <StackPanel>
+
+        <!-- Text -->
+        <TextBlock Text="{Binding Text, StringFormat={}{0}}" VerticalAlignment="Center" Classes="Regular1"
+                           Margin="0,0,0,0"/>
+
+        <!--Visibility="{Binding Exception, Converter={StaticResource InverseNullToVisibilityConverter}}"-->
+        <Grid Grid.Row="3" Margin="0,12,0,12" IsVisible="True">
+
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <Grid Grid.Column="0">
+
+            <Border Opacity="{StaticResource Opacity5}">
+
+              <!--<Border.Style>
+
+                <Style TargetType="{x:Type Border}" >
+
+                  <Style.Triggers>
+
+                    <DataTrigger Binding="{Binding Type}" Value="{x:Static enums:MessageType.Information}">
+                      <Setter Property="Background"
+                      Value="{DynamicResource Primary-300-Brush}" />
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Type}" Value="{x:Static enums:MessageType.Warning}">
+                      <Setter Property="Background" Value="{DynamicResource Warning-Brush}" />
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Type}" Value="{x:Static enums:MessageType.Error}">
+                      <Setter Property="Background" Value="{DynamicResource Error-Brush}" />
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Type}" Value="{x:Static enums:MessageType.Fatal}">
+                      <Setter Property="Background" Value="{DynamicResource Fatal-Brush}" />
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Type}" Value="{x:Static enums:MessageType.Debug}">
+                      <Setter Property="Background"
+                      Value="{DynamicResource Primary-100-Brush}" />
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding Type}" Value="{x:Static enums:MessageType.Success}">
+                      <Setter Property="Background" Value="{DynamicResource Success-Brush}" />
+                    </DataTrigger>
+
+                  </Style.Triggers>
+
+                </Style>
+
+              </Border.Style>-->
+
+            </Border>
+
+          </Grid>
+
+          <Grid Grid.Column="2">
+
+            <!-- Exception -->
+            <StackPanel>
+
+              <TextBlock Text="Exception" Classes="Header3" Margin="0,0,0,6" Foreground="{DynamicResource Error-Brush}"/>
+
+              <TextBlock Text="{Binding Exception.Source}"  Classes="Header3" Margin="0,0,0,6"/>
+
+              <TextBlock Text="{Binding Exception.Message}"  Classes="Regular1" Margin="0,0,0,6"/>
+
+              <TextBlock Text="{Binding Exception.StackTrace}"  Classes="Regular2" Margin="0,0,0,12"/>
+
+              <Grid Margin="9,0,0,0">
+
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="6"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+
+                  <TextBlock Text="HResult:"  Classes="Hint1"/>
+
+                </Grid>
+
+                <Grid Grid.Column="2">
+
+                  <TextBlock Text="{Binding Exception.HResult}"  Classes="Hint1"/>
+
+                </Grid>
+
+              </Grid>
+
+            </StackPanel>
+
+          </Grid>
+
+        </Grid>
+
+      </StackPanel>
+
+    </Grid>
+
+  </DataTemplate>
+
+</ResourceDictionary>

@@ -1,7 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Dialogs;
 using Avalonia.ReactiveUI;
-using Waves.UI.Avalonia.Sandbox;
 
 namespace Waves.UI.Avalonia.Showcase
 {

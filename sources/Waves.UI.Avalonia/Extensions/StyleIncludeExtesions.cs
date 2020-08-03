@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Media;
 using Avalonia.Styling;
+using Waves.Core.Base;
+using Color = Avalonia.Media.Color;
 
 namespace Waves.UI.Avalonia.Extensions
 {
@@ -30,7 +33,7 @@ namespace Waves.UI.Avalonia.Extensions
         }
 
         /// <summary>
-        ///     Gets color from resource dictionary by key and weight.
+        ///     Gets color from current style include by key and weight.
         /// </summary>
         /// <param name="styleInclude">Style include.</param>
         /// <param name="key">Key.</param>
@@ -40,9 +43,53 @@ namespace Waves.UI.Avalonia.Extensions
         {
             var currentKey = key + "-" + weight;
 
-            var color = (Color) styleInclude.FindResource(currentKey);
+            var hasResource = styleInclude.TryGetResource(currentKey, out var obj);
 
-            return color.ToWavesColor();
+            if (hasResource)
+                if (obj is Color color)
+                    return color.ToWavesColor();
+
+            return new Waves.Core.Base.Color(0,0,0,0);
+        }
+
+        /// <summary>
+        /// Gets string from current style include.
+        /// </summary>
+        /// <param name="styleInclude">Style include.</param>
+        /// <param name="key">Key.</param>
+        /// <returns>String.</returns>
+        public static string GetString(this StyleInclude styleInclude, string key)
+        {
+            var hasResource = styleInclude.TryGetResource(key, out var obj);
+
+            if (hasResource)
+                if (obj is string value)
+                    return value;
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Gets guid from current style include with parsing from string.
+        /// </summary>
+        /// <param name="styleInclude">Style include.</param>
+        /// <param name="key">Key.</param>
+        /// <returns>Guid.</returns>
+        public static Guid GetGuidFromString(this StyleInclude styleInclude, string key)
+        {
+            var hasResource = styleInclude.TryGetResource(key, out var obj);
+
+            if (hasResource)
+            {
+                if (obj is string value)
+                {
+                    var parsed = Guid.TryParse(value, out var guid);
+                    if (parsed)
+                        return guid;
+                }
+            }
+
+            return Guid.Empty;
         }
 
         /// <summary>

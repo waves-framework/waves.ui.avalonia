@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:base="clr-namespace:Waves.UI.Avalonia.Converters.Base">
+
+  <!-- Base -->
+  <base:StringToPathGeometryConverter x:Key="StringToPathGeometryConverter"/>
+
+</ResourceDictionary>

@@ -1,0 +1,37 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:presentation="clr-namespace:Waves.UI.Presentation.Tabs.Interfaces;assembly=Waves.UI">
+
+  <DataTemplate x:Key="TabDataTemplate" DataType="{x:Type presentation:ITabPresentation}">
+
+    <Grid>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="12"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <Grid Grid.Column="0">
+
+        <Viewbox Height="14" Width="14" Stretch="Uniform" Margin="{Binding VectorIconThickness}">
+
+          <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}" Data="{Binding VectorIconPathData, Converter={StaticResource StringToPathGeometryConverter}}"/>
+
+        </Viewbox>
+
+      </Grid>
+
+      <Grid Grid.Column="2">
+
+        <TextBlock Text="{Binding Name}"/>
+
+      </Grid>
+
+    </Grid>
+
+  </DataTemplate>
+
+
+</ResourceDictionary>

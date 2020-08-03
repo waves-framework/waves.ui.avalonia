@@ -1,45 +1,115 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="../../props/Waves.UI.Avalonia.props" />
 
   <ItemGroup>
-        <AvaloniaResource Include="**\*.xaml" />
-    </ItemGroup>
+    <AvaloniaResource Include="**\*.xaml" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Avalonia" Version="0.9.12" />
-        <PackageReference Include="Waves.Core" Version="2020.2.1.189" />
-        <PackageReference Include="Waves.Presentation" Version="2020.2.1.39" />
-        <PackageReference Include="Waves.UI" Version="2020.2.1.82" />
-        <PackageReference Include="Waves.UI.Drawing" Version="2020.2.1.82" />
-        <PackageReference Include="Waves.UI.Drawing.Charting" Version="2020.2.1.82" />
-    </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Remove="Converters\Converters.xaml" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <UpToDateCheckInput Remove="Theme\BorderStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\ButtonStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\CalendarStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\CheckBoxStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\ComboBoxStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\ExpanderStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\ListBoxStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\MenuStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\NumericUpDownStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\ProgressBarStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\RadioButtonStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\SliderStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\TabControlStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\TextBlockStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\TextBoxStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\ToggleButtonStyles.xaml" />
-      <UpToDateCheckInput Remove="Theme\TreeViewStyles.xaml" />
-    </ItemGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="Templates\Message.axaml" />
+    <AvaloniaXaml Remove="Templates\MessageObjects.axaml" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <None Remove="NLog.config" />
-      <Resource Include="NLog.config">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.0-preview2" />
+    <PackageReference Include="Waves.Core" Version="2020.2.1.189" />
+    <PackageReference Include="Waves.Presentation" Version="2020.2.1.39" />
+    <PackageReference Include="Waves.UI" Version="2020.2.1.82" />
+    <PackageReference Include="Waves.UI.Drawing" Version="2020.2.1.82" />
+    <PackageReference Include="Waves.UI.Drawing.Charting" Version="2020.2.1.82" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\FiraGO-Bold.ttf" />
+    <None Remove="Resources\Fonts\FiraGO-Book.ttf" />
+    <None Remove="Resources\Fonts\FiraGO-ExtraBold.ttf" />
+    <None Remove="Resources\Fonts\FiraGO-Heavy.ttf" />
+    <None Remove="Resources\Fonts\FiraGO-Medium.ttf" />
+    <None Remove="Resources\Fonts\FiraGO-Regular.ttf" />
+    <None Remove="Resources\Fonts\FiraGO-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Lato-Black.ttf" />
+    <None Remove="Resources\Fonts\Lato-Bold.ttf" />
+    <None Remove="Resources\Fonts\Lato-Heavy.ttf" />
+    <None Remove="Resources\Fonts\Lato-Medium.ttf" />
+    <None Remove="Resources\Fonts\Lato-Regular.ttf" />
+    <None Remove="Resources\Fonts\Lato-Semibold.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Templates\Message.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Templates\MessageObjects.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Update="Converters\Converters.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Resources\Fonts.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Styles\Text.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Core.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\FiraGO-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\FiraGO-Book.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\FiraGO-ExtraBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\FiraGO-Heavy.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\FiraGO-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\FiraGO-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\FiraGO-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\Lato-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\Lato-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\Lato-Heavy.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\Lato-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\Lato-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Fonts\Lato-Semibold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Update="Styles\Text.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+  </ItemGroup>
 
 </Project>

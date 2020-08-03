@@ -9,6 +9,7 @@ using Waves.Core.Base;
 using Waves.Core.Base.Enums;
 using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Base;
+using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Base.Interfaces;
 using Waves.UI.Services.Interfaces;
 using Application = Avalonia.Application;
@@ -216,22 +217,24 @@ namespace Waves.UI.Avalonia.Services
             var accentRedColorsStylesInclude = CreateStyle(AccentRedColorsDictionaryUri);
             var accentYellowColorsStylesInclude = CreateStyle(AccentYellowColorsDictionaryUri);
             var miscellaneousColorsStylesInclude = CreateStyle(MiscellaneousColorsDictionaryUri);
-            
-            var primaryLightColorName = (string)lightPrimaryColorsStylesInclude.FindResource("ColorSetName");
-            var primaryDarkColorName = (string)darkPrimaryColorsStylesInclude.FindResource("ColorSetName");
-            var accentGreenColorName = (string)accentGreenColorsStylesInclude.FindResource("ColorSetName");
-            var accentBlueColorName = (string)accentBlueColorsStylesInclude.FindResource("ColorSetName");
-            var accentRedColorName = (string)accentRedColorsStylesInclude.FindResource("ColorSetName");
-            var accentYellowColorName = (string)accentYellowColorsStylesInclude.FindResource("ColorSetName");
-            var miscellaneousColorName = (string)miscellaneousColorsStylesInclude.FindResource("ColorSetName");
 
-            var primaryLightColorSetId = Guid.Parse((string)lightPrimaryColorsStylesInclude.FindResource("ColorSetId"));
-            var primaryDarkColorSetId = Guid.Parse((string)darkPrimaryColorsStylesInclude.FindResource("ColorSetId"));
-            var accentGreenColorSetId = Guid.Parse((string)accentGreenColorsStylesInclude.FindResource("ColorSetId"));
-            var accentBlueColorSetId = Guid.Parse((string)accentBlueColorsStylesInclude.FindResource("ColorSetId"));
-            var accentRedColorSetId = Guid.Parse((string)accentRedColorsStylesInclude.FindResource("ColorSetId"));
-            var accentYellowColorSetId = Guid.Parse((string)accentYellowColorsStylesInclude.FindResource("ColorSetId"));
-            var miscellaneousColorSetId = Guid.Parse((string)miscellaneousColorsStylesInclude.FindResource("ColorSetId"));
+            var colorSetNameKey = "ColorSetName";
+
+            var primaryLightColorName = lightPrimaryColorsStylesInclude.GetString(colorSetNameKey);
+            var primaryDarkColorName = darkPrimaryColorsStylesInclude.GetString(colorSetNameKey);
+            var accentGreenColorName = accentGreenColorsStylesInclude.GetString(colorSetNameKey);
+            var accentBlueColorName = accentBlueColorsStylesInclude.GetString(colorSetNameKey);
+            var accentRedColorName = accentRedColorsStylesInclude.GetString(colorSetNameKey);
+            var accentYellowColorName = accentYellowColorsStylesInclude.GetString(colorSetNameKey);
+            var miscellaneousColorName = miscellaneousColorsStylesInclude.GetString(colorSetNameKey);
+
+            var primaryLightColorSetId = lightPrimaryColorsStylesInclude.GetGuidFromString("ColorSetId");
+            var primaryDarkColorSetId = darkPrimaryColorsStylesInclude.GetGuidFromString("ColorSetId");
+            var accentGreenColorSetId = accentGreenColorsStylesInclude.GetGuidFromString("ColorSetId");
+            var accentBlueColorSetId = accentBlueColorsStylesInclude.GetGuidFromString("ColorSetId");
+            var accentRedColorSetId = accentRedColorsStylesInclude.GetGuidFromString("ColorSetId");
+            var accentYellowColorSetId = accentYellowColorsStylesInclude.GetGuidFromString("ColorSetId");
+            var miscellaneousColorSetId = miscellaneousColorsStylesInclude.GetGuidFromString("ColorSetId");
 
             var lightPrimaryColorSet = new PrimaryColorSet(primaryLightColorSetId,
             primaryLightColorName,

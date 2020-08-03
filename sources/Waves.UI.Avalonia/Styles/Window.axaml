@@ -9,7 +9,7 @@
       <ResourceDictionary.MergedDictionaries>
 
         <!-- Opacity.. -->
-        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.xaml" />
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
 
       </ResourceDictionary.MergedDictionaries>
 
@@ -127,7 +127,7 @@
   
   <Style Selector="local|WavesWindow[HasSystemDecorations=False] /template/ Border#WindowBorder">
 
-    <Setter Property="CornerRadius" Value="6"/>
+    <Setter Property="CornerRadius" Value="0"/>
 
   </Style>
   

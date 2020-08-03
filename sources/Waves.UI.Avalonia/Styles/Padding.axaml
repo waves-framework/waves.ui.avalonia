@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+
+  <Thickness x:Key="SmallThickness">6,3,6,3</Thickness>
+
+  <Thickness x:Key="StandardThickness">12,6,12,6</Thickness>
+
+  <Thickness x:Key="MediumThickness">18,12,18,12</Thickness>
+
+  <Thickness x:Key="BigThickness">24,18,24,18</Thickness>
+
+  <CornerRadius x:Key="StandardCornerRadius">6,6,6,6</CornerRadius>
+    
+</ResourceDictionary>
