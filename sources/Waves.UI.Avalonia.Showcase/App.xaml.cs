@@ -42,8 +42,6 @@ namespace Waves.UI.Avalonia.Showcase
                 Core.AttachMainWindow(window);
 
                 window.Closing += OnViewClosing;
-
-                Core.AddMessageSeparator();
             }
 
             base.OnFrameworkInitializationCompleted();
@@ -56,7 +54,7 @@ namespace Waves.UI.Avalonia.Showcase
         /// <param name="e">Message.</param>
         private void OnControllerMessageReceived(object sender, IMessage e)
         {
-            Core.WriteLogMessage(e);
+            Core.WriteLog(e);
         }
 
         /// <summary>

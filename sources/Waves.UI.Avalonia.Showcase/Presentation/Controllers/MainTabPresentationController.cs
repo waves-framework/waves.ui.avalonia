@@ -68,7 +68,7 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
 
                 var coreTabPresentation = new CoreTabPresentation(Core);
                 coreTabPresentation.SetView(new CoreTabView());
-                RegisterPresentation(coreTabPresentation);
+                RegisterPresenter(coreTabPresentation);
 
                 //var themeTabPresentation = new ThemeTabPresentation(Core);
                 //themeTabPresentation.SetView(new ThemeTabView());
@@ -80,8 +80,8 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
 
                 OnMessageReceived(new Message("Initialization", "Main tab controller initialized.", "Main tab controller", MessageType.Success));
 
-                if (Presentations.Count > 0)
-                    SelectedPresentation = Presentations.First();
+                if (Presenters.Count > 0)
+                    SelectedPresenter = Presenters.First();
             }
             catch (Exception e)
             {

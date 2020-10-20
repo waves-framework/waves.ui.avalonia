@@ -21,7 +21,7 @@
   </DataTemplate>
 
   <!-- Group -->
-  <DataTemplate  x:Key="MessageGroupDataTemplate" DataType="{x:Type base:MessageGroup}">
+  <DataTemplate x:Key="MessageGroupDataTemplate" DataType="{x:Type base:MessageGroup}">
 
     <Grid Margin="0,0,0,18">
 

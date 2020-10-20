@@ -5,9 +5,11 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Styling;
+using ReactiveUI;
 using Waves.Core.Base;
 using Waves.Core.Base.Enums;
 using Waves.Core.Base.Interfaces;
+using Waves.Core.Base.Interfaces.Services;
 using Waves.UI.Avalonia.Base;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Base.Interfaces;
@@ -56,7 +58,7 @@ namespace Waves.UI.Avalonia.Services
         public override Guid Id { get; } = Guid.Parse("61482A15-667C-4993-AEAE-4F19A62C17B8");
 
         /// <inheritdoc />
-        public override string Name { get; set; } = "WPF UI Theme Service";
+        public override string Name { get; set; } = "Avalonia UI Theme Service";
 
         /// <inheritdoc />
         public bool UseDarkScheme
@@ -72,7 +74,7 @@ namespace Waves.UI.Avalonia.Services
 
                 OnThemeChanged();
 
-                OnPropertyChanged();
+                this.RaiseAndSetIfChanged(ref _useDarkScheme, value);
             }
         }
 
@@ -103,7 +105,7 @@ namespace Waves.UI.Avalonia.Services
 
                 OnThemeChanged();
 
-                OnPropertyChanged();
+                this.RaiseAndSetIfChanged(ref _selectedTheme, value);
             }
         }
 
@@ -126,9 +128,11 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <inheritdoc />
-        public override void Initialize()
+        public override void Initialize(ICore core)
         {
             if (IsInitialized) return;
+
+            Core = core;
             
             InitializeThemes();
 
@@ -139,13 +143,13 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <inheritdoc />
-        public override void LoadConfiguration(IConfiguration configuration)
+        public override void LoadConfiguration()
         {
             try
             {
-                _selectedThemeId = LoadConfigurationValue(configuration, "ThemesService-SelectedThemeId", Guid.Empty);
-                UseAutomaticScheme = LoadConfigurationValue(configuration, "ThemesService-UseAutomaticScheme", false);
-                UseDarkScheme = LoadConfigurationValue(configuration, "ThemesService-UseDarkScheme", false);
+                _selectedThemeId = LoadConfigurationValue(Core.Configuration, "ThemesService-SelectedThemeId", Guid.Empty);
+                UseAutomaticScheme = LoadConfigurationValue(Core.Configuration, "ThemesService-UseAutomaticScheme", false);
+                UseDarkScheme = LoadConfigurationValue(Core.Configuration, "ThemesService-UseDarkScheme", false);
             }
             catch (Exception e)
             {
@@ -155,13 +159,13 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <inheritdoc />
-        public override void SaveConfiguration(IConfiguration configuration)
+        public override void SaveConfiguration()
         {
             try
             {
-                configuration.SetPropertyValue("ThemesService-SelectedThemeId", _selectedThemeId);
-                configuration.SetPropertyValue("ThemesService-UseAutomaticScheme", UseAutomaticScheme);
-                configuration.SetPropertyValue("ThemesService-UseDarkScheme", UseDarkScheme);
+                Core.Configuration.SetPropertyValue("ThemesService-SelectedThemeId", _selectedThemeId);
+                Core.Configuration.SetPropertyValue("ThemesService-UseAutomaticScheme", UseAutomaticScheme);
+                Core.Configuration.SetPropertyValue("ThemesService-UseDarkScheme", UseDarkScheme);
             }
             catch (Exception e)
             {

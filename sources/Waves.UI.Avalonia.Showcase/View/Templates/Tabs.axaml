@@ -3,7 +3,7 @@
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
         xmlns:presentation="clr-namespace:Waves.UI.Presentation.Tabs.Interfaces;assembly=Waves.UI">
 
-  <DataTemplate x:Key="TabDataTemplate" DataType="{x:Type presentation:ITabPresentation}">
+  <DataTemplate x:Key="TabDataTemplate" DataType="{x:Type presentation:ITabPresenter}">
 
     <Grid>
 

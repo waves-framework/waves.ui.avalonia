@@ -10,7 +10,7 @@ namespace Waves.UI.Avalonia.Showcase.View.Control.Tabs
     /// <summary>
     /// Core tab view.
     /// </summary>
-    public class CoreTabView : UserControl, IPresentationView
+    public class CoreTabView : UserControl, IPresenterView
     {
         /// <summary>
         /// Creates new instance of <see cref="CoreTabView"/>.

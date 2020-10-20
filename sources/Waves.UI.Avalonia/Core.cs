@@ -88,10 +88,10 @@ namespace Waves.UI.Avalonia
         /// </summary>
         private void InitializeThemeService()
         {
-            var service = GetService<IThemeService>() as ThemeService;
+            var service = GetInstance<IThemeService>() as ThemeService;
 
             if (service == null)
-                WriteLogMessage(
+                WriteLog(
                     new Message("Service", "Theme service is not initialized.", "UI Core", MessageType.Fatal));
             else
                 service.AttachWindow(MainWindow);

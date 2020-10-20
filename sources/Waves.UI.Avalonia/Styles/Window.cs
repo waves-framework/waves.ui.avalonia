@@ -4,21 +4,23 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
-using Avalonia.Data;
 using Avalonia.Input;
-using Avalonia.Media;
 using Avalonia.Styling;
-using PropertyChanged;
 using Waves.UI.Avalonia.Styles.Enums;
 
 namespace Waves.UI.Avalonia.Styles
 {
     /// <summary>
-    /// Waves window.
+    ///     Waves window.
     /// </summary>
-    [DoNotNotify]
-    public class WavesWindow: Window, IStyleable
+    public class WavesWindow : Window, IStyleable
     {
+        /// <summary>
+        ///     Gets or sets client decorations property.
+        /// </summary>
+        public static readonly StyledProperty<bool> ClientDecorationsProperty =
+            AvaloniaProperty.Register<WavesWindow, bool>(nameof(ClientDecorations));
+
         private Grid _bottomHorizontalGrip;
         private Grid _bottomLeftGrip;
         private Grid _bottomRightGrip;
@@ -39,7 +41,7 @@ namespace Waves.UI.Avalonia.Styles
         private Grid _topRightGrip;
 
         /// <summary>
-        /// Creates new instance of <see cref="WavesWindow"/>
+        ///     Creates new instance of <see cref="WavesWindow" />
         /// </summary>
         protected WavesWindow()
         {
@@ -53,17 +55,17 @@ namespace Waves.UI.Avalonia.Styles
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    var classes = (int)GetClassLong(this.PlatformImpl.Handle.Handle, (int)ClassLongIndex.GCL_STYLE);
+                    var classes = (int) GetClassLong(PlatformImpl.Handle.Handle, (int) ClassLongIndex.GCL_STYLE);
 
-                    classes |= (int)0x00020000;
+                    classes |= 0x00020000;
 
-                    SetClassLong(this.PlatformImpl.Handle.Handle, ClassLongIndex.GCL_STYLE, new IntPtr(classes));
+                    SetClassLong(PlatformImpl.Handle.Handle, ClassLongIndex.GCL_STYLE, new IntPtr(classes));
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets Client decorations.
+        ///     Gets or sets Client decorations.
         /// </summary>
         public bool ClientDecorations
         {
@@ -72,12 +74,12 @@ namespace Waves.UI.Avalonia.Styles
         }
 
         /// <summary>
-        /// Style key.
+        ///     Style key.
         /// </summary>
         Type IStyleable.StyleKey => typeof(WavesWindow);
-        
+
         /// <summary>
-        /// Actions when pointer pressed.
+        ///     Actions when pointer pressed.
         /// </summary>
         /// <param name="e">Arguments.</param>
         protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -134,7 +136,7 @@ namespace Waves.UI.Avalonia.Styles
         }
 
         /// <summary>
-        /// Actions when pointer released.
+        ///     Actions when pointer released.
         /// </summary>
         /// <param name="e">Arguments.</param>
         protected override void OnPointerReleased(PointerReleasedEventArgs e)
@@ -142,17 +144,17 @@ namespace Waves.UI.Avalonia.Styles
             _mouseDown = false;
             base.OnPointerReleased(e);
         }
-        
+
         /// <summary>
-        /// Actions when template applied.
+        ///     Actions when template applied.
         /// </summary>
         /// <param name="e">Arguments.</param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
-			base.OnTemplateApplied(e);
+            base.OnTemplateApplied(e);
 
             _titleBar = e.NameScope.Find<Grid>("TitleBarGrid");
-            
+
             _minimiseButton = e.NameScope.Find<Button>("minimiseButton");
             _restoreButton = e.NameScope.Find<Button>("restoreButton");
             _restoreButtonPanelPath = e.NameScope.Find<Path>("restoreButtonPanelPath");
@@ -200,7 +202,7 @@ namespace Waves.UI.Avalonia.Styles
         }
 
         /// <summary>
-        /// Toggles window state.
+        ///     Toggles window state.
         /// </summary>
         private void ToggleWindowState()
         {
@@ -217,80 +219,127 @@ namespace Waves.UI.Avalonia.Styles
         }
 
         /// <summary>
-        /// Gets or sets client decorations property.
-        /// </summary>
-        public static readonly StyledProperty<bool> ClientDecorationsProperty =
-            AvaloniaProperty.Register<WavesWindow, bool>(nameof(ClientDecorations));
-
-        /// <summary>
-        /// Retrieves the specified 32-bit value from the WNDCLASSEX structure associated with the specified window.
+        ///     Retrieves the specified 32-bit value from the WNDCLASSEX structure associated with the specified window.
         /// </summary>
         /// <param name="hWnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
-        /// <param name="nIndex">The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive, zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8 would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of the following values.</param>
-        /// <returns>If the function succeeds, the return value is the requested value. If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
+        /// <param name="nIndex">
+        ///     The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive,
+        ///     zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of
+        ///     extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8
+        ///     would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of
+        ///     the following values.
+        /// </param>
+        /// <returns>
+        ///     If the function succeeds, the return value is the requested value. If the function fails, the return value is
+        ///     zero. To get extended error information, call GetLastError.
+        /// </returns>
         [DllImport("user32.dll", EntryPoint = "GetClassLong")]
         public static extern uint GetClassLongPtr32(IntPtr hWnd, int nIndex);
 
         /// <summary>
-        /// Retrieves the specified 64-bit value from the WNDCLASSEX structure associated with the specified window.
+        ///     Retrieves the specified 64-bit value from the WNDCLASSEX structure associated with the specified window.
         /// </summary>
         /// <param name="hWnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
-        /// <param name="nIndex">The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive, zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8 would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of the following values.</param>
-        /// <returns>If the function succeeds, the return value is the requested value. If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
+        /// <param name="nIndex">
+        ///     The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive,
+        ///     zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of
+        ///     extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8
+        ///     would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of
+        ///     the following values.
+        /// </param>
+        /// <returns>
+        ///     If the function succeeds, the return value is the requested value. If the function fails, the return value is
+        ///     zero. To get extended error information, call GetLastError.
+        /// </returns>
         [DllImport("user32.dll", EntryPoint = "GetClassLongPtr")]
         public static extern IntPtr GetClassLongPtr64(IntPtr hWnd, int nIndex);
 
         /// <summary>
-        /// Replaces the specified value at the specified offset into the extra class memory or the WNDCLASSEX structure for the class to which the specified window belongs. 
+        ///     Replaces the specified value at the specified offset into the extra class memory or the WNDCLASSEX structure for
+        ///     the class to which the specified window belongs.
         /// </summary>
         /// <param name="hWnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
-        /// <param name="nIndex">The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive, zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8 would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of the following values.</param>
+        /// <param name="nIndex">
+        ///     The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive,
+        ///     zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of
+        ///     extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8
+        ///     would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of
+        ///     the following values.
+        /// </param>
         /// <param name="dwNewLong">The replacement value.</param>
-        /// <returns>If the function succeeds, the return value is the previous value of the specified 32-bit integer. If the value was not previously set, the return value is zero.
-        /// If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
+        /// <returns>
+        ///     If the function succeeds, the return value is the previous value of the specified 32-bit integer. If the value was
+        ///     not previously set, the return value is zero.
+        ///     If the function fails, the return value is zero. To get extended error information, call GetLastError.
+        /// </returns>
         public static IntPtr SetClassLong(IntPtr hWnd, ClassLongIndex nIndex, IntPtr dwNewLong)
         {
-            if (IntPtr.Size == 4)
-            {
-                return SetClassLong32(hWnd, nIndex, dwNewLong);
-            }
+            if (IntPtr.Size == 4) return SetClassLong32(hWnd, nIndex, dwNewLong);
 
             return SetClassLong64(hWnd, nIndex, dwNewLong);
         }
 
         /// <summary>
-        /// Retrieves the specified value from the WNDCLASSEX structure associated with the specified window.
+        ///     Retrieves the specified value from the WNDCLASSEX structure associated with the specified window.
         /// </summary>
         /// <param name="hWnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
-        /// <param name="nIndex">The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive, zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8 would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of the following values.</param>
-        /// <returns>If the function succeeds, the return value is the requested value. If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
+        /// <param name="nIndex">
+        ///     The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive,
+        ///     zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of
+        ///     extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8
+        ///     would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of
+        ///     the following values.
+        /// </param>
+        /// <returns>
+        ///     If the function succeeds, the return value is the requested value. If the function fails, the return value is
+        ///     zero. To get extended error information, call GetLastError.
+        /// </returns>
         public static IntPtr GetClassLong(IntPtr hWnd, int nIndex)
         {
             if (IntPtr.Size > 4)
                 return GetClassLongPtr64(hWnd, nIndex);
-            else
-                return new IntPtr(GetClassLongPtr32(hWnd, nIndex));
+            return new IntPtr(GetClassLongPtr32(hWnd, nIndex));
         }
 
         /// <summary>
-        /// Replaces the specified 64-bit (long) value at the specified offset into the extra class memory or the WNDCLASSEX structure for the class to which the specified window belongs. 
+        ///     Replaces the specified 64-bit (long) value at the specified offset into the extra class memory or the WNDCLASSEX
+        ///     structure for the class to which the specified window belongs.
         /// </summary>
         /// <param name="hWnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
-        /// <param name="nIndex">The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive, zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8 would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of the following values.</param>
+        /// <param name="nIndex">
+        ///     The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive,
+        ///     zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of
+        ///     extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8
+        ///     would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of
+        ///     the following values.
+        /// </param>
         /// <param name="dwNewLong">The replacement value.</param>
-        /// <returns>If the function succeeds, the return value is the previous value of the specified 32-bit integer. If the value was not previously set, the return value is zero.
-        /// If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
+        /// <returns>
+        ///     If the function succeeds, the return value is the previous value of the specified 32-bit integer. If the value was
+        ///     not previously set, the return value is zero.
+        ///     If the function fails, the return value is zero. To get extended error information, call GetLastError.
+        /// </returns>
         [DllImport("user32.dll", EntryPoint = "SetClassLongPtr")]
         private static extern IntPtr SetClassLong64(IntPtr hWnd, ClassLongIndex nIndex, IntPtr dwNewLong);
 
         /// <summary>
-        /// Replaces the specified 32-bit (long) value at the specified offset into the extra class memory or the WNDCLASSEX structure for the class to which the specified window belongs.
+        ///     Replaces the specified 32-bit (long) value at the specified offset into the extra class memory or the WNDCLASSEX
+        ///     structure for the class to which the specified window belongs.
         /// </summary>
         /// <param name="hWnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
-        /// <param name="nIndex">The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive, zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8 would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of the following values.</param>
+        /// <param name="nIndex">
+        ///     The value to be replaced. To set a 32-bit value in the extra class memory, specify the positive,
+        ///     zero-based byte offset of the value to be set. Valid values are in the range zero through the number of bytes of
+        ///     extra class memory, minus four; for example, if you specified 12 or more bytes of extra class memory, a value of 8
+        ///     would be an index to the third 32-bit integer. To set any other value from the WNDCLASSEX structure, specify one of
+        ///     the following values.
+        /// </param>
         /// <param name="dwNewLong">The replacement value.</param>
-        /// <returns>If the function succeeds, the return value is the previous value of the specified 32-bit integer. If the value was not previously set, the return value is zero.
-        /// If the function fails, the return value is zero. To get extended error information, call GetLastError.</returns>
+        /// <returns>
+        ///     If the function succeeds, the return value is the previous value of the specified 32-bit integer. If the value was
+        ///     not previously set, the return value is zero.
+        ///     If the function fails, the return value is zero. To get extended error information, call GetLastError.
+        /// </returns>
         [DllImport("user32.dll", EntryPoint = "SetClassLong")]
         private static extern IntPtr SetClassLong32(IntPtr hWnd, ClassLongIndex nIndex, IntPtr dwNewLong);
     }

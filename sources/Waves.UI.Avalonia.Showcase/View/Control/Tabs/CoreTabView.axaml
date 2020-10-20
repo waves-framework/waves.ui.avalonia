@@ -58,13 +58,19 @@
 
           <ItemsControl Items="{Binding LoggingService.LastMessages}">
 
-            <ItemsControl.DataTemplates>
+            <ItemsControl.ItemTemplate>
 
-              <StaticResourceExtension ResourceKey="MessageSeparatorDataTemplate"/>
+              <DataTemplate>
+              
+                            <Grid>
+              
+                             <TextBlock Text="1"/>
+              
+                            </Grid>
+              
+                          </DataTemplate>
 
-              <StaticResourceExtension ResourceKey="MessageGroupDataTemplate"/>
-
-            </ItemsControl.DataTemplates>
+            </ItemsControl.ItemTemplate>
 
             <ItemsControl.ItemsPanel>
               <ItemsPanelTemplate>

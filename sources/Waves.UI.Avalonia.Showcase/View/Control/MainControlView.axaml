@@ -29,9 +29,9 @@
     <Grid Grid.Row="0">
 
       <TabControl TabStripPlacement="Top"
-                  Items="{Binding Presentations}"
-                  SelectedItem="{Binding SelectedPresentation}"
-                  SelectedContent="{Binding SelectedPresentation.View}"
+                  Items="{Binding Presenters}"
+                  SelectedItem="{Binding SelectedPresenter}"
+                  SelectedContent="{Binding SelectedPresenter.View}"
                   ItemTemplate="{StaticResource TabDataTemplate}"/>
 
     </Grid>

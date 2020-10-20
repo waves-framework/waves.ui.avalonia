@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0-preview2" />
-    <PackageReference Include="Waves.Core" Version="2020.2.1.189" />
-    <PackageReference Include="Waves.Presentation" Version="2020.2.1.39" />
-    <PackageReference Include="Waves.UI" Version="2020.2.1.82" />
-    <PackageReference Include="Waves.UI.Drawing" Version="2020.2.1.82" />
-    <PackageReference Include="Waves.UI.Drawing.Charting" Version="2020.2.1.82" />
+    <PackageReference Include="Avalonia" Version="0.10.0-preview5" />
+    <PackageReference Include="Waves.Core" Version="2020.2.5" />
+    <PackageReference Include="Waves.Presentation" Version="2020.2.4" />
+    <PackageReference Include="Waves.UI" Version="2020.2.3" />
+    <PackageReference Include="Waves.UI.Drawing" Version="2020.2.3" />
+    <PackageReference Include="Waves.UI.Drawing.Charting" Version="2020.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +38,9 @@
     <None Remove="Resources\Fonts\Lato-Medium.ttf" />
     <None Remove="Resources\Fonts\Lato-Regular.ttf" />
     <None Remove="Resources\Fonts\Lato-Semibold.ttf" />
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
