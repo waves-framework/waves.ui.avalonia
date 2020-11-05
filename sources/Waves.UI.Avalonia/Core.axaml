@@ -12,6 +12,9 @@
 
         <!-- Fonts -->
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Fonts.axaml" />
+        
+        <!-- Icons -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Icons.axaml" />
 
         <!-- Opacity -->
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
@@ -22,6 +25,7 @@
         <!-- Templates -->
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Templates/Message.axaml" />
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Templates/MessageObjects.axaml" />
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Templates/Theme.axaml" />
 
       </ResourceDictionary.MergedDictionaries>
 
@@ -33,10 +37,12 @@
   <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
   
   <!-- Waves styles -->
+  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Button.axaml"/>
+  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ComboBox.axaml"/>
+  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ComboBoxItem.axaml" />
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.axaml"/>
-  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml"/>
-
-  <!-- Text styles -->
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
+  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ToggleButton.axaml"/>
+  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml"/>
 
 </Styles>

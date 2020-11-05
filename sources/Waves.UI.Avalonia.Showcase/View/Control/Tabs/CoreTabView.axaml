@@ -2,101 +2,104 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabs="clr-namespace:Waves.UI.Showcase.Common.Presentation.ViewModel.Tabs;assembly=Waves.UI.Showcase.Common"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             xmlns:tabs="clr-namespace:Waves.UI.Showcase.Common.ViewModel.Tabs;assembly=Waves.UI.Showcase.Common"
              d:DataContext="{d:DesignInstance tabs:CoreTabViewModel}"
-             x:Class="Waves.UI.Avalonia.Showcase.View.Control.Tabs.CoreTabView"
-             xmlns:interfaces="clr-namespace:Waves.Core.Base.Interfaces;assembly=Waves.Core.Base"
-             xmlns:enums="clr-namespace:Waves.Core.Base.Enums;assembly=Waves.Core.Base"
-             xmlns:base="clr-namespace:Waves.Core.Base;assembly=Waves.Core.Base">
+             x:Class="Waves.UI.Avalonia.Showcase.View.Control.Tabs.CoreTabView">
 
-  <Grid Margin="{DynamicResource BigThickness}">
+    <Grid Margin="{DynamicResource BigThickness}">
 
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="24"/>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="24" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <Grid Grid.Row="0">
+        <Grid Grid.Row="0">
 
-      <StackPanel>
+            <StackPanel>
 
-        <TextBlock Text="Core" Classes="Header1" Margin="0,0,0,9"/>
+                <TextBlock Text="Core" 
+                           Classes="Header1" 
+                           Margin="0,0,0,9" />
 
-        <TextBlock Text="This tab shows information about core." Classes="Regular1" Margin="0,0,0,9"/>
+                <TextBlock Text="This tab shows information about core." 
+                           Classes="Regular1" 
+                           Margin="0,0,0,9" />
 
-        <Canvas Height="2" Background="{DynamicResource Accent-100-Brush}" Width="300" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                <Canvas Height="2" 
+                        Background="{DynamicResource Accent-100-Brush}" 
+                        Width="300"
+                        HorizontalAlignment="Left" 
+                        Margin="0,0,0,0" />
 
-      </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <StackPanel>
+
+                    <TextBlock Text="System log" 
+                               Classes="Header2" 
+                               Margin="0,0,0,7" />
+
+                    <TextBlock Text="Shows all core messages." 
+                               Classes="Regular1" 
+                               Margin="0,0,0,0" />
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Row="2">
+
+                <ScrollViewer Grid.RowSpan="2" Margin="-24,0,-24,-18">
+
+                    <ItemsControl Items="{Binding LoggingService.LastMessages}"
+                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                        <ItemsControl.DataTemplates>
+                            <StaticResourceExtension ResourceKey="MessageSeparatorDataTemplate" />
+                            <StaticResourceExtension ResourceKey="MessageGroupDataTemplate" />
+                            <StaticResourceExtension ResourceKey="MessageItemListDataTemplate" />
+                        </ItemsControl.DataTemplates>
+                        
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="12,24,12,24" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                    </ItemsControl>
+
+                </ScrollViewer>
+
+                <Canvas Height="24" VerticalAlignment="Top" Margin="0,0,18,0">
+
+                    <Canvas.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="{DynamicResource Color-100}" Offset="0.0" />
+                            <GradientStop Offset="1" Color="{DynamicResource Color-100-Transparent}" />
+                        </LinearGradientBrush>
+                    </Canvas.Background>
+
+                </Canvas>
+
+            </Grid>
+
+        </Grid>
 
     </Grid>
 
-    <Grid Grid.Row="2">
-
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="12"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-
-      <Grid Grid.Row="0">
-
-        <StackPanel>
-
-          <TextBlock Text="System log" Classes="Header2" Margin="0,0,0,7"/>
-
-          <TextBlock Text="Shows all core messages." Classes="Regular1" Margin="0,0,0,0"/>
-
-        </StackPanel>
-
-      </Grid>
-
-      <Grid Grid.Row="2">
-
-        <ScrollViewer Grid.RowSpan="2" Margin="-12,0,-24,-18">
-
-          <ItemsControl Items="{Binding LoggingService.LastMessages}">
-
-            <ItemsControl.ItemTemplate>
-
-              <DataTemplate>
-              
-                            <Grid>
-              
-                             <TextBlock Text="1"/>
-              
-                            </Grid>
-              
-                          </DataTemplate>
-
-            </ItemsControl.ItemTemplate>
-
-            <ItemsControl.ItemsPanel>
-              <ItemsPanelTemplate>
-                <StackPanel Margin="12,24,12,24"/>
-              </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-          </ItemsControl>
-
-        </ScrollViewer>
-
-        <Canvas Height="24" VerticalAlignment="Top" Margin="0,0,18,0">
-
-          <Canvas.Background>
-            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-              <GradientStop Color="{DynamicResource Color-100}" Offset="0.0" />
-              <GradientStop Offset="1" Color="{DynamicResource Color-100-Transparent}"/>
-            </LinearGradientBrush>
-          </Canvas.Background>
-
-        </Canvas>
-
-      </Grid>
-
-    </Grid>
-
-  </Grid>
-  
 </UserControl>

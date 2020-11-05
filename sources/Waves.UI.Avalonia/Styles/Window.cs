@@ -5,7 +5,10 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Styling;
+using ReactiveUI.Fody.Helpers;
 using Waves.UI.Avalonia.Styles.Enums;
 
 namespace Waves.UI.Avalonia.Styles
@@ -19,8 +22,40 @@ namespace Waves.UI.Avalonia.Styles
         ///     Gets or sets client decorations property.
         /// </summary>
         public static readonly StyledProperty<bool> ClientDecorationsProperty =
-            AvaloniaProperty.Register<WavesWindow, bool>(nameof(ClientDecorations));
+            AvaloniaProperty.Register<WavesWindow, bool>(
+                nameof(ClientDecorations));
+        
+        /// <summary>
+        /// Defines <see cref="CurrentPlatform"/> property.
+        /// </summary>
+        public static readonly StyledProperty<OSPlatform> CurrentPlatformProperty =
+            AvaloniaProperty.Register<WavesWindow, OSPlatform>(
+                "CurrentPlatform", OSPlatform.Windows);
+        
+        /// <summary>
+        /// Defines <see cref="IsWindowsPlatform"/> property.
+        /// </summary>
+        public static readonly StyledProperty<bool> IsWindowsPlatformProperty =
+            AvaloniaProperty.Register<WavesWindow, bool>(
+                "IsWindowsPlatform", false);
+        
+        /// <summary>
+        /// Defines <see cref="IsLinuxPlatform"/> property.
+        /// </summary>
+        public static readonly StyledProperty<bool> IsLinuxPlatformProperty =
+            AvaloniaProperty.Register<WavesWindow, bool>(
+                "IsLinuxPlatform", false);
+        
+        /// <summary>
+        /// Defines <see cref="IsOsxPlatform"/> property.
+        /// </summary>
+        public static readonly StyledProperty<bool> IsOsxPlatformProperty =
+            AvaloniaProperty.Register<WavesWindow, bool>(
+                "IsOsxPlatform", false);
 
+        private bool _useCustomWindowForOsx = false;
+        
+        private Grid _contentGrid;
         private Grid _bottomHorizontalGrip;
         private Grid _bottomLeftGrip;
         private Grid _bottomRightGrip;
@@ -31,7 +66,7 @@ namespace Waves.UI.Avalonia.Styles
 
         private bool _mouseDown;
         private Point _mouseDownPosition;
-        private Button _restoreButton;
+        private Button _maximizeButton;
         private Path _restoreButtonPanelPath;
         private Grid _rightVerticalGrip;
 
@@ -45,10 +80,29 @@ namespace Waves.UI.Avalonia.Styles
         /// </summary>
         protected WavesWindow()
         {
-            HasSystemDecorations = false;
-            ClientDecorations = true;
+        }
 
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        /// <summary>
+        /// Initializes platorm.
+        /// </summary>
+        private void InitializePlatform()
+        {
+            SystemDecorations = SystemDecorations.BorderOnly;
+            
+            if (Net.Pkcs11Interop.Common.Platform.IsWindows)
+            {
+                CurrentPlatform = OSPlatform.Windows;
+            }
+            if (Net.Pkcs11Interop.Common.Platform.IsLinux)
+            {
+                CurrentPlatform = OSPlatform.Linux;
+            }
+            if (Net.Pkcs11Interop.Common.Platform.IsMacOsX)
+            {
+                CurrentPlatform = OSPlatform.OSX;
+            }
+            
+            if (!Net.Pkcs11Interop.Common.Platform.IsMacOsX)
             {
                 // do this in code or we get a delay in osx.
                 ClientDecorations = true;
@@ -62,6 +116,84 @@ namespace Waves.UI.Avalonia.Styles
                     SetClassLong(PlatformImpl.Handle.Handle, ClassLongIndex.GCL_STYLE, new IntPtr(classes));
                 }
             }
+            else
+            {
+                ClientDecorations = false;
+            }
+        }
+
+        /// <summary>
+        /// Actions when "Maximize button clicked."
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Arguments.</param>
+        private void OnMaximize(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Maximized;
+        }
+
+        /// <summary>
+        /// Gets or sets current platform.
+        /// </summary>
+        [Reactive]
+        public OSPlatform CurrentPlatform
+        {
+            get => GetValue(CurrentPlatformProperty);
+            set
+            {
+                SetValue(CurrentPlatformProperty, value);
+
+                if (value == OSPlatform.Windows)
+                {
+                    SetValue(IsWindowsPlatformProperty, true);
+                    SetValue(IsLinuxPlatformProperty, false);
+                    SetValue(IsOsxPlatformProperty, false);
+                }
+                
+                if (value == OSPlatform.Linux)
+                {
+                    SetValue(IsWindowsPlatformProperty, false);
+                    SetValue(IsLinuxPlatformProperty, true);
+                    SetValue(IsOsxPlatformProperty, false);
+                }
+                
+                if (value == OSPlatform.OSX)
+                {
+                    SetValue(IsWindowsPlatformProperty, false);
+                    SetValue(IsLinuxPlatformProperty, false);
+                    SetValue(IsOsxPlatformProperty, true);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether app running on Windows.
+        /// </summary>
+        [Reactive]
+        public bool IsWindowsPlatform
+        {
+            get => GetValue(IsWindowsPlatformProperty);
+            set => SetValue(IsWindowsPlatformProperty, value);
+        }
+        
+        /// <summary>
+        /// Gets or sets whether app running on Linux.
+        /// </summary>
+        [Reactive]
+        public bool IsLinuxPlatform
+        {
+            get => GetValue(IsLinuxPlatformProperty);
+            set => SetValue(IsLinuxPlatformProperty, value);
+        }
+        
+        /// <summary>
+        /// Gets or sets whether app running on OSX.
+        /// </summary>
+        [Reactive]
+        public bool IsOsxPlatform
+        {
+            get => GetValue(IsOsxPlatformProperty);
+            set => SetValue(IsOsxPlatformProperty, value);
         }
 
         /// <summary>
@@ -86,7 +218,10 @@ namespace Waves.UI.Avalonia.Styles
         {
             if (_topHorizontalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.North, e);
+                if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+                {
+                    BeginResizeDrag(WindowEdge.North, e);
+                }
             }
             else if (_bottomHorizontalGrip.IsPointerOver)
             {
@@ -149,46 +284,64 @@ namespace Waves.UI.Avalonia.Styles
         ///     Actions when template applied.
         /// </summary>
         /// <param name="e">Arguments.</param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
-            _titleBar = e.NameScope.Find<Grid>("TitleBarGrid");
-
-            _minimiseButton = e.NameScope.Find<Button>("minimiseButton");
-            _restoreButton = e.NameScope.Find<Button>("restoreButton");
+            InitializePlatform();
+            
+            _contentGrid = e.NameScope.Find<Grid>("ContentGrid");
             _restoreButtonPanelPath = e.NameScope.Find<Path>("restoreButtonPanelPath");
-            _closeButton = e.NameScope.Find<Button>("closeButton");
             _icon = e.NameScope.Find<Image>("icon");
 
-            _topHorizontalGrip = e.NameScope.Find<Grid>("topHorizontalGrip");
-            _bottomHorizontalGrip = e.NameScope.Find<Grid>("bottomHorizontalGrip");
-            _leftVerticalGrip = e.NameScope.Find<Grid>("leftVerticalGrip");
-            _rightVerticalGrip = e.NameScope.Find<Grid>("rightVerticalGrip");
+            _topHorizontalGrip = e.NameScope.Find<Grid>("TopHorizontalGrip");
+            _bottomHorizontalGrip = e.NameScope.Find<Grid>("BottomHorizontalGrip");
+            _leftVerticalGrip = e.NameScope.Find<Grid>("LeftVerticalGrip");
+            _rightVerticalGrip = e.NameScope.Find<Grid>("RightVerticalGrip");
 
-            _topLeftGrip = e.NameScope.Find<Grid>("topLeftGrip");
-            _bottomLeftGrip = e.NameScope.Find<Grid>("bottomLeftGrip");
-            _topRightGrip = e.NameScope.Find<Grid>("topRightGrip");
-            _bottomRightGrip = e.NameScope.Find<Grid>("bottomRightGrip");
+            _topLeftGrip = e.NameScope.Find<Grid>("TopLeftGrip");
+            _bottomLeftGrip = e.NameScope.Find<Grid>("BottomLeftGrip");
+            _topRightGrip = e.NameScope.Find<Grid>("TopRightGrip");
+            _bottomRightGrip = e.NameScope.Find<Grid>("BottomRightGrip");
 
-            if (_minimiseButton != null)
-                _minimiseButton.Click += (sender, ee) => { WindowState = WindowState.Minimized; };
-
-            if (_restoreButton != null)
-                _restoreButton.Click += (sender, ee) => { ToggleWindowState(); };
+            InitializeTitleBar(e.NameScope);
+            InitializeOsxWindowButtonsEvents(e.NameScope);
 
             if (_titleBar != null)
                 _titleBar.DoubleTapped += (sender, ee) => { ToggleWindowState(); };
 
-            if (_closeButton != null)
-                _closeButton.Click += (sender, ee) => { Close(); };
-
             if (_icon != null)
                 _icon.DoubleTapped += (sender, ee) => { Close(); };
+        }
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        /// <summary>
+        /// Initializes title bar.
+        /// </summary>
+        /// <param name="nameScope">Name scope.</param>
+        private void InitializeTitleBar(INameScope nameScope)
+        {
+            _titleBar = nameScope.Find<Grid>("TitleBarGrid");
+
+            if (CurrentPlatform == OSPlatform.Windows)
             {
-                _topHorizontalGrip.IsVisible = false;
+                _titleBar.Height = 34;
+            }
+            if (CurrentPlatform == OSPlatform.Linux)
+            {
+                
+            }
+            if (CurrentPlatform == OSPlatform.OSX)
+            {
+                _titleBar.Height = 22;
+                
+                if (_useCustomWindowForOsx)
+                    return;
+                
+                // use system decorations, because custom not fully works
+                _titleBar.IsVisible = false;
+                SystemDecorations = SystemDecorations.Full;
+                
+                _topHorizontalGrip.IsHitTestVisible = false;
                 _bottomHorizontalGrip.IsHitTestVisible = false;
                 _leftVerticalGrip.IsHitTestVisible = false;
                 _rightVerticalGrip.IsHitTestVisible = false;
@@ -196,9 +349,33 @@ namespace Waves.UI.Avalonia.Styles
                 _bottomLeftGrip.IsHitTestVisible = false;
                 _topRightGrip.IsHitTestVisible = false;
                 _bottomRightGrip.IsHitTestVisible = false;
-
+                
                 BorderThickness = new Thickness();
+                _contentGrid.Margin = new Thickness(0, -4, 0, 0);
             }
+        }
+
+        /// <summary>
+        /// Initializes window buttons for OSX.
+        /// </summary>
+        /// <param name="nameScope">Name scope.</param>
+        private void InitializeOsxWindowButtonsEvents(INameScope nameScope)
+        {
+            if (CurrentPlatform != OSPlatform.OSX)
+                return;
+            
+            _minimiseButton = nameScope.Find<Button>("OsxMinimizeButton");
+            _maximizeButton = nameScope.Find<Button>("OsxMaximizeButton");
+            _closeButton = nameScope.Find<Button>("OsxCloseButton");
+            
+            if (_minimiseButton != null)
+                _minimiseButton.Click += (sender, ee) => { WindowState = WindowState.Minimized; };
+
+            if (_maximizeButton != null)
+                _maximizeButton.Click += (sender, ee) => { ToggleWindowState(); };
+
+            if (_closeButton != null)
+                _closeButton.Click += (sender, ee) => { Close(); };
         }
 
         /// <summary>

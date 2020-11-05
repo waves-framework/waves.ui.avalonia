@@ -1,0 +1,18 @@
+﻿<Style xmlns="https://github.com/avaloniaui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    
+    <Style.Resources>
+        
+        <!-- Message colors -->
+        <Color x:Key="Osx-Minimize-Button-Color">#E7C029</Color>
+        <Color x:Key="Osx-Close-Button-Color">#FE5B52</Color>
+        <Color x:Key="Osx-Maximize-Button-Color">#54C12A</Color>
+        
+        <SolidColorBrush x:Key="Osx-Minimize-Button-Brush" Color="{StaticResource Osx-Minimize-Button-Color}" />
+        <SolidColorBrush x:Key="Osx-Close-Button-Brush" Color="{StaticResource Osx-Close-Button-Color}" />
+        <SolidColorBrush x:Key="Osx-Maximize-Button-Brush" Color="{StaticResource Osx-Maximize-Button-Color}" />
+        
+    </Style.Resources>
+    
+</Style>

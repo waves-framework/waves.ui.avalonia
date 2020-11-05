@@ -16,6 +16,12 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
         public MainTabPresentationController(Core core) : base(core)
         {
         }
+        
+        /// <inheritdoc />
+        public override Guid Id { get; } = Guid.NewGuid();
+
+        /// <inheritdoc />
+        public override string Name { get; set; } = "Main Tab Presenter Controller";
 
         /// <inheritdoc />
         public override void Initialize()
@@ -70,23 +76,29 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
                 coreTabPresentation.SetView(new CoreTabView());
                 RegisterPresenter(coreTabPresentation);
 
-                //var themeTabPresentation = new ThemeTabPresentation(Core);
-                //themeTabPresentation.SetView(new ThemeTabView());
-                //RegisterPresentation(themeTabPresentation);
+                var themeTabPresentation = new ThemeTabPresentation(Core);
+                themeTabPresentation.SetView(new ThemeTabView());
+                RegisterPresenter(themeTabPresentation);
 
                 //var aboutTabPresentation = new AboutTabPresentation(Core);
                 //aboutTabPresentation.SetView(new AboutTabView());
                 //RegisterPresentation(aboutTabPresentation);
 
-                OnMessageReceived(new Message("Initialization", "Main tab controller initialized.", "Main tab controller", MessageType.Success));
+                OnMessageReceived(this,new Message("Initialization", "Main tab controller initialized.", "Main tab controller", MessageType.Success));
 
                 if (Presenters.Count > 0)
                     SelectedPresenter = Presenters.First();
             }
             catch (Exception e)
             {
-                OnMessageReceived(new Message("Initialization", "Error initialization main tab controller:\r\n" + e, "Main tab controller", MessageType.Error));
+                OnMessageReceived(this,new Message("Initialization", "Error initialization main tab controller:\r\n" + e, "Main tab controller", MessageType.Error));
             }
+        }
+
+        /// <inheritdoc />
+        public override void Dispose()
+        {
+            Presenters.Clear();
         }
     }
 }

@@ -56,9 +56,7 @@
     <Setter Property="FontSize" Value="12" />
     <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     <Setter Property="TextWrapping" Value="NoWrap" />
-
     <Setter Property="Opacity" Value="0.9"/>
-
     <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
 
   </Style>

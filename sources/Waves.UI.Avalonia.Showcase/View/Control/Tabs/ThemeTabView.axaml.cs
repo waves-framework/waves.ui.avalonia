@@ -10,14 +10,14 @@ using Waves.Presentation.Interfaces;
 namespace Waves.UI.Avalonia.Showcase.View.Control.Tabs
 {
     /// <summary>
-    /// Core tab view.
+    /// Theme tab view.
     /// </summary>
-    public class CoreTabView : UserControl, IPresenterView
+    public class ThemeTabView : UserControl, IPresenterView
     {
         /// <summary>
-        /// Creates new instance of <see cref="CoreTabView"/>.
+        /// Creates new instance of <see cref="ThemeTabView"/>.
         /// </summary>
-        public CoreTabView()
+        public ThemeTabView()
         {
             InitializeComponent();
         }

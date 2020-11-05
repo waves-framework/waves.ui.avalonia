@@ -9,7 +9,7 @@
 
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="12"/>
+        <ColumnDefinition Width="9"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
 
@@ -17,7 +17,8 @@
 
         <Viewbox Height="14" Width="14" Stretch="Uniform" Margin="{Binding VectorIconThickness}">
 
-          <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}" Data="{Binding VectorIconPathData, Converter={StaticResource StringToPathGeometryConverter}}"/>
+          <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}" 
+                Data="{Binding VectorIconPathData, Converter={StaticResource StringToPathGeometryConverter}}"/>
 
         </Viewbox>
 
@@ -25,13 +26,13 @@
 
       <Grid Grid.Column="2">
 
-        <TextBlock Text="{Binding Name}"/>
+        <TextBlock Text="{Binding Name}"
+                   Margin="0,1,0,0"/>
 
       </Grid>
 
     </Grid>
 
   </DataTemplate>
-
 
 </ResourceDictionary>

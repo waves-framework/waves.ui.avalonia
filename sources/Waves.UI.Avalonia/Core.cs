@@ -35,7 +35,7 @@ namespace Waves.UI.Avalonia
         {
             Application = application;
             MainWindow = mainWindow;
-            
+
             // Application.DispatcherUnhandledException += OnDispatcherUnhandledException;
             // TaskScheduler.UnobservedTaskException += OnTaskSchedulerUnobservedTaskException;
 

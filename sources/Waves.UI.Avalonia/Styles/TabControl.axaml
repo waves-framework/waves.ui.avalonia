@@ -1,5 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:helpers="clr-namespace:Waves.UI.Avalonia.Helpers">
 
   <Styles.Resources>
 
@@ -7,8 +8,20 @@
 
       <ResourceDictionary.MergedDictionaries>
 
-        <!-- Opacity.. -->
+        <!-- Converters -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" />
+
+        <!-- Fonts -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Fonts.axaml" />
+        
+        <!-- Icons -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Icons.axaml" />
+
+        <!-- Opacity -->
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+        <!-- Padding -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
 
       </ResourceDictionary.MergedDictionaries>
 
@@ -16,11 +29,16 @@
 
   </Styles.Resources>
 
-
+  <!-- TabControl style -->
   <Style Selector="TabControl">
 
+    <Setter Property="FontFamily" Value="{DynamicResource Font-1}" />
+    <Setter Property="FontWeight" Value="Medium"/>
+    <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+    <Setter Property="FontSize" Value="12" />
     <Setter Property="TabStripPlacement" Value="Top"/>
-
+    <Setter Property="helpers:TabControlHelper.IsContentVisible" Value="True"/>
+    
     <Setter Property="Template">
 
       <ControlTemplate>
@@ -44,7 +62,8 @@
                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                               Content="{TemplateBinding SelectedContent}"
-                              ContentTemplate="{TemplateBinding SelectedContentTemplate}"/>
+                              ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                              IsVisible="{TemplateBinding helpers:TabControlHelper.IsContentVisible}"/>
 
           </DockPanel>
 
@@ -76,23 +95,24 @@
           
           <Grid x:Name="ContentGrid">
             
-            <Canvas x:Name="BackgroundCanvas" Background="{TemplateBinding Background}"/>
+            <Canvas x:Name="BackgroundCanvas" 
+                    Background="{TemplateBinding Background}"/>
 
             <Canvas x:Name="HighlightCanvas"/>
 
-            <ContentPresenter x:Name="ContentSite"
+            <ContentPresenter x:Name="PART_ContentPresenter"
                               Margin="{TemplateBinding Padding}"
                               Content="{TemplateBinding Header}"
                               ContentTemplate="{TemplateBinding HeaderTemplate}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              Opacity="{StaticResource Opacity4}"/>
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             
           </Grid>
           
-          <Grid x:Name="SelectionCanvasGrid">
+          <Grid x:Name="SeparatorGrid">
 
-            <Canvas x:Name="SelectionCanvas"/>
+            <Canvas x:Name="SelectionCanvas"
+                    Background="{DynamicResource Primary-500-Brush }"/>
 
           </Grid>
 
@@ -109,7 +129,7 @@
 
     <Style.Animations>
       
-      <Animation Duration="0:0:0.5"
+      <Animation Duration="0:0:0.1"
                  PlaybackDirection="Normal">
         
         <KeyFrame Cue="0%">
@@ -124,7 +144,7 @@
       
     </Style.Animations>
 
-    <Setter Property="Background" Value="Gray"/>
+    <Setter Property="Background" Value="{DynamicResource Primary-400-Brush}"/>
 
   </Style>
 
@@ -136,27 +156,25 @@
     <Setter Property="Opacity" Value="{StaticResource Opacity6}"/>
 
   </Style>
+  
+  <!-- Tab item when selected -->
+  <Style Selector="TabItem[IsSelected=true]">
+    
+    <Setter Property="Background" Value="{DynamicResource Primary-500-Brush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-500-Brush}"/>
+    
+  </Style>
+  
+  <!-- Tab item content presenter when item selected -->
+  <Style Selector="TabItem /template/ ContentPresenter#PART_ContentPresenter">
+    
+    <Setter Property="Opacity" Value="{StaticResource Opacity4}"/>
 
-  <!-- Tab item selection canvas selected animation -->
-  <Style Selector="TabItem:selected /template/ Canvas#SelectionCanvas">
-
-    <Style.Animations>
-      
-      <Animation Duration="0:0:0.5"
-                 PlaybackDirection="Normal">
-        
-        <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="{StaticResource Opacity6}"/>
-        </KeyFrame>
-        
-        <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="{StaticResource Opacity1}"/>
-        </KeyFrame>
-        
-      </Animation>
-      
-    </Style.Animations>
-
+  </Style>
+  
+  <!-- Tab item content presenter when item selected -->
+  <Style Selector="TabItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+    
     <Setter Property="Opacity" Value="{StaticResource Opacity1}"/>
 
   </Style>
@@ -168,7 +186,7 @@
     
   </Style>
   
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Grid#SelectionCanvasGrid">
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Grid#SeparatorGrid">
     
     <Setter Property="Grid.Row" Value="0"/>
     <Setter Property="Grid.Column" Value="1"/>
@@ -183,7 +201,7 @@
     
   </Style>
   
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Grid#SelectionCanvasGrid">
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Grid#SeparatorGrid">
     
     <Setter Property="Grid.Row" Value="1"/>
     <Setter Property="Grid.Column" Value="0"/>
@@ -198,7 +216,7 @@
     
   </Style>
   
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Grid#SelectionCanvasGrid">
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Grid#SeparatorGrid">
     
     <Setter Property="Grid.Row" Value="0"/>
     <Setter Property="Grid.Column" Value="0"/>
@@ -213,7 +231,7 @@
     
   </Style>
   
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Grid#SelectionCanvasGrid">
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Grid#SeparatorGrid">
     
     <Setter Property="Grid.Row" Value="0"/>
     <Setter Property="Grid.Column" Value="0"/>

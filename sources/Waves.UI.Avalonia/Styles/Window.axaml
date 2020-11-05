@@ -1,141 +1,368 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:local="clr-namespace:Waves.UI.Avalonia.Styles;assembly=Waves.UI.Avalonia"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions">
 
-  <Styles.Resources>
+    <Styles.Resources>
 
-    <ResourceDictionary>
+        <ResourceDictionary>
 
-      <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.MergedDictionaries>
 
-        <!-- Opacity.. -->
-        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+                <!-- Converters -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" />
 
-      </ResourceDictionary.MergedDictionaries>
+                <!-- Fonts -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Fonts.axaml" />
 
-    </ResourceDictionary>
+                <!-- Icons -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Icons.axaml" />
 
-  </Styles.Resources>
+                <!-- Opacity -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
 
-  <Style Selector="local|WavesWindow">
-    
-    <Setter Property="Background" Value="White" />
-    <Setter Property="BorderBrush" Value="{DynamicResource Primary-500-Brush}" />
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="FontSize" Value="12" />
-    
-    <Setter Property="Template">
-      
-      <ControlTemplate>
-        
-        <Border BorderThickness="{TemplateBinding BorderThickness}" 
-                BorderBrush="{TemplateBinding BorderBrush}" 
-                Background="{TemplateBinding Background}" 
-                Padding="0"
-                x:Name="WindowBorder">
-          
-          <VisualLayerManager>
-            
-            <Grid ColumnDefinitions="Auto, *, Auto" 
-                  RowDefinitions="Auto,Auto,*,Auto,Auto" 
-                  Background="Transparent">
-              
-              <Grid Grid.Row="0" 
-                    Grid.RowSpan="5" 
-                    Margin="0" 
-                    Grid.Column="1" 
-                    RowDefinitions="Auto * Auto" 
-                    ColumnDefinitions="Auto,Auto,*,Auto,Auto">
-                
-                <Grid Grid.Row="1" 
-                      Margin="0" 
-                      Grid.Column="0" 
-                      Grid.ColumnSpan="5">
-                  
-                  <Grid RowDefinitions="34, *" x:Name="TitleBarGrid">
-                    
-                    <Grid Grid.Row="0">
-                      
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                      </Grid.ColumnDefinitions>
-                      
-                      <Grid x:Name="ButtonsGrid">
-                        
-                          <StackPanel Orientation="Horizontal">
+                <!-- Padding -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+
+    <!-- System Colors -->
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Colors/System.xaml" />
+
+    <Style Selector="local|WavesWindow">
+
+        <Setter Property="BorderBrush" Value="{DynamicResource Primary-500-Brush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="12" />
+
+        <Setter Property="Template">
+
+            <ControlTemplate>
+
+                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Background="{TemplateBinding Background}"
+                        x:Name="WindowBorder">
+
+                    <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Grid for title and content -->
+                            <Grid Grid.Row="1"
+                                  Grid.RowSpan="2"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="3">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Content grid -->
+                                <Grid Grid.Row="1"
+                                      x:Name="ContentGrid">
+                                    
+                                    <ContentPresenter Name="PART_ContentPresenter"
+                                                      Content="{TemplateBinding Content}"
+                                                      Margin="0" />
+                                    
+                                </Grid>
+
+                                <!-- Title grid -->
+                                <Grid Grid.Row="0"
+                                      x:Name="TitleBarGrid"
+                                      Height="0"
+                                      Margin="6,0,6,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Grid Grid.Column="0" 
+                                          Grid.ColumnSpan="3">
+                                        
+                                        <!-- Stub for pointer enter / leave event for dragging window -->
+                                        <Canvas Background="White" Opacity="0" />
+                                        
+                                    </Grid>
+
+                                    <!-- OSX buttons grid -->
+                                    <Grid x:Name="OsxButtonsGrid"
+                                          Grid.Column="0">
+
+                                        <i:Interaction.Behaviors>
+
+                                            <ia:EventTriggerBehavior EventName="PointerEnter"
+                                                                     SourceObject="{Binding #OsxButtonsGrid}">
+
+                                                <ia:ChangePropertyAction
+                                                    TargetObject="{Binding #OsxCloseButtonIconViewBox}"
+                                                    PropertyName="Opacity"
+                                                    Value="0.5" />
+
+                                                <ia:ChangePropertyAction
+                                                    TargetObject="{Binding #OsxMinimizeButtonIconViewBox}"
+                                                    PropertyName="Opacity"
+                                                    Value="0.5" />
+
+                                                <ia:ChangePropertyAction
+                                                    TargetObject="{Binding #OsxMaximizeButtonIconViewBox}"
+                                                    PropertyName="Opacity"
+                                                    Value="0.5" />
+
+                                            </ia:EventTriggerBehavior>
+
+                                            <ia:EventTriggerBehavior EventName="PointerLeave"
+                                                                     SourceObject="{Binding #ButtonsGrid}">
+
+                                                <ia:ChangePropertyAction
+                                                    TargetObject="{Binding #OsxCloseButtonIconViewBox}"
+                                                    PropertyName="Opacity"
+                                                    Value="0.0" />
+
+                                                <ia:ChangePropertyAction
+                                                    TargetObject="{Binding #OsxMinimizeButtonIconViewBox}"
+                                                    PropertyName="Opacity"
+                                                    Value="0.0" />
+
+                                                <ia:ChangePropertyAction
+                                                    TargetObject="{Binding #OsxMaximizeButtonIconViewBox}"
+                                                    PropertyName="Opacity"
+                                                    Value="0.0" />
+
+                                            </ia:EventTriggerBehavior>
+
+                                        </i:Interaction.Behaviors>
+
+                                        <!-- Stub for pointer enter / leave event -->
+                                        <Canvas Background="White" Opacity="0" />
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    VerticalAlignment="Center"
+                                                    x:Name="OsxButtonsStackPanel">
+
+                                            <Button Classes="OsxCloseButton"
+                                                    x:Name="OsxCloseButton"
+                                                    Margin="0,0,8,0">
+
+                                                <Viewbox x:Name="OsxCloseButtonIconViewBox"
+                                                         Height="7"
+                                                         Width="7"
+                                                         Opacity="0"
+                                                         Stretch="Uniform"
+                                                         Margin="-1,-1,0,0">
+
+                                                    <Path
+                                                        Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}"
+                                                        Data="{StaticResource Icon-Osx-Close}" />
+
+                                                </Viewbox>
+
+                                            </Button>
+
+                                            <Button Classes="OsxMinimizeButton"
+                                                    x:Name="OsxMinimizeButton"
+                                                    Margin="0,0,8,0">
+
+                                                <Viewbox Height="7"
+                                                         Width="7"
+                                                         Opacity="0.0"
+                                                         Stretch="Uniform"
+                                                         x:Name="OsxMinimizeButtonIconViewBox"
+                                                         Margin="-1,-3,0,0">
+
+                                                    <Path
+                                                        Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}"
+                                                        Data="{StaticResource Icon-Minus}" />
+
+                                                </Viewbox>
+
+                                            </Button>
+
+                                            <Button Classes="OsxMaximizeButton"
+                                                    x:Name="OsxMaximizeButton"
+                                                    Margin="0,0,0,0">
+
+                                                <Viewbox Height="7"
+                                                         Width="7"
+                                                         Opacity="0.0"
+                                                         Stretch="Uniform"
+                                                         x:Name="OsxMaximizeButtonIconViewBox"
+                                                         Margin="0,-1,0,0">
+
+                                                    <Viewbox.RenderTransform>
+                                                        <RotateTransform Angle="45" />
+                                                    </Viewbox.RenderTransform>
+
+                                                    <Path
+                                                        Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}"
+                                                        Data="{StaticResource Icon-Osx-Maximize}" />
+
+                                                </Viewbox>
+
+                                            </Button>
+
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                    <!-- Title -->
+                                    <Grid Grid.Column="1">
+                                        
+                                        <TextBlock Text="{TemplateBinding Title}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Classes="Regular1"/>
+
+                                    </Grid>
+
+                                </Grid>
+
+
+                            </Grid>
                             
-                            <Button/>
+                            <Grid Grid.Row="0" 
+                                  Grid.Column="1" 
+                                  Height="4"
+                                  Cursor="SizeNorthSouth" 
+                                  Name="TopHorizontalGrip">
+                                
+                                <Canvas Background="Black"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
                             
-                          </StackPanel>
-                        
-                      </Grid>
-                      
-                      <Grid Grid.Column="0" Grid.ColumnSpan="3">
-                        
-                        <Canvas Background="White" Opacity="0"/>
-                        
-                        <TextBlock Text="{TemplateBinding Title}" 
-                                   Foreground="{TemplateBinding Foreground}" 
-                                   Margin="0 -1 0 0" 
-                                   VerticalAlignment="Center" 
-                                   HorizontalAlignment="Center" 
-                                   IsVisible="{TemplateBinding ClientDecorations}" />
-                        
-                      </Grid>
+                            <Grid Grid.Row="2" 
+                                  Grid.Column="1" 
+                                  Height="4"
+                                  Cursor="SizeNorthSouth" 
+                                  Name="BottomHorizontalGrip">
+                                
+                                <Canvas Background="Black"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
+                            
+                            <Grid Grid.Row="1" 
+                                  Grid.Column="0" 
+                                  Width="4"
+                                  Cursor="SizeWestEast" 
+                                  Name="LeftVerticalGrip">
+                                
+                                <Canvas Background="Gray"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
+                            
+                            <Grid Grid.Row="1" 
+                                  Grid.Column="2" 
+                                  Width="4"
+                                  Cursor="SizeWestEast" 
+                                  Name="RightVerticalGrip">
+                                
+                                <Canvas Background="Gray"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
+                            
+                            <Grid Grid.Row="0" 
+                                  Grid.Column="0" 
+                                  Width="4"
+                                  Height="4"
+                                  Cursor="TopLeftCorner" 
+                                  Name="TopLeftGrip">
+                                
+                                <Canvas Background="Red"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
+                            
+                            <Grid Grid.Row="2" 
+                                  Grid.Column="0" 
+                                  Width="4"
+                                  Height="4"
+                                  Cursor="BottomLeftCorner" 
+                                  Name="BottomLeftGrip">
+                                
+                                <Canvas Background="Red"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
+                            
+                            <Grid Grid.Row="0" 
+                                  Grid.Column="2" 
+                                  Width="4"
+                                  Height="4"
+                                  Cursor="TopRightCorner" 
+                                  Name="TopRightGrip">
+                                
+                                <Canvas Background="Red"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
+                            
+                            <Grid Grid.Row="2" 
+                                  Grid.Column="2" 
+                                  Width="4"
+                                  Height="4"
+                                  Cursor="BottomRightCorner" 
+                                  Name="BottomRightGrip">
+                                
+                                <Canvas Background="Red"
+                                        Opacity="0.0"/>
+                                
+                            </Grid>
 
-                    </Grid>
-                    
-                    <Grid Grid.Row="1">
-                      <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" Margin="0" />
-                    </Grid>
-                    
-                  </Grid>
-                  
-                </Grid>
+                        </Grid>
 
-                <Grid Background="Transparent" Width="10" Height="4" />
-                <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Cursor="SizeNorthSouth" Name="topHorizontalGrip" />
-                <Grid Background="Transparent" Width="10" Height="4" Grid.Column="4" />
+                </Border>
 
-                <Grid Background="Transparent" Width="10" Height="4" Grid.Row="2" />
-                <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Grid.Row="2" Cursor="SizeNorthSouth" Name="bottomHorizontalGrip" />
-                <Grid Background="Transparent" Width="10" Height="4" Grid.Column="4" Grid.Row="2" />
-                
-              </Grid>
+            </ControlTemplate>
 
-              <Grid Background="Transparent" Width="4" Height="10" Name="topLeftGrip" Cursor="TopLeftCorner" />
-              <Grid Background="Transparent" Width="4" Grid.Row="1" Grid.RowSpan="2" Cursor="SizeWestEast" Name="leftVerticalGrip" />
-              <Grid Background="Transparent" Width="4" Height="10" Grid.Row="4" Name="bottomLeftGrip" Cursor="BottomLeftCorner" />
+        </Setter>
 
-              <Grid Background="Transparent" Width="4" Height="10" Grid.Column="2" Name="topRightGrip" Cursor="TopRightCorner" />
-              <Grid Background="Transparent" Width="4" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Cursor="SizeWestEast" Name="rightVerticalGrip" />
-              <Grid Background="Transparent" Width="4" Height="10" Grid.Row="4" Grid.Column="2" Name="bottomRightGrip" Cursor="BottomRightCorner" />
-              
-            </Grid>
-            
-          </VisualLayerManager>
-          
-        </Border>
-        
-      </ControlTemplate>
-      
-    </Setter>
+    </Style>
+
+    <!-- ........................................ -->
+    <!-- Styling for Windows -->
+    <Style Selector="local|WavesWindow[IsWindowsPlatform=true] /template/ Border#WindowBorder">
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
+
+    <!-- ........................................ -->
+    <!-- Styling for Linux -->
+    <Style Selector="local|WavesWindow[IsLinuxPlatform=true] /template/ Border#WindowBorder">
+        <Setter Property="CornerRadius" Value="5" />
+    </Style>
+
+    <!-- ........................................ -->
+    <!-- Styling for OSX -->
+    <Style Selector="local|WavesWindow[IsOsxPlatform=false] /template/ Border#WindowBorder">
+        <Setter Property="CornerRadius" Value="5" />
+    </Style>
     
-  </Style>
-  
-  <Style Selector="local|WavesWindow[HasSystemDecorations=False] /template/ Border#WindowBorder">
-
-    <Setter Property="CornerRadius" Value="0"/>
-
-  </Style>
-  
-  <Style Selector="local|WavesWindow[HasSystemDecorations=True] /template/ Border#WindowBorder">
-
-    <Setter Property="CornerRadius" Value="0"/>
-
-  </Style>
- 
+    <Style Selector="local|WavesWindow[IsOsxPlatform=false] /template/ Grid#TitleBarGrid">
+        <Setter Property="Height" Value="22" />
+    </Style>
+    <!-- ........................................ -->
 
 </Styles>

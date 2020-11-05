@@ -4,8 +4,8 @@ using System.Composition;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Styling;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using Waves.Core.Base;
 using Waves.Core.Base.Enums;
 using Waves.Core.Base.Interfaces;
@@ -14,7 +14,6 @@ using Waves.UI.Avalonia.Base;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Base.Interfaces;
 using Waves.UI.Services.Interfaces;
-using Application = Avalonia.Application;
 
 namespace Waves.UI.Avalonia.Services
 {
@@ -22,35 +21,41 @@ namespace Waves.UI.Avalonia.Services
     ///     Windows UI theme service.
     /// </summary>
     [Export(typeof(IService))]
-    public class ThemeService : Waves.Core.Base.Service, IThemeService
+    public class ThemeService : Service, IThemeService
     {
         private const string PrimaryLightColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Primary.Light.xaml";
         private const string PrimaryDarkColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Primary.Dark.xaml";
         private const string AccentWhiteColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Accent.White.xaml";
         private const string AccentBlackColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Accent.Haiti.xaml";
-        private const string AccentBlueColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Accent.Picton.Blue.xaml";
+
+        private const string AccentBlueColorsDictionaryUri =
+            "avares://Waves.UI.Avalonia/Colors/Accent.Picton.Blue.xaml";
+
         private const string AccentGreenColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Accent.Jade.xaml";
-        private const string AccentRedColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Accent.Sunset.Orange.xaml";
+
+        private const string AccentRedColorsDictionaryUri =
+            "avares://Waves.UI.Avalonia/Colors/Accent.Sunset.Orange.xaml";
+
         private const string AccentYellowColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Accent.Ronchi.xaml";
         private const string AccentTemplateDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Accent.Template.xaml";
-        private const string MiscellaneousColorsDictionaryUri = "avares://Waves.UI.Avalonia/Colors/Miscellaneous.Classic.xaml";
+
+        private const string MiscellaneousColorsDictionaryUri =
+            "avares://Waves.UI.Avalonia/Colors/Miscellaneous.Classic.xaml";
 
         private readonly object _themesCollectionLocker = new object();
-
-        private bool _useDarkScheme = false;
-
-        private global::Avalonia.Styling.Styles _oldStyles;
-
-        private StyleInclude _oldPrimaryStyleInclude;
         private StyleInclude _oldAccentStyleInclude;
         private StyleInclude _oldMiscellaneousStyleInclude;
 
-        private Guid _selectedThemeId = Guid.Empty;
+        private StyleInclude _oldPrimaryStyleInclude;
 
         private ITheme _selectedTheme;
 
+        private Guid _selectedThemeId = Guid.Empty;
+
+        private bool _useDarkScheme;
+
         private Window _window;
-        
+
         /// <inheritdoc />
         public event EventHandler ThemeChanged;
 
@@ -61,6 +66,7 @@ namespace Waves.UI.Avalonia.Services
         public override string Name { get; set; } = "Avalonia UI Theme Service";
 
         /// <inheritdoc />
+        [Reactive]
         public bool UseDarkScheme
         {
             get => _useDarkScheme;
@@ -79,9 +85,11 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <inheritdoc />
+        [Reactive]
         public bool UseAutomaticScheme { get; set; } = true;
 
         /// <inheritdoc />
+        [Reactive]
         public ITheme SelectedTheme
         {
             get => _selectedTheme;
@@ -110,22 +118,8 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <inheritdoc />
-        public ObservableCollection<ITheme> Themes { get; private set; } = new ObservableCollection<ITheme>();
-
-        /// <summary>
-        /// Attaches window.
-        /// </summary>
-        /// <param name="window">Window.</param>
-        public void AttachWindow(Window window)
-        {
-            _window = window;
-
-            InitializeSelectedTheme();
-            //InitializeSystemThemeCheckerDaemon();
-
-            OnMessageReceived(this,
-                new Message("Initialization", "Window attached - " + window.Name, Name, MessageType.Information));
-        }
+        [Reactive]
+        public ObservableCollection<ITheme> Themes { get; protected set; } = new ObservableCollection<ITheme>();
 
         /// <inheritdoc />
         public override void Initialize(ICore core)
@@ -133,7 +127,7 @@ namespace Waves.UI.Avalonia.Services
             if (IsInitialized) return;
 
             Core = core;
-            
+
             InitializeThemes();
 
             OnMessageReceived(this,
@@ -147,8 +141,10 @@ namespace Waves.UI.Avalonia.Services
         {
             try
             {
-                _selectedThemeId = LoadConfigurationValue(Core.Configuration, "ThemesService-SelectedThemeId", Guid.Empty);
-                UseAutomaticScheme = LoadConfigurationValue(Core.Configuration, "ThemesService-UseAutomaticScheme", false);
+                _selectedThemeId =
+                    LoadConfigurationValue(Core.Configuration, "ThemesService-SelectedThemeId", Guid.Empty);
+                UseAutomaticScheme =
+                    LoadConfigurationValue(Core.Configuration, "ThemesService-UseAutomaticScheme", false);
                 UseDarkScheme = LoadConfigurationValue(Core.Configuration, "ThemesService-UseDarkScheme", false);
             }
             catch (Exception e)
@@ -181,7 +177,27 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <summary>
-        /// Notifies when theme changed.
+        ///     Attaches window.
+        /// </summary>
+        /// <param name="window">Window.</param>
+        public void AttachWindow(Window window)
+        {
+            _window = window;
+
+            InitializeSelectedTheme();
+            //InitializeSystemThemeCheckerDaemon();
+
+            OnMessageReceived(
+                this,
+                new Message(
+                    "Initialization", 
+                    $"Window attached - {window.Name}.", 
+                    Name, 
+                    MessageType.Information));
+        }
+
+        /// <summary>
+        ///     Notifies when theme changed.
         /// </summary>
         protected virtual void OnThemeChanged()
         {
@@ -189,7 +205,7 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <summary>
-        /// Initializes themes.
+        ///     Initializes themes.
         /// </summary>
         private void InitializeThemes()
         {
@@ -210,7 +226,7 @@ namespace Waves.UI.Avalonia.Services
         }
 
         /// <summary>
-        /// Initializes base themes.
+        ///     Initializes base themes.
         /// </summary>
         private void InitializeBaseThemes()
         {
@@ -241,8 +257,8 @@ namespace Waves.UI.Avalonia.Services
             var miscellaneousColorSetId = miscellaneousColorsStylesInclude.GetGuidFromString("ColorSetId");
 
             var lightPrimaryColorSet = new PrimaryColorSet(primaryLightColorSetId,
-            primaryLightColorName,
-            lightPrimaryColorsStylesInclude);
+                primaryLightColorName,
+                lightPrimaryColorsStylesInclude);
 
             var darkPrimaryColorSet = new PrimaryColorSet(primaryDarkColorSetId,
                 primaryDarkColorName,
@@ -299,15 +315,12 @@ namespace Waves.UI.Avalonia.Services
                 darkPrimaryColorSet,
                 yellowAccentColorSet,
                 miscellaneousColorSet));
-            
-            foreach (var theme in Themes)
-            {
-                theme.PrimaryColorSetChanged += OnThemePrimaryColorSetChanged;
-            }
+
+            foreach (var theme in Themes) theme.PrimaryColorSetChanged += OnThemePrimaryColorSetChanged;
         }
 
         /// <summary>
-        /// Actions when theme's primary color set changed.
+        ///     Actions when theme's primary color set changed.
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">Arguments.</param>
@@ -365,8 +378,13 @@ namespace Waves.UI.Avalonia.Services
             }
             catch (Exception e)
             {
-                OnMessageReceived(this,
-                    new Message("Theme Service", "Error updating theme:\r\n" + e, Name, MessageType.Error));
+                OnMessageReceived(
+                    this,
+                    new Message("Theme Service", 
+                        "Error updating theme", 
+                        Name, 
+                        e,
+                        false));
             }
         }
 
@@ -376,15 +394,11 @@ namespace Waves.UI.Avalonia.Services
         private void InitializeSelectedTheme()
         {
             if (Themes.Count > 0)
-            {
                 try
                 {
                     if (_selectedThemeId.Equals(Guid.Empty))
-                    {
                         SelectedTheme = Themes.First();
-                    }
                     else
-                    {
                         foreach (var theme in Themes)
                         {
                             if (theme.Id != _selectedThemeId) continue;
@@ -395,7 +409,6 @@ namespace Waves.UI.Avalonia.Services
 
                             break;
                         }
-                    }
                 }
                 catch (Exception e)
                 {
@@ -403,15 +416,12 @@ namespace Waves.UI.Avalonia.Services
                         new Message("Theme Service", "Error initializing selected theme:\r\n" + e, Name,
                             MessageType.Error));
                 }
-            }
             else
-            {
                 OnMessageReceived(this, new Message("Theme Service", "Themes not found.", Name, MessageType.Error));
-            }
         }
-        
+
         /// <summary>
-        /// Creates style for current url.
+        ///     Creates style for current url.
         /// </summary>
         /// <param name="url">URL.</param>
         /// <returns>Style.</returns>

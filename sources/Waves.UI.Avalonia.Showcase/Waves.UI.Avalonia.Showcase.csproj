@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
   </PropertyGroup>
 
   <Import Project="..\..\props\Waves.UI.Avalonia.props" />
@@ -22,6 +22,10 @@
     <AvaloniaResource Include="**\*.xaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>
+    <Compile Update="View\Control\Tabs\ThemeTabView.axaml.cs">
+      <DependentUpon>ThemeTabView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   
   <ItemGroup>
@@ -35,6 +39,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\..\core\sources\Waves.Core.Base\Waves.Core.Base.csproj" />
     <ProjectReference Include="..\Waves.UI.Avalonia\Waves.UI.Avalonia.csproj" />
     <ProjectReference Include="..\Waves.UI.Showcase.Common\Waves.UI.Showcase.Common.csproj" />
   </ItemGroup>
