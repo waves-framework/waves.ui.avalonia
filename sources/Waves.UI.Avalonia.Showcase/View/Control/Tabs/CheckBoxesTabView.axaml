@@ -1,0 +1,103 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabs="clr-namespace:Waves.UI.Showcase.Common.Presentation.ViewModel.Tabs;assembly=Waves.UI.Showcase.Common"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             d:DataContext="{d:DesignInstance tabs:CheckBoxesTabViewModel}"
+             x:Class="Waves.UI.Avalonia.Showcase.View.Control.Tabs.CheckBoxesTabView">
+
+     <Grid>
+
+        <ScrollViewer>
+
+            <StackPanel Margin="{StaticResource BigThickness}" MaxWidth="640" HorizontalAlignment="Left">
+
+                <TextBlock Text="Checkboxes" Classes="Header1" Margin="0,0,0,9"/>
+
+                <TextBlock Text="Examples of checkboxes." Classes="Regular1" Margin="0,0,0,9"/>
+
+                <Canvas Height="2" Background="{DynamicResource Accent-100-Brush}" Width="300" HorizontalAlignment="Left" Margin="0,0,0,24"/>
+
+                <TextBlock Text="Regular checkboxes" Classes="Header2" Margin="0,0,0,7"/>
+
+                <TextBlock Text="Regular checkboxes used in applications." Classes="Regular1" Margin="0,0,0,18"/>
+
+                <Grid Margin="0,0,0,12">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+
+                        <TextBlock Text="Default" Classes="Header3"/>
+
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+
+                        <TextBlock Text="Indeterminate" Classes="Header3"/>
+
+                    </Grid>
+
+                    <Grid Grid.Column="4">
+
+                        <TextBlock Text="Disabled" Classes="Header3"/>
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid Margin="0,0,0,24">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+
+                        <CheckBox Content="Checkbox content" IsChecked="True"/>
+
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+
+                        <CheckBox Content="Checkbox content" IsChecked="{x:Null}"/>
+
+                    </Grid>
+
+                    <Grid Grid.Column="4">
+
+                        <CheckBox Content="Checkbox content" IsEnabled="False" IsChecked="True"/>
+
+                    </Grid>
+
+                </Grid>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+        <Canvas Height="24" VerticalAlignment="Top" Margin="0,0,18,0">
+
+            <Canvas.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="{DynamicResource Color-100}" Offset="0.0" />
+                    <GradientStop Offset="1" Color="{DynamicResource Color-100-Transparent}"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+
+        </Canvas>
+
+    </Grid>
+
+</UserControl>

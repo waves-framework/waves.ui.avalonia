@@ -40,6 +40,7 @@ namespace Waves.UI.Avalonia
             // TaskScheduler.UnobservedTaskException += OnTaskSchedulerUnobservedTaskException;
 
             Start();
+            SubscribeEvents();
         }
 
         /// <summary>
@@ -65,6 +66,28 @@ namespace Waves.UI.Avalonia
             // ModalWindowController.Initialize();
             //
             // grid.Children.Add(controllerView);
+        }
+        
+        /// <summary>
+        /// Subscribes to events.
+        /// </summary>
+        private void SubscribeEvents()
+        {
+            if (MainWindow != null)
+            {
+                MainWindow.Closing += OnMainWindowsClosing;
+            }
+        }
+
+        /// <summary>
+        /// Actions when main window closing.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Arguments.</param>
+        private void OnMainWindowsClosing(object sender, CancelEventArgs e)
+        {
+            // stop the core
+            Stop();
         }
 
         /// <summary>
@@ -94,7 +117,7 @@ namespace Waves.UI.Avalonia
                 WriteLog(
                     new Message("Service", "Theme service is not initialized.", "UI Core", MessageType.Fatal));
             else
-                service.AttachWindow(MainWindow);
+                service.AttachApplication(Application);
         }
 
         // /// <summary>

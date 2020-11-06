@@ -26,6 +26,10 @@
       <DependentUpon>ThemeTabView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Control\Tabs\CheckBoxesTabView.axaml.cs">
+      <DependentUpon>CheckBoxesTabView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   
   <ItemGroup>

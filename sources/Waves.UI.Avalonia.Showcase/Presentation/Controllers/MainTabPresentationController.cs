@@ -40,9 +40,9 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
                 //comboBoxesTabPresentation.SetView(new ComboBoxesTabView());
                 //RegisterPresentation(comboBoxesTabPresentation);
 
-                //var checkBoxesTabPresentation = new CheckBoxesTabPresentation(Core);
-                //checkBoxesTabPresentation.SetView(new CheckBoxesTabView());
-                //RegisterPresentation(checkBoxesTabPresentation);
+                var checkBoxesTabPresentation = new CheckBoxesTabPresentation(Core);
+                checkBoxesTabPresentation.SetView(new CheckBoxesTabView());
+                RegisterPresenter(checkBoxesTabPresentation);
 
                 //var radioButtonsTabPresentation = new RadioButtonsTabPresentation(Core);
                 //radioButtonsTabPresentation.SetView(new RadioButtonsTabView());
