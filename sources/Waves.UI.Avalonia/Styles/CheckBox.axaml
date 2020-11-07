@@ -116,6 +116,24 @@
 
     </Style>
     
+    <!-- Style of checkbox when it's disabled -->
+    <Style Selector="CheckBox:disabled">
+        
+        <Setter Property="Background" Value="{DynamicResource Primary-500-Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Primary-Foreground-900-Brush}" />
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-900-Brush}" />
+        
+    </Style>
+    
+    <!-- TODO: Style of checkbox when it's indeterminate -->
+    <Style Selector="CheckBox:indeterminate">
+        
+        <!-- <Setter Property="Background" Value="{DynamicResource Primary-500-Brush}" /> -->
+        <!-- <Setter Property="BorderBrush" Value="{DynamicResource Primary-Foreground-900-Brush}" /> -->
+        <!-- <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-900-Brush}" /> -->
+        
+    </Style>
+    
     <!-- CheckBox checkmark -->
     <Style Selector="CheckBox[IsChecked=False] /template/ Viewbox#CheckMarkViewBox">
         

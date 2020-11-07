@@ -30,6 +30,10 @@
       <DependentUpon>CheckBoxesTabView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Control\Tabs\ComboBoxesTabView.axaml.cs">
+      <DependentUpon>ComboBoxesTabView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   
   <ItemGroup>
