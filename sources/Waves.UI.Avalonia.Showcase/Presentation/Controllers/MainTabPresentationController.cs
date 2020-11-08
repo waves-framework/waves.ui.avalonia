@@ -64,9 +64,9 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
                 //menusTabPresentation.SetView(new MenusTabView());
                 //RegisterPresentation(menusTabPresentation);
 
-                //var chartingTabPresentation = new ChartingTabPresentation(Core);
-                //chartingTabPresentation.SetView(new ChartingTabView());
-                //RegisterPresentation(chartingTabPresentation);
+                var chartingTabPresentation = new ChartingTabPresentation(Core);
+                chartingTabPresentation.SetView(new ChartingTabView());
+                RegisterPresenter(chartingTabPresentation);
 
                 //var configurationTabPresentation = new ConfigurationTabPresentation(Core);
                 //configurationTabPresentation.SetView(new ConfigurationTabView());

@@ -34,6 +34,10 @@
       <DependentUpon>ComboBoxesTabView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Control\Tabs\ChartingTabView.axaml.cs">
+      <DependentUpon>ChartingTabView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   
   <ItemGroup>

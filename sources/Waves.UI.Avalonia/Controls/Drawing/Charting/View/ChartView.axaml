@@ -1,0 +1,170 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:viewModel="clr-namespace:Waves.UI.Drawing.Charting.ViewModel;assembly=Waves.UI.Drawing.Charting"
+             xmlns:base="clr-namespace:Waves.UI.Avalonia.Converters.Base"
+             xmlns:local="clr-namespace:Waves.UI.Avalonia.Controls.Drawing.Charting.View"
+             x:Class="Waves.UI.Avalonia.Controls.Drawing.Charting.View.ChartView"
+             d:DataContext="{d:DesignInstance viewModel:ChartPresenterViewModel}">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Converters -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" />
+
+                <!-- Fonts -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Fonts.axaml" />
+
+                <!-- Icons -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Icons.axaml" />
+
+                <!-- Opacity -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <base:WavesColorToSolidColorBrushConverter x:Key="WavesColorToSolidColorBrushConverter" />
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Title row -->
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+
+                    <TextBlock Text="{Binding Title}"
+                               FontSize="{Binding TextStyle.FontSize}"
+                               Margin="0,0,0,6"
+                               Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                               IsVisible="{Binding IsTitleVisible}" />
+
+                </Grid>
+
+                <Grid Grid.Column="1">
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,6"
+                                VerticalAlignment="Center"
+                                IsVisible="{Binding IsXAxisDescriptionVisible}"
+                                Opacity="{StaticResource Opacity3}">
+
+                        <TextBlock Text="{Binding XAxisName}"
+                                   Margin="0,0,3,0"
+                                   Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                                   FontSize="{Binding TextStyle.FontSize}" />
+
+                        <TextBlock Text="{Binding XAxisUnit, StringFormat={}({0})}"
+                                   Margin="0,0,0,0"
+                                   Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                                   FontSize="{Binding TextStyle.FontSize}" />
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <Grid>
+
+                    <Border x:Name="MaskBorder"
+                            Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                            CornerRadius="{StaticResource StandardCornerRadius}" />
+
+                    <Grid>
+
+                        <!-- <Grid.OpacityMask> -->
+                        <!--     <VisualBrush Visual="{Binding ElementName=MaskBorder}" /> -->
+                        <!-- </Grid.OpacityMask> -->
+
+                        <ContentControl
+                            Content="{Binding DrawingElementView, RelativeSource={RelativeSource AncestorType={x:Type local:ChartView}}}"
+                            DataContext="{Binding}"
+                            ClipToBounds="True"
+                            Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}" />
+
+                    </Grid>
+
+                </Grid>
+
+                <Border
+                    BorderBrush="{Binding BorderColor, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                    BorderThickness="{Binding BorderThickness}"
+                    CornerRadius="{StaticResource StandardCornerRadius}" />
+
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
+                  Margin="{StaticResource SmallThickness}"
+                  IsVisible="{Binding IsYAxisDescriptionVisible}">
+
+                <Border Background="{DynamicResource Primary-100-Brush}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        Opacity="{StaticResource Opacity3}" />
+
+                <Border BorderBrush="{DynamicResource Primary-500-Brush}"
+                        CornerRadius="{StaticResource StandardCornerRadius}"
+                        BorderThickness="1" />
+
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{StaticResource SmallThickness}">
+
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="90" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="{Binding YAxisName}"
+                                   Margin="0,0,3,0"
+                                   Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                                   FontSize="{Binding TextStyle.FontSize}" />
+
+                        <TextBlock Text="{Binding YAxisUnit, StringFormat={}({0})}"
+                                   Margin="0,0,0,0"
+                                   Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                                   FontSize="{Binding TextStyle.FontSize}" />
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>

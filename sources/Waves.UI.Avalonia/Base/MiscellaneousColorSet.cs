@@ -7,7 +7,7 @@ namespace Waves.UI.Avalonia.Base
     /// <summary>
     /// Miscellaneous color set.
     /// </summary>
-    public class MiscellaneousColorSet : UI.Services.MiscellaneousColorSet
+    public class MiscellaneousColorSet : UI.Services.ThemeService.ColorSets.MiscellaneousColorSet
     {
         /// <summary>
         /// Creates new instance of <see cref="MiscellaneousColorSet"/>.

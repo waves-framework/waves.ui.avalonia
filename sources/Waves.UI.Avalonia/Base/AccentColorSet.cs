@@ -7,7 +7,7 @@ namespace Waves.UI.Avalonia.Base
     /// <summary>
     /// Accent color set.
     /// </summary>
-    public class AccentColorSet : UI.Services.AccentColorSet
+    public class AccentColorSet : UI.Services.ThemeService.ColorSets.AccentColorSet
     {
         private const string ColorKey = "Accent-Color";
         private const string ForegroundColorKey = "Accent-Color-Foreground";

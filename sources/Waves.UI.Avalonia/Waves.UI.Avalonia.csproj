@@ -121,4 +121,11 @@
     <ProjectReference Include="..\..\..\ui\sources\Waves.UI\Waves.UI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Controls\Drawing\View\ChartView.axaml.cs">
+      <DependentUpon>ChartView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
