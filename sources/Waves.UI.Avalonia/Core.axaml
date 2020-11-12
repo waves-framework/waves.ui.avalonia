@@ -23,6 +23,7 @@
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
 
         <!-- Templates -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Templates/DrawingEngine.axaml" />
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Templates/Message.axaml" />
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Templates/MessageObjects.axaml" />
         <ResourceInclude Source="avares://Waves.UI.Avalonia/Templates/Theme.axaml" />

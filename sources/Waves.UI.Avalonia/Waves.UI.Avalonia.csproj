@@ -4,6 +4,9 @@
 
   <ItemGroup>
     <AvaloniaResource Include="**\*.xaml" />
+    <AvaloniaResource Include="Templates\DrawingEngine.axaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaResource>
     <AvaloniaResource Include="Templates\Theme.axaml">
       <Generator>MSBuild:Compile</Generator>
     </AvaloniaResource>
@@ -19,8 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0-preview5" />
-    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.0-preview5" />
+    <PackageReference Include="Avalonia" Version="0.10.0-preview6" />
+    <PackageReference Include="Avalonia.Skia" Version="0.10.0-preview6" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.0-preview6" />
     <PackageReference Include="Pkcs11Interop" Version="5.1.1" />
   </ItemGroup>
 

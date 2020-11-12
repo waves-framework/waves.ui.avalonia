@@ -55,26 +55,6 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Charting.View
         }
 
         /// <summary>
-        ///     Gets drawing element view.
-        /// </summary>
-        /// <param name="obj">Dependency object.</param>
-        /// <returns>Returns Drawing element view.</returns>
-        public static IDrawingElementPresenterView GetDrawingElementView(StyledElement obj)
-        {
-            return obj.GetValue(DrawingElementViewProperty);
-        }
-
-        /// <summary>
-        ///     Sets drawing element view.
-        /// </summary>
-        /// <param name="obj">Dependency object.</param>
-        /// <param name="value">Drawing element view.</param>
-        public static void SetDrawingElementView(StyledElement obj, IDrawingElementPresenterView value)
-        {
-            obj.SetValue(DrawingElementViewProperty, value);
-        }
-
-        /// <summary>
         ///     Initializes components.
         /// </summary>
         private void InitializeComponent()

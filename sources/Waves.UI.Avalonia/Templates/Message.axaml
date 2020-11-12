@@ -7,7 +7,7 @@
                     xmlns:enums="clr-namespace:Waves.Core.Base.Enums;assembly=Waves.Core.Base"
                     xmlns:base="clr-namespace:Waves.Core.Base;assembly=Waves.Core.Base">
 
-  <DataTemplate x:Key="MessageItemListDataTemplate" DataType="{x:Type interfaces:IMessage}">
+  <DataTemplate x:Key="MessageItemListItemDataTemplate" DataType="{x:Type interfaces:IMessage}">
 
     <Grid Margin="0,0,0,6">
 

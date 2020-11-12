@@ -72,7 +72,7 @@
                         <ItemsControl.DataTemplates>
                             <StaticResourceExtension ResourceKey="MessageSeparatorDataTemplate" />
                             <StaticResourceExtension ResourceKey="MessageGroupDataTemplate" />
-                            <StaticResourceExtension ResourceKey="MessageItemListDataTemplate" />
+                            <StaticResourceExtension ResourceKey="MessageItemListItemDataTemplate" />
                         </ItemsControl.DataTemplates>
                         
                         <ItemsControl.ItemsPanel>

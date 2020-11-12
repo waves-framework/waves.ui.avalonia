@@ -25,13 +25,13 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia
         /// <inheritdoc />
         public IDrawingElementPresenterView GetView(IInputService inputService)
         {
-            return new AvaloniaDrawingElementView(inputService);
+            return new AvaloniaSkiaDrawingElementView(inputService);
         }
 
         /// <inheritdoc />
         public IDrawingElement GetDrawingElement()
         {
-            return new AvaloniaDrawingElement();
+            return new AvaloniaSkiaDrawingElement();
         }
         
         /// <inheritdoc />

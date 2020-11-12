@@ -18,7 +18,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
     /// </summary>
     /// <typeparam name="T">Type.</typeparam>
     public class PaintBehavior<T> : Behavior<T>
-        where T : Panel
+        where T : Control
     {
         private object _oldDataContext;
         private double _oldHeight = -1;
@@ -100,13 +100,6 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             if (e.Property.Name.Equals("Bounds"))
             {
                 var bounds = element.Bounds;
-                
-                // element.Measure(new Size(bounds.Width, bounds.Height));
-                // element.Arrange(new Rect(0,0,element.DesiredSize.Width, element.DesiredSize.Height));
-                //
-                // var a = element.DesiredSize.Width;
-                // Console.WriteLine(a);
-                
                 OnSizeChanged(bounds.Width, bounds.Height);
             }
         }

@@ -93,9 +93,9 @@
 
                 <Grid>
 
-                    <Border x:Name="MaskBorder"
-                            Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
-                            CornerRadius="{StaticResource StandardCornerRadius}" />
+                    <!-- <Border x:Name="MaskBorder" -->
+                    <!--         Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}" -->
+                    <!--         CornerRadius="{StaticResource StandardCornerRadius}" /> -->
 
                     <Grid>
 
@@ -106,8 +106,7 @@
                         <ContentControl
                             Content="{Binding DrawingElementView, RelativeSource={RelativeSource AncestorType={x:Type local:ChartView}}}"
                             DataContext="{Binding}"
-                            ClipToBounds="True"
-                            Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}" />
+                            ClipToBounds="True"/>
 
                     </Grid>
 
