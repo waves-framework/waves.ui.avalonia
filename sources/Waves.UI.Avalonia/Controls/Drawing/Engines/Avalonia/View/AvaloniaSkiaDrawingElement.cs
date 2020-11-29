@@ -6,14 +6,13 @@ using SkiaSharp;
 using Waves.Core.Base;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Drawing.Base.Interfaces;
-using Object = Waves.Core.Base.Object;
 
 namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
 {
     /// <summary>
     ///     Drawing element.
     /// </summary>
-    public class AvaloniaSkiaDrawingElement : Object, IDrawingElement
+    public class AvaloniaSkiaDrawingElement : WavesObject, IDrawingElement
     {
         /// <summary>
         ///     Gets or sets SKSurface.
@@ -24,7 +23,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
         public override Guid Id { get; } = Guid.Parse("D10DB82B-0EEA-4E95-AFED-4F3B856DF89B");
 
         /// <inheritdoc />
-        public override string Name { get; set; } = "Avalonia Drawing Element";
+        public override string Name { get; set; } = "Avalonia Skia Drawing Element";
 
         /// <inheritdoc />
         public override void Dispose()
@@ -41,9 +40,12 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
 
             if (Surface.Handle == IntPtr.Zero)
                 Surface = surface;
+            
+            if (Surface.Handle != surface.Handle)
+                Surface = surface;
 
-            var count = Surface.Canvas.Save();
-
+            int count = Surface.Canvas.Save();
+            
             Surface.Canvas.Clear(SKColor.Empty);
 
             foreach (var obj in drawingObjects)
@@ -53,7 +55,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
         }
 
         /// <inheritdoc />
-        public void DrawEllipse(Point location, float radius, IPaint paint)
+        public void DrawEllipse(WavesPoint location, float radius, IPaint paint)
         {
             using (var skPaint = new SKPaint
             {
@@ -79,7 +81,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
         }
 
         /// <inheritdoc />
-        public void DrawLine(Point point1, Point point2, IPaint paint)
+        public void DrawLine(WavesPoint point1, WavesPoint point2, IPaint paint)
         {
             using var skPaint = new SKPaint
             {
@@ -101,7 +103,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
         }
 
         /// <inheritdoc />
-        public void DrawRectangle(Point location, Size size, IPaint paint, float cornerRadius = 0)
+        public void DrawRectangle(WavesPoint location, WavesSize size, IPaint paint, float cornerRadius = 0)
         {
             using (var skPaint = new SKPaint
             {
@@ -129,7 +131,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
         }
 
         /// <inheritdoc />
-        public void DrawText(Point location, string text, ITextPaint paint)
+        public void DrawText(WavesPoint location, string text, ITextPaint paint)
         {
             using var skPaint = GetSkiaTextPaint(paint);
 
@@ -137,14 +139,14 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
         }
 
         /// <inheritdoc />
-        public Size MeasureText(string text, ITextPaint paint)
+        public WavesSize MeasureText(string text, ITextPaint paint)
         {
             using var skPaint = GetSkiaTextPaint(paint);
 
             var bounds = new SKRect();
             skPaint.MeasureText(text, ref bounds);
 
-            return new Size(bounds.Width, bounds.Height);
+            return new WavesSize(bounds.Width, bounds.Height);
         }
 
         /// <summary>

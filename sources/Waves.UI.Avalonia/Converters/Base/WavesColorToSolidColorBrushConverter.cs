@@ -14,7 +14,7 @@ namespace Waves.UI.Avalonia.Converters.Base
         {
             if (value == null) 
                 return new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-            var color = (Waves.Core.Base.Color) value;
+            var color = (Waves.Core.Base.WavesColor) value;
             return new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
         }
 

@@ -23,16 +23,25 @@ namespace Waves.UI.Avalonia.Showcase.View.Control.Tabs
         }
 
         /// <inheritdoc />
-        public Guid Id { get; } = Guid.NewGuid();
+        public event EventHandler<IWavesMessage> MessageReceived;
 
         /// <inheritdoc />
-        public event EventHandler<IMessage> MessageReceived;
+        public Guid Id { get; } = Guid.NewGuid();
+        
+        /// <inheritdoc />
+        public IWavesCore Core { get; protected set; }
+        
+        /// <inheritdoc />
+        public void AttachCore(IWavesCore core)
+        {
+            Core = core;
+        }
 
         /// <summary>
         /// Notifies when message received.
         /// </summary>
         /// <param name="e">Message.</param>
-        protected virtual void OnMessageReceived(IMessage e)
+        protected virtual void OnMessageReceived(IWavesMessage e)
         {
             MessageReceived?.Invoke(this, e);
         }

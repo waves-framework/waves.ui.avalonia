@@ -29,7 +29,10 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Charting.View
         }
 
         /// <inheritdoc />
-        public event EventHandler<IMessage> MessageReceived;
+        public event EventHandler<IWavesMessage> MessageReceived;
+
+        /// <inheritdoc />
+        public IWavesCore Core { get; protected set; }
 
         /// <inheritdoc />
         public Guid Id { get; } = Guid.NewGuid();
@@ -46,6 +49,12 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Charting.View
 
                 SetValue(DrawingElementViewProperty, value);
             }
+        }
+        
+        /// <inheritdoc />
+        public void AttachCore(IWavesCore core)
+        {
+            Core = core;
         }
 
         /// <inheritdoc />

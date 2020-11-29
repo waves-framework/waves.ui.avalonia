@@ -93,14 +93,15 @@
 
                 <Grid>
 
-                    <!-- <Border x:Name="MaskBorder" -->
-                    <!--         Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}" -->
-                    <!--         CornerRadius="{StaticResource StandardCornerRadius}" /> -->
+                    <Border x:Name="MaskBorder"
+                            Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
+                            CornerRadius="{StaticResource StandardCornerRadius}" />
 
                     <Grid>
 
+                        <!-- TODO: Works on WPF, but doesn't work with AvaloniaUI -->
                         <!-- <Grid.OpacityMask> -->
-                        <!--     <VisualBrush Visual="{Binding ElementName=MaskBorder}" /> -->
+                        <!--     <VisualBrush Visual="{Binding #MaskBorder}" /> -->
                         <!-- </Grid.OpacityMask> -->
 
                         <ContentControl
@@ -124,6 +125,15 @@
                   VerticalAlignment="Center"
                   Margin="{StaticResource SmallThickness}"
                   IsVisible="{Binding IsYAxisDescriptionVisible}">
+                
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="90" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Grid.RenderTransform>
 
                 <Border Background="{DynamicResource Primary-100-Brush}"
                         CornerRadius="{StaticResource StandardCornerRadius}"
@@ -134,15 +144,6 @@
                         BorderThickness="1" />
 
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{StaticResource SmallThickness}">
-
-                    <Grid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform />
-                            <SkewTransform />
-                            <RotateTransform Angle="90" />
-                            <TranslateTransform />
-                        </TransformGroup>
-                    </Grid.RenderTransform>
 
                     <StackPanel Orientation="Horizontal">
 

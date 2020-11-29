@@ -2,6 +2,7 @@
 using System.Linq;
 using Waves.Core.Base;
 using Waves.Core.Base.Enums;
+using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Showcase.View.Control.Tabs;
 using Waves.UI.Showcase.Common.Presentation.Tabs;
 
@@ -13,7 +14,7 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
     public class MainTabPresentationController : Waves.UI.Showcase.Common.Presentation.Controllers.MainTabPresentationController
     {
         /// <inheritdoc />
-        public MainTabPresentationController(Core core) : base(core)
+        public MainTabPresentationController(IWavesCore core) : base(core)
         {
         }
         
@@ -84,14 +85,14 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
                 //aboutTabPresentation.SetView(new AboutTabView());
                 //RegisterPresentation(aboutTabPresentation);
 
-                OnMessageReceived(this,new Message("Initialization", "Main tab controller initialized.", "Main tab controller", MessageType.Success));
+                OnMessageReceived(this,new WavesMessage("Initialization", "Main tab controller initialized.", "Main tab controller", WavesMessageType.Success));
 
                 if (Presenters.Count > 0)
                     SelectedPresenter = Presenters.First();
             }
             catch (Exception e)
             {
-                OnMessageReceived(this,new Message("Initialization", "Error initialization main tab controller:\r\n" + e, "Main tab controller", MessageType.Error));
+                OnMessageReceived(this,new WavesMessage("Initialization", "Error initialization main tab controller:\r\n" + e, "Main tab controller", WavesMessageType.Error));
             }
         }
 

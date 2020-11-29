@@ -115,7 +115,7 @@ namespace Waves.UI.Avalonia
 
             if (service == null)
                 WriteLog(
-                    new Message("Service", "Theme service is not initialized.", "UI Core", MessageType.Fatal));
+                    new WavesMessage("Service", "Theme service is not initialized.", "UI Core", WavesMessageType.Fatal));
             else
                 service.AttachApplication(Application);
         }

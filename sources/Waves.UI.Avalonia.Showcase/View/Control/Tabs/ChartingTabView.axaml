@@ -39,7 +39,7 @@
 
             <Grid Grid.Column="0">
 
-                <ContentControl Content="{Binding ChartPresentation.View}"
+                <ContentControl Content="{Binding DrawingElementPresenter.View}"
                                 ClipToBounds="True"/>
 
             </Grid>

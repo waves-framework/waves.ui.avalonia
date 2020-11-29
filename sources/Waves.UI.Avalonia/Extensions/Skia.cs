@@ -12,7 +12,7 @@ namespace Waves.UI.Avalonia.Extensions
         ///     Converts color to Skia color.
         /// </summary>
         /// <returns>Skia color.</returns>
-        public static SKColor ToSkColor(this Waves.Core.Base.Color color)
+        public static SKColor ToSkColor(this Waves.Core.Base.WavesColor color)
         {
             return new SKColor(color.R, color.G, color.B, color.A);
         }
@@ -23,7 +23,7 @@ namespace Waves.UI.Avalonia.Extensions
         /// <param name="color">Color.</param>
         /// <param name="opacity">Opacity.</param>
         /// <returns></returns>
-        public static SKColor ToSkColor(this Waves.Core.Base.Color color, float opacity)
+        public static SKColor ToSkColor(this Waves.Core.Base.WavesColor color, float opacity)
         {
             var a = Convert.ToByte(opacity * color.A);
             return new SKColor(color.R, color.G, color.B, a);
@@ -34,7 +34,7 @@ namespace Waves.UI.Avalonia.Extensions
         /// </summary>
         /// <param name="point">Point.</param>
         /// <returns>Skia point.</returns>
-        public static SKPoint ToSkPoint(this Waves.Core.Base.Point point)
+        public static SKPoint ToSkPoint(this Waves.Core.Base.WavesPoint point)
         {
             return new SKPoint(point.X, point.Y);
         }

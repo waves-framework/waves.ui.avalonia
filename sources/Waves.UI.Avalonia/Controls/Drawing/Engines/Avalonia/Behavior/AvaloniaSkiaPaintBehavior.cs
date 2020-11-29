@@ -1,6 +1,8 @@
 using System;
+using System.Threading;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Media;
 using Avalonia.Threading;
 using Waves.Core.Base.Interfaces.Services;
 using Waves.UI.Avalonia.Controls.Drawing.Behavior;
@@ -11,7 +13,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
     /// <summary>
     ///     Paint surface command behavior.
     /// </summary>
-    public class AvaloniaSkiaPaintBehavior : PaintBehavior<Control>
+    public class AvaloniaSkiaPaintBehavior : PaintBehavior<UserControl>
     {
         /// <inheritdoc />  
         public AvaloniaSkiaPaintBehavior(IInputService inputService) 
@@ -27,28 +29,31 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
             if (AssociatedObject == null)
                 return;
             
-            AssociatedObject.Measure(Size.Infinity);
-            AssociatedObject.InvalidateMeasure();
-            AssociatedObject.InvalidateVisual();
-
             if (!(AssociatedObject is AvaloniaSkiaDrawingElementView view)) return;
+            
             view.RedrawRequested += OnRedrawRequested;
+            view.LayoutUpdated += OnLayoutUpdated;
+            
+            Redraw();
         }
-        
+
         /// <inheritdoc />
         protected override void OnDetaching()
         {
             base.OnDetaching();
 
             if (!(AssociatedObject is AvaloniaSkiaDrawingElementView view)) return;
+            
             view.RedrawRequested -= OnRedrawRequested;
+            view.LayoutUpdated -= OnLayoutUpdated;
         }
 
         /// <inheritdoc />  
         protected override void OnSizeChanged(double newWidth, double newHeight)
         {
+            Reinitialize();
             base.OnSizeChanged(newWidth, newHeight);
-            Dispatcher.UIThread.InvokeAsync(Redraw);
+            Dispatcher.UIThread.Post(Redraw);
         }
 
         /// <summary>
@@ -58,8 +63,9 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
         /// <param name="e">Arguments.</param>
         protected override void OnDataContextChanged(object sender, EventArgs e)
         {
+            Reinitialize();
             base.OnDataContextChanged(sender, e);
-            Dispatcher.UIThread.InvokeAsync(Redraw);
+            Dispatcher.UIThread.Post(Redraw);
         }
 
         /// <summary>
@@ -69,8 +75,27 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
         /// <param name="e">Arguments/</param>
         protected override void OnRedrawRequested(object sender, EventArgs e)
         {
-            base.OnRedrawRequested(sender, e);
-            Dispatcher.UIThread.InvokeAsync(Redraw);
+            Dispatcher.UIThread.Post(Redraw);
+        }
+        
+        /// <summary>
+        /// Actions when layout updated.
+        /// </summary>
+        /// <param name="sender">Sender.</param>
+        /// <param name="e">Arguments/</param>
+        private void OnLayoutUpdated(object sender, EventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Reinitialize view.
+        /// </summary>
+        private void Reinitialize()
+        {
+            if (!(AssociatedObject is AvaloniaSkiaDrawingElementView element)) 
+                return;
+            
+            element.Initialize();
         }
 
         /// <summary>
@@ -79,8 +104,10 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
         private void Redraw()
         {
             if (!(AssociatedObject is AvaloniaSkiaDrawingElementView element)) return;
-            if (element.DrawOperation?.Context == null) return;
-            DataContext?.Draw(element.DrawOperation.Surface);
+            if (element.DrawingContext == null) return;
+
+            DataContext?.Draw(element.DrawingContext.SkSurface);
+            element.InvalidateVisual(); 
         }
     }
 }

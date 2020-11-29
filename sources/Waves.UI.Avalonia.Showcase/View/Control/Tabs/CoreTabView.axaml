@@ -66,6 +66,7 @@
                 <ScrollViewer Grid.RowSpan="2" Margin="-24,0,-24,-18">
 
                     <ItemsControl Items="{Binding LoggingService.LastMessages}"
+                                  HorizontalAlignment="Left"
                                   ScrollViewer.VerticalScrollBarVisibility="Visible"
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
