@@ -85,6 +85,17 @@
                     </ItemsControl>
 
                 </ScrollViewer>
+                
+                <Canvas Height="24" VerticalAlignment="Top" Margin="0,0,18,0">
+
+                    <Canvas.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="{DynamicResource Color-100}" Offset="0.0" />
+                            <GradientStop Offset="1" Color="{DynamicResource Color-100-Transparent}"/>
+                        </LinearGradientBrush>
+                    </Canvas.Background>
+
+                </Canvas>
 
             </Grid>
 

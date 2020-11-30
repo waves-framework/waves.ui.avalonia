@@ -51,7 +51,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
         {
             Reinitialize();
             base.OnSizeChanged(newWidth, newHeight);
-            Dispatcher.UIThread.Post(Redraw);
+            Dispatcher.UIThread.InvokeAsync(Redraw);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
         {
             Reinitialize();
             base.OnDataContextChanged(sender, e);
-            Dispatcher.UIThread.Post(Redraw);
+            Dispatcher.UIThread.InvokeAsync(Redraw);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
         /// <param name="e">Arguments/</param>
         protected override void OnRedrawRequested(object sender, EventArgs e)
         {
-            Dispatcher.UIThread.Post(Redraw);
+            Dispatcher.UIThread.InvokeAsync(Redraw);
         }
 
         /// <summary>

@@ -132,4 +132,8 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controls\Primitives\Interfaces" />
+  </ItemGroup>
+
 </Project>

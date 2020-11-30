@@ -14,6 +14,8 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
     /// </summary>
     public class AvaloniaSkiaDrawingElement : WavesObject, IDrawingElement
     {
+        private bool _isDrawing = false;
+        
         /// <summary>
         ///     Gets or sets SKSurface.
         /// </summary>
@@ -47,10 +49,10 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
             int count = Surface.Canvas.Save();
             
             Surface.Canvas.Clear(SKColor.Empty);
-
+            
             foreach (var obj in drawingObjects)
                 obj.Draw(this);
-            
+
             Surface.Canvas.RestoreToCount(count);
         }
 

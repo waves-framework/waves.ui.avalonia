@@ -33,9 +33,9 @@ namespace Waves.UI.Avalonia.Showcase.Presentation.Controllers
                 //textTabPresentation.SetView(new TextTabView());
                 //RegisterPresentation(textTabPresentation);
 
-                //var buttonsTabPresentation = new ButtonsTabPresentation(Core);
-                //buttonsTabPresentation.SetView(new ButtonsTabView());
-                //RegisterPresentation(buttonsTabPresentation);
+                var buttonsTabPresentation = new ButtonsTabPresentation(Core);
+                buttonsTabPresentation.SetView(new ButtonsTabView());
+                RegisterPresenter(buttonsTabPresentation);
 
                 var comboBoxesTabPresentation = new ComboBoxesTabPresentation(Core);
                 comboBoxesTabPresentation.SetView(new ComboBoxesTabView());

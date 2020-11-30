@@ -53,7 +53,7 @@ namespace Waves.UI.Avalonia.Styles
             AvaloniaProperty.Register<WavesWindow, bool>(
                 "IsOsxPlatform", false);
 
-        private bool _useCustomWindowForOsx = true;
+        private bool _useCustomWindowForOsx = false;
         
         private Grid _contentGrid;
         private Grid _bottomHorizontalGrip;

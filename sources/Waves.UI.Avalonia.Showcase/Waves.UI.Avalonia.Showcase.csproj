@@ -38,6 +38,10 @@
       <DependentUpon>ChartingTabView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Control\Tabs\ButtonsTabView.axaml.cs">
+      <DependentUpon>ButtonsTabView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   
   <ItemGroup>
