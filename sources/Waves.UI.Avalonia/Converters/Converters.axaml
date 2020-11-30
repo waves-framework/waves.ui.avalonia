@@ -5,5 +5,7 @@
 
   <!-- Base -->
   <base:StringToPathGeometryConverter x:Key="StringToPathGeometryConverter"/>
-
+  <base:ValueToThicknessConverter x:Key="ValueToThicknessConverter"/>
+  <base:WavesColorToSolidColorBrushConverter x:Key="WavesColorToSolidColorBrushConverter"/>
+  
 </ResourceDictionary>

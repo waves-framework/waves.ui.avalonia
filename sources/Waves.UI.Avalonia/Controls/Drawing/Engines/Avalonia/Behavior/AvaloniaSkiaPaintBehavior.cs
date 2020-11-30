@@ -32,7 +32,6 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
             if (!(AssociatedObject is AvaloniaSkiaDrawingElementView view)) return;
             
             view.RedrawRequested += OnRedrawRequested;
-            view.LayoutUpdated += OnLayoutUpdated;
             
             Redraw();
         }
@@ -45,7 +44,6 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
             if (!(AssociatedObject is AvaloniaSkiaDrawingElementView view)) return;
             
             view.RedrawRequested -= OnRedrawRequested;
-            view.LayoutUpdated -= OnLayoutUpdated;
         }
 
         /// <inheritdoc />  
@@ -76,15 +74,6 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.Behavior
         protected override void OnRedrawRequested(object sender, EventArgs e)
         {
             Dispatcher.UIThread.Post(Redraw);
-        }
-        
-        /// <summary>
-        /// Actions when layout updated.
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">Arguments/</param>
-        private void OnLayoutUpdated(object sender, EventArgs e)
-        {
         }
 
         /// <summary>

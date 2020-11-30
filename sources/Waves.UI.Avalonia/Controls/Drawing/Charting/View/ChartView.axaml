@@ -32,8 +32,6 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <base:WavesColorToSolidColorBrushConverter x:Key="WavesColorToSolidColorBrushConverter" />
-
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -115,7 +113,7 @@
 
                 <Border
                     BorderBrush="{Binding BorderColor, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
-                    BorderThickness="{Binding BorderThickness}"
+                    BorderThickness="{Binding BorderThickness, Converter={StaticResource ValueToThicknessConverter}}"
                     CornerRadius="{StaticResource StandardCornerRadius}" />
 
             </Grid>
