@@ -12,9 +12,9 @@ namespace Waves.UI.Avalonia.Extensions
         /// </summary>
         /// <param name="color">Instance of System.Windows.Media.Color.</param>
         /// <returns>New instance of Waves.Core.Base.Color.</returns>
-        public static Waves.Core.Base.Color ToWavesColor(this Color color)
+        public static Waves.Core.Base.WavesColor ToWavesColor(this Color color)
         {
-            return new Waves.Core.Base.Color(color.A, color.R, color.G, color.B);
+            return new Waves.Core.Base.WavesColor(color.A, color.R, color.G, color.B);
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace Waves.UI.Avalonia.Extensions
         /// </summary>
         /// <param name="color">Instance of System.Windows.Media.Color.</param>
         /// <returns>New instance of Waves.Core.Base.Color.</returns>
-        public static Color ToSystemColor(this Waves.Core.Base.Color color)
+        public static Color ToSystemColor(this Waves.Core.Base.WavesColor color)
         {
             return new Color(color.A,color.R,color.G,color.B);
         }

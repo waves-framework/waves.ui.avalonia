@@ -21,10 +21,10 @@ namespace Waves.UI.Avalonia.Extensions
         /// <param name="key">Key.</param>
         /// <param name="weights">Weight.</param>
         /// <returns>Colors dictionary.</returns>
-        public static Dictionary<int, Waves.Core.Base.Color> GetColorsDictionary(this StyleInclude styleInclude, string key,
+        public static Dictionary<int, Waves.Core.Base.WavesColor> GetColorsDictionary(this StyleInclude styleInclude, string key,
             int[] weights)
         {
-            var result = new Dictionary<int, Waves.Core.Base.Color>();
+            var result = new Dictionary<int, Waves.Core.Base.WavesColor>();
 
             foreach (var weight in weights)
                 result.Add(weight, GetColorFromResourceDictionary(styleInclude, key, weight));
@@ -39,7 +39,7 @@ namespace Waves.UI.Avalonia.Extensions
         /// <param name="key">Key.</param>
         /// <param name="weight">Weight.</param>
         /// <returns>Color.</returns>
-        public static Waves.Core.Base.Color GetColorFromResourceDictionary(this StyleInclude styleInclude, string key, int weight)
+        public static Waves.Core.Base.WavesColor GetColorFromResourceDictionary(this StyleInclude styleInclude, string key, int weight)
         {
             var currentKey = key + "-" + weight;
 
@@ -49,7 +49,7 @@ namespace Waves.UI.Avalonia.Extensions
                 if (obj is Color color)
                     return color.ToWavesColor();
 
-            return new Waves.Core.Base.Color(0,0,0,0);
+            return new Waves.Core.Base.WavesColor(0,0,0,0);
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace Waves.UI.Avalonia.Extensions
         /// </summary>
         /// <param name="styleInclude">Style include.</param>
         /// <returns>Colors dictionary.</returns>
-        public static Dictionary<string, Waves.Core.Base.Color> GetColorsDictionary(StyleInclude styleInclude)
+        public static Dictionary<string, Waves.Core.Base.WavesColor> GetColorsDictionary(StyleInclude styleInclude)
         {
-            var result = new Dictionary<string, Waves.Core.Base.Color>();
+            var result = new Dictionary<string, Waves.Core.Base.WavesColor>();
 
             //foreach (var key in dictionary.Keys)
             //{
@@ -119,9 +119,9 @@ namespace Waves.UI.Avalonia.Extensions
         /// </summary>
         /// <param name="styleInclude">Style include.</param>
         /// <returns>Colors dictionary.</returns>
-        public static Dictionary<string, Waves.Core.Base.Color> GetForegroundColorsDictionary(StyleInclude styleInclude)
+        public static Dictionary<string, Waves.Core.Base.WavesColor> GetForegroundColorsDictionary(StyleInclude styleInclude)
         {
-            var result = new Dictionary<string, Waves.Core.Base.Color>();
+            var result = new Dictionary<string, Waves.Core.Base.WavesColor>();
 
             //foreach (var key in dictionary.Keys)
             //{

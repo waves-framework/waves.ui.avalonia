@@ -1,15 +1,15 @@
 using System;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Threading;
 using Avalonia.Xaml.Interactivity;
+using Waves.Core.Base;
 using Waves.Core.Base.Enums;
 using Waves.Core.Base.Interfaces.Services;
 using Waves.UI.Drawing.ViewModel;
-using MouseButton = Waves.Core.Base.Enums.MouseButton;
-using Point = Waves.Core.Base.Point;
 
 namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
 {
@@ -18,16 +18,14 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
     /// </summary>
     /// <typeparam name="T">Type.</typeparam>
     public class PaintBehavior<T> : Behavior<T>
-        where T : Panel
+        where T : UserControl
     {
         private object _oldDataContext;
-        private double _oldHeight = -1;
-        private double _oldWidth = -1;
 
         /// <summary>
         ///     Creates new instance of <see cref="PaintBehavior{T}" />
         /// </summary>
-        public PaintBehavior(IInputService inputService)
+        protected PaintBehavior(IInputService inputService)
         {
             InputService = inputService;
         }
@@ -40,7 +38,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
         /// <summary>
         ///     Gets or sets input service.
         /// </summary>
-        protected IInputService InputService { get; set; }
+        private IInputService InputService { get; set; }
 
         /// <inheritdoc />
         protected override void OnAttached()
@@ -51,8 +49,6 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             if (element == null) return;
 
             _oldDataContext = element.DataContext;
-            _oldWidth = element.Width;
-            _oldHeight = element.Height;
 
             element.DataContextChanged += OnDataContextChanged;
             element.PropertyChanged += OnPropertyChanged;
@@ -86,9 +82,9 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             if (DataContext != null)
                 DataContext.RedrawRequested -= OnRedrawRequested;
         }
-        
+
         /// <summary>
-        ///     Actions when property chanded.
+        ///     Actions when property changed.
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">Arguments.</param>
@@ -99,15 +95,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             
             if (e.Property.Name.Equals("Bounds"))
             {
-                var bounds = element.Bounds;
-                
-                // element.Measure(new Size(bounds.Width, bounds.Height));
-                // element.Arrange(new Rect(0,0,element.DesiredSize.Width, element.DesiredSize.Height));
-                //
-                // var a = element.DesiredSize.Width;
-                // Console.WriteLine(a);
-                
-                OnSizeChanged(bounds.Width, bounds.Height);
+                OnSizeChanged(element.Bounds.Width, element.Bounds.Height);
             }
         }
 
@@ -133,8 +121,6 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
                 DataContext.IsDrawingInitialized = false;
             else
                 DataContext.IsDrawingInitialized = true;
-
-            AssociatedObject.InvalidateVisual();
         }
 
         /// <summary>
@@ -190,12 +176,12 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
 
             var position = e.GetPosition(element);
 
-            var args = new Waves.Core.Base.EventArgs.PointerEventArgs(
-                MouseButton.None,
-                PointerEventType.Move,
+            var args = new Waves.Core.Base.EventArgs.WavesPointerEventArgs(
+                WavesMouseButton.None,
+                WavesPointerEventType.Move,
                 0,
-                new Point(),
-                new Point((int) position.X, (int) position.Y));
+                new WavesPoint(),
+                new WavesPoint((int) position.X, (int) position.Y));
 
             InputService.SetPointer(args);
         }
@@ -211,12 +197,12 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             if (!(sender is T element)) return;
 
             var position = e.GetPosition(element);
-            var args = new Waves.Core.Base.EventArgs.PointerEventArgs(
-                MouseButton.None,
-                PointerEventType.Enter,
+            var args = new Waves.Core.Base.EventArgs.WavesPointerEventArgs(
+                WavesMouseButton.None,
+                WavesPointerEventType.Enter,
                 0,
-                new Point(),
-                new Point((int) position.X, (int) position.Y));
+                new WavesPoint(),
+                new WavesPoint((int) position.X, (int) position.Y));
 
             InputService.SetPointer(args);
         }
@@ -232,12 +218,12 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             if (!(sender is T element)) return;
 
             var position = e.GetPosition(element);
-            var args = new Waves.Core.Base.EventArgs.PointerEventArgs(
-                MouseButton.None,
-                PointerEventType.Leave,
+            var args = new Waves.Core.Base.EventArgs.WavesPointerEventArgs(
+                WavesMouseButton.None,
+                WavesPointerEventType.Leave,
                 0,
-                new Point(),
-                new Point((int) position.X, (int) position.Y));
+                new WavesPoint(),
+                new WavesPoint((int) position.X, (int) position.Y));
 
             InputService.SetPointer(args);
         }
@@ -252,23 +238,23 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             if (InputService == null) return;
             if (!(sender is T element)) return;
 
-            var button = MouseButton.None;
+            var button = WavesMouseButton.None;
 
             if (e.GetCurrentPoint(element).Properties.IsLeftButtonPressed)
-                button = MouseButton.Left;
+                button = WavesMouseButton.Left;
             if (e.GetCurrentPoint(element).Properties.IsMiddleButtonPressed)
-                button = MouseButton.Middle;
+                button = WavesMouseButton.Middle;
             if (e.GetCurrentPoint(element).Properties.IsRightButtonPressed)
-                button = MouseButton.Right;
+                button = WavesMouseButton.Right;
 
             var position = e.GetPosition(element);
 
-            var args = new Waves.Core.Base.EventArgs.PointerEventArgs(
+            var args = new Waves.Core.Base.EventArgs.WavesPointerEventArgs(
                 button,
-                PointerEventType.Press,
+                WavesPointerEventType.Press,
                 0,
-                new Point(),
-                new Point((int) position.X, (int) position.Y));
+                new WavesPoint(),
+                new WavesPoint((int) position.X, (int) position.Y));
 
             InputService.SetPointer(args);
         }
@@ -284,23 +270,23 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
             if (InputService == null) return;
             if (!(sender is T element)) return;
 
-            var button = MouseButton.None;
+            var button = WavesMouseButton.None;
 
             if (e.GetCurrentPoint(element).Properties.IsLeftButtonPressed)
-                button = MouseButton.Left;
+                button = WavesMouseButton.Left;
             if (e.GetCurrentPoint(element).Properties.IsMiddleButtonPressed)
-                button = MouseButton.Middle;
+                button = WavesMouseButton.Middle;
             if (e.GetCurrentPoint(element).Properties.IsRightButtonPressed)
-                button = MouseButton.Right;
+                button = WavesMouseButton.Right;
 
             var position = e.GetPosition(element);
 
-            var args = new Waves.Core.Base.EventArgs.PointerEventArgs(
+            var args = new Waves.Core.Base.EventArgs.WavesPointerEventArgs(
                 button,
-                PointerEventType.Release,
+                WavesPointerEventType.Release,
                 0,
-                new Point(),
-                new Point((int) position.X, (int) position.Y));
+                new WavesPoint(),
+                new WavesPoint((int) position.X, (int) position.Y));
 
             InputService.SetPointer(args);
         }
@@ -317,12 +303,12 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Behavior
 
             var position = e.GetPosition(element);
 
-            var args = new Waves.Core.Base.EventArgs.PointerEventArgs(
-                MouseButton.None,
-                PointerEventType.VerticalScroll,
+            var args = new Waves.Core.Base.EventArgs.WavesPointerEventArgs(
+                WavesMouseButton.None,
+                WavesPointerEventType.VerticalScroll,
                 0,
-                new Point((float) e.Delta.Y, 0),
-                new Point((int) position.X, (int) position.Y));
+                new WavesPoint((float) e.Delta.Y, 0),
+                new WavesPoint((int) position.X, (int) position.Y));
 
             InputService.SetPointer(args);
         }

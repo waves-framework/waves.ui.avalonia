@@ -7,7 +7,7 @@
                     xmlns:enums="clr-namespace:Waves.Core.Base.Enums;assembly=Waves.Core.Base"
                     xmlns:base="clr-namespace:Waves.Core.Base;assembly=Waves.Core.Base">
 
-  <DataTemplate x:Key="MessageItemListDataTemplate" DataType="{x:Type interfaces:IMessage}">
+  <DataTemplate x:Key="MessageItemListItemDataTemplate" DataType="{x:Type interfaces:IWavesMessage}">
 
     <Grid Margin="0,0,0,6">
 
@@ -37,7 +37,7 @@
                 
                 <!-- Error -->
                 <ia:DataTriggerBehavior Binding="{Binding Type}" 
-                                        Value="{x:Static enums:MessageType.Error}">
+                                        Value="{x:Static enums:WavesMessageType.Error}">
                   
                   <ia:ChangePropertyAction TargetObject="{Binding #MessageBorder}" 
                                            PropertyName="Background" 
@@ -47,7 +47,7 @@
                 
                 <!-- Fatal -->
                 <ia:DataTriggerBehavior Binding="{Binding Type}" 
-                                        Value="{x:Static enums:MessageType.Fatal}">
+                                        Value="{x:Static enums:WavesMessageType.Fatal}">
                   
                   <ia:ChangePropertyAction TargetObject="{Binding #MessageBorder}" 
                                            PropertyName="Background" 

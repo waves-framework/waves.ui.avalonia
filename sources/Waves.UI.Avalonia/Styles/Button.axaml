@@ -107,6 +107,27 @@
         
     </Style>
     
+    <!-- Default button style -->
+    <Style Selector="Button">
+        
+        <Setter Property="helpers:ControlHelper.CornerRadius" Value="{DynamicResource StandardCornerRadius}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource Primary-300-Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Primary-500-Brush}" />
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+        
+    </Style>
+    
+    <!-- Default button style -->
+    <Style Selector="Button.AccentButtonStyle">
+        
+        <Setter Property="Background" Value="{DynamicResource Accent-500-Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Accent-700-Brush}" />
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-100-Brush}" />
+        
+    </Style>
+    
+    <!-- OSX close button style -->
     <Style Selector="Button.OsxCloseButton">
         
         <Setter Property="Height" Value="12" />
@@ -117,6 +138,7 @@
         
     </Style>
     
+    <!-- OSX minimize button style -->
     <Style Selector="Button.OsxMinimizeButton">
         
         <Setter Property="Height" Value="12" />
@@ -127,6 +149,7 @@
         
     </Style>
     
+    <!-- OSX maximize button style -->
     <Style Selector="Button.OsxMaximizeButton">
         
         <Setter Property="Height" Value="12" />

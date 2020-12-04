@@ -42,7 +42,7 @@
     </Grid>
     
     <Grid Grid.Row="1"
-          Background="{DynamicResource Primary-100-Brush}">
+          Background="{DynamicResource Primary-200-Brush}">
       
       <ContentControl Content="{Binding SelectedPresenter.View}"/>
       

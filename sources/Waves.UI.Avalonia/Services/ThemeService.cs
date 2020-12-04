@@ -22,8 +22,8 @@ namespace Waves.UI.Avalonia.Services
     /// <summary>
     ///     Windows UI theme service.
     /// </summary>
-    [Export(typeof(IService))]
-    public class ThemeService : Service, IThemeService
+    [Export(typeof(IWavesService))]
+    public class ThemeService : WavesService, IThemeService
     {
         private const string PrimaryLightColorsDictionaryUri = 
             "avares://Waves.UI.Avalonia/Colors/Primary.Light.xaml";
@@ -84,7 +84,15 @@ namespace Waves.UI.Avalonia.Services
             get => _selectedTheme;
             set
             {
+                if (_selectedTheme != null)
+                    _selectedTheme.PrimaryColorSetChanged -= OnSelectedThemePrimaryColorSetChanged;
+                
                 this.RaiseAndSetIfChanged(ref _selectedTheme, value);
+                
+                if (_selectedTheme != null)
+                    _selectedTheme.PrimaryColorSetChanged += OnSelectedThemePrimaryColorSetChanged;
+                
+                UpdateTheme();
                 OnThemeChanged();
             }
         }
@@ -94,7 +102,7 @@ namespace Waves.UI.Avalonia.Services
         public ObservableCollection<ITheme> Themes { get; protected set; } = new ObservableCollection<ITheme>();
 
         /// <inheritdoc />
-        public override void Initialize(ICore core)
+        public override void Initialize(IWavesCore core)
         {
             if (IsInitialized) return;
 
@@ -106,11 +114,11 @@ namespace Waves.UI.Avalonia.Services
 
                 OnMessageReceived(
                     this,
-                    new Message(
+                    new WavesMessage(
                         "Initialization", 
                         "Service has been initialized.", 
                         Name, 
-                        MessageType.Information));
+                        WavesMessageType.Information));
 
 
                 IsInitialized = true;
@@ -118,7 +126,7 @@ namespace Waves.UI.Avalonia.Services
             catch (Exception e)
             {
                 OnMessageReceived(this,
-                    new Message(
+                    new WavesMessage(
                         "Service initialization", 
                         "Error service initialization.", 
                         Name, 
@@ -151,16 +159,16 @@ namespace Waves.UI.Avalonia.Services
                 
                 OnMessageReceived(
                     this, 
-                    new Message(
+                    new WavesMessage(
                         "Loading configuration",
                         "Configuration loads successfully.", 
                         Name,
-                        MessageType.Success));
+                        WavesMessageType.Success));
             }
             catch (Exception e)
             {
                 OnMessageReceived(this,
-                    new Message(
+                    new WavesMessage(
                         "Loading configuration", 
                         "Error loading configuration.", 
                         Name, 
@@ -180,16 +188,16 @@ namespace Waves.UI.Avalonia.Services
                 
                 OnMessageReceived(
                     this, 
-                    new Message(
+                    new WavesMessage(
                         "Saving configuration",
                         "Configuration saved successfully.", 
                         Name,
-                        MessageType.Success));
+                        WavesMessageType.Success));
             }
             catch (Exception e)
             {
                 OnMessageReceived(this,
-                    new Message(
+                    new WavesMessage(
                         "Saving configuration", 
                         "Error saving configuration.", 
                         Name, 
@@ -219,11 +227,11 @@ namespace Waves.UI.Avalonia.Services
 
                 OnMessageReceived(
                     this,
-                    new Message(
+                    new WavesMessage(
                         "Initialization", 
                         $"Application attached - {application.Name}.", 
                         Name, 
-                        MessageType.Information));
+                        WavesMessageType.Information));
             }
             catch (Exception e)
             {
@@ -237,11 +245,6 @@ namespace Waves.UI.Avalonia.Services
         /// </summary>
         protected virtual void OnThemeChanged()
         {
-            _selectedThemeId = _selectedTheme.Id;
-            UseDarkScheme = _selectedTheme.UseDarkSet;
-            
-            UpdateTheme();
-            
             ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
         
@@ -250,9 +253,11 @@ namespace Waves.UI.Avalonia.Services
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">Arguments.</param>
-        private void OnThemePrimaryColorSetChanged(object sender, EventArgs e)
+        private void OnSelectedThemePrimaryColorSetChanged(object sender, EventArgs e)
         {
             UseDarkScheme = _selectedTheme.UseDarkSet;
+            
+            OnThemeChanged();
             UpdateTheme();
         }
 
@@ -273,7 +278,7 @@ namespace Waves.UI.Avalonia.Services
             catch (Exception e)
             {
                 OnMessageReceived(this,
-                    new Message("Theme Service", "Error initializing base themes:\r\n" + e, Name, MessageType.Error));
+                    new WavesMessage("Theme Service", "Error initializing base themes:\r\n" + e, Name, WavesMessageType.Error));
             }
         }
 
@@ -374,11 +379,6 @@ namespace Waves.UI.Avalonia.Services
                 darkPrimaryColorSet,
                 yellowAccentColorSet,
                 miscellaneousColorSet));
-
-            foreach (var theme in Themes)
-            {
-                theme.PrimaryColorSetChanged += OnThemePrimaryColorSetChanged;
-            }
         }
 
         /// <summary>
@@ -386,7 +386,11 @@ namespace Waves.UI.Avalonia.Services
         /// </summary>
         private void UpdateTheme()
         {
-            if (_application == null) return;
+            if (_application == null) 
+                return;
+            
+            if (SelectedTheme == null)
+                return;
 
             try
             {
@@ -423,25 +427,26 @@ namespace Waves.UI.Avalonia.Services
                 _oldPrimaryStyleInclude = primaryColorSet.StyleInclude;
                 _oldAccentStyleInclude = accentColorSet.StyleInclude;
                 _oldMiscellaneousStyleInclude = miscellaneousColorSet.StyleInclude;
+                _selectedThemeId = _selectedTheme.Id;
 
                 OnMessageReceived(this,
                     SelectedTheme.UseDarkSet
-                        ? new Message(
+                        ? new WavesMessage(
                             "Theme Service",
                             $"Theme changed to \"{SelectedTheme.Name}\" (Dark).", 
                             Name,
-                            MessageType.Information)
-                        : new Message(
+                            WavesMessageType.Information)
+                        : new WavesMessage(
                             "Theme Service", 
                             $"Theme changed to \"{SelectedTheme.Name}\" (Light).",
                             Name,
-                            MessageType.Information));
+                            WavesMessageType.Information));
             }
             catch (Exception e)
             {
                 OnMessageReceived(
                     this,
-                    new Message("Theme Service", 
+                    new WavesMessage("Theme Service", 
                         "Error updating theme", 
                         Name, 
                         e,
@@ -478,11 +483,11 @@ namespace Waves.UI.Avalonia.Services
                 catch (Exception e)
                 {
                     OnMessageReceived(this,
-                        new Message("Theme Service", "Error initializing selected theme:\r\n" + e, Name,
-                            MessageType.Error));
+                        new WavesMessage("Theme Service", "Error initializing selected theme:\r\n" + e, Name,
+                            WavesMessageType.Error));
                 }
             else
-                OnMessageReceived(this, new Message("Theme Service", "Themes not found.", Name, MessageType.Error));
+                OnMessageReceived(this, new WavesMessage("Theme Service", "Themes not found.", Name, WavesMessageType.Error));
         }
 
         /// <summary>

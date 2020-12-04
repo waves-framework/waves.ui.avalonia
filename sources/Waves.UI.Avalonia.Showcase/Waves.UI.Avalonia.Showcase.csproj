@@ -7,12 +7,12 @@
   <Import Project="..\..\props\Waves.UI.Avalonia.props" />
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0-preview5" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-preview5" />
-    <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.10.0-preview5" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.0-preview5" />
-    <PackageReference Include="ReactiveUI.Validation" Version="1.6.4" />
-    <PackageReference Include="ReactiveUI.Fody" Version="11.5.35" />
+    <PackageReference Include="Avalonia" Version="0.10.0-preview6" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-preview6" />
+    <PackageReference Include="Avalonia.LinuxFramebuffer" Version="0.10.0-preview6" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.0-preview6" />
+    <PackageReference Include="ReactiveUI.Validation" Version="1.8.6" />
+    <PackageReference Include="ReactiveUI.Fody" Version="12.1.5" />
   </ItemGroup>
   
   <ItemGroup>
@@ -36,6 +36,10 @@
     </Compile>
     <Compile Update="View\Control\Tabs\ChartingTabView.axaml.cs">
       <DependentUpon>ChartingTabView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Control\Tabs\ButtonsTabView.axaml.cs">
+      <DependentUpon>ButtonsTabView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -32,8 +32,6 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <base:WavesColorToSolidColorBrushConverter x:Key="WavesColorToSolidColorBrushConverter" />
-
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -99,15 +97,15 @@
 
                     <Grid>
 
+                        <!-- TODO: Works on WPF, but doesn't work with AvaloniaUI -->
                         <!-- <Grid.OpacityMask> -->
-                        <!--     <VisualBrush Visual="{Binding ElementName=MaskBorder}" /> -->
+                        <!--     <VisualBrush Visual="{Binding #MaskBorder}" /> -->
                         <!-- </Grid.OpacityMask> -->
 
                         <ContentControl
                             Content="{Binding DrawingElementView, RelativeSource={RelativeSource AncestorType={x:Type local:ChartView}}}"
                             DataContext="{Binding}"
-                            ClipToBounds="True"
-                            Background="{Binding Background, Converter={StaticResource WavesColorToSolidColorBrushConverter}}" />
+                            ClipToBounds="True"/>
 
                     </Grid>
 
@@ -115,7 +113,7 @@
 
                 <Border
                     BorderBrush="{Binding BorderColor, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
-                    BorderThickness="{Binding BorderThickness}"
+                    BorderThickness="{Binding BorderThickness, Converter={StaticResource ValueToThicknessConverter}}"
                     CornerRadius="{StaticResource StandardCornerRadius}" />
 
             </Grid>
@@ -125,6 +123,15 @@
                   VerticalAlignment="Center"
                   Margin="{StaticResource SmallThickness}"
                   IsVisible="{Binding IsYAxisDescriptionVisible}">
+                
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="90" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Grid.RenderTransform>
 
                 <Border Background="{DynamicResource Primary-100-Brush}"
                         CornerRadius="{StaticResource StandardCornerRadius}"
@@ -135,15 +142,6 @@
                         BorderThickness="1" />
 
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="{StaticResource SmallThickness}">
-
-                    <Grid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform />
-                            <SkewTransform />
-                            <RotateTransform Angle="90" />
-                            <TranslateTransform />
-                        </TransformGroup>
-                    </Grid.RenderTransform>
 
                     <StackPanel Orientation="Horizontal">
 

@@ -1,5 +1,7 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Showcase.Presentation.Controllers;
@@ -12,6 +14,8 @@ namespace Waves.UI.Avalonia.Showcase
     /// </summary>
     public class App : Application
     {
+        private Window _window;
+        
         /// <summary>
         ///     Gets UI Core.
         /// </summary>
@@ -31,20 +35,36 @@ namespace Waves.UI.Avalonia.Showcase
             {
                 var controller = new MainTabPresentationController(Core);
 
-                var window = new MainWindowView {DataContext = controller};
-                desktopLifetime.MainWindow = window;
+                _window = new MainWindowView {DataContext = controller};
+                desktopLifetime.MainWindow = _window;
 
-                Core.Start(this, window);
+                Core.Start(this, _window);
 
                 controller.MessageReceived += OnControllerMessageReceived;
                 controller.Initialize();
 
-                Core.AttachMainWindow(window);
+                Core.AttachMainWindow(_window);
 
-                window.Closing += OnViewClosing;
+                _window.KeyDown += OnKeyDown;
+                _window.Closing += OnViewClosing;
             }
 
             base.OnFrameworkInitializationCompleted();
+        }
+
+        private void OnKeyDown(object? sender, KeyEventArgs e)
+        {
+#if DEBUG
+            if (e.KeyModifiers == KeyModifiers.Shift)
+            {
+                // Render Debug information
+                if (e.Key == Key.D)
+                {
+                    _window.Renderer.DrawFps = !_window.Renderer.DrawFps;
+                    _window.Renderer.DrawDirtyRects = !_window.Renderer.DrawDirtyRects;
+                }
+            }
+#endif
         }
 
         /// <summary>
@@ -52,7 +72,7 @@ namespace Waves.UI.Avalonia.Showcase
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">Message.</param>
-        private void OnControllerMessageReceived(object sender, IMessage e)
+        private void OnControllerMessageReceived(object sender, IWavesMessage e)
         {
             Core.WriteLog(e);
         }

@@ -13,8 +13,8 @@ namespace Waves.UI.Avalonia.Services
     /// <summary>
     ///     Charting service.
     /// </summary>
-    [Export(typeof(IService))]
-    public class ChartingService : Service, IChartingService
+    [Export(typeof(IWavesService))]
+    public class ChartingService : WavesService, IChartingService
     {
         /// <inheritdoc />
         public override Guid Id { get; } = Guid.Parse("3C41CD51-3645-47A8-AE90-A9E785CC3901");
@@ -23,7 +23,7 @@ namespace Waves.UI.Avalonia.Services
         public override string Name { get; set; } = "Avalonia Charting Service";
 
         /// <inheritdoc />
-        public override void Initialize(ICore core)
+        public override void Initialize(IWavesCore core)
         {
             if (IsInitialized) return;
 
@@ -31,10 +31,10 @@ namespace Waves.UI.Avalonia.Services
 
             OnMessageReceived(
                 this,
-                new Message(
+                new WavesMessage(
                     "Initialization", 
                     "Service was initialized.", 
-                    Name, MessageType.Information));
+                    Name, WavesMessageType.Information));
 
             IsInitialized = true;
         }

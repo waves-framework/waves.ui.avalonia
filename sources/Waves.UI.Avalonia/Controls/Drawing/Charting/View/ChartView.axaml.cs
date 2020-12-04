@@ -29,7 +29,10 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Charting.View
         }
 
         /// <inheritdoc />
-        public event EventHandler<IMessage> MessageReceived;
+        public event EventHandler<IWavesMessage> MessageReceived;
+
+        /// <inheritdoc />
+        public IWavesCore Core { get; protected set; }
 
         /// <inheritdoc />
         public Guid Id { get; } = Guid.NewGuid();
@@ -47,31 +50,17 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Charting.View
                 SetValue(DrawingElementViewProperty, value);
             }
         }
+        
+        /// <inheritdoc />
+        public void AttachCore(IWavesCore core)
+        {
+            Core = core;
+        }
 
         /// <inheritdoc />
         public void Dispose()
         {
             DrawingElementView.Dispose();
-        }
-
-        /// <summary>
-        ///     Gets drawing element view.
-        /// </summary>
-        /// <param name="obj">Dependency object.</param>
-        /// <returns>Returns Drawing element view.</returns>
-        public static IDrawingElementPresenterView GetDrawingElementView(StyledElement obj)
-        {
-            return obj.GetValue(DrawingElementViewProperty);
-        }
-
-        /// <summary>
-        ///     Sets drawing element view.
-        /// </summary>
-        /// <param name="obj">Dependency object.</param>
-        /// <param name="value">Drawing element view.</param>
-        public static void SetDrawingElementView(StyledElement obj, IDrawingElementPresenterView value)
-        {
-            obj.SetValue(DrawingElementViewProperty, value);
         }
 
         /// <summary>

@@ -1,0 +1,58 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:interfaces="clr-namespace:Waves.UI.Drawing.Base.Interfaces;assembly=Waves.UI.Drawing">
+    
+    <ResourceDictionary.MergedDictionaries>
+
+        <!-- Converters -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" />
+
+        <!-- Fonts -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Fonts.axaml" />
+
+        <!-- Icons -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Icons.axaml" />
+
+        <!-- Opacity -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+        <!-- Padding -->
+        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="DrawingEngineListItemDataTemplate" DataType="{x:Type interfaces:IDrawingEngine}">
+
+        <Grid Margin="0,0,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="9" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0">
+
+                <Viewbox Height="14" Width="14" Stretch="Uniform" Margin="0,0,0,0">
+
+                    <Path Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}" 
+                          Data="{StaticResource Icon-Gears}"/>
+
+                </Viewbox>
+
+            </Grid>
+
+            <Grid Grid.Column="2">
+
+                <TextBlock Text="{Binding Name}"
+                           Classes="Regular1"
+                           Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type TemplatedControl}}}" 
+                           Margin="0,1,0,0"/>
+
+            </Grid>
+
+        </Grid>
+
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -10,18 +10,18 @@ using Waves.Presentation.Interfaces;
 namespace Waves.UI.Avalonia.Showcase.View.Control.Tabs
 {
     /// <summary>
-    /// Core tab view.
+    /// Buttons tab view.
     /// </summary>
-    public class CoreTabView : UserControl, IPresenterView
+    public class ButtonsTabView : UserControl, IPresenterView
     {
         /// <summary>
-        /// Creates new instance of <see cref="CoreTabView"/>.
+        /// Creates new instance of <see cref="ButtonsTabView"/>.
         /// </summary>
-        public CoreTabView()
+        public ButtonsTabView()
         {
             InitializeComponent();
         }
-
+        
         /// <inheritdoc />
         public event EventHandler<IWavesMessage> MessageReceived;
 
@@ -36,7 +36,7 @@ namespace Waves.UI.Avalonia.Showcase.View.Control.Tabs
         {
             Core = core;
         }
-
+        
         /// <summary>
         /// Notifies when message received.
         /// </summary>
