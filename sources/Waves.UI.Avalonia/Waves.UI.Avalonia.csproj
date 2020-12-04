@@ -22,6 +22,9 @@
     <PackageReference Include="Avalonia" Version="0.10.0-preview5" />
     <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.0-preview5" />
     <PackageReference Include="Pkcs11Interop" Version="5.1.1" />
+    <PackageReference Include="Waves.UI" Version="2021.1.1-preview1" />
+    <PackageReference Include="Waves.UI.Drawing" Version="2021.1.1-preview1" />
+    <PackageReference Include="Waves.UI.Drawing.Charting" Version="2021.1.1-preview1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -113,12 +116,6 @@
     <AvaloniaXaml Update="Styles\Text.axaml">
       <Generator>MSBuild:Compile</Generator>
     </AvaloniaXaml>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\ui\sources\Waves.UI.Drawing.Charting\Waves.UI.Drawing.Charting.csproj" />
-    <ProjectReference Include="..\..\..\ui\sources\Waves.UI.Drawing\Waves.UI.Drawing.csproj" />
-    <ProjectReference Include="..\..\..\ui\sources\Waves.UI\Waves.UI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

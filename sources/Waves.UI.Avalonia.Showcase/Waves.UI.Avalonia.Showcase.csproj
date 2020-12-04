@@ -51,9 +51,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\sources\Waves.Core.Base\Waves.Core.Base.csproj" />
+    <ProjectReference Include="..\..\..\ui.wpf\sources\Waves.UI.Showcase.Common\Waves.UI.Showcase.Common.csproj" />
     <ProjectReference Include="..\Waves.UI.Avalonia\Waves.UI.Avalonia.csproj" />
-    <ProjectReference Include="..\Waves.UI.Showcase.Common\Waves.UI.Showcase.Common.csproj" />
   </ItemGroup>
 
 </Project>
