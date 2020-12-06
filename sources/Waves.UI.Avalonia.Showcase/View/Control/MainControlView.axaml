@@ -30,6 +30,7 @@
     <Grid Grid.Row="0">
       
       <Canvas Background="{DynamicResource Primary-400-Brush}"
+              Opacity="{StaticResource Opacity2}"
               Height="2"
               VerticalAlignment="Bottom"/>
       
@@ -41,8 +42,9 @@
       
     </Grid>
     
-    <Grid Grid.Row="1"
-          Background="{DynamicResource Primary-200-Brush}">
+    <Grid Grid.Row="1">
+      
+      <Canvas Background="{DynamicResource Primary-200-Brush}"/>
       
       <ContentControl Content="{Binding SelectedPresenter.View}"/>
       

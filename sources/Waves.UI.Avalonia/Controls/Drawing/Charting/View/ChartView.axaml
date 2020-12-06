@@ -56,6 +56,7 @@
                 <Grid Grid.Column="0">
 
                     <TextBlock Text="{Binding Title}"
+                               Classes="Header3"
                                FontSize="{Binding TextStyle.FontSize}"
                                Margin="0,0,0,6"
                                Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
@@ -73,11 +74,13 @@
 
                         <TextBlock Text="{Binding XAxisName}"
                                    Margin="0,0,3,0"
+                                   Classes="Regular1"
                                    Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
                                    FontSize="{Binding TextStyle.FontSize}" />
 
                         <TextBlock Text="{Binding XAxisUnit, StringFormat={}({0})}"
                                    Margin="0,0,0,0"
+                                   Classes="Regular1"
                                    Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
                                    FontSize="{Binding TextStyle.FontSize}" />
 
@@ -146,11 +149,13 @@
                     <StackPanel Orientation="Horizontal">
 
                         <TextBlock Text="{Binding YAxisName}"
+                                   Classes="Regular1"
                                    Margin="0,0,3,0"
                                    Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
                                    FontSize="{Binding TextStyle.FontSize}" />
 
                         <TextBlock Text="{Binding YAxisUnit, StringFormat={}({0})}"
+                                   Classes="Regular1"
                                    Margin="0,0,0,0"
                                    Foreground="{Binding Foreground, Converter={StaticResource WavesColorToSolidColorBrushConverter}}"
                                    FontSize="{Binding TextStyle.FontSize}" />

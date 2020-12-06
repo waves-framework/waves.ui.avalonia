@@ -53,7 +53,7 @@ namespace Waves.UI.Avalonia.Styles
             AvaloniaProperty.Register<WavesWindow, bool>(
                 "IsOsxPlatform", false);
 
-        private bool _useCustomWindowForOsx = false;
+        private bool _useCustomWindow = false;
         
         private Grid _contentGrid;
         private Grid _bottomHorizontalGrip;
@@ -325,34 +325,44 @@ namespace Waves.UI.Avalonia.Styles
             if (CurrentPlatform == OSPlatform.Windows)
             {
                 _titleBar.Height = 34;
+                
+                if (_useCustomWindow)
+                    return;
+                
+                UseSystemDecorations();
             }
             if (CurrentPlatform == OSPlatform.Linux)
             {
+                if (_useCustomWindow)
+                    return;
                 
+                UseSystemDecorations();
             }
             if (CurrentPlatform == OSPlatform.OSX)
             {
                 _titleBar.Height = 22;
                 
-                if (_useCustomWindowForOsx)
+                if (_useCustomWindow)
                     return;
                 
-                // use system decorations, because custom not fully works
-                _titleBar.IsVisible = false;
-                SystemDecorations = SystemDecorations.Full;
-                
-                _topHorizontalGrip.IsHitTestVisible = false;
-                _bottomHorizontalGrip.IsHitTestVisible = false;
-                _leftVerticalGrip.IsHitTestVisible = false;
-                _rightVerticalGrip.IsHitTestVisible = false;
-                _topLeftGrip.IsHitTestVisible = false;
-                _bottomLeftGrip.IsHitTestVisible = false;
-                _topRightGrip.IsHitTestVisible = false;
-                _bottomRightGrip.IsHitTestVisible = false;
-                
-                BorderThickness = new Thickness();
-                _contentGrid.Margin = new Thickness(0, -4, 0, 0);
+                UseSystemDecorations();
             }
+        }
+
+        private void UseSystemDecorations()
+        {
+            _titleBar.IsVisible = false;
+            SystemDecorations = SystemDecorations.Full;
+            _topHorizontalGrip.IsHitTestVisible = false;
+            _bottomHorizontalGrip.IsHitTestVisible = false;
+            _leftVerticalGrip.IsHitTestVisible = false;
+            _rightVerticalGrip.IsHitTestVisible = false;
+            _topLeftGrip.IsHitTestVisible = false;
+            _bottomLeftGrip.IsHitTestVisible = false;
+            _topRightGrip.IsHitTestVisible = false;
+            _bottomRightGrip.IsHitTestVisible = false;
+            BorderThickness = new Thickness();
+            _contentGrid.Margin = new Thickness(0, -4, 0, 0);
         }
 
         /// <summary>

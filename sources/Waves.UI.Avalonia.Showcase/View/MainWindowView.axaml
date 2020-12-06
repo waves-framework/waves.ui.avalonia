@@ -6,15 +6,22 @@
         x:Class="Waves.UI.Avalonia.Showcase.View.MainWindowView"
         xmlns:control="clr-namespace:Waves.UI.Avalonia.Showcase.View.Control"
         Height="768" Width="1024"
-        Background="{DynamicResource Primary-300-Brush}"
         Foreground="{DynamicResource Primary-Foreground-100-Brush}"
         Name="Main Window"
+        TransparencyLevelHint="Blur"
         Title="Waves UI - Avalonia Showcase">
+
+  <Window.Background>
+    
+    <SolidColorBrush Color="{DynamicResource Color-200}" 
+                     Opacity="{StaticResource Opacity2}"/>
+    
+  </Window.Background>
 
   <Grid>
 
-    <control:MainControlView Margin="0" 
-                             DataContext="{Binding}"/>
+      <control:MainControlView Margin="0" 
+                               DataContext="{Binding}"/>
 
   </Grid>
 

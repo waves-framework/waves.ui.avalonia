@@ -130,7 +130,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ui.wpf\sources\Waves.UI.WPF.Drawing.Engine.Skia\Waves.UI.WPF.Drawing.Engine.Skia.csproj" />
+    <ProjectReference Include="..\..\..\ui\sources\Waves.UI.Common.Engine.Skia\Waves.UI.Common.Engine.Skia.csproj" />
     <ProjectReference Include="..\..\..\ui\sources\Waves.UI.Drawing.Charting\Waves.UI.Drawing.Charting.csproj" />
     <ProjectReference Include="..\..\..\ui\sources\Waves.UI.Drawing\Waves.UI.Drawing.csproj" />
     <ProjectReference Include="..\..\..\ui\sources\Waves.UI\Waves.UI.csproj" />

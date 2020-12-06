@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Dialogs;
 using Avalonia.ReactiveUI;
 
@@ -6,6 +7,7 @@ namespace Waves.UI.Avalonia.Showcase
 {
     public static class Program
     {
+        [STAThread]
         public static void Main(string[] args)
         {
             BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
