@@ -3,6 +3,7 @@ using System.Composition;
 using Waves.Core.Base;
 using Waves.Core.Base.Interfaces.Services;
 using Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View;
+using Waves.UI.Common.Engine.Skia.View;
 using Waves.UI.Drawing.Base.Interfaces;
 using Waves.UI.Drawing.View.Interfaces;
 
@@ -31,7 +32,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia
         /// <inheritdoc />
         public IDrawingElement GetDrawingElement()
         {
-            return new AvaloniaSkiaDrawingElement();
+            return new SkiaDrawingElement();
         }
         
         /// <inheritdoc />
