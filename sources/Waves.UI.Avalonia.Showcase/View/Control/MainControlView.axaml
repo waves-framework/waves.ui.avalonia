@@ -35,6 +35,7 @@
               VerticalAlignment="Bottom"/>
       
       <TabControl TabStripPlacement="Top"
+                  HorizontalAlignment="Stretch"
                   Items="{Binding Presenters}"
                   SelectedItem="{Binding SelectedPresenter}"
                   ItemTemplate="{StaticResource TabDataTemplate}"

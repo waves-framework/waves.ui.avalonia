@@ -2,6 +2,40 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:helpers="clr-namespace:Waves.UI.Avalonia.Helpers">
 
+  <Design.PreviewWith>
+    
+    <Border Width="640"
+            Height="480">
+      
+      <TabControl TabStripPlacement="Top">
+        
+        <TabItem Header="Tab 1">
+          
+          <Border Background="AntiqueWhite"
+                  Height="100">
+            
+            <TextBlock Text="Content" Foreground="Black" FontSize="20"/>
+            
+          </Border>
+          
+        </TabItem>
+        
+        <TabItem Header="Tab 2">
+          
+          <Border Background="Green"
+                  Height="100" />
+        
+        </TabItem>
+        
+        <TabItem Header="Tab3"    
+                 IsEnabled="False" />
+        
+      </TabControl>
+      
+    </Border>
+    
+  </Design.PreviewWith>
+
   <Styles.Resources>
 
     <ResourceDictionary>
@@ -32,12 +66,15 @@
   <!-- TabControl style -->
   <Style Selector="TabControl">
 
+    <Setter Property="MinHeight" Value="34"/>
     <Setter Property="FontFamily" Value="{DynamicResource Font-1}" />
     <Setter Property="FontWeight" Value="Medium"/>
     <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
     <Setter Property="FontSize" Value="12" />
     <Setter Property="TabStripPlacement" Value="Top"/>
     <Setter Property="helpers:TabControlHelper.IsContentVisible" Value="True"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="Margin" Value="0"/>
     
     <Setter Property="Template">
 
@@ -49,23 +86,47 @@
                 Background="{TemplateBinding Background}"
                 HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                 VerticalAlignment="{TemplateBinding VerticalAlignment}">
+          
+          <Grid>
 
-          <DockPanel>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <ItemsPresenter Name="PART_ItemsPresenter"
-                            Items="{TemplateBinding Items}"
-                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                            ItemTemplate="{TemplateBinding ItemTemplate}"/>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <ContentPresenter Name="PART_SelectedContentHost"
+            <Grid x:Name="ItemsPresenterGrid">
+
+              <ItemsPresenter Name="PART_ItemsPresenter"
+                              Items="{TemplateBinding Items}"
+                              ItemsPanel="{TemplateBinding ItemsPanel}"
+                              ItemTemplate="{TemplateBinding ItemTemplate}"
+                              Margin="0,0,0,-18"/>
+              
+            </Grid>
+
+            <Grid x:Name="SelectedContentHostGrid">
+              
+              <ContentPresenter Name="PART_SelectedContentHost"
                               Margin="{TemplateBinding Padding}"
                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                               Content="{TemplateBinding SelectedContent}"
                               ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-                              IsVisible="{TemplateBinding helpers:TabControlHelper.IsContentVisible}"/>
-
-          </DockPanel>
+                              IsVisible="{TemplateBinding helpers:TabControlHelper.IsContentVisible}"
+                              TextBlock.FontFamily="{TemplateBinding FontFamily}"
+                              TextBlock.FontSize="{TemplateBinding FontSize}"
+                              TextBlock.FontStyle="{TemplateBinding FontStyle}"
+                              TextBlock.Foreground="{TemplateBinding Foreground}"
+                              TextBlock.FontWeight="{TemplateBinding FontWeight}"/>
+              
+            </Grid>
+            
+          </Grid>
 
         </Border>
 
@@ -77,6 +138,16 @@
 
   <Style Selector="TabItem">
 
+    <Setter Property="FontFamily" Value="{DynamicResource Font-1}" />
+    <Setter Property="FontWeight" Value="Medium"/>
+    <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Height" Value="34" />
+    <Setter Property="Margin" Value="0,0,0,0"/>
+    <Setter Property="Padding" Value="{StaticResource StandardThickness}"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    
     <Setter Property="Template">
 
       <ControlTemplate>
@@ -237,6 +308,62 @@
     <Setter Property="Grid.Column" Value="0"/>
     <Setter Property="Height" Value="3"/>
     
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Left] /template/ Grid#ItemsPresenterGrid">
+
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
+
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Left] /template/ Grid#SelectedContentHostGrid">
+
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="1"/>
+
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Top] /template/ Grid#ItemsPresenterGrid">
+
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
+
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Top] /template/ Grid#SelectedContentHostGrid">
+
+    <Setter Property="Grid.Row" Value="1"/>
+    <Setter Property="Grid.Column" Value="0"/>
+
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Right] /template/ Grid#ItemsPresenterGrid">
+
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="1"/>
+
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Right] /template/ Grid#SelectedContentHostGrid">
+
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
+
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ Grid#ItemsPresenterGrid">
+
+    <Setter Property="Grid.Row" Value="1"/>
+    <Setter Property="Grid.Column" Value="0"/>
+
+  </Style>
+
+  <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ Grid#SelectedContentHostGrid">
+
+    <Setter Property="Grid.Row" Value="0"/>
+    <Setter Property="Grid.Column" Value="0"/>
+
   </Style>
 
 </Styles>

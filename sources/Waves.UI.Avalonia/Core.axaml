@@ -35,14 +35,14 @@
   </Styles.Resources>
 
   <!-- Default avalonia styles -->
-  <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
+  <StyleInclude Source="avares://Avalonia.Themes.Fluent/Accents/FluentLight.xaml"/>
   
   <!-- Waves styles -->
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Button.axaml"/>
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/CheckBox.axaml"/>
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ComboBox.axaml"/>
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ComboBoxItem.axaml" />
-  <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ScrollBar.axaml"/>
+  <!--<StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ScrollBar.axaml"/>-->
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.axaml"/>
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
   <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/ToggleButton.axaml"/>

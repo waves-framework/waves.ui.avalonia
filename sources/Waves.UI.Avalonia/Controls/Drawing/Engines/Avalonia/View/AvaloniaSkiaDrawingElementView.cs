@@ -31,22 +31,17 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
             InitializeBehaviors(inputService);
             SubscribeEvents();
 
-            Canvas = new Canvas();
-            Content = Canvas;
+            Image = new Image();
+            Content = Image;
         }
-        
-        /// <summary>
-        /// Gets whether is rendering running.
-        /// </summary>
-        public bool IsRendering { get; set; }
 
         /// <inheritdoc />
         public event EventHandler<IWavesMessage> MessageReceived;
         
         /// <summary>
-        /// Gets canvas.
+        /// Gets image.
         /// </summary>
-        public Canvas Canvas { get; private set; }
+        public Image Image { get; private set; }
         
         /// <inheritdoc />
         public Guid Id { get; } = Guid.NewGuid();
@@ -194,8 +189,7 @@ namespace Waves.UI.Avalonia.Controls.Drawing.Engines.Avalonia.View
                     try
                     {
                         using var ms = new MemoryStream(bytes);
-                        var brush = new ImageBrush(new Bitmap(ms));
-                        Canvas.Background = brush;
+                        Image.Source = new Bitmap(ms);
                     }
                     catch (Exception e)
                     {

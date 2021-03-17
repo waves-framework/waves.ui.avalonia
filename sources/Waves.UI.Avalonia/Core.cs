@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Waves.Core.Base;
@@ -16,6 +17,9 @@ namespace Waves.UI.Avalonia
     /// </summary>
     public class Core : UI.Core
     {
+        /// <inheritdoc />
+        public override Guid Id { get; } = Guid.Parse("F9E7901B-68A0-4F2D-B542-3536BFAFB4D9");
+
         /// <summary>
         ///     Gets instance of attached application.
         /// </summary>

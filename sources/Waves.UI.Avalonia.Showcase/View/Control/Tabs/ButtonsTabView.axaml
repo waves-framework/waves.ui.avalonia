@@ -9,7 +9,7 @@
 
      <Grid>
 
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
 
             <StackPanel Margin="{StaticResource BigThickness}">
 
