@@ -1,4 +1,0 @@
-[submodule "sources/Waves.UI.Showcase.Common"]
-	path = sources/Waves.UI.Showcase.Common
-	url = https://github.com/ambertape/waves.ui.showcase.common.git
-	branch = master
