@@ -11,4 +11,8 @@
     <ProjectReference Include="..\..\submodules\ui\sources\Waves.UI\Waves.UI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Styles" />
+  </ItemGroup>
+
 </Project>
