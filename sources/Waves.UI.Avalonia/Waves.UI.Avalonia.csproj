@@ -3,6 +3,11 @@
   <Import Project="../../build/props/common.props" />
 
   <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\submodules\ui\sources\Waves.UI\Waves.UI.csproj" />
   </ItemGroup>
 
