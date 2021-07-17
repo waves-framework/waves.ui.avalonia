@@ -1,8 +1,0 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
-
-  <FontFamily x:Key="Font-1">resm:Waves.UI.Avalonia.Resources.Fonts.FiraGO-*.ttf?assembly=Waves.UI.Avalonia#FiraGO</FontFamily>
-  <FontFamily x:Key="Font-2">resm:Waves.UI.Avalonia.Resources.Fonts.Lato-*.ttf?assembly=Waves.UI.Avalonia#Lato</FontFamily>
-
-</ResourceDictionary>
