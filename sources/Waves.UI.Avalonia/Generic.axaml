@@ -29,7 +29,7 @@
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Thumb.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ToggleButton.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/TreeView.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Window.xaml" /> -->
+                <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml" />
                 <!-- -->
                 <!-- ~1~ Custom controls themes @1@ -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Themes/Generic.xaml" /> -->
@@ -144,7 +144,6 @@
     <!-- <Style TargetType="{x:Type waves:WavesTreeViewItem}" BasedOn="{StaticResource TreeViewItemStyle}" /> -->
     <!-- -->
     <!-- ~1~ Window @1@ -->
-    <!-- <Style TargetType="{x:Type Window}" BasedOn="{StaticResource WindowStyle}" /> -->
     <!-- <Style TargetType="{x:Type waves:WavesWindow}" BasedOn="{StaticResource WindowStyle}" /> -->
 
 </Styles>

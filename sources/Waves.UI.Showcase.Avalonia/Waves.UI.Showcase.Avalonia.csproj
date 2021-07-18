@@ -4,6 +4,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\submodules\ui.showcase.common\sources\Waves.UI.Showcase.Common\Waves.UI.Showcase.Common.csproj" />
+      <ProjectReference Include="..\Waves.UI.Avalonia\Waves.UI.Avalonia.csproj" />
     </ItemGroup>
 
 </Project>

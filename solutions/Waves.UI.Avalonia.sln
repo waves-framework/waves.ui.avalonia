@@ -25,9 +25,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Waves.Core.Plugins.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Waves.UI.Showcase.Common", "..\submodules\ui.showcase.common\sources\Waves.UI.Showcase.Common\Waves.UI.Showcase.Common.csproj", "{97B4B5F0-1888-4DB6-A4BD-5DB4E2F1D3DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waves.UI.Showcase.Avalonia", "..\sources\Waves.UI.Showcase.Avalonia\Waves.UI.Showcase.Avalonia.csproj", "{AE6FF24A-E2AE-401A-A1B1-261FED16DA7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Waves.UI.Showcase.Avalonia", "..\sources\Waves.UI.Showcase.Avalonia\Waves.UI.Showcase.Avalonia.csproj", "{AE6FF24A-E2AE-401A-A1B1-261FED16DA7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waves.UI.Showcase.Avalonia.App", "..\sources\Waves.UI.Showcase.Avalonia.App\Waves.UI.Showcase.Avalonia.App.csproj", "{E48FD4E6-7D4F-468E-B363-B40038C7B930}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{285687F7-284C-430F-8E1C-7CD7F6931C86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Props", "Props", "{1871B2D6-F99F-4050-80FD-BC66DEAFD270}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\props\common.props = ..\build\props\common.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waves.UI.Showcase.Avalonia.App", "..\sources\Waves.UI.Showcase.Avalonia.App\Waves.UI.Showcase.Avalonia.App.csproj", "{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,18 +130,18 @@ Global
 		{AE6FF24A-E2AE-401A-A1B1-261FED16DA7D}.Release|x64.Build.0 = Release|Any CPU
 		{AE6FF24A-E2AE-401A-A1B1-261FED16DA7D}.Release|x86.ActiveCfg = Release|Any CPU
 		{AE6FF24A-E2AE-401A-A1B1-261FED16DA7D}.Release|x86.Build.0 = Release|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Debug|x64.Build.0 = Debug|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Debug|x86.Build.0 = Debug|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Release|x64.ActiveCfg = Release|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Release|x64.Build.0 = Release|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Release|x86.ActiveCfg = Release|Any CPU
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930}.Release|x86.Build.0 = Release|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Debug|x64.Build.0 = Debug|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Debug|x86.Build.0 = Debug|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Release|x64.ActiveCfg = Release|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Release|x64.Build.0 = Release|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Release|x86.ActiveCfg = Release|Any CPU
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,7 +155,8 @@ Global
 		{5A4D8D11-E89A-4946-871B-05FF10F5BA80} = {C28EF57C-F1EE-4A78-A914-776AA8733F8E}
 		{97B4B5F0-1888-4DB6-A4BD-5DB4E2F1D3DF} = {294F7D7F-63B3-435D-869F-C68A47E65574}
 		{AE6FF24A-E2AE-401A-A1B1-261FED16DA7D} = {294F7D7F-63B3-435D-869F-C68A47E65574}
-		{E48FD4E6-7D4F-468E-B363-B40038C7B930} = {294F7D7F-63B3-435D-869F-C68A47E65574}
+		{1871B2D6-F99F-4050-80FD-BC66DEAFD270} = {285687F7-284C-430F-8E1C-7CD7F6931C86}
+		{8BEBDA32-833B-486E-B9DB-BBAA3D4D81C0} = {294F7D7F-63B3-435D-869F-C68A47E65574}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {460996F2-AE58-4A57-A19C-4FC49DD35505}

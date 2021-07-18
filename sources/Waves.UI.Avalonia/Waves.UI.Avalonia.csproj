@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="../../build/props/common.props" />
 
@@ -9,10 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\submodules\ui\sources\Waves.UI\Waves.UI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Styles" />
   </ItemGroup>
 
 </Project>
