@@ -25,7 +25,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
     [WavesService(typeof(IWavesNavigationService))]
     public class WavesNavigationService : WavesService, IWavesNavigationService
     {
-        private readonly IWindowStyleService _windowStyleService;
+        private readonly IWavesWindowStyleService _windowStyleService;
 
         private List<IWavesDialogViewModel> _dialogSessions;
         private Dictionary<string, Action> _pendingActions;
@@ -34,8 +34,8 @@ namespace Waves.UI.Avalonia.Plugins.Services
         /// Creates new instance of <see cref="WavesNavigationService"/>.
         /// </summary>
         /// <param name="core">Instance of core.</param>
-        /// <param name="windowStyleService">Instance of <see cref="IWindowStyleService"/>.</param>
-        public WavesNavigationService(IWavesCore core, IWindowStyleService windowStyleService)
+        /// <param name="windowStyleService">Instance of <see cref="IWavesWindowStyleService"/>.</param>
+        public WavesNavigationService(IWavesCore core, IWavesWindowStyleService windowStyleService)
         {
             Core = core;
 
@@ -321,7 +321,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         /// <inheritdoc />
         public override string ToString()
         {
-            return "WPF Navigation Service";
+            return "AvaloniaUI Navigation Service";
         }
 
         /// <inheritdoc />

@@ -14,8 +14,8 @@ namespace Waves.UI.Avalonia.Plugins.Services
     /// <summary>
     /// Window style service.
     /// </summary>
-    [WavesService(typeof(IWindowStyleService))]
-    public class WindowStyleService : WavesService, IWindowStyleService
+    [WavesService(typeof(IWavesWindowStyleService))]
+    public class WavesWindowStyleService : WavesService, IWavesWindowStyleService
     {
         private StyleInclude _styleInclude;
         

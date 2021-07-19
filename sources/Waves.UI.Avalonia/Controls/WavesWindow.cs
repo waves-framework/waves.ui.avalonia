@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -48,7 +49,8 @@ namespace Waves.UI.Avalonia.Controls
         public static readonly StyledProperty<bool> ClientDecorationsProperty =
             AvaloniaProperty.Register<WavesWindow, bool>(nameof(ClientDecorations));
 
-        ////private Dictionary<string, WavesContentControl> _regionContentControls;
+        private List<IDisposable> _disposables;
+        private Dictionary<string, WavesContentControl> _regionContentControls;
 
         /// <summary>
         ///     Creates new instance of <see cref="WavesWindow" />.
@@ -68,19 +70,6 @@ namespace Waves.UI.Avalonia.Controls
         {
             NavigationService = navigationService;
             Core = core;
-
-            GoBackCommand = ReactiveCommand.CreateFromTask(OnGoBack);
-
-            FrontLayerContentProperty.Changed.Subscribe(x =>
-                OnFrontLayerContentChangedCallback(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>()));
-            CanGoBackProperty.Changed.Subscribe(x =>
-                OnCanGoBackChanged(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>()));
-            GoBackCommandProperty.Changed.Subscribe(x =>
-                OnGoBackCommandChanged(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>()));
-
-            this.AddResource(Constants.GenericDictionaryUri);
-
-            SubscribeEvents();
         }
 
         /// <inheritdoc />
@@ -159,6 +148,21 @@ namespace Waves.UI.Avalonia.Controls
         /// <inheritdoc />
         public virtual Task InitializeAsync()
         {
+            _disposables = new List<IDisposable>();
+
+            GoBackCommand = ReactiveCommand.CreateFromTask(OnGoBack);
+
+            _disposables.Add(FrontLayerContentProperty.Changed.Subscribe(x =>
+                OnFrontLayerContentChangedCallback(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
+            _disposables.Add(CanGoBackProperty.Changed.Subscribe(x =>
+                OnCanGoBackChanged(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
+            _disposables.Add(GoBackCommandProperty.Changed.Subscribe(x =>
+                OnGoBackCommandChanged(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
+
+            this.AddResource(Constants.GenericDictionaryUri);
+
+            SubscribeEvents();
+
             return Task.CompletedTask;
         }
 
@@ -189,15 +193,15 @@ namespace Waves.UI.Avalonia.Controls
 
             UnsubscribeEvents();
 
-            ////if (_regionContentControls == null)
-            ////{
-            ////    return;
-            ////}
+            if (_regionContentControls == null)
+            {
+                return;
+            }
 
-            ////foreach (var control in _regionContentControls)
-            ////{
-            ////    NavigationService.UnregisterContentControl(control.Key);
-            ////}
+            foreach (var control in _regionContentControls)
+            {
+                NavigationService.UnregisterContentControl(control.Key);
+            }
         }
 
         /// <summary>
@@ -312,7 +316,7 @@ namespace Waves.UI.Avalonia.Controls
             base.OnAttachedToVisualTree(e);
 
             //// TODO: initialization.
-            ////_regionContentControls = this.FindRegions(NavigationService);
+            _regionContentControls = this.FindRegions(NavigationService);
             ////this.InitializeTabControls(Core);
             ////this.InitializeSurfaces(Core);
         }
@@ -324,6 +328,11 @@ namespace Waves.UI.Avalonia.Controls
         private void UnsubscribeEvents()
         {
             NavigationService.GoBackChanged -= NavigationServiceOnGoBackChanged;
+
+            foreach (var disposable in _disposables)
+            {
+                disposable.Dispose();
+            }
         }
     }
 }

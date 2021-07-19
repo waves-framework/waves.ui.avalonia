@@ -6,7 +6,7 @@ namespace Waves.UI.Avalonia.Plugins.Services.Interfaces
     /// <summary>
     /// Service for updating window styles.
     /// </summary>
-    public interface IWindowStyleService : IWavesService
+    public interface IWavesWindowStyleService : IWavesService
     {
         /// <summary>
         /// Updates window style.
