@@ -19,7 +19,7 @@ namespace Waves.UI.Avalonia.Extensions
         {
             var resources = element.Resources;
             var dictionaries = resources.MergedDictionaries;
-            var styleInclude = CreateStyle(uri);
+            var styleInclude = GetStyle(uri);
             dictionaries.Add(styleInclude);
         }
 
@@ -32,7 +32,7 @@ namespace Waves.UI.Avalonia.Extensions
         {
             var resources = element.Resources;
             var dictionaries = resources.MergedDictionaries;
-            var styleInclude = CreateStyle(uri);
+            var styleInclude = GetStyle(uri);
             dictionaries.Add(styleInclude);
         }
 
@@ -41,7 +41,7 @@ namespace Waves.UI.Avalonia.Extensions
         /// </summary>
         /// <param name="uriString">URI.</param>
         /// <returns>Style.</returns>
-        private static StyleInclude CreateStyle(string uriString)
+        public static StyleInclude GetStyle(string uriString)
         {
             var uri = new Uri(uriString);
             return new StyleInclude(uri)
