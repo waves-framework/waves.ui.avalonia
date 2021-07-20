@@ -37,7 +37,7 @@ namespace Waves.UI.Avalonia.Controls
             _disposables = new List<IDisposable>();
 
             _disposables.Add(CornerRadiusProperty.Changed.Subscribe(x =>
-                OnCornerRadiusChangedCallback(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
+                OnCornerRadiusChangedCallback(x.Sender, x.NewValue.GetValueOrDefault<string>())));
         }
 
         /// <summary>

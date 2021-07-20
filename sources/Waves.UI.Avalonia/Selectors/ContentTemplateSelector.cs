@@ -4,31 +4,33 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Avalonia.Markup.Xaml.Templates;
 using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Interfaces;
+using Waves.Core.Extensions;
 using Waves.UI.Presentation.Interfaces;
 
 namespace Waves.UI.Avalonia.Selectors
 {
     /// <summary>
-    /// Tab content template selector.
+    ///     Tab content template selector.
     /// </summary>
     [WavesPlugin(typeof(ContentTemplateSelector))]
-    public class ContentTemplateSelector : IDataTemplate, IWavesPlugin
+    public class ContentTemplateSelector : IDataTemplate,
+        IWavesPlugin
     {
         private readonly IWavesCore _core;
 
         private IWavesView _oldWavesView;
         private IWavesViewModel _oldWavesViewModel;
 
-        private Dictionary<object, DataTemplate> _resolvedTemplates;
+        private Dictionary<object, IWavesView> _resolvedTemplates;
 
         /// <summary>
-        /// Creates new instance of <see cref="ContentTemplateSelector"/>.
+        ///     Creates new instance of <see cref="ContentTemplateSelector" />.
         /// </summary>
         /// <param name="core">Instance of core.</param>
-        public ContentTemplateSelector(IWavesCore core)
+        public ContentTemplateSelector(
+            IWavesCore core)
         {
             _core = core;
         }
@@ -41,67 +43,48 @@ namespace Waves.UI.Avalonia.Selectors
 
         /// <inheritdoc />
         public bool IsInitialized { get; private set; }
-        
+
         /// <inheritdoc />
-        public IControl Build(object param)
+        public IControl Build(
+            object item)
         {
-            var view = _core.GetInstanceAsync<IWavesView>(param);
-            return (IControl)view;
+            if (item == null)
+            {
+                return null;
+            }
+
+            _oldWavesView?.Dispose();
+            _oldWavesViewModel?.ViewDisappeared();
+
+            if (_resolvedTemplates.ContainsKey(item))
+            {
+                return (IControl) _resolvedTemplates[item];
+            }
+
+            if (item is not IWavesViewModel viewModel)
+            {
+                return null;
+            }
+
+            var result = _core.GetInstanceAsync<IWavesView>(item.GetType()).Result;
+            result.DataContext = item;
+            result.InitializeAsync().FireAndForget();
+
+            _oldWavesView = result;
+            _oldWavesViewModel = viewModel;
+
+            viewModel.ViewAppeared();
+            _resolvedTemplates.Add(item, result);
+
+            return (IControl) result;
         }
 
         /// <inheritdoc />
-        public bool Match(object data)
+        public bool Match(
+            object data)
         {
             return data is IWavesViewModel;
         }
-
-        // /// <inheritdoc />
-        // public override DataTemplate SelectTemplate(object item, DependencyObject container)
-        // {
-        //     if (item == null)
-        //     {
-        //         return null;
-        //     }
-        //
-        //     _oldWavesView?.Dispose();
-        //     _oldWavesViewModel?.ViewDisappeared();
-        //
-        //     if (_resolvedTemplates.ContainsKey(item))
-        //     {
-        //         return _resolvedTemplates[item];
-        //     }
-        //
-        //     var template = TemplateGenerator.CreateDataTemplate(() =>
-        //     {
-        //         try
-        //         {
-        //             if (item is IWavesViewModel viewModel)
-        //             {
-        //                 var result = _core.GetInstanceAsync<IWavesView>(item.GetType()).Result;
-        //                 result.DataContext = item;
-        //                 result.InitializeAsync().FireAndForget();
-        //
-        //                 _oldWavesView = result;
-        //                 _oldWavesViewModel = viewModel;
-        //
-        //                 viewModel.ViewAppeared();
-        //
-        //                 return result;
-        //             }
-        //         }
-        //         catch (Exception e)
-        //         {
-        //             _core.WriteLogAsync(e, this).FireAndForget();
-        //             return null;
-        //         }
-        //
-        //         return null;
-        //     });
-        //
-        //     _resolvedTemplates.Add(item, template);
-        //
-        //     return template;
-        // }
 
         /// <inheritdoc />
         public void Dispose()
@@ -118,7 +101,7 @@ namespace Waves.UI.Avalonia.Selectors
                 return Task.CompletedTask;
             }
 
-            _resolvedTemplates = new Dictionary<object, DataTemplate>();
+            _resolvedTemplates = new Dictionary<object, IWavesView>();
 
             IsInitialized = true;
 
@@ -126,13 +109,15 @@ namespace Waves.UI.Avalonia.Selectors
         }
 
         /// <inheritdoc />
-        public void RaisePropertyChanging(PropertyChangingEventArgs args)
+        public void RaisePropertyChanging(
+            PropertyChangingEventArgs args)
         {
             OnPropertyChanging(args);
         }
 
         /// <inheritdoc />
-        public void RaisePropertyChanged(PropertyChangedEventArgs args)
+        public void RaisePropertyChanged(
+            PropertyChangedEventArgs args)
         {
             OnPropertyChanged(args);
         }
@@ -140,13 +125,15 @@ namespace Waves.UI.Avalonia.Selectors
         /// <summary>
         ///     Disposes object.
         /// </summary>
-        /// <param name="disposing">Set
+        /// <param name="disposing">
+        ///     Set
         ///     <value>true</value>
         ///     if you need to release managed and unmanaged resources. Set
         ///     <value>false</value>
         ///     if need to release only unmanaged resources.
         /// </param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(
+            bool disposing)
         {
             if (disposing)
             {
@@ -157,19 +144,21 @@ namespace Waves.UI.Avalonia.Selectors
         }
 
         /// <summary>
-        /// Callback when property changed.
+        ///     Callback when property changed.
         /// </summary>
         /// <param name="e">Arguments.</param>
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        protected virtual void OnPropertyChanged(
+            PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(this, e);
         }
 
         /// <summary>
-        /// Callback when property changing.
+        ///     Callback when property changing.
         /// </summary>
         /// <param name="e">Arguments.</param>
-        protected virtual void OnPropertyChanging(PropertyChangingEventArgs e)
+        protected virtual void OnPropertyChanging(
+            PropertyChangingEventArgs e)
         {
             PropertyChanging?.Invoke(this, e);
         }

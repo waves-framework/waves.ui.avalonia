@@ -213,9 +213,9 @@ namespace Waves.UI.Avalonia.Plugins.Services
                     // case WavesUserControl userControl:
                     //     await InitializeUserControlAsync(userControl, viewModel, addToHistory);
                     //     break;
-                    // case WavesPage page:
-                    //     await InitializePageAsync(page, viewModel, addToHistory);
-                    //     break;
+                    case WavesPage page:
+                        await InitializePageAsync(page, viewModel, addToHistory);
+                        break;
                     // case WavesDialog dialog:
                     //     await InitializeDialogAsync(dialog, (IWavesDialogViewModel)viewModel, addToHistory);
                     //     break;
@@ -245,9 +245,9 @@ namespace Waves.UI.Avalonia.Plugins.Services
                     // case WavesUserControl userControl:
                     //     await NavigateToUserControlAsync(userControl, viewModel, parameter, addToHistory);
                     //     break;
-                    // case WavesPage page:
-                    //     await NavigateToPageAsync(page, viewModel, parameter, addToHistory);
-                    //     break;
+                    case WavesPage page:
+                        await NavigateToPageAsync(page, viewModel, parameter, addToHistory);
+                        break;
                     // case WavesDialog dialog:
                     //     await NavigateToDialogAsync(dialog, viewModel, parameter, addToHistory);
                     //     break;
@@ -274,8 +274,8 @@ namespace Waves.UI.Avalonia.Plugins.Services
                         return await NavigateToWindowAsync(window, viewModel);
                     // case WavesUserControl userControl:
                     //     return await NavigateToUserControlAsync(userControl, viewModel, addToHistory);
-                    // case WavesPage page:
-                    //     return await NavigateToPageAsync(page, viewModel, addToHistory);
+                    case WavesPage page:
+                        return await NavigateToPageAsync(page, viewModel, addToHistory);
                     // case WavesDialog dialog:
                     //     return await NavigateToDialogAsync(dialog, (IWavesDialogViewModel<TResult>)viewModel, addToHistory);
                 }
@@ -304,8 +304,8 @@ namespace Waves.UI.Avalonia.Plugins.Services
                         return await NavigateToWindowAsync(window, viewModel, parameter);
                     // case WavesUserControl userControl:
                     //     return await NavigateToUserControlAsync(userControl, viewModel, parameter, addToHistory);
-                    // case WavesPage page:
-                    //     return await NavigateToPageAsync(page, viewModel, parameter, addToHistory);
+                    case WavesPage page:
+                        return await NavigateToPageAsync(page, viewModel, parameter, addToHistory);
                     // case WavesDialog dialog:
                     //     return await NavigateToDialogAsync(dialog, (IWavesDialogViewModel<TParameter, TResult>)viewModel, parameter, addToHistory);
                 }
@@ -385,53 +385,53 @@ namespace Waves.UI.Avalonia.Plugins.Services
             AddContentControl(region, view);
         }
 
-        // /// <summary>
-        // /// Navigates to page.
-        // /// </summary>
-        // /// <param name="view">Page view.</param>
-        // /// <param name="viewModel">View model.</param>
-        // /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
-        // private async Task InitializePageAsync(WavesPage view, IWavesViewModel viewModel, bool addToHistory = true)
-        // {
-        //     var region = await InitializeComponents(view, viewModel);
-        //
-        //     void Action()
-        //     {
-        //         AddToHistoryStack(region, viewModel, addToHistory);
-        //         var contentControl = ContentControls[region];
-        //         if (contentControl is WavesWindow window)
-        //         {
-        //             window.FrontLayerContent = null;
-        //         }
-        //
-        //         if (contentControl.Content != null && contentControl.Content.GetType() == view.GetType())
-        //         {
-        //             return;
-        //         }
-        //
-        //         FadeOutUiElement(contentControl);
-        //         UnregisterView(contentControl);
-        //         view.Opacity = 0;
-        //         ContentControls[region].Content = view;
-        //         FadeInUiElement(contentControl);
-        //         RegisterView(contentControl);
-        //
-        //         OnGoBackChanged(
-        //             new GoBackNavigationEventArgs(
-        //                 Histories[region].Count > 1,
-        //                 ContentControls[region]));
-        //     }
-        //
-        //     if (!ContentControls.ContainsKey(region))
-        //     {
-        //         _pendingActions.Add(region, Action);
-        //     }
-        //     else
-        //     {
-        //         DispatcherHelper.Invoke(Action);
-        //     }
-        // }
-        //
+        /// <summary>
+        /// Navigates to page.
+        /// </summary>
+        /// <param name="view">Page view.</param>
+        /// <param name="viewModel">View model.</param>
+        /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
+        private async Task InitializePageAsync(WavesPage view, IWavesViewModel viewModel, bool addToHistory = true)
+        {
+            var region = await InitializeComponents(view, viewModel);
+
+            void Action()
+            {
+                AddToHistoryStack(region, viewModel, addToHistory);
+                var contentControl = ContentControls[region];
+                if (contentControl is WavesWindow window)
+                {
+                    window.FrontLayerContent = null;
+                }
+
+                if (contentControl.Content != null && contentControl.Content.GetType() == view.GetType())
+                {
+                    return;
+                }
+
+                FadeOutUiElement(contentControl);
+                UnregisterView(contentControl);
+                // view.Opacity = 0;
+                ContentControls[region].Content = view;
+                FadeInUiElement(contentControl);
+                RegisterView(contentControl);
+
+                OnGoBackChanged(
+                    new GoBackNavigationEventArgs(
+                        Histories[region].Count > 1,
+                        ContentControls[region]));
+            }
+
+            if (!ContentControls.ContainsKey(region))
+            {
+                _pendingActions.Add(region, Action);
+            }
+            else
+            {
+                await Dispatcher.UIThread.InvokeAsync(Action);
+            }
+        }
+
         // /// <summary>
         // /// Navigates to user control.
         // /// </summary>
@@ -538,44 +538,44 @@ namespace Waves.UI.Avalonia.Plugins.Services
             return viewModel.Result;
         }
 
-        // /// <summary>
-        // /// Navigates to page.
-        // /// </summary>
-        // /// <param name="view">Page view.</param>
-        // /// <param name="viewModel">View model.</param>
-        // /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
-        // private async Task<TResult> NavigateToPageAsync<TResult>(WavesPage view, IWavesViewModel<TResult> viewModel, bool addToHistory = true)
-        // {
-        //     await InitializePageAsync(view, viewModel, addToHistory);
-        //     return viewModel.Result;
-        // }
-        //
-        // /// <summary>
-        // /// Navigates to page.
-        // /// </summary>
-        // /// <param name="view">Page view.</param>
-        // /// <param name="viewModel">View model.</param>
-        // /// <param name="parameter">Parameter.</param>
-        // /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
-        // private async Task NavigateToPageAsync<TParameter>(WavesPage view, IWavesParameterizedViewModel<TParameter> viewModel, TParameter parameter, bool addToHistory = true)
-        // {
-        //     await viewModel.Prepare(parameter);
-        //     await InitializePageAsync(view, viewModel, addToHistory);
-        // }
-        //
-        // /// <summary>
-        // /// Navigates to page.
-        // /// </summary>
-        // /// <param name="view">Page view.</param>
-        // /// <param name="viewModel">View model.</param>
-        // /// <param name="parameter">Parameter.</param>
-        // /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
-        // private async Task<TResult> NavigateToPageAsync<TParameter, TResult>(WavesPage view, IWavesViewModel<TParameter, TResult> viewModel, TParameter parameter, bool addToHistory = true)
-        // {
-        //     await viewModel.Prepare(parameter);
-        //     await InitializePageAsync(view, viewModel, addToHistory);
-        //     return viewModel.Result;
-        // }
+        /// <summary>
+        /// Navigates to page.
+        /// </summary>
+        /// <param name="view">Page view.</param>
+        /// <param name="viewModel">View model.</param>
+        /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
+        private async Task<TResult> NavigateToPageAsync<TResult>(WavesPage view, IWavesViewModel<TResult> viewModel, bool addToHistory = true)
+        {
+            await InitializePageAsync(view, viewModel, addToHistory);
+            return viewModel.Result;
+        }
+
+        /// <summary>
+        /// Navigates to page.
+        /// </summary>
+        /// <param name="view">Page view.</param>
+        /// <param name="viewModel">View model.</param>
+        /// <param name="parameter">Parameter.</param>
+        /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
+        private async Task NavigateToPageAsync<TParameter>(WavesPage view, IWavesParameterizedViewModel<TParameter> viewModel, TParameter parameter, bool addToHistory = true)
+        {
+            await viewModel.Prepare(parameter);
+            await InitializePageAsync(view, viewModel, addToHistory);
+        }
+
+        /// <summary>
+        /// Navigates to page.
+        /// </summary>
+        /// <param name="view">Page view.</param>
+        /// <param name="viewModel">View model.</param>
+        /// <param name="parameter">Parameter.</param>
+        /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
+        private async Task<TResult> NavigateToPageAsync<TParameter, TResult>(WavesPage view, IWavesViewModel<TParameter, TResult> viewModel, TParameter parameter, bool addToHistory = true)
+        {
+            await viewModel.Prepare(parameter);
+            await InitializePageAsync(view, viewModel, addToHistory);
+            return viewModel.Result;
+        }
 
         // /// <summary>
         // /// Navigates to user control.

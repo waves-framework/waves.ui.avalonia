@@ -7,7 +7,7 @@
 
             <ResourceDictionary.MergedDictionaries>
 
-                <!-- ~1~ Controls @1@ -->
+                 <!-- Controls --> 
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Button.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/CheckBox.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ComboBox.xaml" /> -->
@@ -15,8 +15,8 @@
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Control.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ListBox.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Menu.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.xaml" /> -->
+                 <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" /> 
+                 <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" /> 
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ProgressBar.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/RadioButton.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/RepeatButton.xaml" /> -->
@@ -29,13 +29,13 @@
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Thumb.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ToggleButton.xaml" /> -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/TreeView.xaml" /> -->
-                <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml" />
                 <!-- -->
                 <!-- ~1~ Custom controls themes @1@ -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Themes/Generic.xaml" /> -->
                 <!-- -->
-                <!-- ~1~ Converters @1@ -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.xaml" /> -->
+
+                <!--  Converters  -->
+                 <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" /> 
                 <!-- -->
                 <!-- ~1~ Resources @1@ -->
                 <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Icons.xaml" /> -->
@@ -50,6 +50,8 @@
         </ResourceDictionary>
 
     </Styles.Resources>
+
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.axaml"/>
 
     <!-- ~1~ Button. @1@ -->
     <!-- <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonStyle}" /> -->
@@ -144,6 +146,7 @@
     <!-- <Style TargetType="{x:Type waves:WavesTreeViewItem}" BasedOn="{StaticResource TreeViewItemStyle}" /> -->
     <!-- -->
     <!-- ~1~ Window @1@ -->
+    <!--<StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml" />-->
     <!-- <Style TargetType="{x:Type waves:WavesWindow}" BasedOn="{StaticResource WindowStyle}" /> -->
 
 </Styles>

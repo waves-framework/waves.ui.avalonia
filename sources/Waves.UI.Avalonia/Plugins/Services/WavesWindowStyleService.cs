@@ -30,12 +30,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         /// <inheritdoc />
         public void UpdateWindowStyle(WavesWindow window)
         {
-            // TODO: remove?
-            // var done = _styleInclude.TryGetResource("WindowStyle", out var style);
-            // if (done && style is Style windowStyle)
-            // {
-            //     window.Styles.Add(windowStyle);
-            // }
+            ////window.Classes.Add("Default");
         }
     }
 }

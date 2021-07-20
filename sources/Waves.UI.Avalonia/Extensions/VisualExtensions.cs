@@ -4,6 +4,7 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
+using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Plugins.Services.Interfaces;
 
@@ -67,43 +68,43 @@ namespace Waves.UI.Avalonia.Extensions
             return dictionary;
         }
 
+        /// <summary>
+        ///     Finds all waves tab controls.
+        /// </summary>
+        /// <param name="obj">Object.</param>
+        /// <param name="core">Core.</param>
+        /// <returns>List of initialized controls.</returns>
+        public static List<WavesTabControl> InitializeTabControls(this IVisual obj, IWavesCore core)
+        {
+            var controls = obj.FindVisualChildren<WavesTabControl>();
+            var result = new List<WavesTabControl>();
+
+            foreach (var control in controls)
+            {
+                try
+                {
+                    control.InitializeSelector(core);
+                    result.Add(control);
+                }
+                catch (Exception e)
+                {
+                    core.WriteLogAsync(e, core);
+                }
+            }
+
+            return result;
+        }
+
         /////// <summary>
-        ///////     Finds all waves tab controls.
+        ///////     Finds all Waves waves surfaces.
         /////// </summary>
         /////// <param name="obj">Object.</param>
         /////// <param name="core">Core.</param>
         /////// <returns>List of initialized controls.</returns>
-        ////public static List<MtlTabControl> InitializeTabControls(this IVisual obj, IMtlCore core)
+        ////public static List<WavesSurface> InitializeSurfaces(this DependencyObject obj, IWavesCore core)
         ////{
-        ////    var controls = obj.FindVisualChildren<MtlTabControl>();
-        ////    var result = new List<MtlTabControl>();
-
-        ////    foreach (var control in controls)
-        ////    {
-        ////        try
-        ////        {
-        ////            control.InitializeSelector(core);
-        ////            result.Add(control);
-        ////        }
-        ////        catch (Exception e)
-        ////        {
-        ////            core.WriteLogAsync(e, core);
-        ////        }
-        ////    }
-
-        ////    return result;
-        ////}
-
-        /////// <summary>
-        ///////     Finds all MTL mtl surfaces.
-        /////// </summary>
-        /////// <param name="obj">Object.</param>
-        /////// <param name="core">Core.</param>
-        /////// <returns>List of initialized controls.</returns>
-        ////public static List<MtlSurface> InitializeSurfaces(this DependencyObject obj, IMtlCore core)
-        ////{
-        ////    var controls = obj.FindVisualChildren<MtlSurface>();
-        ////    var result = new List<MtlSurface>();
+        ////    var controls = obj.FindVisualChildren<WavesSurface>();
+        ////    var result = new List<WavesSurface>();
 
         ////    foreach (var control in controls)
         ////    {

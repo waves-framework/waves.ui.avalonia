@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml;
 using ReactiveUI;
 using Waves.Core.Base.Interfaces;
@@ -42,12 +43,6 @@ namespace Waves.UI.Avalonia.Controls
         public static readonly StyledProperty<ICommand> GoBackCommandProperty =
             AvaloniaProperty.Register<WavesWindow, ICommand>(
                 nameof(GoBackCommand));
-
-        /// <summary>
-        ///     Defines <see cref="ClientDecorations" /> dependency property.
-        /// </summary>
-        public static readonly StyledProperty<bool> ClientDecorationsProperty =
-            AvaloniaProperty.Register<WavesWindow, bool>(nameof(ClientDecorations));
 
         private List<IDisposable> _disposables;
         private Dictionary<string, WavesContentControl> _regionContentControls;
@@ -106,16 +101,6 @@ namespace Waves.UI.Avalonia.Controls
         }
 
         /// <summary>
-        ///     Gets or sets front client decorations.
-        /// </summary>
-        [Category("Waves.UI SDK")]
-        public bool ClientDecorations
-        {
-            get => GetValue(ClientDecorationsProperty);
-            set => SetValue(ClientDecorationsProperty, value);
-        }
-
-        /// <summary>
         ///     Gets navigation service.
         /// </summary>
         protected IWavesNavigationService NavigationService { get; }
@@ -155,9 +140,9 @@ namespace Waves.UI.Avalonia.Controls
             _disposables.Add(FrontLayerContentProperty.Changed.Subscribe(x =>
                 OnFrontLayerContentChangedCallback(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
             _disposables.Add(CanGoBackProperty.Changed.Subscribe(x =>
-                OnCanGoBackChanged(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
+                OnCanGoBackChanged(x.Sender, x.NewValue.GetValueOrDefault<bool>())));
             _disposables.Add(GoBackCommandProperty.Changed.Subscribe(x =>
-                OnGoBackCommandChanged(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
+                OnGoBackCommandChanged(x.Sender, x.NewValue.GetValueOrDefault<ICommand>())));
 
             this.AddResource(Constants.GenericDictionaryUri);
 
@@ -310,17 +295,16 @@ namespace Waves.UI.Avalonia.Controls
         }
 
         /// <inheritdoc />
-        protected override void OnAttachedToVisualTree(
-            VisualTreeAttachmentEventArgs e)
+        protected override void OnOpened(
+            EventArgs e)
         {
-            base.OnAttachedToVisualTree(e);
+            base.OnOpened(e);
 
             //// TODO: initialization.
             _regionContentControls = this.FindRegions(NavigationService);
-            ////this.InitializeTabControls(Core);
+            this.InitializeTabControls(Core);
             ////this.InitializeSurfaces(Core);
         }
-
 
         /// <summary>
         ///     Unsubscribes from events.
