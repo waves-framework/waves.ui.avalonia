@@ -6,9 +6,9 @@
                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                     x:Class="Waves.UI.Showcase.Avalonia.Presentation.View.Pages.MainPageView">
 
-  <controls:WavesPage.Resources>
-      <StyleInclude Source="avares://Waves.UI.Avalonia/Generic.axaml"/>
-  </controls:WavesPage.Resources>
+  <!-- <controls:WavesPage.Resources> -->
+  <!--     <StyleInclude Source="avares://Waves.UI.Avalonia/Generic.axaml"/> -->
+  <!-- </controls:WavesPage.Resources> -->
 
     <Grid>
 

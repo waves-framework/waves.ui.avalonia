@@ -6,6 +6,7 @@ using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Extensions;
@@ -37,7 +38,7 @@ namespace Waves.UI.Avalonia.Controls
         {
             _disposables = new List<IDisposable>();
         }
-
+        
         /// <summary>
         /// Gets or sets tab control work mode.
         /// </summary>

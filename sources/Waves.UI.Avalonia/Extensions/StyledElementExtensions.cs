@@ -29,12 +29,11 @@ namespace Waves.UI.Avalonia.Extensions
         /// </summary>
         /// <param name="element">Framework element.</param>
         /// <param name="uri">URI.</param>
-        public static void AddResource(this Application element, string uri)
+        public static void AddStyle(this Application element, string uri)
         {
-            var resources = element.Resources;
-            var dictionaries = resources.MergedDictionaries;
+            var styles = element.Styles;
             var styleInclude = GetStyle(uri);
-            dictionaries.Add(styleInclude);
+            styles.Add(styleInclude);
         }
 
         /// <summary>

@@ -2,7 +2,7 @@
                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                            xmlns:avalonia="https://github.com/waves-framework/waves.ui.avalonia"
                            x:Class="Waves.UI.Showcase.Avalonia.App.App">
-    <Application.Styles>
-        <FluentTheme Mode="Light"/>
-    </Application.Styles>
+    <!-- <Application.Styles> -->
+    <!--     <FluentTheme Mode="Light"/> -->
+    <!-- </Application.Styles> -->
 </avalonia:WavesApplication>

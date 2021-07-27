@@ -411,7 +411,6 @@ namespace Waves.UI.Avalonia.Plugins.Services
 
                 FadeOutUiElement(contentControl);
                 UnregisterView(contentControl);
-                // view.Opacity = 0;
                 ContentControls[region].Content = view;
                 FadeInUiElement(contentControl);
                 RegisterView(contentControl);

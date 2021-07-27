@@ -64,7 +64,7 @@ namespace Waves.UI.Avalonia
         /// </summary>
         private Task InitializeGenericDictionary()
         {
-            this.AddResource(Constants.GenericDictionaryUri);
+            this.AddStyle(Constants.GenericDictionaryUri);
             return Task.CompletedTask;
         }
 
