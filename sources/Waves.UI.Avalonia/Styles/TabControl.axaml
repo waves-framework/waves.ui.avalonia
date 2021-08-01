@@ -8,235 +8,200 @@
                 Height="480"
                 Width="640">
 
-          <controls:WavesTabControl>
+            <controls:WavesTabControl>
 
-            <TabItem Header="Item 1"/>
-            <TabItem Header="Item 2"/>
-            <TabItem Header="Item 3"/>
+                <TabItem Header="Item 1" />
+                <TabItem Header="Item 2" />
+                <TabItem Header="Item 3" />
 
-          </controls:WavesTabControl>
-            
+            </controls:WavesTabControl>
+
         </Border>
 
     </Design.PreviewWith>
 
-  <Styles.Resources>
+    <Styles.Resources>
 
-    <ResourceDictionary>
+        <ResourceDictionary>
 
-      <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.MergedDictionaries>
 
-        <!-- Opacity.. -->
-        <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+                <!-- Opacity.. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
 
-      </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>
 
-    </ResourceDictionary>
+        </ResourceDictionary>
 
-  </Styles.Resources>
+    </Styles.Resources>
 
-  <Style Selector="controls|WavesTabControl">
+    <Style Selector="controls|WavesTabControl">
+        
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Template">
 
-    <Setter Property="TabStripPlacement" Value="Top"/>
+            <ControlTemplate>
 
+                <Border Margin="{TemplateBinding Margin}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}">
+
+                    <DockPanel>
+                        
+                        <ItemsPresenter Name="PART_ItemsPresenter"
+                                        Items="{TemplateBinding Items}"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}"
+                                        ItemTemplate="{TemplateBinding ItemTemplate}"
+                                        DockPanel.Dock="{TemplateBinding TabStripPlacement}" />
+
+                        <ContentPresenter Name="PART_SelectedContentHost"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding SelectedContent}"
+                                          ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                    </DockPanel>
+
+                </Border>
+
+            </ControlTemplate>
+
+        </Setter>
+
+    </Style>
+  
+  <Style Selector="controls|WavesTabControl[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+    <Setter Property="Orientation" Value="Vertical" />
+  </Style>
+  
+  <Style Selector="controls|WavesTabControl[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+    <Setter Property="Orientation" Value="Vertical" />
+  </Style>
+  
+  <Style Selector="controls|WavesTabControl[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter">
+    <Setter Property="Margin" Value="{DynamicResource TabControlTopPlacementItemMargin}" />
+  </Style>
+    
+    <Style Selector="TabItem">
+    <Setter Property="FontSize" Value="{DynamicResource TabItemHeaderFontSize}" />
+    <Setter Property="FontWeight" Value="{DynamicResource TabItemHeaderThemeFontWeight}" />
+    <Setter Property="Background" Value="Red" />
+    <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselected}" />
+    <Setter Property="Padding" Value="{DynamicResource TabItemHeaderMargin}" />
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="MinHeight" Value="{DynamicResource TabItemMinHeight}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="Template">
-
       <ControlTemplate>
-
-        <Border Margin="{TemplateBinding Margin}"
+        <Border Name="PART_LayoutRoot"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                Background="{TemplateBinding Background}"
-                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                VerticalAlignment="{TemplateBinding VerticalAlignment}">
-
-          <DockPanel>
-
-            <ItemsPresenter Name="PART_ItemsPresenter"
-                            Items="{TemplateBinding Items}"
-                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                            ItemTemplate="{TemplateBinding ItemTemplate}"/>
-
-            <ContentPresenter Name="PART_SelectedContentHost"
-                              Margin="{TemplateBinding Padding}"
-                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                              Content="{TemplateBinding SelectedContent}"
-                              ContentTemplate="{TemplateBinding SelectedContentTemplate}"/>
-
-          </DockPanel>
-
-        </Border>
-
-      </ControlTemplate>
-
-    </Setter>
-
-  </Style>
-
-  <Style Selector="TabItem">
-
-    <Setter Property="Template">
-
-      <ControlTemplate>
-
-        <Grid>
-
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-          </Grid.ColumnDefinitions>
-
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-          </Grid.RowDefinitions>
-
-          <Grid x:Name="ContentGrid">
-
-            <Canvas x:Name="BackgroundCanvas" Background="{TemplateBinding Background}"/>
-
-            <Canvas x:Name="HighlightCanvas"/>
-
-            <ContentPresenter x:Name="ContentSite"
-                              Margin="{TemplateBinding Padding}"
-                              Content="{TemplateBinding Header}"
+                Padding="{TemplateBinding Padding}">
+          <Panel>
+            <ContentPresenter Name="PART_ContentPresenter"
                               ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              Content="{TemplateBinding Header}"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              Opacity="{StaticResource Opacity4}"/>
-
-          </Grid>
-
-          <Grid x:Name="SelectionCanvasGrid">
-
-            <Canvas x:Name="SelectionCanvas"/>
-
-          </Grid>
-
-        </Grid>
-
+                              TextBlock.FontFamily="{TemplateBinding FontFamily}"
+                              TextBlock.FontSize="{TemplateBinding FontSize}"
+                              TextBlock.FontWeight="{TemplateBinding FontWeight}" />
+            <Border Name="PART_SelectedPipe"
+                    Background="{DynamicResource TabItemHeaderSelectedPipeFill}" />
+          </Panel>
+        </Border>
       </ControlTemplate>
-
     </Setter>
-
   </Style>
 
-    <!-- Tab item highlight canvas pointer over animation -->
-  <Style Selector="TabItem:pointerover /template/ Canvas#HighlightCanvas">
-
-    <Style.Animations>
-
-      <Animation Duration="0:0:0.5"
-                 PlaybackDirection="Normal">
-
-        <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="0"/>
-        </KeyFrame>
-
-        <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="1"/>
-        </KeyFrame>
-
-      </Animation>
-
-    </Style.Animations>
-
-    <Setter Property="Background" Value="Gray"/>
-
+  <!-- Nornal state -->
+  <Style Selector="TabItem /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{Binding $parent[TabItem].Background}" />
+  </Style>
+  
+  <Style Selector="TabItem /template/ Border#PART_SelectedPipe">
+    <Setter Property="IsVisible" Value="False" />
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
   </Style>
 
-  <!-- Tab item selection canvas template -->
-  <Style Selector="TabItem /template/ Canvas#SelectionCanvas">
-
-    <Setter Property="Background" Value="Black"/>
-
-    <Setter Property="Opacity" Value="{StaticResource Opacity6}"/>
-
+  <!-- Selected state -->
+  <!--  We don't use selector to PART_LayoutRoot, so developer can override selected item background with TabStripItem.Background  -->
+  <Style Selector="TabItem:selected">
+    <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelected}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundSelected}" />
+  </Style>
+  
+  <Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+    <Setter Property="IsVisible" Value="True" />
   </Style>
 
-  <!-- Tab item selection canvas selected animation -->
-  <Style Selector="TabItem:selected /template/ Canvas#SelectionCanvas">
-
-    <Style.Animations>
-
-      <Animation Duration="0:0:0.5"
-                 PlaybackDirection="Normal">
-
-        <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="{StaticResource Opacity6}"/>
-        </KeyFrame>
-
-        <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="{StaticResource Opacity1}"/>
-        </KeyFrame>
-
-      </Animation>
-
-    </Style.Animations>
-
-    <Setter Property="Opacity" Value="{StaticResource Opacity1}"/>
-
+  <!-- PointerOver state -->
+  <Style Selector="TabItem:pointerover /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundUnselectedPointerOver}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselectedPointerOver}" />
   </Style>
 
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Grid#ContentGrid">
-
-    <Setter Property="Grid.Row" Value="0"/>
-    <Setter Property="Grid.Column" Value="0"/>
-
+  <!-- Selected PointerOver state -->
+  <Style Selector="TabItem:selected:pointerover /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelectedPointerOver}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundSelectedPointerOver}" />
   </Style>
 
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Grid#SelectionCanvasGrid">
-
-    <Setter Property="Grid.Row" Value="0"/>
-    <Setter Property="Grid.Column" Value="1"/>
-    <Setter Property="Width" Value="3"/>
-
+  <!-- Pressed state -->
+  <Style Selector="TabItem:pressed /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundUnselectedPressed}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselectedPressed}" />
   </Style>
 
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Grid#ContentGrid">
-
-    <Setter Property="Grid.Row" Value="0"/>
-    <Setter Property="Grid.Column" Value="0"/>
-
+  <!-- Selected Pressed state -->
+  <Style Selector="TabItem:pressed /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelectedPressed}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundSelectedPressed}" />
   </Style>
 
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Grid#SelectionCanvasGrid">
-
-    <Setter Property="Grid.Row" Value="1"/>
-    <Setter Property="Grid.Column" Value="0"/>
-    <Setter Property="Height" Value="3"/>
-
+  <!-- Disabled state -->
+  <Style Selector="TabItem:disabled /template/ Border#PART_LayoutRoot">
+    <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundDisabled}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundDisabled}" />
   </Style>
 
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Grid#ContentGrid">
-
-    <Setter Property="Grid.Row" Value="0"/>
-    <Setter Property="Grid.Column" Value="1"/>
-
+  <!-- TabStripPlacement States Group -->
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Border#PART_SelectedPipe">
+    <Setter Property="Width" Value="{DynamicResource TabItemPipeThickness}" />
+    <Setter Property="Height" Value="{DynamicResource TabItemVerticalPipeHeight}" />
+    <Setter Property="Margin" Value="0,0,2,0" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Margin" Value="8,0,0,0" />
   </Style>
 
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Grid#SelectionCanvasGrid">
-
-    <Setter Property="Grid.Row" Value="0"/>
-    <Setter Property="Grid.Column" Value="0"/>
-    <Setter Property="Width" Value="3"/>
-
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Border#PART_SelectedPipe, TabItem[TabStripPlacement=Bottom] /template/ Border#PART_SelectedPipe">
+    <Setter Property="Height" Value="{DynamicResource TabItemPipeThickness}" />
+    <Setter Property="Margin" Value="0,0,0,2" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
   </Style>
 
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Grid#ContentGrid">
-
-    <Setter Property="Grid.Row" Value="1"/>
-    <Setter Property="Grid.Column" Value="0"/>
-
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Border#PART_SelectedPipe">
+    <Setter Property="Width" Value="{DynamicResource TabItemPipeThickness}" />
+    <Setter Property="Height" Value="{DynamicResource TabItemVerticalPipeHeight}" />
+    <Setter Property="Margin" Value="2,0,0,0" />
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="VerticalAlignment" Value="Center" />
   </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Grid#SelectionCanvasGrid">
-
-    <Setter Property="Grid.Row" Value="0"/>
-    <Setter Property="Grid.Column" Value="0"/>
-    <Setter Property="Height" Value="3"/>
-
+  
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Margin" Value="0,0,8,0" />
+  </Style>
+  
+  <Style Selector="TabItem[TabStripPlacement=Right]">
+    <Setter Property="HorizontalContentAlignment" Value="Right" />
   </Style>
 
 </Styles>

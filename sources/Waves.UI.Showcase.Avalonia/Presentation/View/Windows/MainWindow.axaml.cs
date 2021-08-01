@@ -16,7 +16,7 @@ namespace Waves.UI.Showcase.Avalonia.Presentation.View.Windows
     public partial class MainWindow : WavesWindow
     {
         /// <inheritdoc />
-        public MainWindow() : base()
+        public MainWindow()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace Waves.UI.Showcase.Avalonia.Presentation.View.Windows
         /// <summary>
         ///     Initializes components.
         /// </summary>
-        protected void InitializeComponent()
+        private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
         }

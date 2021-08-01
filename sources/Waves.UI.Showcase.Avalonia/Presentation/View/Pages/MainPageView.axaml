@@ -5,14 +5,38 @@
                     xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia"
                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                     x:Class="Waves.UI.Showcase.Avalonia.Presentation.View.Pages.MainPageView">
-
-  <!-- <controls:WavesPage.Resources> -->
-  <!--     <StyleInclude Source="avares://Waves.UI.Avalonia/Generic.axaml"/> -->
-  <!-- </controls:WavesPage.Resources> -->
+    
+    <controls:WavesPage.Resources>
+        
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceInclude Source="avares://Waves.UI.Showcase.Avalonia/Presentation/View/Templates/TabItem.axaml" /> 
+                
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+        
+    </controls:WavesPage.Resources>
 
     <Grid>
+        
+        <Panel>
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="Black"
+                        TintOpacity="1"
+                        MaterialOpacity="0.65" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+        </Panel>
 
         <controls:WavesTabControl Items="{Binding Tabs}"
+                                  ItemTemplate="{StaticResource TabItemDataTemplate}"
+                                  Margin="0,40,0,0"
                                   Mode="Plugins"
                                   SelectedItem="{Binding SelectedTab}"
                                   TabStripPlacement="Left" />

@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.LogicalTree;
-using Avalonia.Markup.Xaml;
 using ReactiveUI;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Plugins.Services.EventArgs;
