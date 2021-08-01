@@ -19,7 +19,7 @@ namespace Waves.UI.Avalonia.Controls
     /// <summary>
     /// Waves tab control.
     /// </summary>
-    public class WavesTabControl : TabControl
+    public class WavesTabControl : TabControl, IStyleable
     {
         /// <summary>
         /// Defines <see cref="Mode"/> property.
@@ -39,6 +39,9 @@ namespace Waves.UI.Avalonia.Controls
         {
             _disposables = new List<IDisposable>();
         }
+
+        /// <inheritdoc />
+        Type IStyleable.StyleKey => typeof(TabControl);
 
         /// <summary>
         /// Gets or sets tab control work mode.
