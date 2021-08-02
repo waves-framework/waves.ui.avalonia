@@ -2,6 +2,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia">
 
+    <Styles.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Opacity. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+
+    <!-- Text. -->
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
+
     <Design.PreviewWith>
 
         <Border Padding="20"
@@ -20,23 +41,8 @@
 
     </Design.PreviewWith>
 
-    <Styles.Resources>
-
-        <ResourceDictionary>
-
-            <ResourceDictionary.MergedDictionaries>
-
-                <!-- Opacity. -->
-                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
-
-            </ResourceDictionary.MergedDictionaries>
-
-        </ResourceDictionary>
-
-    </Styles.Resources>
-
     <!-- TabControl. -->
-    <Style Selector="TabControl">
+    <Style Selector="controls|WavesTabControl">
 
         <Setter Property="Margin" Value="0" />
         <Setter Property="Template">
