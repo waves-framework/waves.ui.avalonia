@@ -38,13 +38,19 @@ namespace Waves.UI.Avalonia
 
                 await Core.StartAsync();
                 await Core.BuildContainerAsync();
-                await InitializeGenericDictionary();
                 await InitializeServices();
             }
             catch (Exception e)
             {
                 await Core.WriteLogAsync(e, Core, true);
             }
+        }
+
+        /// <inheritdoc />
+        public override async void OnFrameworkInitializationCompleted()
+        {
+            base.OnFrameworkInitializationCompleted();
+            await InitializeGenericDictionary();
         }
 
         /// <summary>

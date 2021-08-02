@@ -51,7 +51,6 @@
 
     </Styles.Resources>
 
-    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabItem.axaml"/>
     <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.axaml"/>
 
     <!-- ~1~ Button. @1@ -->

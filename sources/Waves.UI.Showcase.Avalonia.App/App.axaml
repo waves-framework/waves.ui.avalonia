@@ -5,7 +5,6 @@
     
     <Application.Styles>
         <FluentTheme Mode="Dark"/>
-        <!-- <StyleInclude Source="avares://Waves.UI.Avalonia/Generic.axaml"/> -->
     </Application.Styles>
     
 </avalonia:WavesApplication>

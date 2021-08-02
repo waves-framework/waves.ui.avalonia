@@ -36,14 +36,11 @@
             </ExperimentalAcrylicBorder>
         </Panel>
 
-        <controls:WavesTabControl Items="{Binding Tabs}"
-                                  ItemTemplate="{StaticResource TabItemDataTemplate}"
-                                  Margin="0,40,0,0"
-                                  Mode="Plugins"
-                                  SelectedItem="{Binding SelectedTab}"
-                                  TabStripPlacement="Top"
-                                  x:Name="WavesTabControl"
-                                  Classes="Waves"/>
+        <TabControl Items="{Binding Tabs}"
+                    ItemTemplate="{StaticResource TabItemDataTemplate}"
+                    Margin="0,40,0,0"
+                    SelectedItem="{Binding SelectedTab}"
+                    TabStripPlacement="Left"/>
 
     </Grid>
 
