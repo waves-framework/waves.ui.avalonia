@@ -12,6 +12,7 @@ using Avalonia.Threading;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Extensions;
 using Waves.UI.Avalonia.Controls.Enums;
+using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Avalonia.Selectors;
 
 namespace Waves.UI.Avalonia.Controls

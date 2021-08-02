@@ -12,8 +12,10 @@
             
             <ResourceDictionary.MergedDictionaries>
                 
-                <ResourceInclude Source="avares://Waves.UI.Showcase.Avalonia/Presentation/View/Templates/TabItem.axaml" /> 
-                
+                <ResourceInclude Source="avares://Waves.UI.Showcase.Avalonia/Presentation/View/Templates/TabItem.axaml" />
+
+                <StyleInclude Source="avares://Waves.UI.Avalonia/Generic.axaml" />
+
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
@@ -39,7 +41,9 @@
                                   Margin="0,40,0,0"
                                   Mode="Plugins"
                                   SelectedItem="{Binding SelectedTab}"
-                                  TabStripPlacement="Left" />
+                                  TabStripPlacement="Top"
+                                  x:Name="WavesTabControl"
+                                  Classes="Waves"/>
 
     </Grid>
 
