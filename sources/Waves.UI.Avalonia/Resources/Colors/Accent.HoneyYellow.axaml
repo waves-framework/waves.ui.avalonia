@@ -1,0 +1,8 @@
+﻿<colors:ColorSet xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:colors="clr-namespace:Waves.UI.Avalonia.Colors"
+          Name="Honey Yellow"
+          Id="613ED28F-35EF-41A3-B784-199E09C635C2"
+          Type="Accent">
+    
+</colors:ColorSet>

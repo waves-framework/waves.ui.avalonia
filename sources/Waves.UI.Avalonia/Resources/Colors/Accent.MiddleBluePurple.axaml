@@ -1,0 +1,8 @@
+﻿<colors:ColorSet xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:colors="clr-namespace:Waves.UI.Avalonia.Colors"
+          Name="Middle Blue Purple"
+          Id="8F8CCB8D-99C6-4214-954A-0EC3403DBAE9"
+          Type="Accent">
+    
+</colors:ColorSet>

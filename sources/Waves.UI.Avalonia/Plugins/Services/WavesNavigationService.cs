@@ -769,7 +769,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         }
 
         /// <summary>
-        /// Animates fade in for <see cref="UIElement"/> is current <see cref="ContentControl"/>.
+        /// Animates fade in for <see cref="StyledElement"/> is current <see cref="ContentControl"/>.
         /// </summary>
         /// <param name="control">Instance of <see cref="ContentControl"/>.</param>
         private void FadeInUiElement(ContentControl control)
@@ -783,7 +783,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         }
 
         /// <summary>
-        /// Animates fade out for <see cref="UIElement"/> is current <see cref="ContentControl"/>.
+        /// Animates fade out for <see cref="StyledElement"/> is current <see cref="ContentControl"/>.
         /// </summary>
         /// <param name="control">Instance of <see cref="ContentControl"/>.</param>
         private void FadeOutUiElement(ContentControl control)
@@ -797,7 +797,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         }
 
         /// <summary>
-        /// Invokes <see cref="IWavesViewModel.ViewAppeared"/> for <see cref="UIElement"/> is current <see cref="ContentControl"/>.
+        /// Invokes <see cref="IWavesViewModel.ViewAppeared"/> for <see cref="StyledElement"/> is current <see cref="ContentControl"/>.
         /// </summary>
         /// <param name="control">Instance of <see cref="ContentControl"/>.</param>
         private void RegisterView(ContentControl control)
@@ -817,7 +817,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         }
 
         /// <summary>
-        /// Invokes <see cref="IWavesViewModel.ViewDisappeared"/> for <see cref="UIElement"/> is current <see cref="ContentControl"/>.
+        /// Invokes <see cref="IWavesViewModel.ViewDisappeared"/> for <see cref="StyledElement"/> is current <see cref="ContentControl"/>.
         /// </summary>
         /// <param name="control">Instance of <see cref="ContentControl"/>.</param>
         private void UnregisterView(ContentControl control)

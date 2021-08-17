@@ -7,146 +7,23 @@
 
             <ResourceDictionary.MergedDictionaries>
 
-                 <!-- Controls --> 
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Button.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/CheckBox.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ComboBox.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ContextMenu.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Control.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ListBox.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Menu.xaml" /> -->
-                 <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" /> 
-                 <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" /> 
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ProgressBar.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/RadioButton.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/RepeatButton.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ScrollBar.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ScrollViewer.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Text.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/TextBox.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Text.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Thumb.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/ToggleButton.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/TreeView.xaml" /> -->
-                <!-- -->
-                <!-- ~1~ Custom controls themes @1@ -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Themes/Generic.xaml" /> -->
-                <!-- -->
+                <!-- Miscellaneous -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
 
                 <!--  Converters  -->
-                 <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" /> 
-                <!-- -->
-                <!-- ~1~ Resources @1@ -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Icons.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Resources/Templates.xaml" /> -->
-                <!-- -->
-                <!-- ~1~ Default Colors @1@ -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Colors/Primary.Dark.Default.xaml" /> -->
-                <!-- <ResourceInclude Source="avares://Waves.UI.Avalonia/Colors/Accent.Dark.Default.xaml" /> -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
 
     </Styles.Resources>
+    
+    
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Resources/Colors/Primary.Dark.axaml" />
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Resources/Colors/Accent.ForestGreenCrayola.axaml" />
 
-    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.axaml"/>
-
-    <!-- ~1~ Button. @1@ -->
-    <!-- <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesButton}" BasedOn="{StaticResource ButtonStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Hyperlink button. @1@ -->
-    <!-- <Style TargetType="{x:Type waves:WavesHyperlinkButton}" BasedOn="{StaticResource HyperlinkButtonStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Checkbox. @1@ -->
-    <!-- <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource CheckBoxStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesCheckBox}" BasedOn="{StaticResource CheckBoxStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Combobox. @1@ -->
-    <!-- <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource ComboBoxStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesComboBox}" BasedOn="{StaticResource ComboBoxStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Combobox item. @1@ -->
-    <!-- <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource ComboBoxItemStyle}" /> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Context menu. @1@ -->
-    <!-- <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ContextMenuStyle}" /> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ ListBox. @1@ -->
-    <!-- <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource ListBoxStyle}"> -->
-    <!--     <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" /> -->
-    <!-- </Style> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ ListBox item. @1@ -->
-    <!-- <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource ListBoxItemStyle}" /> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Menu. @1@ -->
-    <!-- <Style TargetType="{x:Type Menu}" BasedOn="{StaticResource MenuStyle}" /> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Menu item. @1@ -->
-    <!-- <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MenuItemStyle}" /> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Progress bar. @1@ -->
-    <!-- <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource ProgressBarStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesProgressBar}" BasedOn="{StaticResource ProgressBarStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Circle progress bar. @1@ -->
-    <!-- <Style TargetType="{x:Type waves:WavesCircleProgressBar}" BasedOn="{StaticResource CircleProgressBarStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ RadioButton. @1@ -->
-    <!-- <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource RadioButtonStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesRadioButton}" BasedOn="{StaticResource RadioButtonStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Menu separator. @1@ -->
-    <!-- <Style TargetType="{x:Type Separator}" BasedOn="{StaticResource SeparatorStyle}" /> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Scrollbar. @1@ -->
-    <!-- <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"> -->
-    <!--     <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" /> -->
-    <!-- </Style> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Scroll viewer. @1@ -->
-    <!-- ~1~<Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource ScrollViewerStyle}" />@1@ -->
-    <!-- <Style TargetType="{x:Type ScrollViewer}"> -->
-    <!--     <Setter Property="Padding" Value="0" /> -->
-    <!--     <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" /> -->
-    <!-- </Style> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Tab Control @1@ -->
-    <!-- <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource TabControlStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesTabControl}" BasedOn="{StaticResource TabControlStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Tab Item @1@ -->
-    <!-- <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ TextBox @1@ -->
-    <!-- <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBoxStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesTextBox}" BasedOn="{StaticResource TextBoxStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Toggle button @1@ -->
-    <!-- <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource ToggleButtonStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesToggleButton}" BasedOn="{StaticResource ToggleButtonStyle}" /> -->
-    <!-- ~1~ TODO: Waves control@1@ -->
-    <!-- -->
-    <!-- ~1~ Tree view @1@ -->
-    <!-- <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource TreeViewStyle}" /> -->
-    <!-- <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource TreeViewItemStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesTreeView}" BasedOn="{StaticResource TreeViewStyle}" /> -->
-    <!-- <Style TargetType="{x:Type waves:WavesTreeViewItem}" BasedOn="{StaticResource TreeViewItemStyle}" /> -->
-    <!-- -->
-    <!-- ~1~ Window @1@ -->
-    <!--<StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml" />-->
-    <!-- <Style TargetType="{x:Type waves:WavesWindow}" BasedOn="{StaticResource WindowStyle}" /> -->
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.axaml" />
 
 </Styles>

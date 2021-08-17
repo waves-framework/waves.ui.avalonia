@@ -43,7 +43,7 @@ namespace Waves.UI.Avalonia.Controls
         /// <summary>
         /// Gets navigation service.
         /// </summary>
-        protected new IWavesNavigationService NavigationService { get; }
+        protected IWavesNavigationService NavigationService { get; }
 
         /// <summary>
         /// Gets core.

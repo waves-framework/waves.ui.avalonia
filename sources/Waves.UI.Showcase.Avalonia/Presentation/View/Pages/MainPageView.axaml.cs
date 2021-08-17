@@ -7,6 +7,9 @@ using Waves.UI.Showcase.Common.Presentation.ViewModel.Pages;
 
 namespace Waves.UI.Showcase.Avalonia.Presentation.View.Pages
 {
+    /// <summary>
+    /// Main page view.
+    /// </summary>
     [WavesView(typeof(MainPageViewModel))]
     public partial class MainPageView : WavesPage
     {

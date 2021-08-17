@@ -7,7 +7,7 @@ using Avalonia.Media;
 namespace Waves.UI.Avalonia.Converters.Base
 {
     /// <summary>
-    /// Converts <see cref="System.Drawing.Color"/> to <see cref="Avalonia.Media.Color"/> with zero alpha channel.
+    /// Converts <see cref="System.Drawing.Color"/> to <see cref="Color"/> with zero alpha channel.
     /// </summary>
     public class ColorToTransparentColorConverter : IValueConverter
     {

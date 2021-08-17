@@ -1,0 +1,56 @@
+﻿<colors:ColorSet xmlns:colors="clr-namespace:Waves.UI.Avalonia.Colors"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns="https://github.com/avaloniaui"
+                 Name="Primary Default Dark"
+                 Id="973BDB65-D243-4694-9735-EA72105F3EEE"
+                 Type="Primary">
+
+    <colors:ColorSet.Resources>
+
+        <!-- Primary Fill Colors -->
+        <Color x:Key="Color-100">#494947</Color>
+        <Color x:Key="Color-200">#525250</Color>
+        <Color x:Key="Color-300">#555553</Color>
+        <Color x:Key="Color-400">#5A5A59</Color>
+        <Color x:Key="Color-500">#616160</Color>
+        <Color x:Key="Color-600">#6B6B6A</Color>
+        <Color x:Key="Color-700">#7A7A78</Color>
+        <Color x:Key="Color-800">#8D8D8C</Color>
+        <Color x:Key="Color-900">#A8A8A7</Color>
+
+        <!-- Primary Foreground Colors -->
+        <Color x:Key="Color-Foreground-100">#FFFFFF</Color>
+        <Color x:Key="Color-Foreground-200">#F6F6F6</Color>
+        <Color x:Key="Color-Foreground-300">#F2F2F2</Color>
+        <Color x:Key="Color-Foreground-400">#EDEDED</Color>
+        <Color x:Key="Color-Foreground-500">#E6E6E6</Color>
+        <Color x:Key="Color-Foreground-600">#DCDCDC</Color>
+        <Color x:Key="Color-Foreground-700">#CECECD</Color>
+        <Color x:Key="Color-Foreground-800">#BABABA</Color>
+        <Color x:Key="Color-Foreground-900">#9F9F9E</Color>
+
+        <!-- Primary Fills -->
+        <SolidColorBrush x:Key="Primary-100-Brush" Color="{DynamicResource Color-100}" />
+        <SolidColorBrush x:Key="Primary-200-Brush" Color="{DynamicResource Color-200}" />
+        <SolidColorBrush x:Key="Primary-300-Brush" Color="{DynamicResource Color-300}" />
+        <SolidColorBrush x:Key="Primary-400-Brush" Color="{DynamicResource Color-400}" />
+        <SolidColorBrush x:Key="Primary-500-Brush" Color="{DynamicResource Color-500}" />
+        <SolidColorBrush x:Key="Primary-600-Brush" Color="{DynamicResource Color-600}" />
+        <SolidColorBrush x:Key="Primary-700-Brush" Color="{DynamicResource Color-700}" />
+        <SolidColorBrush x:Key="Primary-800-Brush" Color="{DynamicResource Color-800}" />
+        <SolidColorBrush x:Key="Primary-900-Brush" Color="{DynamicResource Color-900}" />
+
+        <!-- Primary Foreground -->
+        <SolidColorBrush x:Key="Primary-Foreground-100-Brush" Color="{DynamicResource Color-Foreground-100}" />
+        <SolidColorBrush x:Key="Primary-Foreground-200-Brush" Color="{DynamicResource Color-Foreground-200}" />
+        <SolidColorBrush x:Key="Primary-Foreground-300-Brush" Color="{DynamicResource Color-Foreground-300}" />
+        <SolidColorBrush x:Key="Primary-Foreground-400-Brush" Color="{DynamicResource Color-Foreground-400}" />
+        <SolidColorBrush x:Key="Primary-Foreground-500-Brush" Color="{DynamicResource Color-Foreground-500}" />
+        <SolidColorBrush x:Key="Primary-Foreground-600-Brush" Color="{DynamicResource Color-Foreground-600}" />
+        <SolidColorBrush x:Key="Primary-Foreground-700-Brush" Color="{DynamicResource Color-Foreground-700}" />
+        <SolidColorBrush x:Key="Primary-Foreground-800-Brush" Color="{DynamicResource Color-Foreground-800}" />
+        <SolidColorBrush x:Key="Primary-Foreground-900-Brush" Color="{DynamicResource Color-Foreground-900}" />
+
+    </colors:ColorSet.Resources>
+
+</colors:ColorSet>
