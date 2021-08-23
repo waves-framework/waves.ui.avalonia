@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using Avalonia.Metadata;
 using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Extensions;
@@ -15,7 +16,8 @@ namespace Waves.UI.Avalonia.Selectors
     ///     Tab content template selector.
     /// </summary>
     [WavesPlugin(typeof(ContentTemplateSelector))]
-    public class ContentTemplateSelector : IDataTemplate,
+    public class ContentTemplateSelector : 
+        IDataTemplate,
         IWavesPlugin
     {
         private readonly IWavesCore _core;
@@ -43,6 +45,12 @@ namespace Waves.UI.Avalonia.Selectors
 
         /// <inheritdoc />
         public bool IsInitialized { get; private set; }
+        
+        /// <summary>
+        /// Templates collection.
+        /// </summary>
+        [Content]
+        public Dictionary<Type, IDataTemplate> Templates { get; } = new Dictionary<Type, IDataTemplate>(); 
 
         /// <inheritdoc />
         public IControl Build(

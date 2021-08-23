@@ -14,13 +14,14 @@ using Waves.Core.Extensions;
 using Waves.UI.Avalonia.Controls.Enums;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Avalonia.Selectors;
+using Waves.UI.Base.Interfaces;
 
 namespace Waves.UI.Avalonia.Controls
 {
     /// <summary>
     /// Waves tab control.
     /// </summary>
-    public class WavesTabControl : TabControl, IStyleable
+    public class WavesTabControl : TabControl, IStyleable, IWavesControl
     {
         /// <summary>
         /// Defines <see cref="Mode"/> property.
@@ -70,11 +71,8 @@ namespace Waves.UI.Avalonia.Controls
             UnsubscribeEvents();
         }
 
-        /// <summary>
-        /// Initializes content template selector.
-        /// </summary>
-        /// <param name="core">Core.</param>
-        public void InitializeSelector(IWavesCore core)
+        /// <inheritdoc />
+        public void AttachCore(IWavesCore core)
         {
             _core = core;
 
@@ -128,7 +126,7 @@ namespace Waves.UI.Avalonia.Controls
                     DataTemplates.Remove(_selector);
                 }
             }
-            
+
             var selectedItem = SelectedItem;
             SelectedItem = null;
             SelectedItem = selectedItem;

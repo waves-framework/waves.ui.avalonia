@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.6" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
-    <PackageReference Include="Waves.UI" Version="2021.2.1-prerelease.4" />
+    <PackageReference Include="Waves.UI" Version="2021.2.1-dev.125" />
   </ItemGroup>
 
 </Project>

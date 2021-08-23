@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.VisualTree;
 using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Controls;
+using Waves.UI.Base.Interfaces;
 using Waves.UI.Plugins.Services.Interfaces;
 
 namespace Waves.UI.Avalonia.Extensions
@@ -23,24 +24,7 @@ namespace Waves.UI.Avalonia.Extensions
         /// <returns>Collection of controls.</returns>
         public static IEnumerable<T> FindVisualChildren<T>(
             this IVisual control)
-            where T : IControl
         {
-            // var childrenCount = VisualTreeHelper.GetChildrenCount(depObj);
-            // for (var i = 0; i < childrenCount; i++)
-            // {
-            //     var child = VisualTreeHelper.GetChild(depObj, i);
-            //
-            //     if (child is T childType)
-            //     {
-            //         yield return childType;
-            //     }
-            //
-            //     foreach (var other in FindVisualChildren<T>(child))
-            //     {
-            //         yield return other;
-            //     }
-            // }
-
             var content = control;
             if (content is ContentControl contentControl)
             {
@@ -101,16 +85,16 @@ namespace Waves.UI.Avalonia.Extensions
         /// <param name="obj">Object.</param>
         /// <param name="core">Core.</param>
         /// <returns>List of initialized controls.</returns>
-        public static List<WavesTabControl> InitializeTabControls(this IVisual obj, IWavesCore core)
+        public static List<IWavesControl> InitializeControl(this IVisual obj, IWavesCore core)
         {
-            var controls = obj.FindVisualChildren<WavesTabControl>();
-            var result = new List<WavesTabControl>();
+            var controls = obj.FindVisualChildren<IWavesControl>();
+            var result = new List<IWavesControl>();
 
             foreach (var control in controls)
             {
                 try
                 {
-                    control.InitializeSelector(core);
+                    control.AttachCore(core);
                     result.Add(control);
                 }
                 catch (Exception e)
@@ -121,32 +105,5 @@ namespace Waves.UI.Avalonia.Extensions
 
             return result;
         }
-
-        /////// <summary>
-        ///////     Finds all Waves waves surfaces.
-        /////// </summary>
-        /////// <param name="obj">Object.</param>
-        /////// <param name="core">Core.</param>
-        /////// <returns>List of initialized controls.</returns>
-        ////public static List<WavesSurface> InitializeSurfaces(this DependencyObject obj, IWavesCore core)
-        ////{
-        ////    var controls = obj.FindVisualChildren<WavesSurface>();
-        ////    var result = new List<WavesSurface>();
-
-        ////    foreach (var control in controls)
-        ////    {
-        ////        try
-        ////        {
-        ////            control.InitializeElement(core);
-        ////            result.Add(control);
-        ////        }
-        ////        catch (Exception e)
-        ////        {
-        ////            core.WriteLogAsync(e, core);
-        ////        }
-        ////    }
-
-        ////    return result;
-        ////}
     }
 }

@@ -12,6 +12,10 @@
         <DependentUpon>MainPageView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Presentation\View\Pages\Input\ButtonsPageView.axaml.cs">
+        <DependentUpon>InputTabView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

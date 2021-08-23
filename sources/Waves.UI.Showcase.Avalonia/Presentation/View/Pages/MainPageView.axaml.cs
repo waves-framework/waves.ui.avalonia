@@ -14,7 +14,8 @@ namespace Waves.UI.Showcase.Avalonia.Presentation.View.Pages
     public partial class MainPageView : WavesPage
     {
         /// <inheritdoc />
-        public MainPageView() : base()
+        public MainPageView()
+            : base()
         {
             InitializeComponent();
         }

@@ -3,25 +3,24 @@ using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Plugins.Services.Interfaces;
 using Waves.UI.Presentation.Attributes;
-using Waves.UI.Showcase.Common.Presentation.ViewModel.Pages;
-using Waves.UI.Showcase.Common.Presentation.ViewModel.Tabs;
+using Waves.UI.Showcase.Common.Presentation.ViewModel.Pages.Input;
 
-namespace Waves.UI.Showcase.Avalonia.Presentation.View.Tabs
+namespace Waves.UI.Showcase.Avalonia.Presentation.View.Pages.Input
 {
     /// <summary>
     /// Input tab view.
     /// </summary>
-    [WavesView(typeof(InputTabViewModel))]
-    public partial class InputTabView : WavesUserControl
+    [WavesView(typeof(ButtonsPageViewModel))]
+    public partial class ButtonsPageView : WavesUserControl
     {
         /// <inheritdoc />
-        public InputTabView() : base()
+        public ButtonsPageView() : base()
         {
             InitializeComponent();
         }
 
         /// <inheritdoc />
-        public InputTabView(
+        public ButtonsPageView(
             IWavesCore core,
             IWavesNavigationService navigationService)
             : base(core, navigationService)

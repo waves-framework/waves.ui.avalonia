@@ -300,7 +300,7 @@ namespace Waves.UI.Avalonia.Controls
 
             //// TODO: initialization.
             _regionContentControls = this.FindRegions(NavigationService);
-            this.InitializeTabControls(Core);
+            this.InitializeControl(Core);
             ////this.InitializeSurfaces(Core);
         }
 

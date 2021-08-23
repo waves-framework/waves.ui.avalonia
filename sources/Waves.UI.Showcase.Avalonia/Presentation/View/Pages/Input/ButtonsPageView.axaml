@@ -4,7 +4,7 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia"
                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                    x:Class="Waves.UI.Showcase.Avalonia.Presentation.View.Pages.MainPageView">
+                    x:Class="Waves.UI.Showcase.Avalonia.Presentation.View.Pages.Input.ButtonsPageView">
     
     <controls:WavesPage.Resources>
         
@@ -22,26 +22,9 @@
         
     </controls:WavesPage.Resources>
 
-    <Grid>
-        
-        <Panel>
-            <ExperimentalAcrylicBorder IsHitTestVisible="False">
-                <ExperimentalAcrylicBorder.Material>
-                    <ExperimentalAcrylicMaterial
-                        BackgroundSource="Digger"
-                        TintColor="{DynamicResource Color-100}"
-                        TintOpacity="1"
-                        MaterialOpacity="0.65" />
-                </ExperimentalAcrylicBorder.Material>
-            </ExperimentalAcrylicBorder>
-        </Panel>
+    <Grid Margin="{DynamicResource BigThickness}">
 
-        <controls:WavesTabControl Items="{Binding Tabs}"
-                                  Mode="Plugins"
-                                  ItemTemplate="{StaticResource TabItemDataTemplate}"
-                                  Margin="0,40,0,0"
-                                  SelectedItem="{Binding SelectedTab}"
-                                  TabStripPlacement="Left"/>
+       <TextBlock Text="123"/>
 
     </Grid>
 
