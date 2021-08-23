@@ -4,26 +4,26 @@ using Waves.UI.Avalonia.Controls;
 using Waves.UI.Plugins.Services.Interfaces;
 using Waves.UI.Presentation.Attributes;
 using Waves.UI.Showcase.Common.Presentation.ViewModel.Pages;
+using Waves.UI.Showcase.Common.Presentation.ViewModel.Tabs;
 
-namespace Waves.UI.Showcase.Avalonia.Presentation.View.Pages
+namespace Waves.UI.Showcase.Avalonia.Presentation.View.Tabs
 {
     /// <summary>
-    /// Main page view.
+    /// Input tab view.
     /// </summary>
-    [WavesView(typeof(MainPageViewModel))]
-    public partial class MainPageView : WavesPage
+    [WavesView(typeof(InputTabViewModel))]
+    public partial class InputTabView : WavesPage
     {
         /// <inheritdoc />
-        public MainPageView() : base()
+        public InputTabView() : base()
         {
             InitializeComponent();
         }
 
         /// <inheritdoc />
-        public MainPageView(
+        public InputTabView(
             IWavesCore core,
-            IWavesNavigationService navigationService)
-            : base(core, navigationService)
+            IWavesNavigationService navigationService) : base(core, navigationService)
         {
             InitializeComponent();
         }
@@ -34,7 +34,6 @@ namespace Waves.UI.Showcase.Avalonia.Presentation.View.Pages
         protected void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-            InitializeBaseControls();
         }
     }
 }

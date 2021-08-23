@@ -25,7 +25,34 @@ namespace Waves.UI.Avalonia.Extensions
             this IVisual control)
             where T : IControl
         {
-            foreach (var child in control.GetVisualChildren())
+            // var childrenCount = VisualTreeHelper.GetChildrenCount(depObj);
+            // for (var i = 0; i < childrenCount; i++)
+            // {
+            //     var child = VisualTreeHelper.GetChild(depObj, i);
+            //
+            //     if (child is T childType)
+            //     {
+            //         yield return childType;
+            //     }
+            //
+            //     foreach (var other in FindVisualChildren<T>(child))
+            //     {
+            //         yield return other;
+            //     }
+            // }
+
+            var content = control;
+            if (content is ContentControl contentControl)
+            {
+                content = contentControl.Content as IVisual;
+            }
+
+            if (content == null)
+            {
+                yield break;
+            }
+            
+            foreach (var child in content.VisualChildren)
             {
                 if (child is T childType)
                 {

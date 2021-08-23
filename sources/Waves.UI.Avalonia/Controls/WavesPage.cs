@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
 using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Plugins.Services.Interfaces;
@@ -74,6 +75,16 @@ namespace Waves.UI.Avalonia.Controls
         {
             return Task.CompletedTask;
         }
+        
+        /// <summary>
+        ///     Initializes components.
+        /// </summary>
+        protected void InitializeBaseControls()
+        {
+            _regionContentControls = this.FindRegions(NavigationService);
+            this.InitializeTabControls(Core);
+            ////this.InitializeSurfaces(Core);
+        }
 
         /// <inheritdoc />
         protected override async void OnInitialized()
@@ -124,10 +135,6 @@ namespace Waves.UI.Avalonia.Controls
             VisualTreeAttachmentEventArgs e)
         {
             base.OnAttachedToVisualTree(e);
-
-            _regionContentControls = this.FindRegions(NavigationService);
-            this.InitializeTabControls(Core);
-            ////this.InitializeSurfaces(Core);
         }
     }
 }

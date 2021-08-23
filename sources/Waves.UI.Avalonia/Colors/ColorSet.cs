@@ -1,28 +1,22 @@
 using System;
-using Avalonia.Controls;
 using Avalonia.Styling;
-using Waves.UI.Enums;
+using Waves.UI.Base.Enums;
+using Waves.UI.Base.Interfaces;
 
 namespace Waves.UI.Avalonia.Colors
 {
     /// <summary>
-    /// Color set.
+    ///     Color set.
     /// </summary>
-    public class ColorSet : Style
+    public class ColorSet : Style, IThemeColorSet
     {
-        /// <summary>
-        /// Gets or sets id.
-        /// </summary>
+        /// <inheritdoc />
         public Guid Id { get; set; }
-        
-        /// <summary>
-        /// Gets or sets name.
-        /// </summary>
+
+        /// <inheritdoc />
         public string Name { get; set; }
-        
-        /// <summary>
-        /// Gets or sets type.
-        /// </summary>
-        public ColorSetType Type { get; set; }
+
+        /// <inheritdoc />
+        public ThemeColorSetType Type { get; set; }
     }
 }
