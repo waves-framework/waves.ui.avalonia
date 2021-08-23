@@ -45,12 +45,6 @@ namespace Waves.UI.Avalonia.Selectors
 
         /// <inheritdoc />
         public bool IsInitialized { get; private set; }
-        
-        /// <summary>
-        /// Templates collection.
-        /// </summary>
-        [Content]
-        public Dictionary<Type, IDataTemplate> Templates { get; } = new Dictionary<Type, IDataTemplate>(); 
 
         /// <inheritdoc />
         public IControl Build(
