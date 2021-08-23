@@ -55,6 +55,9 @@
             <ScrollViewer Margin="0,0,-24,-18">
 
                 <ItemsControl Items="{Binding Pages}">
+                    <ItemsControl.DataTemplates>
+                        <DataTemplate/>
+                    </ItemsControl.DataTemplates>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Margin="0,0,-12,-12"/>

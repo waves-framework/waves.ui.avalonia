@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Avalonia.Metadata;
 using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Extensions;
@@ -137,12 +136,6 @@ namespace Waves.UI.Avalonia.Selectors
         protected virtual void Dispose(
             bool disposing)
         {
-            if (disposing)
-            {
-                // TODO: your code for release managed resources.
-            }
-
-            // TODO: your code for release unmanaged resources.
         }
 
         /// <summary>

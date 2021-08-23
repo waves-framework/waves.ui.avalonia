@@ -24,24 +24,42 @@
 
     <Grid>
         
-        <Panel>
-            <ExperimentalAcrylicBorder IsHitTestVisible="False">
-                <ExperimentalAcrylicBorder.Material>
-                    <ExperimentalAcrylicMaterial
-                        BackgroundSource="Digger"
-                        TintColor="{DynamicResource Color-100}"
-                        TintOpacity="1"
-                        MaterialOpacity="0.65" />
-                </ExperimentalAcrylicBorder.Material>
-            </ExperimentalAcrylicBorder>
-        </Panel>
-
-        <controls:WavesTabControl Items="{Binding Tabs}"
-                                  Mode="Plugins"
-                                  ItemTemplate="{StaticResource TabItemDataTemplate}"
-                                  Margin="0,40,0,0"
-                                  SelectedItem="{Binding SelectedTab}"
-                                  TabStripPlacement="Left"/>
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Panel>
+                    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                        <ExperimentalAcrylicBorder.Material>
+                            <ExperimentalAcrylicMaterial
+                                BackgroundSource="Digger"
+                                TintColor="{DynamicResource Color-100}"
+                                TintOpacity="1"
+                                MaterialOpacity="0.65" />
+                        </ExperimentalAcrylicBorder.Material>
+                    </ExperimentalAcrylicBorder>
+                </Panel>
+            </Grid>
+            
+            <Grid Grid.Row="1" Background="{DynamicResource Primary-500-Brush}"/>
+            
+            <Grid Grid.Row="2" Background="{DynamicResource Primary-100-Brush}">
+                
+                <controls:WavesTabControl Items="{Binding Tabs}"
+                                          Mode="Plugins"
+                                          ItemTemplate="{StaticResource TabItemDataTemplate}"
+                                          Margin="0,0,0,0"
+                                          SelectedItem="{Binding SelectedTab}"
+                                          TabStripPlacement="Left"/>
+                
+            </Grid>
+            
+        </Grid>
 
     </Grid>
 

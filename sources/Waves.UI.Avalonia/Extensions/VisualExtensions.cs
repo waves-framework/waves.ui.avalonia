@@ -4,10 +4,12 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
+using Waves.Core.Base.Enums;
 using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Base.Interfaces;
 using Waves.UI.Plugins.Services.Interfaces;
+using Waves.UI.Presentation.Interfaces;
 
 namespace Waves.UI.Avalonia.Extensions
 {
@@ -103,6 +105,17 @@ namespace Waves.UI.Avalonia.Extensions
                 }
             }
 
+            if (result.Count > 0)
+            {
+                var controlsText = result.Count == 1 ? "control" : "controls";
+                
+                core.WriteLogAsync(
+                    "Attaching core",
+                    $"Core attached to {result.Count} {controlsText}.",
+                    obj as IWavesView,
+                    WavesMessageType.Information);
+            }
+            
             return result;
         }
     }

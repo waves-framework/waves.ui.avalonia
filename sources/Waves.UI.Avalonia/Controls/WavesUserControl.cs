@@ -79,7 +79,7 @@ namespace Waves.UI.Avalonia.Controls
         protected void InitializeBaseControls()
         {
             _regionContentControls = this.FindRegions(NavigationService);
-            this.InitializeControl(Core);
+            var controls = this.InitializeControl(Core);
         }
 
         /// <inheritdoc />

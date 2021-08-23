@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
-using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Extensions;
 using Waves.UI.Avalonia.Controls.Enums;
-using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Avalonia.Selectors;
 using Waves.UI.Base.Interfaces;
 
@@ -21,7 +18,10 @@ namespace Waves.UI.Avalonia.Controls
     /// <summary>
     /// Waves tab control.
     /// </summary>
-    public class WavesTabControl : TabControl, IStyleable, IWavesControl
+    public class WavesTabControl :
+        TabControl,
+        IStyleable,
+        IWavesControl
     {
         /// <summary>
         /// Defines <see cref="Mode"/> property.
