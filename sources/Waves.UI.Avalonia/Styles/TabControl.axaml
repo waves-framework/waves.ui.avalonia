@@ -199,12 +199,7 @@
     
     <!-- :pointerover HighlightCanvas Properties -->
     <Style Selector="TabItem:pointerover /template/ Canvas#HighlightCanvas">
-        <Setter Property="Opacity" Value="{DynamicResource Opacity-700}" />
-    </Style>
-    
-    <!-- :pointerover HighlightCanvas Properties -->
-    <Style Selector="TabItem:pointerover /template/ Canvas#HighlightCanvas">
-        <Setter Property="Opacity" Value="{DynamicResource Opacity-500}" />
+        <Setter Property="Opacity" Value="{DynamicResource Opacity-900}" />
     </Style>
     
     <!-- SelectionCanvas Properties -->
@@ -226,125 +221,5 @@
     <Style Selector="TabItem:selected /template/ Canvas#SelectedPipeCanvas">
         <Setter Property="Opacity" Value="{DynamicResource Opacity-100}" />
     </Style>
-    
-    
-    
-    <!-- ~1~ [TabStripPlacement=Top] PART_ContentPresenter Properties @1@ -->
-    <!-- <Style Selector="TabItem[TabStripPlacement=Left] /template/ StackPanel#PART_ItemStackPanel"> -->
-    <!--     <Setter Property="Orientation" Value="Horizontal" /> -->
-    <!-- </Style> -->
-    <!-- -->
-    <!-- ~1~ [TabStripPlacement=Top] PART_SelectedPipe Properties @1@ -->
-    <!-- <Style Selector="TabItem[TabStripPlacement=Top] /template/ Border#PART_SelectedPipe"> -->
-    <!--     <Setter Property="Height" Value="2" /> -->
-    <!--     <Setter Property="Margin" Value="0,6,0,0" /> -->
-    <!-- </Style> -->
-    <!-- -->
-    <!-- ~1~ [TabStripPlacement=Top] PART_SelectedPipe Properties @1@ -->
-    <!-- <Style Selector="TabItem[TabStripPlacement=Left] /template/ Border#PART_SelectedPipe"> -->
-    <!--     <Setter Property="Width" Value="2" /> -->
-    <!--     <Setter Property="Margin" Value="6,0,0,0" /> -->
-    <!-- </Style> -->
-
-  <!-- Normal state -->
-  <!--
-    <Style Selector="controls|WavesTabControl TabItem /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{Binding $parent[TabItem].Background}" />
-    </Style>
-
-    <Style Selector="controls|WavesTabControl TabItem /template/ Border#PART_SelectedPipe">
-        <Setter Property="IsVisible" Value="False" />
-        <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
-    </Style>
-
-    --><!-- Selected state --><!--
-    --><!--  We don't use selector to PART_LayoutRoot, so developer can override selected item background with TabStripItem.Background  --><!--
-    <Style Selector="controls|WavesTabControl TabItem:selected">
-        <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelected}" />
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundSelected}" />
-    </Style>
-
-    <Style Selector="controls|WavesTabControl TabItem:selected /template/ Border#PART_SelectedPipe">
-        <Setter Property="IsVisible" Value="True" />
-    </Style>
-
-    --><!-- PointerOver state --><!--
-    <Style Selector="controls|WavesTabControl TabItem:pointerover /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundUnselectedPointerOver}" />
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselectedPointerOver}" />
-    </Style>
-
-    --><!-- Selected PointerOver state --><!--
-    <Style Selector="controls|WavesTabControl TabItem:selected:pointerover /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelectedPointerOver}" />
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundSelectedPointerOver}" />
-    </Style>
-
-    --><!-- Pressed state --><!--
-    <Style Selector="controls|WavesTabControl TabItem:pressed /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundUnselectedPressed}" />
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselectedPressed}" />
-    </Style>
-
-    --><!-- Selected Pressed state --><!--
-    <Style Selector="controls|WavesTabControl TabItem:pressed /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelectedPressed}" />
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundSelectedPressed}" />
-    </Style>
-
-    --><!-- Disabled state --><!--
-    <Style Selector="controls|WavesTabControl TabItem:disabled /template/ Border#PART_LayoutRoot">
-        <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundDisabled}" />
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource TabItemHeaderForegroundDisabled}" />
-    </Style>-->
-
-    <!-- TabStripPlacement States Group -->
-    <!--
-    <Style Selector="TabItem[TabStripPlacement=Left] /template/ Border#PART_SelectedPipe">
-        <Setter Property="Width" Value="{DynamicResource TabItemPipeThickness}" />
-        <Setter Property="Margin" Value="12,0,0,0" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-
-    <Style Selector="TabItem[TabStripPlacement=Left] /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Margin" Value="0,0,0,0" />
-    </Style>
-
-    <Style
-        Selector="TabItem[TabStripPlacement=Top] /template/ Border#PART_SelectedPipe, TabItem[TabStripPlacement=Bottom] /template/ Border#PART_SelectedPipe">
-        <Setter Property="Height" Value="{DynamicResource TabItemPipeThickness}" />
-        <Setter Property="Margin" Value="0,0,0,0" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Bottom" />
-    </Style>
-
-    <Style Selector="TabItem[TabStripPlacement=Right] /template/ Border#PART_SelectedPipe">
-        <Setter Property="Width" Value="{DynamicResource TabItemPipeThickness}" />
-        <Setter Property="Height" Value="40" />
-        <Setter Property="Margin" Value="0,0,0,0" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-
-    <Style Selector="TabItem[TabStripPlacement=Right] /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Margin" Value="0,0,0,0" />
-    </Style>
-
-    <Style Selector="TabItem[TabStripPlacement=Right]">
-        <Setter Property="HorizontalContentAlignment" Value="Right" />
-    </Style>
-
-    <Style Selector="TabItem[TabStripPlacement=Top] /template/ StackPanel#ItemStackPanel">
-        <Setter Property="Orientation" Value="Vertical" />
-    </Style>
-
-    <Style Selector="TabItem[TabStripPlacement=Right] /template/ StackPanel#ItemStackPanel">
-        <Setter Property="Orientation" Value="Horizontal" />
-    </Style>
-
-    <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ StackPanel#ItemStackPanel">
-        <Setter Property="Orientation" Value="Vertical" />
-    </Style>-->
 
 </Styles>

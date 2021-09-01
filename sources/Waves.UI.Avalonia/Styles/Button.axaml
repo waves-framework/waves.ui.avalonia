@@ -1,0 +1,116 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia">
+
+    <Styles.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Opacity. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+
+    <!-- Text. -->
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
+    
+    <!-- Button style. -->
+    <Style Selector="Button">
+            
+        <Setter Property="HorizontalContentAlignment" 
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment" 
+                Value="Center"/>
+        <Setter Property="Background" 
+                Value="{DynamicResource Primary-300-Brush}" />
+        <Setter Property="BorderBrush" 
+                Value="{DynamicResource Primary-500-Brush}" />
+        <Setter Property="BorderThickness" 
+                Value="1" />
+        <Setter Property="Height" 
+                Value="36"/>
+        <Setter Property="IsTabStop" 
+                Value="True" />
+        <Setter Property="FontSize" 
+                Value="14" />
+        <Setter Property="Opacity" 
+                Value="1.0"/>
+        <Setter Property="Padding" 
+                Value="{StaticResource StandardThickness}"/>
+        <Setter Property="CornerRadius"
+                Value="18"/>
+        
+        <Setter Property="Template">
+                
+                <ControlTemplate>
+                        
+                        <Grid>
+                                
+                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="{TemplateBinding CornerRadius}"
+                                        BorderThickness="0"/>
+
+                                <Border CornerRadius="{TemplateBinding CornerRadius}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"/>
+
+                                <Border x:Name="HighlightBorder"
+                                        Background="{TemplateBinding Foreground}"
+                                        CornerRadius="{TemplateBinding CornerRadius}" >
+                                        <Border.Transitions>
+                                                <Transitions>
+                                                        <DoubleTransition Property="Opacity" 
+                                                                          Duration="0:0:0.1"/>
+                                                </Transitions>
+                                        </Border.Transitions>
+                                </Border>
+                                
+                                <ContentPresenter x:Name="PART_ContentPresenter"
+                                                  Background="{TemplateBinding Background}"
+                                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Padding="{TemplateBinding Padding}"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                
+                        </Grid>
+                        
+                </ControlTemplate>
+                
+        </Setter>
+        
+    </Style>
+    
+    <!-- :pointerover HighlightBorder Properties -->
+    <Style Selector="Button /template/ Border#HighlightBorder">
+            <Setter Property="Opacity" Value="{DynamicResource Opacity-000}" />
+    </Style>
+    
+    <!-- :pointerover HighlightBorder Properties -->
+    <Style Selector="Button:pointerover /template/ Border#HighlightBorder">
+            <Setter Property="Opacity" Value="{DynamicResource Opacity-900}" />
+    </Style>
+    
+    <!-- Accent button style. -->
+    <Style Selector="Button.Accent">
+            
+            <Setter Property="Background" 
+                    Value="{DynamicResource Accent-500-Brush}" />
+            <Setter Property="BorderBrush" 
+                    Value="{DynamicResource Accent-500-Brush}" />
+        
+    </Style>
+
+</Styles>

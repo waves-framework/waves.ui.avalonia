@@ -45,6 +45,9 @@
                         Background="{DynamicResource Information-Status-Brush}" 
                         Width="400"
                         HorizontalAlignment="Left" Margin="0,0,0,0" />
+                
+                <controls:WavesButton Content="Sample text"/>
+                <controls:WavesButton IsAccent="True" Content="Sample text"/>
 
             </StackPanel>
 
