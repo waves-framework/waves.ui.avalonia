@@ -10,5 +10,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Waves.UI.Showcase.Avalonia\Waves.UI.Showcase.Avalonia.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.7" />
+  </ItemGroup>
   
 </Project>

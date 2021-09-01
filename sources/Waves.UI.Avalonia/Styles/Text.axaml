@@ -80,5 +80,78 @@
         <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
 
     </Style>
+    
+    <Style Selector="TextBlock.H3">
+
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+
+        <Setter Property="Opacity" Value="0.9"/>
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+
+    </Style>
+
+    <Style Selector="TextBlock.H3.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Regular1">
+
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+        <Setter Property="Opacity" Value="1"/>
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Regular1.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+        
+    </Style>
+    
+    <Style Selector="TextBlock.Regular2">
+
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-500-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Regular2.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+        
+    </Style>
+    
+    <Style Selector="TextBlock.Hint1">
+
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-700-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Hint1.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+        
+    </Style>
 
 </Styles>

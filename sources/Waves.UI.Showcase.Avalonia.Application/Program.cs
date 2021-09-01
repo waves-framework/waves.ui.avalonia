@@ -2,6 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using System;
+using Avalonia.ReactiveUI;
+using Avalonia.Threading;
+using ReactiveUI;
 
 namespace Waves.UI.Showcase.Avalonia.App
 {
@@ -27,7 +30,8 @@ namespace Waves.UI.Showcase.Avalonia.App
         public static AppBuilder BuildAvaloniaApp()
         {
             return AppBuilder.Configure<App>()
-                .UsePlatformDetect();
+                .UsePlatformDetect()
+                .UseReactiveUI();
         }
     }
 }

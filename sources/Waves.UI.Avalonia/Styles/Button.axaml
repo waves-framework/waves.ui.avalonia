@@ -103,6 +103,11 @@
             <Setter Property="Opacity" Value="{DynamicResource Opacity-900}" />
     </Style>
     
+    <!-- :pointerover HighlightBorder Properties -->
+    <Style Selector="Button:pressed /template/ Border#HighlightBorder">
+            <Setter Property="Opacity" Value="{DynamicResource Opacity-800}" />
+    </Style>
+    
     <!-- Accent button style. -->
     <Style Selector="Button.Accent">
             

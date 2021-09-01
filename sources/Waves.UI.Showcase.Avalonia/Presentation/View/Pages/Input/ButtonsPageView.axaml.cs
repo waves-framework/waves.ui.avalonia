@@ -11,7 +11,7 @@ namespace Waves.UI.Showcase.Avalonia.Presentation.View.Pages.Input
     /// Input tab view.
     /// </summary>
     [WavesView(typeof(ButtonsPageViewModel))]
-    public partial class ButtonsPageView : WavesUserControl
+    public partial class ButtonsPageView : WavesPage
     {
         /// <inheritdoc />
         public ButtonsPageView() : base()
