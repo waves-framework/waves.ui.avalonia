@@ -10,6 +10,7 @@
     <system:Double x:Key="Opacity-600">0.25</system:Double>
     <system:Double x:Key="Opacity-700">0.46</system:Double>
     <system:Double x:Key="Opacity-800">0.24</system:Double>
-    <system:Double x:Key="Opacity-900">0.00</system:Double>
+    <system:Double x:Key="Opacity-900">0.12</system:Double>
+    <system:Double x:Key="Opacity-000">0.00</system:Double>
 
 </ResourceDictionary>

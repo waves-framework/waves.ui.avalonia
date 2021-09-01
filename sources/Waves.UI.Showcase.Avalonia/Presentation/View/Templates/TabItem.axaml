@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:tabs="clr-namespace:Waves.UI.Showcase.Common.Presentation.ViewModel.Tabs;assembly=Waves.UI.Showcase.Common">
+                    xmlns:tabs="clr-namespace:Waves.UI.Showcase.Common.Presentation.ViewModel.Tabs;assembly=Waves.UI.Showcase.Common"
+                    xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia">
     
     <DataTemplate x:Key="TabItemDataTemplate" DataType="{x:Type tabs:TabViewModel}">
 
@@ -11,16 +12,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- <controls:MtlVectorImage Grid.Column="0" -->
-            <!--                          SourceType="FilePath" -->
-            <!--                          SourceAssembly="MTL.UI.Showcase.Presentation.WPF" -->
-            <!--                          SourceDirectory="/Resources/Assets" -->
-            <!--                          Source="{Binding Icon}" -->
-            <!--                          Height="18" -->
-            <!--                          Width="18" -->
-            <!--                          Margin="0,0,6,0"/> -->
+            <controls:WavesVectorImage Grid.Column="0"
+                                     SourceType="FilePath"
+                                     SourceAssembly="Waves.UI.Showcase.Common"
+                                     SourceDirectory="/Resources/Assets"
+                                     Source="{Binding Icon}"
+                                     Height="18"
+                                     Width="18"
+                                     Margin="0,0,6,0"/>
 
-            <TextBlock Text="{Binding Title}"
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Title}"
                        FontSize="14"/>
 
         </Grid>

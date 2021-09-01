@@ -3,8 +3,9 @@
   <Import Project="../../build/props/common.props" />
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.6" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
+    <PackageReference Include="Avalonia" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Svg.Skia" Version="0.10.7.1" />
     <PackageReference Include="Waves.UI" Version="2021.2.1-dev.125" />
   </ItemGroup>
 
