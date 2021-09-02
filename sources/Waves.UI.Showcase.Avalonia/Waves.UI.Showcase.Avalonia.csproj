@@ -7,15 +7,4 @@
       <ProjectReference Include="..\Waves.UI.Avalonia\Waves.UI.Avalonia.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="Presentation\View\Tabs\InputTabView.axaml.cs">
-        <DependentUpon>MainPageView.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Presentation\View\Pages\Input\ButtonsPageView.axaml.cs">
-        <DependentUpon>InputTabView.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
-
 </Project>

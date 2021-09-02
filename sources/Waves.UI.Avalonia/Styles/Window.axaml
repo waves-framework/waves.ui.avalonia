@@ -1,5 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia"
+        xmlns:helpers="clr-namespace:Waves.UI.Avalonia.Helpers">
 
     <Styles.Resources>
 
@@ -23,7 +25,7 @@
 
         <Setter Property="TransparencyLevelHint" Value="AcrylicBlur"/>
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
-        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}"/>
 
 		<Setter Property="Template">
@@ -42,11 +44,14 @@
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="1"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
+                        
+                        <Grid Grid.Row="0"
+                              Grid.RowSpan="4">
+                            
                             <Panel>
                                 <ExperimentalAcrylicBorder IsHitTestVisible="False">
                                     <ExperimentalAcrylicBorder.Material>
@@ -58,6 +63,10 @@
                                     </ExperimentalAcrylicBorder.Material>
                                 </ExperimentalAcrylicBorder>
                             </Panel>
+                            
+                        </Grid>
+
+                        <Grid Grid.Row="0">
 
                             <VisualLayerManager>
 
@@ -73,10 +82,49 @@
                             </VisualLayerManager>
 
 						</Grid>
+                        
+                        <Grid Grid.Row="1">
+                            
+                            <StackPanel Margin="{DynamicResource StandardThickness}"
+                                        IsVisible="{TemplateBinding helpers:WindowHelper.CanGoBack}"
+                                        Orientation="Horizontal">
+                                
+                                <controls:WavesButton Margin="0,0,3,0"
+                                                      Background="Transparent"
+                                                      Command="{TemplateBinding helpers:WindowHelper.GoBackCommand}"
+                                                      BorderThickness="0">
+                                    
+                                    <controls:WavesVectorImage SourceType="FilePath"
+                                                               SourceAssembly="Waves.UI.Avalonia"
+                                                               SourceDirectory="/Resources/Assets"
+                                                               Source="icon_arrow_back"
+                                                               Height="20"
+                                                               Width="20"
+                                                               Margin="0,0,0,0"/>
+                                    
+                                </controls:WavesButton>
+                                
+                                <!-- <controls:WavesButton Margin="0,0,3,0" -->
+                                <!--                       BorderThickness="0" -->
+                                <!--                       Background="Transparent"> -->
+                                <!--      -->
+                                <!--     <controls:WavesVectorImage SourceType="FilePath" -->
+                                <!--                                SourceAssembly="Waves.UI.Avalonia" -->
+                                <!--                                SourceDirectory="/Resources/Assets" -->
+                                <!--                                Source="icon_arrow_forward" -->
+                                <!--                                Height="20" -->
+                                <!--                                Width="20" -->
+                                <!--                                Margin="0,0,0,0"/> -->
+                                <!--      -->
+                                <!-- </controls:WavesButton> -->
+                                
+                            </StackPanel>
+                            
+                        </Grid>
 
-                        <Grid Grid.Row="1" Background="{DynamicResource Primary-500-Brush}"/>
+                        <Grid Grid.Row="2" Background="{DynamicResource Primary-500-Brush}"/>
 
-                        <Grid Grid.Row="2" Background="{DynamicResource Primary-100-Brush}">
+                        <Grid Grid.Row="3" Background="{TemplateBinding Background}">
 
 							<VisualLayerManager>
 

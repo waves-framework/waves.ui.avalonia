@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Waves.Core.Base.Enums;
 using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Plugins.Services.Interfaces;
@@ -13,7 +14,7 @@ namespace Waves.UI.Avalonia.Controls
     /// <summary>
     /// User control abstraction.
     /// </summary>
-    public abstract class WavesUserControl : UserControl, IWavesView
+    public abstract class WavesUserControl : UserControl, IWavesUserControl
     {
         private Dictionary<string, WavesContentControl> _regionContentControls;
 
@@ -47,6 +48,13 @@ namespace Waves.UI.Avalonia.Controls
         /// Gets core.
         /// </summary>
         protected IWavesCore Core { get; }
+        
+        /// <inheritdoc />
+        public override async void EndInit()
+        {
+            await InitializeAsync();
+            base.EndInit();
+        }
 
         /// <inheritdoc />
         public virtual void RaisePropertyChanging(PropertyChangingEventArgs args)
@@ -98,7 +106,7 @@ namespace Waves.UI.Avalonia.Controls
         ///     <value>false</value>
         ///     if need to release only unmanaged resources.
         /// </param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual async void Dispose(bool disposing)
         {
             if (!disposing)
             {
@@ -113,6 +121,12 @@ namespace Waves.UI.Avalonia.Controls
             foreach (var control in _regionContentControls)
             {
                 NavigationService.UnregisterContentControl(control.Key);
+                
+                await Core.WriteLogAsync(
+                    "View",
+                    $"Control {control.Value} from region {control.Key} unregistered",
+                    this,
+                    WavesMessageType.Information);
             }
         }
 

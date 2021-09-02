@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
-using Waves.Core.Base;
 using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Interfaces;
-using Waves.Core.Extensions;
 using Waves.Core.Plugins.Services.EventArgs;
 using Waves.UI.Avalonia.Animations.Extensions;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Avalonia.Plugins.Services.Interfaces;
 using Waves.UI.Plugins.Services;
 using Waves.UI.Plugins.Services.Interfaces;
-using Waves.UI.Presentation.Extensions;
 using Waves.UI.Presentation.Interfaces;
 
 namespace Waves.UI.Avalonia.Plugins.Services
@@ -45,11 +40,6 @@ namespace Waves.UI.Avalonia.Plugins.Services
         /// Gets dictionary of Content controls keyed by region.
         /// </summary>
         private Dictionary<string, ContentControl> ContentControls { get; set; }
-
-        /// <summary>
-        /// Gets dictionary of view models keyed by region.
-        /// </summary>
-        private Dictionary<string, Stack<IWavesViewModel>> Histories { get; set; }
 
         /// <inheritdoc />
         public override Task InitializeAsync()
@@ -185,7 +175,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         /// <param name="view">User control view.</param>
         /// <param name="viewModel">View model.</param>
         /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
-        protected override async Task  InitializeUserControlAsync(IWavesUserControl view, IWavesViewModel viewModel, bool addToHistory = true)
+        protected override async Task InitializeUserControlAsync(IWavesUserControl view, IWavesViewModel viewModel, bool addToHistory = true)
         {
             var region = await InitializeComponents(view, viewModel);
         
@@ -268,48 +258,6 @@ namespace Waves.UI.Avalonia.Plugins.Services
                 OnDialogsHidden();
             }
         }
-
-        // /// <summary>
-        // /// Adds viewModel to history stack or just create new history stack by region.
-        // /// </summary>
-        // /// <param name="region">Region.</param>
-        // /// <param name="viewModel">View model.</param>
-        // /// <param name="addToHistory">Sets whether add navigation to history is needed.</param>
-        // private void AddToHistoryStack(string region, IWavesViewModel viewModel, bool addToHistory = true)
-        // {
-        //     if (!Histories.ContainsKey(region))
-        //     {
-        //         Histories.Add(region, new Stack<IWavesViewModel>());
-        //     }
-        //
-        //     if (addToHistory)
-        //     {
-        //         Histories[region].Push(viewModel);
-        //     }
-        // }
-        //
-        // /// <summary>
-        // /// Initializes View and ViewModel and return it's region.
-        // /// </summary>
-        // /// <param name="view">View.</param>
-        // /// <param name="viewModel">View model.</param>
-        // /// <returns>Returns region.</returns>
-        // private async Task<string> InitializeComponents(IWavesView view, IWavesViewModel viewModel)
-        // {
-        //     var attribute = view.GetViewAttribute();
-        //     var region = attribute.Region;
-        //
-        //     if (!viewModel.IsInitialized)
-        //     {
-        //         await viewModel.InitializeAsync();
-        //     }
-        //
-        //     //// We don't need to initialize view
-        //     //// because automatically by WPF framework.
-        //
-        //     view.DataContext = viewModel;
-        //     return region;
-        // }
 
         /// <summary>
         /// Adds new window to content control dictionary.

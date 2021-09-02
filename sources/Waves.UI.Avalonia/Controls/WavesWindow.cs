@@ -7,6 +7,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Styling;
 using ReactiveUI;
+using Waves.Core.Base.Enums;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Plugins.Services.EventArgs;
 using Waves.UI.Avalonia.Extensions;
@@ -20,7 +21,7 @@ namespace Waves.UI.Avalonia.Controls
     ///     Window abstraction.
     /// </summary>
     public abstract class WavesWindow : Window,
-        IWavesView, IStyleable
+        IWavesWindow, IStyleable
     {
         /// <summary>
         ///     Defines <see cref="FrontLayerContent" /> dependency property.
@@ -126,6 +127,13 @@ namespace Waves.UI.Avalonia.Controls
         }
 
         /// <inheritdoc />
+        public override async void EndInit()
+        {
+            await InitializeAsync();
+            base.EndInit();
+        }
+
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -170,7 +178,7 @@ namespace Waves.UI.Avalonia.Controls
         ///     <value>false</value>
         ///     if need to release only unmanaged resources.
         /// </param>
-        protected virtual void Dispose(
+        protected virtual async void Dispose(
             bool disposing)
         {
             if (!disposing)
@@ -188,6 +196,11 @@ namespace Waves.UI.Avalonia.Controls
             foreach (var control in _regionContentControls)
             {
                 NavigationService.UnregisterContentControl(control.Key);
+                await Core.WriteLogAsync(
+                    "View",
+                    $"Control {control.Value} from region {control.Key} unregistered",
+                    this,
+                    WavesMessageType.Information);
             }
         }
 
