@@ -1,5 +1,6 @@
 ﻿using Waves.Core.Base.Interfaces;
 using Waves.UI.Avalonia.Controls;
+using Waves.UI.Presentation.Interfaces;
 
 namespace Waves.UI.Avalonia.Plugins.Services.Interfaces
 {
@@ -12,6 +13,6 @@ namespace Waves.UI.Avalonia.Plugins.Services.Interfaces
         /// Updates window style.
         /// </summary>
         /// <param name="window">Window.</param>
-        void UpdateWindowStyle(WavesWindow window);
+        void UpdateWindowStyle(IWavesWindow window);
     }
 }

@@ -8,6 +8,7 @@ using Waves.Core.Base.Attributes;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Avalonia.Plugins.Services.Interfaces;
+using Waves.UI.Presentation.Interfaces;
 
 namespace Waves.UI.Avalonia.Plugins.Services
 {
@@ -28,7 +29,7 @@ namespace Waves.UI.Avalonia.Plugins.Services
         }
 
         /// <inheritdoc />
-        public void UpdateWindowStyle(WavesWindow window)
+        public void UpdateWindowStyle(IWavesWindow window)
         {
             ////window.Classes.Add("Default");
         }

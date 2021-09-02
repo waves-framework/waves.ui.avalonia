@@ -70,7 +70,7 @@
                            Margin="0,0,0,18" />
 
                 <Canvas Height="2"
-                        Background="{DynamicResource Information-Status-Brush}"
+                        Background="{DynamicResource Accent-500-Brush}"
                         Width="400"
                         HorizontalAlignment="Left" Margin="0,0,0,36" />
 

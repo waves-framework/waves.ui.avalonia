@@ -42,7 +42,7 @@
     </Design.PreviewWith>
 
     <!-- TabControl. -->
-    <Style Selector="controls|WavesTabControl">
+    <Style Selector="TabControl">
 
         <Setter Property="Margin" Value="0" />
         <Setter Property="Template">
@@ -57,13 +57,13 @@
                         VerticalAlignment="{TemplateBinding VerticalAlignment}">
 
                     <DockPanel>
-
+                        
                         <ItemsPresenter Name="PART_ItemsPresenter"
                                         Items="{TemplateBinding Items}"
                                         ItemsPanel="{TemplateBinding ItemsPanel}"
                                         ItemTemplate="{TemplateBinding ItemTemplate}"
                                         DockPanel.Dock="{TemplateBinding TabStripPlacement}" />
-
+                        
                         <ContentPresenter Name="PART_SelectedContentHost"
                                           Margin="{TemplateBinding Padding}"
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -89,9 +89,15 @@
         Selector="TabControl[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
         <Setter Property="Orientation" Value="Vertical" />
     </Style>
+    
+    <Style
+        Selector="TabControl[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Horizontal" />
+    </Style>
 
-    <Style Selector="TabControl[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter">
-        <Setter Property="Margin" Value="{DynamicResource TabControlTopPlacementItemMargin}" />
+    <Style
+        Selector="TabControl[TabStripPlacement=Bottom] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Horizontal" />
     </Style>
 
     <!-- TabItem style. -->
@@ -188,7 +194,7 @@
     </Style>
     
     <!-- [TabStripPlacement=Bottom] PART_LayoutRoot Properties -->
-    <Style Selector="TabItem[TabStripPlacement=Top] /template/ Canvas#SelectedPipeCanvas">
+    <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Canvas#SelectedPipeCanvas">
         <Setter Property="Height" Value="{DynamicResource TabSeparatorSize}" />
         <Setter Property="VerticalAlignment" Value="Top" />
     </Style>

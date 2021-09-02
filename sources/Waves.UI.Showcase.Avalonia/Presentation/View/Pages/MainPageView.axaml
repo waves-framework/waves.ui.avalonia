@@ -29,7 +29,7 @@
                                   ItemTemplate="{StaticResource TabItemDataTemplate}"
                                   Margin="0,0,0,0"
                                   SelectedItem="{Binding SelectedTab}"
-                                  TabStripPlacement="Left"/>
+                                  TabStripPlacement="Top"/>
 
     </Grid>
 
