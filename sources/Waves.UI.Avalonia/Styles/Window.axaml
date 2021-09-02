@@ -1,0 +1,104 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Styles.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Opacity. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+
+	<Style Selector="Window">
+
+        <Setter Property="TransparencyLevelHint" Value="AcrylicBlur"/>
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}"/>
+
+		<Setter Property="Template">
+
+            <ControlTemplate>
+
+                <Panel>
+
+                    <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+
+                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+
+                    <Panel Background="Transparent" Margin="{TemplateBinding WindowDecorationMargin}" />
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Panel>
+                                <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                                    <ExperimentalAcrylicBorder.Material>
+                                        <ExperimentalAcrylicMaterial
+                                            BackgroundSource="Digger"
+                                            TintColor="{DynamicResource Color-100}"
+                                            TintOpacity="1"
+                                            MaterialOpacity="0.65" />
+                                    </ExperimentalAcrylicBorder.Material>
+                                </ExperimentalAcrylicBorder>
+                            </Panel>
+
+                            <VisualLayerManager>
+
+                                <VisualLayerManager.ChromeOverlayLayer>
+                                    <TitleBar/>
+                                </VisualLayerManager.ChromeOverlayLayer>
+
+                                <TextBlock Classes="Hint1"
+                                           Text="{TemplateBinding Title}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+
+                            </VisualLayerManager>
+
+						</Grid>
+
+                        <Grid Grid.Row="1" Background="{DynamicResource Primary-500-Brush}"/>
+
+                        <Grid Grid.Row="2" Background="{DynamicResource Primary-100-Brush}">
+
+							<VisualLayerManager>
+
+                                <ContentPresenter Name="PART_ContentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Content="{TemplateBinding Content}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                            </VisualLayerManager>
+
+						</Grid>
+
+					</Grid>
+
+				</Panel>
+
+            </ControlTemplate>
+
+        </Setter>
+
+    </Style>
+
+</Styles>

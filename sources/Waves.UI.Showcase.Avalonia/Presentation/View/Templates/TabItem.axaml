@@ -23,6 +23,7 @@
 
             <TextBlock Grid.Column="1"
                        Text="{Binding Title}"
+                       Foreground="{DynamicResource Primary-Foreground-100-Brush}"
                        FontSize="14"/>
 
         </Grid>
