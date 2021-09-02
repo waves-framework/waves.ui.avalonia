@@ -21,11 +21,12 @@
     </Styles.Resources>
     
     <!-- Default colors -->
-    <StyleInclude Source="avares://Waves.UI.Avalonia/Resources/Colors/Primary.Dark.axaml" />
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Resources/Colors/Primary.Light.axaml" />
     <StyleInclude Source="avares://Waves.UI.Avalonia/Resources/Colors/Accent.ForestGreenCrayola.axaml" />
 
     <!-- Controls -->
     <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Button.axaml" />
     <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TabControl.axaml" />
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml" />
 
 </Styles>

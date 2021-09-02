@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Styling;
 using ReactiveUI;
 using Waves.Core.Base.Interfaces;
 using Waves.Core.Plugins.Services.EventArgs;
@@ -19,7 +20,7 @@ namespace Waves.UI.Avalonia.Controls
     ///     Window abstraction.
     /// </summary>
     public abstract class WavesWindow : Window,
-        IWavesView
+        IWavesView, IStyleable
     {
         /// <summary>
         ///     Defines <see cref="FrontLayerContent" /> dependency property.
@@ -107,6 +108,9 @@ namespace Waves.UI.Avalonia.Controls
         ///     Gets core.
         /// </summary>
         protected IWavesCore Core { get; }
+
+        /// <inheritdoc />
+        Type IStyleable.StyleKey => typeof(Window);
 
         /// <inheritdoc />
         public virtual void RaisePropertyChanging(

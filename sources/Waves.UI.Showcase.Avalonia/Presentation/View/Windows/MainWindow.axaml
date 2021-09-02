@@ -5,7 +5,4 @@
                       xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia"
                       mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                       x:Class="Waves.UI.Showcase.Avalonia.Presentation.View.Windows.MainWindow"
-                      TransparencyLevelHint="AcrylicBlur"
-                      ExtendClientAreaToDecorationsHint="True"
-                      Background="Transparent"
                       Title="UI Showcase"/>

@@ -50,9 +50,6 @@ namespace Waves.UI.Avalonia.Controls
         /// </summary>
         public const string AssemblyRegex = ";Assembly=(.*)";
 
-        /// <inheritdoc />
-        Type IStyleable.StyleKey => typeof(ContentControl);
-
         /// <summary>
         /// Defines <see cref="Source"/> property.
         /// </summary>
@@ -78,27 +75,23 @@ namespace Waves.UI.Avalonia.Controls
         public static readonly StyledProperty<WavesVectorImageSourceType> SourceTypeProperty = AvaloniaProperty.Register<WavesVectorImage,WavesVectorImageSourceType>(
             nameof(SourceType));
 
-        private List<IDisposable> _disposables;
-        private WavesVectorImagePath _oldPath;
+        /// <inheritdoc />
+        Type IStyleable.StyleKey => typeof(ContentControl);
+
+        private readonly List<IDisposable> _disposables;
 
         /// <summary>
         /// Creates new instance of <see cref="WavesVectorImage"/>.
         /// </summary>
         public WavesVectorImage()
         {
+            _disposables = new List<IDisposable>();
+
             AffectsRender<WavesVectorImage>(ForegroundProperty);
             AffectsRender<WavesVectorImage>(SourceProperty);
             AffectsRender<WavesVectorImage>(SourceDirectoryProperty);
             AffectsRender<WavesVectorImage>(SourceAssemblyProperty);
             AffectsRender<WavesVectorImage>(SourceTypeProperty);
-            
-            _disposables = new List<IDisposable>
-            {
-                // ForegroundProperty.Changed.Subscribe(x =>
-                //     OnRefreshRequestedCallback(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())),
-                // SourceProperty.Changed.Subscribe(x =>
-                //     OnRefreshRequestedCallback(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>()))
-            };
         }
 
         /// <summary>
@@ -530,8 +523,6 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Height = Height;
             viewBox.Width = Width;
             Content = viewBox;
-            
-            _oldPath = path;
         }
 
         /// <summary>

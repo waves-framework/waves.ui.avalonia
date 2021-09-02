@@ -4,7 +4,7 @@
                            x:Class="Waves.UI.Showcase.Avalonia.App.App">
     
     <Application.Styles>
-        <FluentTheme Mode="Dark"/>
+        <FluentTheme Mode="Light"/>
     </Application.Styles>
     
 </avalonia:WavesApplication>
