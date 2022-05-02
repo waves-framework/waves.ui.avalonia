@@ -1,0 +1,57 @@
+﻿<base:WavesThemeColorSet
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:base="clr-namespace:Waves.UI.Avalonia.Base"
+    Name="Primary Default Light"
+    Id="28F045D8-F9D6-4067-8EAA-9E441ADB9FA9"
+    Type="Primary">
+
+    <base:WavesThemeColorSet.Resources>
+
+        <!-- Primary Colors -->
+        <Color x:Key="Color-100">#FCFBFD</Color>
+        <Color x:Key="Color-200">#F4F3F6</Color>
+        <Color x:Key="Color-300">#EEEDF0</Color>
+        <Color x:Key="Color-400">#DFDDE1</Color>
+        <Color x:Key="Color-500">#D8D7DB</Color>
+        <Color x:Key="Color-600">#D0CFD4</Color>
+        <Color x:Key="Color-700">#C9C8CD</Color>
+        <Color x:Key="Color-800">#C2C1C7</Color>
+        <Color x:Key="Color-900">#BBBAC0</Color>
+
+        <!-- Primary Foreground Colors -->
+        <Color x:Key="Color-Foreground-100">#0D0C1D</Color>
+        <Color x:Key="Color-Foreground-200">#0F0E20</Color>
+        <Color x:Key="Color-Foreground-300">#121122</Color>
+        <Color x:Key="Color-Foreground-400">#121122</Color>
+        <Color x:Key="Color-Foreground-500">#1C1B2C</Color>
+        <Color x:Key="Color-Foreground-600">#211F37</Color>
+        <Color x:Key="Color-Foreground-700">#242244</Color>
+        <Color x:Key="Color-Foreground-800">#2C295B</Color>
+        <Color x:Key="Color-Foreground-900">#39357E</Color>
+
+        <!-- Primary Brushes -->
+        <SolidColorBrush x:Key="Primary-100-Brush" Color="{DynamicResource Color-100}" />
+        <SolidColorBrush x:Key="Primary-200-Brush" Color="{DynamicResource Color-200}" />
+        <SolidColorBrush x:Key="Primary-300-Brush" Color="{DynamicResource Color-300}" />
+        <SolidColorBrush x:Key="Primary-400-Brush" Color="{DynamicResource Color-400}" />
+        <SolidColorBrush x:Key="Primary-500-Brush" Color="{DynamicResource Color-500}" />
+        <SolidColorBrush x:Key="Primary-600-Brush" Color="{DynamicResource Color-600}" />
+        <SolidColorBrush x:Key="Primary-700-Brush" Color="{DynamicResource Color-700}" />
+        <SolidColorBrush x:Key="Primary-800-Brush" Color="{DynamicResource Color-800}" />
+        <SolidColorBrush x:Key="Primary-900-Brush" Color="{DynamicResource Color-900}" />
+
+        <!-- Primary Foreground Brushes -->
+        <SolidColorBrush x:Key="Primary-Foreground-100-Brush" Color="{DynamicResource Color-Foreground-100}" />
+        <SolidColorBrush x:Key="Primary-Foreground-200-Brush" Color="{DynamicResource Color-Foreground-200}" />
+        <SolidColorBrush x:Key="Primary-Foreground-300-Brush" Color="{DynamicResource Color-Foreground-300}" />
+        <SolidColorBrush x:Key="Primary-Foreground-400-Brush" Color="{DynamicResource Color-Foreground-400}" />
+        <SolidColorBrush x:Key="Primary-Foreground-500-Brush" Color="{DynamicResource Color-Foreground-500}" />
+        <SolidColorBrush x:Key="Primary-Foreground-600-Brush" Color="{DynamicResource Color-Foreground-600}" />
+        <SolidColorBrush x:Key="Primary-Foreground-700-Brush" Color="{DynamicResource Color-Foreground-700}" />
+        <SolidColorBrush x:Key="Primary-Foreground-800-Brush" Color="{DynamicResource Color-Foreground-800}" />
+        <SolidColorBrush x:Key="Primary-Foreground-900-Brush" Color="{DynamicResource Color-Foreground-900}" />
+
+    </base:WavesThemeColorSet.Resources>
+
+</base:WavesThemeColorSet>

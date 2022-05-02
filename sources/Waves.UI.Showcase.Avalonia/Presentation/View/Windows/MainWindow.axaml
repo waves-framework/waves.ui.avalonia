@@ -1,0 +1,11 @@
+<controls:WavesWindow xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:Waves.UI.Avalonia.Controls;assembly=Waves.UI.Avalonia"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Waves.UI.Showcase.Avalonia.Presentation.View.Windows.MainWindow"
+                      TransparencyLevelHint="AcrylicBlur"
+                      Background="Transparent"
+                      ExtendClientAreaToDecorationsHint="True"
+                      Title="Waves.UI.Showcase.Avalonia.App"/>

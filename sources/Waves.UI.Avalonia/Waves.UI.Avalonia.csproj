@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="../../build/props/avalonia.props" />
+
+    <PropertyGroup>
+        <Title>Waves.UI.Avalonia</Title>
+        <Authors>Egor Khindikaynen</Authors>
+        <Description>Waves.UI.Avalonia is UI-framework for developing simple cross-platform applications.</Description>
+        <Copyright>Copyright (c) 2020-2022 Egor Khindikaynen</Copyright>
+        <PackageProjectUrl>https://github.com/waves-framework/waves.ui.avalonia</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/waves-framework/waves.ui.avalonia</RepositoryUrl>
+        <PackageTags>waves ui avalonia framework</PackageTags>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="0.10.13" />
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.13" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="0.10.13" />
+        <PackageReference Include="Avalonia.Svg.Skia" Version="0.10.12" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.13" />
+        <PackageReference Include="ReactiveUI" Version="18.0.7" />
+        <PackageReference Include="ReactiveUI.Fody" Version="18.0.7" />
+        <PackageReference Include="Waves.UI" Version="2022.2.2" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Resources\Assets" />
+    </ItemGroup>
+    
+</Project>

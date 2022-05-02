@@ -1,0 +1,157 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Styles.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Opacity. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+
+    <Design.PreviewWith>
+
+        <Border Padding="20">
+
+          <StackPanel>
+
+              <TextBlock Text="HEADER 1"
+                         Margin="{DynamicResource DefaultIndent}" />
+
+              <TextBlock Classes="H1"
+                         Text="Lorem ipsum"
+                         Margin="{DynamicResource IndentH1}" />
+
+              <TextBlock Text="HEADER 2"
+                         Margin="{DynamicResource DefaultIndent}" />
+
+              <TextBlock Classes="H2"
+                         Text="Lorem ipsum"
+                         Margin="{DynamicResource IndentH1}" />
+
+          </StackPanel>
+
+        </Border>
+
+    </Design.PreviewWith>
+
+
+    <Style Selector="TextBlock.H1">
+
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+
+    </Style>
+
+    <Style Selector="TextBlock.H1.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+
+    </Style>
+
+    <Style Selector="TextBlock.H2">
+
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+
+    </Style>
+
+    <Style Selector="TextBlock.H2.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.H3">
+
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+
+        <Setter Property="Opacity" Value="0.9"/>
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+
+    </Style>
+
+    <Style Selector="TextBlock.H3.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Regular1">
+
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+        <Setter Property="Opacity" Value="1"/>
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Regular1.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+        
+    </Style>
+    
+    <Style Selector="TextBlock.Regular2">
+
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-500-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Regular2.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+        
+    </Style>
+    
+    <Style Selector="TextBlock.Hint1">
+
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+
+        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-700-Brush}" />
+
+    </Style>
+    
+    <Style Selector="TextBlock.Hint1.Accent">
+
+        <Setter Property="Foreground" Value="{DynamicResource Accent-Foreground-500-Brush}" />
+        
+    </Style>
+
+</Styles>

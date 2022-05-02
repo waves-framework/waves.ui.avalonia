@@ -1,0 +1,14 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup Condition="'$(ExcludeFromAnalyzers)'!='True'">
+    <AdditionalFiles Include="..\..\build\stylecop\stylecop.json" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\build\stylecop\waves.stylecop.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet
+       Condition="'$(Configuration)'=='Release' and '$(SkipCheckDocs)'!='True'"
+       >..\..\build\stylecop\waves.stylecop.withoutdocs.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+</Project>

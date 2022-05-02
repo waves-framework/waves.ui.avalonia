@@ -1,0 +1,161 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Styles.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Opacity. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+
+    <!-- Text. -->
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
+
+    <!-- Button style. -->
+    <Style Selector="Button.waves-default">
+
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource Primary-Foreground-100-Brush}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource Primary-Foreground-100-Brush}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Height"
+                Value="36" />
+        <Setter Property="IsTabStop"
+                Value="True" />
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="Opacity"
+                Value="1.0" />
+        <Setter Property="Padding"
+                Value="{StaticResource StandardThickness}" />
+        <Setter Property="CornerRadius"
+                Value="12" />
+
+        <Setter Property="Template">
+
+            <ControlTemplate>
+
+                <ContentPresenter x:Name="ContentPresenter"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Padding="{TemplateBinding Padding}"
+                                  RecognizesAccessKey="True"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+            </ControlTemplate>
+
+        </Setter>
+
+    </Style>
+
+    <!-- :pointerover #ContentPresenter-->
+    <Style Selector="Button.waves-default:pointerover /template/ ContentPresenter#ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Primary-300-Brush}" />
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-200-Brush}" />
+    </Style>
+
+    <!-- :pressed #ContentPresenter-->
+    <Style Selector="Button.waves-default:pressed /template/ ContentPresenter#ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Primary-400-Brush}" />
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+    </Style>
+
+    <!-- :disabled #ContentPresenter-->
+    <Style Selector="Button.waves-default:disabled /template/ ContentPresenter#ContentPresenter">
+        <Setter Property="Opacity" Value="{DynamicResource Opacity-800}" />
+        <Setter Property="Background" Value="{DynamicResource Primary-500-Brush}" />
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+    </Style>
+    
+    <!-- Accent button style. -->
+    <Style Selector="Button.waves-accent">
+
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Background"
+                Value="{DynamicResource Accent-500-Brush}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource Accent-500-Brush}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource Accent-100-Brush}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Height"
+                Value="36" />
+        <Setter Property="IsTabStop"
+                Value="True" />
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="Opacity"
+                Value="1.0" />
+        <Setter Property="Padding"
+                Value="{StaticResource StandardThickness}" />
+        <Setter Property="CornerRadius"
+                Value="12" />
+
+        <Setter Property="Template">
+
+            <ControlTemplate>
+
+                <ContentPresenter x:Name="ContentPresenter"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Padding="{TemplateBinding Padding}"
+                                  RecognizesAccessKey="True"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+            </ControlTemplate>
+
+        </Setter>
+
+    </Style>
+    
+    <!-- :pointerover #ContentPresenter-->
+    <Style Selector="Button.waves-accent:pointerover /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Accent-700-Brush}" />
+    </Style>
+
+    <!-- :pressed #ContentPresenter-->
+    <Style Selector="Button.waves-accent:pressed /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource Accent-900-Brush}" />
+    </Style>
+
+    <!-- :disabled #ContentPresenter-->
+    <Style Selector="Button.waves-accent:disabled /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Opacity" Value="{DynamicResource Opacity-800}" />
+            <Setter Property="Background" Value="{DynamicResource Accent-500-Brush}" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Accent-900-Brush}" />
+    </Style>
+
+</Styles>
