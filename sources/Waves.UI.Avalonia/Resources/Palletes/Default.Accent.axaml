@@ -1,0 +1,27 @@
+﻿<base:WavesThemeColorSet
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:base="clr-namespace:Waves.UI.Avalonia.Base"
+    Name="Accent Default"
+    Id="96963E31-7903-4536-93B0-24ECF2A293A0"
+    Type="Accent">
+
+    <base:WavesThemeColorSet.Resources>
+
+        <!-- Accent Colors -->
+        <Color x:Key="Accent-Color-100">#FBFDFE</Color>
+        <Color x:Key="Accent-Color-300">#C3E4EE</Color>
+        <Color x:Key="Accent-Color-500">#52B2CF</Color>
+        <Color x:Key="Accent-Color-700">#1F5D70</Color>
+        <Color x:Key="Accent-Color-900">#0F2E38</Color>
+
+        <!-- Accent Brushes -->
+        <SolidColorBrush x:Key="Accent-100-Brush" Color="{DynamicResource Accent-Color-100}" />
+        <SolidColorBrush x:Key="Accent-300-Brush" Color="{DynamicResource Accent-Color-300}" />
+        <SolidColorBrush x:Key="Accent-500-Brush" Color="{DynamicResource Accent-Color-500}" />
+        <SolidColorBrush x:Key="Accent-700-Brush" Color="{DynamicResource Accent-Color-700}" />
+        <SolidColorBrush x:Key="Accent-900-Brush" Color="{DynamicResource Accent-Color-900}" />
+
+    </base:WavesThemeColorSet.Resources>
+
+</base:WavesThemeColorSet>

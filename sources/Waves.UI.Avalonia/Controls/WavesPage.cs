@@ -1,145 +1,106 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
-using Waves.Core.Base.Enums;
-using Waves.Core.Base.Interfaces;
+using Avalonia.Styling;
+using Microsoft.Extensions.Logging;
+using ReactiveUI;
 using Waves.UI.Avalonia.Extensions;
-using Waves.UI.Plugins.Services.Interfaces;
-using Waves.UI.Presentation.Interfaces;
+using Waves.UI.Presentation.Interfaces.View.Controls;
+using Waves.UI.Services.Interfaces;
 
-namespace Waves.UI.Avalonia.Controls
+namespace Waves.UI.Avalonia.Controls;
+
+/// <summary>
+/// Waves Avalonia page.
+/// </summary>
+public class WavesPage :
+    UserControl,
+    IWavesPage<object>,
+    IStyleable
 {
+    private readonly ILogger<WavesPage> _logger;
+    private readonly IWavesNavigationService _navigationService;
+
+    private List<IDisposable> _disposables;
+    private Dictionary<string, WavesContentControl> _regionContentControls;
+
     /// <summary>
-    /// Page abstraction.
+    ///     Creates new instance of <see cref="WavesPage" />.
+    ///     Don't remove this constructor, because it needed for Avalonia.
     /// </summary>
-    public abstract class WavesPage : UserControl, IWavesPage
+    protected WavesPage()
     {
-        private Dictionary<string, WavesContentControl> _regionContentControls;
+    }
 
-        /// <summary>
-        /// Creates new instance of <see cref="WavesUserControl"/>.
-        /// </summary>
-        protected WavesPage()
+    /// <summary>
+    ///     Creates new instance of <see cref="WavesPage" />.
+    /// </summary>
+    /// <param name="logger">Logger.</param>
+    /// <param name="navigationService">Instance of navigation service.</param>
+    protected WavesPage(
+        ILogger<WavesPage> logger,
+        IWavesNavigationService navigationService)
+    {
+        _logger = logger;
+        _navigationService = navigationService;
+    }
+
+    /// <inheritdoc />
+    Type IStyleable.StyleKey => typeof(UserControl);
+
+    /// <inheritdoc />
+    public Task InitializeAsync()
+    {
+        try
         {
+            _disposables = new List<IDisposable>();
+            _regionContentControls = this.FindRegions(_navigationService, _logger);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "An error occured while initializing window");
         }
 
-        /// <summary>
-        /// Creates new instance of <see cref="WavesUserControl"/>.
-        /// </summary>
-        /// <param name="core">Core.</param>
-        /// <param name="navigationService">Instance of navigation service.</param>
-        protected WavesPage(IWavesCore core, IWavesNavigationService navigationService)
+        return Task.CompletedTask;
+    }
+
+    /// <inheritdoc />
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    ///     Disposes object.
+    /// </summary>
+    /// <param name="disposing">
+    ///     Set
+    ///     <value>true</value>
+    ///     if you need to release managed and unmanaged resources. Set
+    ///     <value>false</value>
+    ///     if need to release only unmanaged resources.
+    /// </param>
+    protected virtual async void Dispose(
+        bool disposing)
+    {
+        if (!disposing)
         {
-            NavigationService = navigationService;
-            Core = core;
+            return;
         }
 
-        /// <inheritdoc />
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        /// <summary>
-        /// Gets navigation service.
-        /// </summary>
-        protected IWavesNavigationService NavigationService { get; }
-
-        /// <summary>
-        /// Gets core.
-        /// </summary>
-        protected IWavesCore Core { get; }
-        
-        /// <inheritdoc />
-        public override async void EndInit()
+        foreach (var disposable in _disposables)
         {
-            await InitializeAsync();
-            base.EndInit();
+            disposable.Dispose();
         }
 
-        /// <inheritdoc />
-        public virtual void RaisePropertyChanging(PropertyChangingEventArgs args)
+        foreach (var control in _regionContentControls)
         {
-            OnPropertyChanging(args);
-        }
-
-        /// <inheritdoc />
-        public void RaisePropertyChanged(
-            PropertyChangedEventArgs args)
-        {
-        }
-
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <inheritdoc />
-        public virtual Task InitializeAsync()
-        {
-            return Task.CompletedTask;
-        }
-        
-        /// <summary>
-        ///     Initializes components.
-        /// </summary>
-        protected void InitializeBaseControls()
-        {
-            _regionContentControls = this.FindRegions(NavigationService);
-            var controls = this.InitializeControl(Core);
-        }
-
-        /// <inheritdoc />
-        protected override async void OnInitialized()
-        {
-            base.OnInitialized();
-            await InitializeAsync();
-        }
-
-        /// <summary>
-        ///     Disposes object.
-        /// </summary>
-        /// <param name="disposing">Set
-        ///     <value>true</value>
-        ///     if you need to release managed and unmanaged resources. Set
-        ///     <value>false</value>
-        ///     if need to release only unmanaged resources.
-        /// </param>
-        protected virtual async void Dispose(bool disposing)
-        {
-            if (!disposing)
-            {
-                return;
-            }
-
-            if (_regionContentControls == null)
-            {
-                return;
-            }
-
-            foreach (var control in _regionContentControls)
-            {
-                NavigationService.UnregisterContentControl(control.Key);
-                
-                await Core.WriteLogAsync(
-                    "View",
-                    $"Control {control.Value} from region {control.Key} unregistered",
-                    this,
-                    WavesMessageType.Information);
-            }
-        }
-
-        /// <summary>
-        /// Callback when property changing.
-        /// </summary>
-        /// <param name="e">Arguments.</param>
-        protected virtual void OnPropertyChanging(PropertyChangingEventArgs e)
-        {
-            PropertyChanging?.Invoke(this, e);
+            _navigationService.UnregisterContentControl(control.Key);
+            _logger.LogDebug($"Control {control.Value} from region {control.Key} unregistered");
         }
     }
 }

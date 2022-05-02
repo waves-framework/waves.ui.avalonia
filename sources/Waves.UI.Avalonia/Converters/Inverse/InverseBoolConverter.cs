@@ -9,9 +9,9 @@ namespace Waves.UI.Avalonia.Converters.Inverse
     {
         /// <inheritdoc />
         public object Convert(
-            object value,
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
             return value != null && !(bool)value;
@@ -19,9 +19,9 @@ namespace Waves.UI.Avalonia.Converters.Inverse
 
         /// <inheritdoc />
         public object ConvertBack(
-            object value,
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
             return value != null && !(bool)value;

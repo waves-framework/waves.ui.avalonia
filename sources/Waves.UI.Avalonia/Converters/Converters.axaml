@@ -6,7 +6,6 @@
     <!-- Main Converters -->
     <base:ColorToSolidColorBrushConverter x:Key="WavesColorToSolidColorBrushConverter" />
     <base:ColorToTransparentColorConverter x:Key="WavesColorToTransparentColorConverter" />
-    <base:WavesObjectToStringConverter x:Key="WavesObjectToStringConverter" />
     <base:NullToBoolConverter x:Key="NullToBooleanConverter" />
     <base:ProgressValueToDegreeConverter x:Key="ProgressValueToDegreeConverter" />
     <base:SolidColorBrushToHexConverter x:Key="SolidColorBrushToHexConverter" />

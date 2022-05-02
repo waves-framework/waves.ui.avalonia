@@ -10,13 +10,13 @@ namespace Waves.UI.Avalonia.Converters.Base
     public class SolidColorBrushToHexConverter : IValueConverter
     {
         /// <inheritdoc />
-        public object Convert(
-            object value,
+        public object? Convert(
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
-            if (!(value is SolidColorBrush brush))
+            if (value is not SolidColorBrush brush)
             {
                 return null;
             }
@@ -32,10 +32,10 @@ namespace Waves.UI.Avalonia.Converters.Base
         }
 
         /// <inheritdoc />
-        public object ConvertBack(
-            object value,
+        public object? ConvertBack(
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
             return null;

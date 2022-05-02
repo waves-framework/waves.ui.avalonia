@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml;
 using System.Xml.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
 using Avalonia.Styling;
 using Avalonia.Svg.Skia;
-using SkiaSharp;
-using Svg.Skia;
-using Waves.UI.Avalonia.Controls.Enums;
 using Waves.UI.Avalonia.Extensions;
+using Waves.UI.Base.Enums;
 
 namespace Waves.UI.Avalonia.Controls
 {
@@ -23,7 +19,7 @@ namespace Waves.UI.Avalonia.Controls
     /// Waves vector image.
     /// </summary>
     [DefaultProperty(nameof(Source))]
-    public class WavesVectorImage : ContentControl, IStyleable
+    public sealed class WavesVectorImage : ContentControl, IStyleable
     {
         /// <summary>
         /// Resource regex pattern.
@@ -53,64 +49,38 @@ namespace Waves.UI.Avalonia.Controls
         /// <summary>
         /// Defines <see cref="Source"/> property.
         /// </summary>
-        public static readonly StyledProperty<object> SourceProperty = AvaloniaProperty.Register<WavesVectorImage,object>(
+        public static readonly StyledProperty<object> SourceProperty = AvaloniaProperty.Register<WavesVectorImage, object>(
             nameof(Source));
 
         /// <summary>
         /// Defines <see cref="SourceDirectory"/> property.
         /// </summary>
-        public static readonly StyledProperty<string> SourceDirectoryProperty = AvaloniaProperty.Register<WavesVectorImage,string>(
+        public static readonly StyledProperty<string> SourceDirectoryProperty = AvaloniaProperty.Register<WavesVectorImage, string>(
             nameof(SourceDirectory));
 
         /// <summary>
         /// Defines <see cref="SourceAssembly"/> property.
         /// </summary>
-        public static readonly StyledProperty<string> SourceAssemblyProperty = AvaloniaProperty.Register<WavesVectorImage,string>(
+        public static readonly StyledProperty<string> SourceAssemblyProperty = AvaloniaProperty.Register<WavesVectorImage, string>(
             nameof(SourceAssembly),
             string.Empty);
 
         /// <summary>
         /// Defines <see cref="SourceType"/> property.
         /// </summary>
-        public static readonly StyledProperty<WavesVectorImageSourceType> SourceTypeProperty = AvaloniaProperty.Register<WavesVectorImage,WavesVectorImageSourceType>(
+        public static readonly StyledProperty<WavesVectorImageSourceType> SourceTypeProperty = AvaloniaProperty.Register<WavesVectorImage, WavesVectorImageSourceType>(
             nameof(SourceType));
-
-        /// <inheritdoc />
-        Type IStyleable.StyleKey => typeof(ContentControl);
-
-        private readonly List<IDisposable> _disposables;
 
         /// <summary>
         /// Creates new instance of <see cref="WavesVectorImage"/>.
         /// </summary>
         public WavesVectorImage()
         {
-            _disposables = new List<IDisposable>();
-
             AffectsRender<WavesVectorImage>(ForegroundProperty);
             AffectsRender<WavesVectorImage>(SourceProperty);
             AffectsRender<WavesVectorImage>(SourceDirectoryProperty);
             AffectsRender<WavesVectorImage>(SourceAssemblyProperty);
             AffectsRender<WavesVectorImage>(SourceTypeProperty);
-        }
-
-        /// <summary>
-        /// Finalize instance of <see cref="WavesVectorImage"/>.
-        /// </summary>
-        ~WavesVectorImage()
-        {
-            // TODO: fix it.
-            foreach (var disposable in _disposables)
-            {
-                disposable.Dispose();
-            }
-        }
-
-        /// <inheritdoc />
-        public override void Render(DrawingContext context)
-        {
-            Refresh();
-            base.Render(context);
         }
 
         /// <summary>
@@ -151,6 +121,16 @@ namespace Waves.UI.Avalonia.Controls
         {
             get => GetValue(SourceTypeProperty);
             set => SetValue(SourceTypeProperty, value);
+        }
+
+        /// <inheritdoc />
+        Type IStyleable.StyleKey => typeof(ContentControl);
+
+        /// <inheritdoc />
+        public override void Render(DrawingContext context)
+        {
+            Refresh();
+            base.Render(context);
         }
 
         /// <summary>
@@ -370,12 +350,20 @@ namespace Waves.UI.Avalonia.Controls
         /// <param name="resourceName">Resource name.</param>
         private void LoadFromResources(string resourceName)
         {
-            var exists = Application.Current.TryFindResource(resourceName, out var path);
+            object? path = null;
+
+            var exists = Application.Current != null && Application.Current.TryFindResource(resourceName, out path);
+
             if (!exists)
             {
                 return;
             }
-            
+
+            if (path == null)
+            {
+                return;
+            }
+
             var viewBox = new Viewbox();
             var pathView = new global::Avalonia.Controls.Shapes.Path { Data = (StreamGeometry)path, Fill = Foreground };
             viewBox.Child = pathView;
@@ -420,14 +408,26 @@ namespace Waves.UI.Avalonia.Controls
                     var document = XDocument.Parse(content);
                     var count = document.Descendants().Count(p => p.Name.LocalName == "path");
 
+                    var fillAttribute = document.Root?.Attributes().FirstOrDefault(x => x.Name.LocalName.Equals("fill"));
+                    if (fillAttribute != null)
+                    {
+                        if (Foreground is SolidColorBrush brush)
+                        {
+                            fillAttribute.Value = brush.Color.ToHexString();
+                        }
+                    }
+
                     if (count == 1)
                     {
                         var element = document.Descendants().First(p => p.Name.LocalName == "path");
-                        var attribute = element.Attributes().First(x => x.Name.LocalName.Equals("fill"));
+                        var attribute = element.Attributes().FirstOrDefault(x => x.Name.LocalName.Equals("fill"));
 
                         if (Foreground is SolidColorBrush brush)
                         {
-                            attribute.Value = brush.Color.ToHexString();
+                            if (attribute != null)
+                            {
+                                attribute.Value = brush.Color.ToHexString();
+                            }
                         }
 
                         content = document.ToString();
@@ -446,19 +446,19 @@ namespace Waves.UI.Avalonia.Controls
             {
                 return;
             }
-            
+
             var source = new SvgSource();
             var picture = source.FromSvg(content);
             if (picture is null)
             {
                 return;
             }
-            
+
             var image = new Image
             {
                 Source = new SvgImage()
                 {
-                    Source = source
+                    Source = source,
                 },
                 Height = Height,
                 Width = Width,
@@ -475,7 +475,7 @@ namespace Waves.UI.Avalonia.Controls
         {
             var assemblyName = SourceAssembly;
             var directory = SourceDirectory;
-            LoadFromFile(System.IO.Path.Combine(directory, $"{fileName}.svg"), assemblyName);
+            LoadFromFile(Path.Combine(directory, $"{fileName}.svg"), assemblyName);
         }
 
         /// <summary>
@@ -500,7 +500,7 @@ namespace Waves.UI.Avalonia.Controls
         /// Loads vector from resources.
         /// </summary>
         /// <param name="path">Vector path.</param>
-        private void Load(WavesVectorImagePath path)
+        private void Load(WavesVectorImagePath? path)
         {
             if (path == null)
             {
@@ -529,7 +529,7 @@ namespace Waves.UI.Avalonia.Controls
         /// Loads vector from resources.
         /// </summary>
         /// <param name="collection">Vector path collection.</param>
-        private void Load(WavesVectorImagePathCollection collection)
+        private void Load(WavesVectorImagePathCollection? collection)
         {
             if (collection == null)
             {
@@ -558,16 +558,6 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Height = Height;
             viewBox.Width = Width;
             Content = viewBox;
-        }
-
-        /// <summary>
-        /// Refresh requested callback.
-        /// </summary>
-        /// <param name="objSender"></param>
-        /// <param name="getValueOrDefault"></param>
-        private void OnRefreshRequestedCallback(IAvaloniaObject objSender, StyledElement getValueOrDefault)
-        {
-            Refresh();
         }
     }
 }

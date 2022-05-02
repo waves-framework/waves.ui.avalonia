@@ -1,8 +1,0 @@
-﻿<colors:ColorSet xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-          xmlns:colors="clr-namespace:Waves.UI.Avalonia.Colors"
-          Name="Rose Madder"
-          Id="57CBA7B1-15B2-48A7-BDF9-CB398DD3A068"
-          Type="Accent">
-    
-</colors:ColorSet>

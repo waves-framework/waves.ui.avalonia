@@ -10,20 +10,20 @@ namespace Waves.UI.Avalonia.Converters.Base
     {
         /// <inheritdoc />
         public object Convert(
-            object value,
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
-            var s = (string)value;
+            var s = (string)value!;
             return string.IsNullOrEmpty(s);
         }
 
         /// <inheritdoc />
-        public object ConvertBack(
-            object value,
+        public object? ConvertBack(
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
             return null;

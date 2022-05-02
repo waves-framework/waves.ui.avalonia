@@ -13,13 +13,13 @@ namespace Waves.UI.Avalonia.Controls
         /// <summary>
         ///     Defines <see cref="Value" /> property.
         /// </summary>
-        public static readonly StyledProperty<string> ValueProperty = AvaloniaProperty.Register<WavesVectorImagePath,string>(
+        public static readonly StyledProperty<string> ValueProperty = AvaloniaProperty.Register<WavesVectorImagePath, string>(
             nameof(Value));
 
         /// <summary>
         ///     Defines <see cref="Fill" /> property.
         /// </summary>
-        public static readonly StyledProperty<Color?> FillProperty = AvaloniaProperty.Register<WavesVectorImagePath,Color?>(
+        public static readonly StyledProperty<Color?> FillProperty = AvaloniaProperty.Register<WavesVectorImagePath, Color?>(
             nameof(Fill));
 
         /// <summary>

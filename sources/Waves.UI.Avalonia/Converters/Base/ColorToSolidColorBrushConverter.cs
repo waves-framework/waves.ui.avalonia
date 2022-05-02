@@ -13,9 +13,9 @@ namespace Waves.UI.Avalonia.Converters.Base
     {
         /// <inheritdoc />
         public object Convert(
-            object value,
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
             if (value == null)
@@ -28,10 +28,10 @@ namespace Waves.UI.Avalonia.Converters.Base
         }
 
         /// <inheritdoc />
-        public object ConvertBack(
-            object value,
+        public object? ConvertBack(
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
             return null;

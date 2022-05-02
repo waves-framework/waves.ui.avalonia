@@ -11,21 +11,21 @@ namespace Waves.UI.Avalonia.Converters.Base
     public class SolidColorBrushToSystemColorConverter : IValueConverter
     {
         /// <inheritdoc />
-        public object Convert(
-            object value,
+        public object? Convert(
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
-            var brush = (SolidColorBrush)value;
+            var brush = (SolidColorBrush)value!;
             return brush?.Color;
         }
 
         /// <inheritdoc />
-        public object ConvertBack(
-            object value,
+        public object? ConvertBack(
+            object? value,
             Type targetType,
-            object parameter,
+            object? parameter,
             CultureInfo culture)
         {
             if (value == null)

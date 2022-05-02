@@ -1,0 +1,41 @@
+﻿<base:WavesThemeColorSet
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:base="clr-namespace:Waves.UI.Avalonia.Base"
+    Name="Accent Default"
+    Id="A349DF12-5456-45DE-93B5-479645B0FC80"
+    Type="Miscellaneous">
+
+    <base:WavesThemeColorSet.Resources>
+
+        <!-- High Attention Colors -->
+        <Color x:Key="High-Attention-Color-100">#FFFBFA</Color>
+        <Color x:Key="High-Attention-Color-300">#FCE4DE</Color>
+        <Color x:Key="High-Attention-Color-500">#EE6C4D</Color>
+        <Color x:Key="High-Attention-Color-700">#90270E</Color>
+        <Color x:Key="High-Attention-Color-900">#461307</Color>
+        
+        <!-- Success Colors -->
+        <Color x:Key="Success-Color-100">#E2EEE4</Color>
+        <Color x:Key="Success-Color-300">#B8D6BC</Color>
+        <Color x:Key="Success-Color-500">#63A46C</Color>
+        <Color x:Key="Success-Color-700">#315436</Color>
+        <Color x:Key="Success-Color-900">#182A1B</Color>
+
+        <!-- High Attention Brushes -->
+        <SolidColorBrush x:Key="High-Attention-100-Brush" Color="{DynamicResource High-Attention-Color-100}" />
+        <SolidColorBrush x:Key="High-Attention-300-Brush" Color="{DynamicResource High-Attention-Color-300}" />
+        <SolidColorBrush x:Key="High-Attention-500-Brush" Color="{DynamicResource High-Attention-Color-500}" />
+        <SolidColorBrush x:Key="High-Attention-700-Brush" Color="{DynamicResource High-Attention-Color-700}" />
+        <SolidColorBrush x:Key="High-Attention-900-Brush" Color="{DynamicResource High-Attention-Color-900}" />
+        
+        <!-- Success Brushes -->
+        <SolidColorBrush x:Key="Success-100-Brush" Color="{DynamicResource Success-Color-100}" />
+        <SolidColorBrush x:Key="Success-300-Brush" Color="{DynamicResource Success-Color-300}" />
+        <SolidColorBrush x:Key="Success-500-Brush" Color="{DynamicResource Success-Color-500}" />
+        <SolidColorBrush x:Key="Success-700-Brush" Color="{DynamicResource Success-Color-700}" />
+        <SolidColorBrush x:Key="Success-900-Brush" Color="{DynamicResource Success-Color-900}" />
+
+    </base:WavesThemeColorSet.Resources>
+
+</base:WavesThemeColorSet>

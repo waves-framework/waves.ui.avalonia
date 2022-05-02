@@ -1,112 +1,60 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Avalonia;
-using Avalonia.Controls;
-using Microsoft.VisualBasic;
-using Waves.Core.Base;
-using Waves.Core.Base.Enums;
-using Waves.Core.Base.Interfaces;
+using Avalonia.Themes.Fluent;
+using Microsoft.Extensions.Logging;
+using Waves.Core;
 using Waves.UI.Avalonia.Extensions;
-using Waves.UI.Plugins.Services.Interfaces;
-using Waves.UI.Presentation.Interfaces;
+using Waves.UI.Services.Interfaces;
 
-namespace Waves.UI.Avalonia
+namespace Waves.UI.Avalonia;
+
+/// <summary>
+/// Waves Avalonia application.
+/// </summary>
+public class WavesApplication : Application
 {
+    private ILogger<WavesApplication> _logger;
+
+    private bool _useDarkTheme = true;
+
     /// <summary>
-    /// Waves WPF Application.
+    /// Gets core.
     /// </summary>
-    public class WavesApplication : Application
+    protected WavesCore Core { get; private set; }
+
+    /// <summary>
+    /// Gets navigation service.
+    /// </summary>
+    protected IWavesNavigationService NavigationService { get; private set; }
+
+    /// <inheritdoc />
+    public override void Initialize()
     {
-        private IWavesNavigationService _navigationService;
-        private IWavesDialogService _dialogService;
-        private IWavesDispatcherService _dispatcherService;
+        base.Initialize();
 
-        /// <summary>
-        /// Gets core.
-        /// </summary>
-        public IWavesCore Core { get; private set; } = new Core.Core();
+        TaskScheduler.UnobservedTaskException += OnTaskSchedulerUnobservedTaskException;
 
-        /// <inheritdoc />
-        public override async void Initialize()
-        {
-            base.Initialize();
+        Core = new WavesCore();
+        Core.Start();
+        Core.BuildContainer();
 
-            try
-            {
-                TaskScheduler.UnobservedTaskException += OnTaskSchedulerUnobservedTaskException;
-                Core.MessageReceived += OnCoreMessageReceived;
+        Styles.Add(new FluentTheme(new Uri("avares://ControlCatalog/Styles")) { Mode = FluentThemeMode.Dark });
+        this.AddStyle(Constants.GenericDictionaryUri);
+        this.AddStyle(_useDarkTheme ? Constants.DefaultDarkColorsUri : Constants.DefaultLightColorsUri);
 
-                await Core.StartAsync();
-                await Core.BuildContainerAsync();
-                await InitializeServices();
-            }
-            catch (Exception e)
-            {
-                await Core.WriteLogAsync(e, Core, true);
-            }
-        }
+        _logger = Core.GetInstance<ILogger<WavesApplication>>();
+        NavigationService = Core.GetInstance<IWavesNavigationService>();
+    }
 
-        /// <inheritdoc />
-        public override async void OnFrameworkInitializationCompleted()
-        {
-            base.OnFrameworkInitializationCompleted();
-            await InitializeGenericDictionary();
-        }
-
-        /// <summary>
-        /// Initializes services.
-        /// </summary>
-        private async Task InitializeServices()
-        {
-            _navigationService = await Core.GetInstanceAsync<IWavesNavigationService>();
-            _dialogService = await Core.GetInstanceAsync<IWavesDialogService>();
-            _dispatcherService = await Core.GetInstanceAsync<IWavesDispatcherService>();
-
-            await Task.Delay(1000);
-        }
-
-        /// <summary>
-        /// Adds generic styles file to app dictionaries.
-        /// </summary>
-        private Task InitializeGenericDictionary()
-        {
-            this.AddStyle(Constants.GenericDictionaryUri);
-            return Task.CompletedTask;
-        }
-
-        /// <summary>
-        ///     Notifies when unhandled exception received.
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">Arguments.</param>
-        private async void OnTaskSchedulerUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
-        {
-            await Core.WriteLogAsync(e.Exception, new WavesMessageSource("Application"), true);
-            e.SetObserved();
-        }
-
-        /// <summary>
-        /// Callback when message from core received.
-        /// </summary>
-        /// <param name="sender">Sender.</param>
-        /// <param name="e">Message.</param>
-        private void OnCoreMessageReceived(object sender, IWavesMessageObject e)
-        {
-            //// TODO: make more flexible fatal error handling.
-            if (e.Type != WavesMessageType.Fatal && e.Type != WavesMessageType.Error)
-            {
-                return;
-            }
-
-            if (_dialogService == null && _dispatcherService == null)
-            {
-                return;
-            }
-
-            _dispatcherService.Invoke(() =>
-            {
-                _dialogService.ShowDialogAsync(e);
-            });
-        }
+    /// <summary>
+    ///     Notifies when unhandled exception received.
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="e">Arguments.</param>
+    private void OnTaskSchedulerUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        _logger.LogError(e.Exception, "Application error occured");
+        e.SetObserved();
     }
 }
