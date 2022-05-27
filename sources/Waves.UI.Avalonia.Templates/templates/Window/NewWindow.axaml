@@ -4,8 +4,10 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="clr-namespace:Waves.UI.Avalonia.Controls;assembly=Waves.UI.Avalonia"
                       mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Waves.UI.Avalonia.Templates.Window.Namespace.NewWindow"
+                      x:Class="Waves.UI.Avalonia.Templates.Namespace.NewWindow"
                       TransparencyLevelHint="AcrylicBlur"
                       ExtendClientAreaToDecorationsHint="True"
                       Background="{DynamicResource Primary-100-Brush}"
-                      Title="NewWindow"/>
+                      Width="1280"
+                      Height="800"
+                      Title="Trading App"/>

@@ -7,7 +7,7 @@ using Waves.UI.Avalonia.Controls;
 using Waves.UI.Base.Attributes;
 using Waves.UI.Services.Interfaces;
 
-namespace Waves.UI.Avalonia.Templates.Window.Namespace
+namespace Waves.UI.Avalonia.Templates.Namespace
 {
     /// <summary>
     /// Main window.
@@ -27,12 +27,12 @@ namespace Waves.UI.Avalonia.Templates.Window.Namespace
         }
 
         /// <summary>
-        /// Creates new instance of <see cref="MainWindow"/>.
+        /// Creates new instance of <see cref="NewWindow"/>.
         /// </summary>
         /// <param name="logger">Logger.</param>
         /// <param name="navigationService">Navigation service.</param>
-        public MainWindow(
-            ILogger<MainWindow> logger,
+        public NewWindow(
+            ILogger<NewWindow> logger,
             IWavesNavigationService navigationService)
             : base(logger, navigationService)
         {
