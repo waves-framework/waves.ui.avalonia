@@ -1,0 +1,26 @@
+{
+  "author": "Egor Khindikaynen",
+  "classifications": [ "ui", "xaml", "avalonia", "avaloniaui" ],
+  "description": "Waves UI Avalonia Window",
+  "name": "Waves UI Avalonia Window",
+  "identity": "Waves.UI.Avalonia.Window",
+  "groupidentity": "Waves.UI.Avalonia.Window",
+  "shortName": "waves.ui.avalonia.window",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "NewWindow",
+  "primaryOutputs": [
+    { "path": "NewWindow.axaml.cs" },
+    { "path": "NewWindow.axaml" }
+  ],
+  "defaultName": "Waves UI Avalonia Window",
+  "symbols": {
+    "namespace": {
+      "description": "Namespace for the generated code",
+      "replaces": "Waves.UI.Avalonia.Templates.Window.Namespace",
+      "type": "parameter"
+    }
+  }
+}

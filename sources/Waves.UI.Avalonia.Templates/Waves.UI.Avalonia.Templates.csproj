@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="../../build/props/avalonia.templates.props" />
+
+    <PropertyGroup>
+        <PackageType>Template</PackageType>
+        <PackageId>Waves.UI.Avalonia.Templates</PackageId>
+        <Title>Waves.UI.Avalonia.Templates.</Title>
+        <Authors>Egor Khindikaynen</Authors>
+        <Description>Waves.UI.Avalonia is UI-framework for developing simple cross-platform applications.</Description>
+        <Copyright>Copyright (c) 2020-2022 Egor Khindikaynen</Copyright>
+        <PackageProjectUrl>https://github.com/waves-framework/waves.ui.avalonia</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/waves-framework/waves.ui.avalonia</RepositoryUrl>
+        <PackageTags>waves ui avalonia framework templates</PackageTags>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>content</ContentTargetFolders>
+        <NoDefaultExcludes>true</NoDefaultExcludes>
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+        <Compile Remove="**\*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Waves.UI.Avalonia\Waves.UI.Avalonia.csproj" />
+    </ItemGroup>
+
+</Project>
