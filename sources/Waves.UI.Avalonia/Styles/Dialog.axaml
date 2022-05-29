@@ -22,19 +22,178 @@
 
     <Style Selector="controls|WavesDialog">
 
-        <Setter Property="FontSize" Value="20" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Background" Value="Red"/>
-        <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
-        
+        <!-- Default bindings -->
+        <Setter Property="IsDoneButtonVisible" Value="{Binding IsDoneAvailable, Mode=OneWay}" />
+        <Setter Property="DoneCommand" Value="{Binding DoneCommand}" />
+        <Setter Property="IsCancelButtonVisible" Value="{Binding IsCancelAvailable, Mode=OneWay}" />
+        <Setter Property="CancelCommand" Value="{Binding CancelCommand}" />
+        <Setter Property="Tools" Value="{Binding Tools}" />
+        <!-- Default properties -->
+        <Setter Property="DoneButtonCaption" Value="Done" />
+        <Setter Property="CancelButtonCaption" Value="Cancel" />
+        <Setter Property="Background" Value="{DynamicResource Primary-300-Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Primary-700-Brush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="MinHeight" Value="240" />
+        <Setter Property="MinWidth" Value="320" />
+
         <Setter Property="Template">
-            
-            <ControlTemplate>
-                
-                
-                
+
+            <ControlTemplate TargetType="{x:Type controls:WavesDialog}">
+
+                <Grid>
+
+                    <Grid>
+
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{DynamicResource StandardCornerRadius}">
+
+                            <!-- <Border.Effect> -->
+                            <!-- -->
+                            <!--     <DropShadowEffect Opacity="0.5" -->
+                            <!--                       BlurRadius="12" -->
+                            <!--                       ShadowDepth="2" -->
+                            <!--                       Direction="-75" -->
+                            <!--                       Color="{DynamicResource Color-300}" /> -->
+                            <!-- -->
+                            <!-- </Border.Effect> -->
+
+                            <!-- Dialog grid. -->
+                            <Grid VerticalAlignment="Stretch"
+                                  HorizontalAlignment="Stretch"
+                                  ClipToBounds="True">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Title bar grid. -->
+                                <Grid Grid.Row="0"
+                                      Margin="0,0,0,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+
+                                        <TextBlock HorizontalAlignment="Left"
+                                                   Margin="{DynamicResource BigThickness}"
+                                                   Opacity="1"
+                                                   Classes="H2"
+                                                   x:Name="TitleTextBlock"
+                                                   Text="{TemplateBinding Title}" />
+
+                                    </Grid>
+
+                                    <!-- Window buttons grid. -->
+                                    <Grid Grid.Column="1">
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Right"
+                                                    Margin="0,0,0,0">
+
+                                            <controls:WavesButton x:Name="CloseButton"
+                                                                  Command="{TemplateBinding CancelCommand}"
+                                                                  Background="Transparent"
+                                                                  BorderBrush="Transparent"
+                                                                  BorderThickness="0"
+                                                                  Height="40"
+                                                                  Width="40"
+                                                                  Margin="0,0,0,0"
+                                                                  IsTabStop="False">
+
+                                                <Viewbox Height="16" Width="16" Stretch="Uniform" Margin="-2,-2,0,0">
+
+                                                    <Path Fill="{DynamicResource Primary-Foreground-100-Brush}"
+                                                          Data="M 5.707031 4.292969 L 4.292969 5.707031 L 10.585938 12 L 4.292969 18.292969 L 5.707031 19.707031 L 12 13.414063 L 18.292969 19.707031 L 19.707031 18.292969 L 13.414063 12 L 19.707031 5.707031 L 18.292969 4.292969 L 12 10.585938 Z" />
+
+                                                </Viewbox>
+
+                                            </controls:WavesButton>
+
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                </Grid>
+
+                                <!-- Dialog window content grid. -->
+                                <Grid Grid.Row="1" Margin="{DynamicResource BigThickness}">
+
+                                    <ContentPresenter x:Name="ContentPresenter"
+                                                      Content="{TemplateBinding Content}" />
+
+                                </Grid>
+
+                                <!-- Buttons grid -->
+                                <Grid Grid.Row="2"
+                                      Margin="{StaticResource BigThickness}">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="36" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0" MaxHeight="48">
+
+                                        <ItemsControl x:Name="ToolsItemsControl"
+                                                      Items="{TemplateBinding Tools}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <UniformGrid Rows="1" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <!-- <ItemsControl.Resources> -->
+                                            <!--     <ResourceDictionary Source="pack://application:,,,/Waves.UI.Avalonia;component/Templates/DialogActions.xaml" /> -->
+                                            <!-- </ItemsControl.Resources> -->
+                                        </ItemsControl>
+
+                                    </Grid>
+
+                                    <Grid Grid.Column="2">
+
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+
+                                            <controls:WavesButton Content="{TemplateBinding CancelButtonCaption}"
+                                                                  x:Name="CancelButton"
+                                                                  IsVisible="{TemplateBinding IsCancelButtonVisible}"
+                                                                  Command="{TemplateBinding CancelCommand}"
+                                                                  MinWidth="60" />
+
+                                            <controls:WavesButton Content="{TemplateBinding DoneButtonCaption}"
+                                                                  IsAccent="True"
+                                                                  x:Name="DoneButton"
+                                                                  Margin="12,0,0,0"
+                                                                  IsVisible="{TemplateBinding IsDoneButtonVisible}"
+                                                                  Command="{TemplateBinding DoneCommand}"
+                                                                  MinWidth="60" />
+
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+
             </ControlTemplate>
-            
+
         </Setter>
 
     </Style>

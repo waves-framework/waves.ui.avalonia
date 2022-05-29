@@ -1,0 +1,60 @@
+﻿<Style xmlns="https://github.com/avaloniaui"
+       xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia"
+       Selector="controls|WavesWindow">
+    
+    <Style.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Converters. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" />
+                
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Style.Resources>
+    
+    <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}"/>  
+    <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+    <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}"/>  
+    <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+    <Setter Property="Template">
+        <ControlTemplate>
+            <Panel>
+                <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                <Panel Background="Transparent" Margin="{TemplateBinding WindowDecorationMargin}" />
+                <VisualLayerManager>
+                    <VisualLayerManager.ChromeOverlayLayer>
+                        <TitleBar />
+                    </VisualLayerManager.ChromeOverlayLayer>
+                    <Grid>
+                        <ContentPresenter Name="PART_ContentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        
+                        <Grid IsVisible="{TemplateBinding FrontContent, Converter={StaticResource InverseNullToBoolConverter}}">
+                            
+                            <Canvas Background="{DynamicResource Primary-100-Brush}"
+                                    Opacity="{DynamicResource Opacity-200}" 
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"/>
+                            
+                            <ContentPresenter Name="PART_FrontContentPresenter"
+                                              Content="{TemplateBinding FrontContent}"/>
+                            
+                        </Grid>
+                        
+                    </Grid>
+                </VisualLayerManager>
+            </Panel>
+        </ControlTemplate>
+    </Setter>
+</Style>

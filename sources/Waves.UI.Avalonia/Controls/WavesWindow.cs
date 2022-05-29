@@ -97,7 +97,7 @@ public class WavesWindow :
     }
 
     /// <inheritdoc />
-    Type IStyleable.StyleKey => typeof(Window);
+    Type IStyleable.StyleKey => typeof(WavesWindow);
 
     /// <summary>
     /// Gets logger.

@@ -28,5 +28,6 @@
     <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Button.axaml" />
     <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Dialog.axaml" />
     <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/TextBox.axaml" />
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Window.axaml" />
 
 </Styles>

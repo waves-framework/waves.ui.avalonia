@@ -28,6 +28,7 @@ public class WavesNavigationService :
     WavesNavigationServiceBase<object>
 {
     private readonly Dictionary<string, ContentControl> _contentControls;
+    private List<IWavesDialogViewModel> _dialogSessions;
 
     /// <summary>
     /// Creates new instance of <see cref="WavesNavigationService"/>.
@@ -42,6 +43,7 @@ public class WavesNavigationService :
         : base(core, configuration, logger)
     {
         _contentControls = new Dictionary<string, ContentControl>();
+        _dialogSessions = new List<IWavesDialogViewModel>();
     }
 
     /// <inheritdoc />
@@ -164,9 +166,36 @@ public class WavesNavigationService :
     }
 
     /// <inheritdoc />
-    protected override Task InitializeDialogAsync(IWavesDialog<object> view, IWavesDialogViewModel viewModel, bool addToHistory = true)
+    protected override async Task InitializeDialogAsync(IWavesDialog<object> view, IWavesDialogViewModel viewModel, bool addToHistory = true)
     {
-        throw new System.NotImplementedException();
+        var region = await InitializeComponents(view, viewModel);
+
+        void Action()
+        {
+            AddToHistoryStack(region, viewModel, addToHistory);
+            _dialogSessions.Add(viewModel);
+            NotifyDialogEvents();
+            var contentControl = _contentControls[region];
+            if (contentControl is WavesWindow window)
+            {
+                UnregisterView(contentControl);
+                window.FrontContent = view;
+                RegisterView(contentControl);
+            }
+            else
+            {
+                // TODO: what if another content control?
+            }
+        }
+
+        if (!_contentControls.ContainsKey(region))
+        {
+            PendingActions.Add(region, Action);
+        }
+        else
+        {
+            await Dispatcher.UIThread.InvokeAsync(Action);
+        }
     }
 
     /// <summary>
