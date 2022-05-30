@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -11,6 +12,8 @@ using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Enums;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Base.EventArgs;
+using Waves.UI.Dialogs;
+using Waves.UI.Dialogs.Enums;
 using Waves.UI.Dialogs.Interfaces;
 using Waves.UI.Presentation.Interfaces.View;
 using Waves.UI.Presentation.Interfaces.View.Controls;
@@ -44,6 +47,41 @@ public class WavesNavigationService :
     {
         _contentControls = new Dictionary<string, ContentControl>();
         _dialogSessions = new List<IWavesDialogViewModel>();
+    }
+
+    /// <inheritdoc />
+    public override async Task<WavesOpenFileDialogResult> ShowOpenFileDialogAsync(IEnumerable<WavesFileDialogFilter> filters)
+    {
+        var keyPair = OpenedWindows.FirstOrDefault();
+        if (keyPair.Value is WavesWindow window)
+        {
+            var dialog = new OpenFileDialog();
+
+            foreach (var filter in filters)
+            {
+                dialog.Filters.Add(new FileDialogFilter
+                {
+                    Name = filter.Name,
+                    Extensions = new List<string>(filter.Extensions),
+                });
+            }
+
+            var result = await dialog.ShowAsync(window);
+
+            return result.Length > 0
+                ? new WavesOpenFileDialogResult
+                {
+                    Result = WavesDialogResult.Ok,
+                    FileNames = new List<string>(result),
+                }
+                : new WavesOpenFileDialogResult
+                {
+                    Result = WavesDialogResult.Cancel,
+                    FileNames = new List<string>(result),
+                };
+        }
+
+        return null;
     }
 
     /// <inheritdoc />
@@ -89,6 +127,7 @@ public class WavesNavigationService :
         void Action()
         {
             view.Show();
+            OpenedWindows.Add(viewModel, view);
             RegisterView(contentControl);
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
         }
