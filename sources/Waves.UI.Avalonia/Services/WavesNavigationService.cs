@@ -187,9 +187,24 @@ public class WavesNavigationService :
         {
             AddToHistoryStack(region, viewModel, addToHistory);
             var contentControl = _contentControls[region];
-            UnregisterView(contentControl);
+            if (contentControl is WavesWindow window)
+            {
+                window.FrontContent = null;
+            }
+
+            if (contentControl.Content != null && contentControl.Content.GetType() == view.GetType())
+            {
+                return;
+            }
+
+            UnregisterView(contentControl.Content);
             _contentControls[region].Content = view;
-            RegisterView(contentControl);
+            RegisterView(contentControl.Content);
+
+            OnGoBackChanged(
+                new GoBackNavigationEventArgs(
+                    Histories[region].Count > 1,
+                    _contentControls[region]));
 
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
         }
