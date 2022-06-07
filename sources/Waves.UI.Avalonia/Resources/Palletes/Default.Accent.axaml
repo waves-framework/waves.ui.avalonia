@@ -9,11 +9,11 @@
     <base:WavesThemeColorSet.Resources>
 
         <!-- Accent Colors -->
-        <Color x:Key="Accent-Color-100">#FBFDFE</Color>
-        <Color x:Key="Accent-Color-300">#C3E4EE</Color>
-        <Color x:Key="Accent-Color-500">#52B2CF</Color>
-        <Color x:Key="Accent-Color-700">#1F5D70</Color>
-        <Color x:Key="Accent-Color-900">#0F2E38</Color>
+        <Color x:Key="Accent-Color-100">#D4E1F0</Color>
+        <Color x:Key="Accent-Color-300">#89ABD7</Color>
+        <Color x:Key="Accent-Color-500">#5688C7</Color>
+        <Color x:Key="Accent-Color-700">#4E709C</Color>
+        <Color x:Key="Accent-Color-900">#414E5D</Color>
 
         <!-- Accent Brushes -->
         <SolidColorBrush x:Key="Accent-100-Brush" Color="{DynamicResource Accent-Color-100}" />

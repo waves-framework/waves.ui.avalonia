@@ -30,11 +30,13 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Background"
-                Value="Transparent" />
+                Value="{DynamicResource Primary-400-Brush}" />
         <Setter Property="BorderBrush"
-                Value="{DynamicResource Primary-Foreground-100-Brush}" />
+                Value="{DynamicResource Primary-700-Brush}" />
         <Setter Property="Foreground"
-                Value="{DynamicResource Primary-Foreground-100-Brush}" />
+                Value="{DynamicResource Primary-Foreground-300-Brush}" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="Height"
@@ -42,13 +44,13 @@
         <Setter Property="IsTabStop"
                 Value="True" />
         <Setter Property="FontSize"
-                Value="14" />
+                Value="12" />
         <Setter Property="Opacity"
                 Value="1.0" />
         <Setter Property="Padding"
                 Value="{StaticResource StandardThickness}" />
         <Setter Property="CornerRadius"
-                Value="12" />
+                Value="{DynamicResource StandardCornerRadius}" />
 
         <Setter Property="Template">
 
@@ -74,7 +76,7 @@
 
     <!-- :pointerover #ContentPresenter-->
     <Style Selector="Button.waves-default:pointerover /template/ ContentPresenter#ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource Primary-300-Brush}" />
+        <Setter Property="Background" Value="{DynamicResource Primary-500-Brush}" />
         <Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-200-Brush}" />
     </Style>
 
@@ -90,7 +92,7 @@
         <Setter Property="Background" Value="{DynamicResource Primary-500-Brush}" />
         <Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
     </Style>
-    
+
     <!-- Accent button style. -->
     <Style Selector="Button.waves-accent">
 
@@ -101,9 +103,11 @@
         <Setter Property="Background"
                 Value="{DynamicResource Accent-500-Brush}" />
         <Setter Property="BorderBrush"
-                Value="{DynamicResource Accent-500-Brush}" />
+                Value="{DynamicResource Accent-700-Brush}" />
         <Setter Property="Foreground"
                 Value="{DynamicResource Accent-100-Brush}" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="Height"
@@ -111,13 +115,13 @@
         <Setter Property="IsTabStop"
                 Value="True" />
         <Setter Property="FontSize"
-                Value="14" />
+                Value="12" />
         <Setter Property="Opacity"
                 Value="1.0" />
         <Setter Property="Padding"
                 Value="{StaticResource StandardThickness}" />
         <Setter Property="CornerRadius"
-                Value="12" />
+                Value="{DynamicResource StandardCornerRadius}" />
 
         <Setter Property="Template">
 
@@ -140,22 +144,32 @@
         </Setter>
 
     </Style>
-    
+
     <!-- :pointerover #ContentPresenter-->
     <Style Selector="Button.waves-accent:pointerover /template/ ContentPresenter#ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource Accent-700-Brush}" />
+        <Setter Property="Background" Value="{DynamicResource Accent-700-Brush}" />
     </Style>
 
     <!-- :pressed #ContentPresenter-->
     <Style Selector="Button.waves-accent:pressed /template/ ContentPresenter#ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource Accent-900-Brush}" />
+        <Setter Property="Background" Value="{DynamicResource Accent-900-Brush}" />
     </Style>
 
     <!-- :disabled #ContentPresenter-->
     <Style Selector="Button.waves-accent:disabled /template/ ContentPresenter#ContentPresenter">
-            <Setter Property="Opacity" Value="{DynamicResource Opacity-800}" />
-            <Setter Property="Background" Value="{DynamicResource Accent-500-Brush}" />
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Accent-900-Brush}" />
+        <Setter Property="Opacity" Value="{DynamicResource Opacity-800}" />
+        <Setter Property="Background" Value="{DynamicResource Accent-500-Brush}" />
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource Accent-900-Brush}" />
+    </Style>
+
+    <!-- Animations -->
+    <Style Selector="Button /template/ ContentPresenter#ContentPresenter">
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Duration="00:00:00.083" Property="Background" />
+                <BrushTransition Duration="00:00:00.083" Property="BorderBrush" />
+            </Transitions>
+        </Setter>
     </Style>
 
 </Styles>

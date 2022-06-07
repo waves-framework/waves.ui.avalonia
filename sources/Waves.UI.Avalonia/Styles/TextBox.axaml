@@ -74,7 +74,7 @@
                 Value="{DynamicResource Primary-100-Foreground-Brush}" />
         
         <Setter Property="Background" 
-                Value="{DynamicResource Primary-100-Brush}" />
+                Value="{DynamicResource Primary-200-Brush}" />
         
         <Setter Property="CaretBrush" 
                 Value="{DynamicResource Accent-500-Brush}" />
@@ -89,10 +89,10 @@
                 Value="1" />
         
         <Setter Property="CornerRadius" 
-                Value="12" />
+                Value="{DynamicResource StandardCornerRadius}" />
         
         <Setter Property="FontSize" 
-                Value="14" />
+                Value="12" />
         
         <Setter Property="MinHeight" 
                 Value="36" />
@@ -123,7 +123,7 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 MinWidth="{TemplateBinding MinWidth}"
-                                MinHeight="{TemplateBinding MinHeight}" />
+                                MinHeight="{TemplateBinding MinHeight}"/>
 
                         <Border Margin="{TemplateBinding BorderThickness}">
                             
@@ -143,7 +143,7 @@
                                            Margin="{TemplateBinding Padding}">
                                     
                                     <TextBlock Name="PART_FloatingWatermark"
-                                               Foreground="{DynamicResource SystemAccentColor}"
+                                               Foreground="{DynamicResource Primary-500-Foreground-Brush}"
                                                FontSize="{TemplateBinding FontSize}"
                                                Text="{TemplateBinding Watermark}"
                                                DockPanel.Dock="Top" />
@@ -217,7 +217,7 @@
     </Style>
 
     <Style Selector="TextBox.waves-default:pointerover /template/ Border#BorderElement">
-        <Setter Property="BorderBrush" Value="{DynamicResource Primary-300-Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Primary-500-Brush}" />
     </Style>
 
     <Style Selector="TextBox.waves-default:pointerover /template/ TextBlock#PART_Watermark, TextBox:pointerover /template/ TextBlock#PART_FloatingWatermark">
@@ -247,6 +247,16 @@
     <Style Selector="TextBox.waves-default[AcceptsReturn=False]">
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    
+    <!-- Background animations -->
+    <Style Selector="TextBox /template/ Border#BorderElement">
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Duration="00:00:00.083" Property="Background" />
+                <BrushTransition Duration="00:00:00.083" Property="BorderBrush" />
+            </Transitions>
+        </Setter>
     </Style>
 
 </Styles>

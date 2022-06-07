@@ -31,8 +31,8 @@
         <!-- Default properties -->
         <Setter Property="DoneButtonCaption" Value="Done" />
         <Setter Property="CancelButtonCaption" Value="Cancel" />
-        <Setter Property="Background" Value="{DynamicResource Primary-300-Brush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Primary-700-Brush}" />
+        <Setter Property="Background" Value="{DynamicResource Primary-200-Brush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Primary-500-Brush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />

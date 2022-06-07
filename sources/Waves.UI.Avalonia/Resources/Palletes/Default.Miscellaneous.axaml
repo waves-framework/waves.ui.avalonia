@@ -9,19 +9,33 @@
     <base:WavesThemeColorSet.Resources>
 
         <!-- High Attention Colors -->
-        <Color x:Key="High-Attention-Color-100">#FFFBFA</Color>
-        <Color x:Key="High-Attention-Color-300">#FCE4DE</Color>
-        <Color x:Key="High-Attention-Color-500">#EE6C4D</Color>
-        <Color x:Key="High-Attention-Color-700">#90270E</Color>
-        <Color x:Key="High-Attention-Color-900">#461307</Color>
+        <Color x:Key="High-Attention-Color-100">#F7DAD6</Color>
+        <Color x:Key="High-Attention-Color-300">#EA998D</Color>
+        <Color x:Key="High-Attention-Color-500">#E26D5C</Color>
+        <Color x:Key="High-Attention-Color-700">#AF5E52</Color>
+        <Color x:Key="High-Attention-Color-900">#644743</Color>
+        
+        <!-- Medium Attention Colors -->
+        <Color x:Key="Medium-Attention-Color-100">#FFE8D3</Color>
+        <Color x:Key="Medium-Attention-Color-300">#FFC086</Color>
+        <Color x:Key="Medium-Attention-Color-500">#FFA552</Color>
+        <Color x:Key="Medium-Attention-Color-700">#C4854B</Color>
+        <Color x:Key="Medium-Attention-Color-900">#6C5540</Color>
         
         <!-- Success Colors -->
-        <Color x:Key="Success-Color-100">#E2EEE4</Color>
-        <Color x:Key="Success-Color-300">#B8D6BC</Color>
-        <Color x:Key="Success-Color-500">#63A46C</Color>
-        <Color x:Key="Success-Color-700">#315436</Color>
-        <Color x:Key="Success-Color-900">#182A1B</Color>
+        <Color x:Key="Success-Color-100">#D9E1D5</Color>
+        <Color x:Key="Success-Color-300">#95AE8A</Color>
+        <Color x:Key="Success-Color-500">#688B58</Color>
+        <Color x:Key="Success-Color-700">#5A734F</Color>
+        <Color x:Key="Success-Color-900">#464E42</Color>
 
+        <!-- Medium Attention Brushes -->
+        <SolidColorBrush x:Key="Medium-Attention-100-Brush" Color="{DynamicResource Medium-Attention-Color-100}" />
+        <SolidColorBrush x:Key="Medium-Attention-300-Brush" Color="{DynamicResource Medium-Attention-Color-300}" />
+        <SolidColorBrush x:Key="Medium-Attention-500-Brush" Color="{DynamicResource Medium-Attention-Color-500}" />
+        <SolidColorBrush x:Key="Medium-Attention-700-Brush" Color="{DynamicResource Medium-Attention-Color-700}" />
+        <SolidColorBrush x:Key="Medium-Attention-900-Brush" Color="{DynamicResource Medium-Attention-Color-900}" />
+        
         <!-- High Attention Brushes -->
         <SolidColorBrush x:Key="High-Attention-100-Brush" Color="{DynamicResource High-Attention-Color-100}" />
         <SolidColorBrush x:Key="High-Attention-300-Brush" Color="{DynamicResource High-Attention-Color-300}" />
