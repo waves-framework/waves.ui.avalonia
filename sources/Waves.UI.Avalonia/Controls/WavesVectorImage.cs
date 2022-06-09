@@ -369,6 +369,7 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Child = pathView;
             viewBox.Height = Height;
             viewBox.Width = Width;
+            viewBox.Opacity = Opacity;
             Content = viewBox;
         }
 
@@ -464,6 +465,7 @@ namespace Waves.UI.Avalonia.Controls
                 Width = Width,
             };
 
+            image.Opacity = Opacity;
             Content = image;
         }
 
@@ -522,6 +524,7 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Child = pathView;
             viewBox.Height = Height;
             viewBox.Width = Width;
+            viewBox.Opacity = Opacity;
             Content = viewBox;
         }
 
@@ -557,6 +560,7 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Child = grid;
             viewBox.Height = Height;
             viewBox.Width = Width;
+            viewBox.Opacity = Opacity;
             Content = viewBox;
         }
     }
