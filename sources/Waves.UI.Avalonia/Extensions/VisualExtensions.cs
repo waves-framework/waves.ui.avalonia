@@ -46,6 +46,11 @@ public static class VisualExtensions
                 yield return other;
             }
         }
+
+        if (content is T contentType)
+        {
+            yield return contentType;
+        }
     }
 
     /// <summary>

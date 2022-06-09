@@ -52,16 +52,6 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{DynamicResource StandardCornerRadius}">
 
-                            <!-- <Border.Effect> -->
-                            <!-- -->
-                            <!--     <DropShadowEffect Opacity="0.5" -->
-                            <!--                       BlurRadius="12" -->
-                            <!--                       ShadowDepth="2" -->
-                            <!--                       Direction="-75" -->
-                            <!--                       Color="{DynamicResource Color-300}" /> -->
-                            <!-- -->
-                            <!-- </Border.Effect> -->
-
                             <!-- Dialog grid. -->
                             <Grid VerticalAlignment="Stretch"
                                   HorizontalAlignment="Stretch"
