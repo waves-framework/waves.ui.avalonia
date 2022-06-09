@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Waves.Core;
 using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Enums;
+using Waves.Core.Extensions;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Base.EventArgs;
 using Waves.UI.Dialogs;
@@ -130,6 +131,7 @@ public class WavesNavigationService :
             OpenedWindows.Add(viewModel, view);
             RegisterView(contentControl);
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
         await Dispatcher.UIThread.InvokeAsync(Action);
@@ -166,6 +168,7 @@ public class WavesNavigationService :
                     _contentControls[region]));
 
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
         if (!_contentControls.ContainsKey(region))
@@ -207,6 +210,7 @@ public class WavesNavigationService :
                     _contentControls[region]));
 
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
         if (!_contentControls.ContainsKey(region))
@@ -240,6 +244,8 @@ public class WavesNavigationService :
             {
                 // TODO: what if another content control?
             }
+
+            viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
         if (!_contentControls.ContainsKey(region))
