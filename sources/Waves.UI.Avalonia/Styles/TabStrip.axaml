@@ -61,7 +61,7 @@
 		<Setter Property="FontWeight" Value="Bold" />
 	    <Setter Property="Padding" Value="{DynamicResource SmallThickness}"/>
 		<Setter Property="Margin" Value="0,0,0,0" />
-		<Setter Property="Height" Value="42" />
+		<Setter Property="MinHeight" Value="42" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 	    <Setter Property="CornerRadius" Value="{DynamicResource StandardCornerRadius}"/>
