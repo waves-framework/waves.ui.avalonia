@@ -74,7 +74,7 @@
                 Value="{DynamicResource Primary-100-Foreground-Brush}" />
         
         <Setter Property="Background" 
-                Value="{DynamicResource Primary-200-Brush}" />
+                Value="{DynamicResource Primary-300-Brush}" />
         
         <Setter Property="CaretBrush" 
                 Value="{DynamicResource Accent-500-Brush}" />
