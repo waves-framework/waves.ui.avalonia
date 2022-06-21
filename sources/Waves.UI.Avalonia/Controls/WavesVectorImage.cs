@@ -71,6 +71,8 @@ namespace Waves.UI.Avalonia.Controls
         public static readonly StyledProperty<WavesVectorImageSourceType> SourceTypeProperty = AvaloniaProperty.Register<WavesVectorImage, WavesVectorImageSourceType>(
             nameof(SourceType));
 
+        private bool _changed;
+
         /// <summary>
         /// Creates new instance of <see cref="WavesVectorImage"/>.
         /// </summary>
@@ -90,7 +92,11 @@ namespace Waves.UI.Avalonia.Controls
         public object Source
         {
             get => GetValue(SourceProperty);
-            set => SetValue(SourceProperty, value);
+            set
+            {
+                _changed = true;
+                SetValue(SourceProperty, value);
+            }
         }
 
         /// <summary>
@@ -100,7 +106,11 @@ namespace Waves.UI.Avalonia.Controls
         public string SourceAssembly
         {
             get => GetValue(SourceAssemblyProperty);
-            set => SetValue(SourceAssemblyProperty, value);
+            set
+            {
+                _changed = true;
+                SetValue(SourceAssemblyProperty, value);
+            }
         }
 
         /// <summary>
@@ -110,7 +120,11 @@ namespace Waves.UI.Avalonia.Controls
         public string SourceDirectory
         {
             get => GetValue(SourceDirectoryProperty);
-            set => SetValue(SourceDirectoryProperty, value);
+            set
+            {
+                _changed = true;
+                SetValue(SourceDirectoryProperty, value);
+            }
         }
 
         /// <summary>
@@ -120,7 +134,11 @@ namespace Waves.UI.Avalonia.Controls
         public WavesVectorImageSourceType SourceType
         {
             get => GetValue(SourceTypeProperty);
-            set => SetValue(SourceTypeProperty, value);
+            set
+            {
+                _changed = true;
+                SetValue(SourceTypeProperty, value);
+            }
         }
 
         /// <inheritdoc />
@@ -138,6 +156,11 @@ namespace Waves.UI.Avalonia.Controls
         /// </summary>
         public void Refresh()
         {
+            if (!_changed)
+            {
+                return;
+            }
+
             var source = Source;
 
             if (source is string str)
@@ -171,6 +194,8 @@ namespace Waves.UI.Avalonia.Controls
             {
                 Load(collection);
             }
+
+            _changed = false;
         }
 
         /// <inheritdoc />
@@ -369,6 +394,7 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Child = pathView;
             viewBox.Height = Height;
             viewBox.Width = Width;
+            viewBox.Opacity = Opacity;
             Content = viewBox;
         }
 
@@ -464,6 +490,7 @@ namespace Waves.UI.Avalonia.Controls
                 Width = Width,
             };
 
+            image.Opacity = Opacity;
             Content = image;
         }
 
@@ -522,6 +549,7 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Child = pathView;
             viewBox.Height = Height;
             viewBox.Width = Width;
+            viewBox.Opacity = Opacity;
             Content = viewBox;
         }
 
@@ -557,6 +585,7 @@ namespace Waves.UI.Avalonia.Controls
             viewBox.Child = grid;
             viewBox.Height = Height;
             viewBox.Width = Width;
+            viewBox.Opacity = Opacity;
             Content = viewBox;
         }
     }

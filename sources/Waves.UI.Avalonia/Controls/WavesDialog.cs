@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Data;
+using Avalonia.Interactivity;
 using Avalonia.Styling;
 using Microsoft.Extensions.Logging;
 using ReactiveUI;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Avalonia.Helpers;
 using Waves.UI.Base.EventArgs;
+using Waves.UI.Dialogs.Interfaces;
 using Waves.UI.Presentation.Interfaces.View.Controls;
 using Waves.UI.Presentation.Interfaces.ViewModel;
 using Waves.UI.Services.Interfaces;
@@ -18,33 +20,82 @@ using Waves.UI.Services.Interfaces;
 namespace Waves.UI.Avalonia.Controls;
 
 /// <summary>
-/// Waves Avalonia Window.
+/// Waves dialog.
 /// </summary>
-public class WavesWindow :
-    Window,
-    IWavesWindow<object>,
+public class WavesDialog :
+    ContentControl,
+    IWavesDialog<object>,
     IStyleable
 {
-    /// <summary>
-    ///     Defines <see cref="FrontContent" /> dependency property.
-    /// </summary>
-    public static readonly StyledProperty<StyledElement> FrontContentProperty =
-        AvaloniaProperty.Register<WavesWindow, StyledElement>(
-            nameof(FrontContent));
-
     /// <summary>
     ///     Defines <see cref="CanGoBack" /> dependency property.
     /// </summary>
     public static readonly StyledProperty<bool> CanGoBackProperty =
-        AvaloniaProperty.Register<WavesWindow, bool>(
+        AvaloniaProperty.Register<WavesDialog, bool>(
             nameof(CanGoBack));
 
     /// <summary>
     ///     Defines <see cref="GoBackCommand" /> dependency property.
     /// </summary>
     public static readonly StyledProperty<ICommand> GoBackCommandProperty =
-        AvaloniaProperty.Register<WavesWindow, ICommand>(
+        AvaloniaProperty.Register<WavesDialog, ICommand>(
             nameof(GoBackCommand));
+
+    /// <summary>
+    ///     Defines <see cref="Title" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<string> TitleProperty =
+        AvaloniaProperty.Register<WavesDialog, string>(
+            nameof(Title));
+
+    /// <summary>
+    ///     Defines <see cref="Tools" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<IEnumerable<IWavesDialogTool>> ToolsProperty =
+        AvaloniaProperty.Register<WavesDialog, IEnumerable<IWavesDialogTool>>(
+            nameof(Tools));
+
+    /// <summary>
+    ///     Defines <see cref="DoneCommand" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<ICommand> DoneCommandProperty =
+        AvaloniaProperty.Register<WavesDialog, ICommand>(
+            nameof(DoneCommand));
+
+    /// <summary>
+    ///     Defines <see cref="DoneButtonCaption" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<string> DoneButtonCaptionProperty =
+        AvaloniaProperty.Register<WavesDialog, string>(
+            nameof(DoneButtonCaption));
+
+    /// <summary>
+    ///     Defines <see cref="IsDoneButtonVisible" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<bool> IsDoneButtonVisibleProperty =
+        AvaloniaProperty.Register<WavesDialog, bool>(
+            nameof(IsDoneButtonVisible));
+
+    /// <summary>
+    ///     Defines <see cref="CancelCommand" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<ICommand> CancelCommandProperty =
+        AvaloniaProperty.Register<WavesDialog, ICommand>(
+            nameof(CancelCommand));
+
+    /// <summary>
+    ///     Defines <see cref="CancelButtonCaption" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<string> CancelButtonCaptionProperty =
+        AvaloniaProperty.Register<WavesDialog, string>(
+            nameof(CancelButtonCaption));
+
+    /// <summary>
+    ///     Defines <see cref="IsCancelButtonVisible" /> dependency property.
+    /// </summary>
+    public static readonly StyledProperty<bool> IsCancelButtonVisibleProperty =
+        AvaloniaProperty.Register<WavesDialog, bool>(
+            nameof(IsCancelButtonVisible));
 
     private readonly IWavesNavigationService _navigationService;
 
@@ -55,7 +106,7 @@ public class WavesWindow :
     ///     Creates new instance of <see cref="WavesWindow" />.
     ///     Don't remove this constructor, because it needed for Avalonia.
     /// </summary>
-    protected WavesWindow()
+    protected WavesDialog()
     {
     }
 
@@ -64,45 +115,111 @@ public class WavesWindow :
     /// </summary>
     /// <param name="logger">Logger.</param>
     /// <param name="navigationService">Instance of navigation service.</param>
-    protected WavesWindow(
-        ILogger<WavesWindow> logger,
+    protected WavesDialog(
+        ILogger<WavesDialog> logger,
         IWavesNavigationService navigationService)
     {
         Logger = logger;
         _navigationService = navigationService;
     }
 
-    /// <inheritdoc />
-    [Category("Waves.UI SDK - Navigation")]
+    /// <summary>
+    /// Gets or sets can navigation go back or not.
+    /// </summary>
     public bool CanGoBack
     {
         get => GetValue(CanGoBackProperty);
         set => SetValue(CanGoBackProperty, value);
     }
 
-    /// <inheritdoc />
-    [Category("Waves.UI SDK - Navigation")]
-    public object? FrontContent
-    {
-        get => GetValue(FrontContentProperty);
-        set => SetValue(FrontContentProperty, value);
-    }
-
-    /// <inheritdoc />
-    [Category("Waves.UI SDK - Navigation")]
+    /// <summary>
+    /// Gets or sets go back command.
+    /// </summary>
     public ICommand GoBackCommand
     {
         get => GetValue(GoBackCommandProperty);
         set => SetValue(GoBackCommandProperty, value);
     }
 
+    /// <summary>
+    /// Gets or sets dialog title.
+    /// </summary>
+    public string Title
+    {
+        get => GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets dialog tools.
+    /// </summary>
+    public IEnumerable<IWavesDialogTool> Tools
+    {
+        get => GetValue(ToolsProperty);
+        set => SetValue(ToolsProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets done command.
+    /// </summary>
+    public ICommand DoneCommand
+    {
+        get => GetValue(DoneCommandProperty);
+        set => SetValue(DoneCommandProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets done button caption.
+    /// </summary>
+    public string DoneButtonCaption
+    {
+        get => GetValue(DoneButtonCaptionProperty);
+        set => SetValue(DoneButtonCaptionProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets done button visibility.
+    /// </summary>
+    public bool IsDoneButtonVisible
+    {
+        get => GetValue(IsDoneButtonVisibleProperty);
+        set => SetValue(IsDoneButtonVisibleProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets cancel command.
+    /// </summary>
+    public ICommand CancelCommand
+    {
+        get => GetValue(CancelCommandProperty);
+        set => SetValue(CancelCommandProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets cancel button caption.
+    /// </summary>
+    public string CancelButtonCaption
+    {
+        get => GetValue(CancelButtonCaptionProperty);
+        set => SetValue(CancelButtonCaptionProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets cancel button visibility.
+    /// </summary>
+    public bool IsCancelButtonVisible
+    {
+        get => GetValue(IsCancelButtonVisibleProperty);
+        set => SetValue(IsCancelButtonVisibleProperty, value);
+    }
+
     /// <inheritdoc />
-    Type IStyleable.StyleKey => typeof(WavesWindow);
+    Type IStyleable.StyleKey => typeof(WavesDialog);
 
     /// <summary>
     /// Gets logger.
     /// </summary>
-    protected ILogger<WavesWindow> Logger { get; }
+    protected ILogger<WavesDialog> Logger { get; }
 
     /// <inheritdoc />
     public Task InitializeAsync()
@@ -113,15 +230,10 @@ public class WavesWindow :
 
             GoBackCommand = ReactiveCommand.CreateFromTask(OnGoBack);
 
-            _disposables.Add(FrontContentProperty.Changed.Subscribe(x =>
-                OnFrontLayerContentChangedCallback(x.Sender, x.NewValue.GetValueOrDefault<StyledElement>())));
             _disposables.Add(CanGoBackProperty.Changed.Subscribe(x =>
                 OnCanGoBackChanged(x.Sender, x.NewValue.GetValueOrDefault<bool>())));
             _disposables.Add(GoBackCommandProperty.Changed.Subscribe(x =>
                 OnGoBackCommandChanged(x.Sender, x.NewValue.GetValueOrDefault<ICommand>())));
-
-            //// TODO: initialize resource
-            //// this.AddResource(Constants.GenericDictionaryUri);
 
             _regionContentControls = this.FindRegions(_navigationService, Logger);
 
@@ -129,7 +241,7 @@ public class WavesWindow :
         }
         catch (Exception e)
         {
-            Logger.LogError(e, "An error occured while initializing window");
+            Logger.LogError(e, "An error occured while initializing dialog");
         }
 
         return Task.CompletedTask;
@@ -167,23 +279,6 @@ public class WavesWindow :
             _navigationService.UnregisterContentControl(control.Key);
             Logger.LogDebug($"Control {control.Value} from region {control.Key} unregistered");
         }
-    }
-
-    /// <summary>
-    ///     Callback when front layer content changed.
-    /// </summary>
-    /// <param name="d">Dependency object.</param>
-    /// <param name="e">Arguments.</param>
-    private static void OnFrontLayerContentChangedCallback(
-        IAvaloniaObject d,
-        object? e)
-    {
-        if (d is not WavesWindow window)
-        {
-            return;
-        }
-
-        window.SetValue(WindowHelper.FrontLayerContentProperty, e);
     }
 
     /// <summary>

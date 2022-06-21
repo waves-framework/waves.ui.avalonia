@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Themes.Fluent;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Waves.Core;
 using Waves.UI.Avalonia.Extensions;
@@ -36,6 +37,7 @@ public class WavesApplication : Application
         TaskScheduler.UnobservedTaskException += OnTaskSchedulerUnobservedTaskException;
 
         Core = new WavesCore();
+        Core.AddServices(ConfigureServices);
         Core.Start();
         Core.BuildContainer();
 
@@ -45,6 +47,14 @@ public class WavesApplication : Application
 
         _logger = Core.GetInstance<ILogger<WavesApplication>>();
         NavigationService = Core.GetInstance<IWavesNavigationService>();
+    }
+
+    /// <summary>
+    /// Configure services for default Microsoft Extensions.
+    /// </summary>
+    /// <param name="services">Services collection.</param>
+    protected virtual void ConfigureServices(IServiceCollection services)
+    {
     }
 
     /// <summary>

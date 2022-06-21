@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -9,8 +10,11 @@ using Microsoft.Extensions.Logging;
 using Waves.Core;
 using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Enums;
+using Waves.Core.Extensions;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Base.EventArgs;
+using Waves.UI.Dialogs;
+using Waves.UI.Dialogs.Enums;
 using Waves.UI.Dialogs.Interfaces;
 using Waves.UI.Presentation.Interfaces.View;
 using Waves.UI.Presentation.Interfaces.View.Controls;
@@ -28,6 +32,7 @@ public class WavesNavigationService :
     WavesNavigationServiceBase<object>
 {
     private readonly Dictionary<string, ContentControl> _contentControls;
+    private List<IWavesDialogViewModel> _dialogSessions;
 
     /// <summary>
     /// Creates new instance of <see cref="WavesNavigationService"/>.
@@ -42,6 +47,42 @@ public class WavesNavigationService :
         : base(core, configuration, logger)
     {
         _contentControls = new Dictionary<string, ContentControl>();
+        _dialogSessions = new List<IWavesDialogViewModel>();
+    }
+
+    /// <inheritdoc />
+    public override async Task<WavesOpenFileDialogResult> ShowOpenFileDialogAsync(IEnumerable<WavesFileDialogFilter> filters)
+    {
+        var keyPair = OpenedWindows.FirstOrDefault();
+        if (keyPair.Value is WavesWindow window)
+        {
+            var dialog = new OpenFileDialog();
+
+            foreach (var filter in filters)
+            {
+                dialog.Filters.Add(new FileDialogFilter
+                {
+                    Name = filter.Name,
+                    Extensions = new List<string>(filter.Extensions),
+                });
+            }
+
+            var result = await dialog.ShowAsync(window);
+
+            return result.Length > 0
+                ? new WavesOpenFileDialogResult
+                {
+                    Result = WavesDialogResult.Ok,
+                    FileNames = new List<string>(result),
+                }
+                : new WavesOpenFileDialogResult
+                {
+                    Result = WavesDialogResult.Cancel,
+                    FileNames = new List<string>(result),
+                };
+        }
+
+        return null;
     }
 
     /// <inheritdoc />
@@ -87,8 +128,10 @@ public class WavesNavigationService :
         void Action()
         {
             view.Show();
+            OpenedWindows.Add(viewModel, view);
             RegisterView(contentControl);
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
         await Dispatcher.UIThread.InvokeAsync(Action);
@@ -125,6 +168,7 @@ public class WavesNavigationService :
                     _contentControls[region]));
 
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
         if (!_contentControls.ContainsKey(region))
@@ -146,11 +190,27 @@ public class WavesNavigationService :
         {
             AddToHistoryStack(region, viewModel, addToHistory);
             var contentControl = _contentControls[region];
-            UnregisterView(contentControl);
+            if (contentControl is WavesWindow window)
+            {
+                window.FrontContent = null;
+            }
+
+            if (contentControl.Content != null && contentControl.Content.GetType() == view.GetType())
+            {
+                return;
+            }
+
+            UnregisterView(contentControl.Content);
             _contentControls[region].Content = view;
-            RegisterView(contentControl);
+            RegisterView(contentControl.Content);
+
+            OnGoBackChanged(
+                new GoBackNavigationEventArgs(
+                    Histories[region].Count > 1,
+                    _contentControls[region]));
 
             Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
         if (!_contentControls.ContainsKey(region))
@@ -164,9 +224,38 @@ public class WavesNavigationService :
     }
 
     /// <inheritdoc />
-    protected override Task InitializeDialogAsync(IWavesDialog<object> view, IWavesDialogViewModel viewModel, bool addToHistory = true)
+    protected override async Task InitializeDialogAsync(IWavesDialog<object> view, IWavesDialogViewModel viewModel, bool addToHistory = true)
     {
-        throw new System.NotImplementedException();
+        var region = await InitializeComponents(view, viewModel);
+
+        void Action()
+        {
+            AddToHistoryStack(region, viewModel, addToHistory);
+            _dialogSessions.Add(viewModel);
+            NotifyDialogEvents();
+            var contentControl = _contentControls[region];
+            if (contentControl is WavesWindow window)
+            {
+                UnregisterView(contentControl);
+                window.FrontContent = view;
+                RegisterView(contentControl);
+            }
+            else
+            {
+                // TODO: what if another content control?
+            }
+
+            viewModel.RunPostInitializationAsync().FireAndForget();
+        }
+
+        if (!_contentControls.ContainsKey(region))
+        {
+            PendingActions.Add(region, Action);
+        }
+        else
+        {
+            await Dispatcher.UIThread.InvokeAsync(Action);
+        }
     }
 
     /// <summary>

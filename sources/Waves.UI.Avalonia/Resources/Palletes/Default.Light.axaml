@@ -9,26 +9,26 @@
     <base:WavesThemeColorSet.Resources>
 
         <!-- Primary Colors -->
-        <Color x:Key="Color-100">#FCFBFD</Color>
-        <Color x:Key="Color-200">#F4F3F6</Color>
-        <Color x:Key="Color-300">#EEEDF0</Color>
-        <Color x:Key="Color-400">#DFDDE1</Color>
-        <Color x:Key="Color-500">#D8D7DB</Color>
-        <Color x:Key="Color-600">#D0CFD4</Color>
-        <Color x:Key="Color-700">#C9C8CD</Color>
-        <Color x:Key="Color-800">#C2C1C7</Color>
-        <Color x:Key="Color-900">#BBBAC0</Color>
+        <Color x:Key="Color-100">#FFFFFF</Color>
+        <Color x:Key="Color-200">#F9F9F9</Color>
+        <Color x:Key="Color-300">#F4F4F4</Color>
+        <Color x:Key="Color-400">#EDEDED</Color>
+        <Color x:Key="Color-500">#E7E7E7</Color>
+        <Color x:Key="Color-600">#E2E2E2</Color>
+        <Color x:Key="Color-700">#DCDCDC</Color>
+        <Color x:Key="Color-800">#D5D5D5</Color>
+        <Color x:Key="Color-900">#D0D0D0</Color>
 
         <!-- Primary Foreground Colors -->
-        <Color x:Key="Color-Foreground-100">#0D0C1D</Color>
-        <Color x:Key="Color-Foreground-200">#0F0E20</Color>
-        <Color x:Key="Color-Foreground-300">#121122</Color>
-        <Color x:Key="Color-Foreground-400">#121122</Color>
-        <Color x:Key="Color-Foreground-500">#1C1B2C</Color>
-        <Color x:Key="Color-Foreground-600">#211F37</Color>
-        <Color x:Key="Color-Foreground-700">#242244</Color>
-        <Color x:Key="Color-Foreground-800">#2C295B</Color>
-        <Color x:Key="Color-Foreground-900">#39357E</Color>
+        <Color x:Key="Color-Foreground-100">#3B3B3B</Color>
+        <Color x:Key="Color-Foreground-200">#414141</Color>
+        <Color x:Key="Color-Foreground-300">#464646</Color>
+        <Color x:Key="Color-Foreground-400">#4C4C4C</Color>
+        <Color x:Key="Color-Foreground-500">#525252</Color>
+        <Color x:Key="Color-Foreground-600">#585858</Color>
+        <Color x:Key="Color-Foreground-700">#5E5E5E</Color>
+        <Color x:Key="Color-Foreground-800">#646464</Color>
+        <Color x:Key="Color-Foreground-900">#696969</Color>
 
         <!-- Primary Brushes -->
         <SolidColorBrush x:Key="Primary-100-Brush" Color="{DynamicResource Color-100}" />

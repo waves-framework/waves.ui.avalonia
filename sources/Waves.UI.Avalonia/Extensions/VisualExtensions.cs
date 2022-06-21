@@ -12,7 +12,7 @@ namespace Waves.UI.Avalonia.Extensions;
 /// <summary>
 /// Extensions for visual controls.
 /// </summary>
-internal static class VisualExtensions
+public static class VisualExtensions
 {
     /// <summary>
     ///     Finds all controls by current type.
@@ -45,6 +45,11 @@ internal static class VisualExtensions
             {
                 yield return other;
             }
+        }
+
+        if (content is T contentType)
+        {
+            yield return contentType;
         }
     }
 
