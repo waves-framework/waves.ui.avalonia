@@ -43,26 +43,8 @@ public class WavesPagedListBox : ListBox, IStyleable, IDisposable
                     .Subscribe(newMax => _verticalHeightMax = newMax)
                     .DisposeWith(_scrollViewerDisposables);
 
-                async void OnNext(Vector offset)
-                {
-                    //// if (offset.Y <= double.Epsilon)
-                    //// {
-                    ////     // at top
-                    //// }
-
-                    var delta = Math.Abs(_verticalHeightMax - offset.Y);
-                    if (!(delta <= double.Epsilon) || _isPaginationInitialized)
-                    {
-                        return;
-                    }
-
-                    PageScrolled?.Execute(null);
-                    _isPaginationInitialized = true;
-                    UpdatePaginationDelay().FireAndForget();
-                }
-
                 sv.GetObservable(ScrollViewer.OffsetProperty)
-                    .Subscribe(OnNext).DisposeWith(_disposables);
+                    .Subscribe(CheckScroll).DisposeWith(_disposables);
             }).DisposeWith(_disposables);
     }
 
@@ -83,6 +65,28 @@ public class WavesPagedListBox : ListBox, IStyleable, IDisposable
     {
         _disposables.Dispose();
         _scrollViewerDisposables.Dispose();
+    }
+
+    /// <summary>
+    /// Checks scroll values.
+    /// </summary>
+    /// <param name="offset">Offset.</param>
+    private void CheckScroll(Vector offset)
+    {
+        //// if (offset.Y <= double.Epsilon)
+        //// {
+        ////     // at top
+        //// }
+
+        var delta = Math.Abs(_verticalHeightMax - offset.Y);
+        if (!(delta <= double.Epsilon) || _isPaginationInitialized)
+        {
+            return;
+        }
+
+        PageScrolled?.Execute(null);
+        _isPaginationInitialized = true;
+        UpdatePaginationDelay().FireAndForget();
     }
 
     /// <summary>
