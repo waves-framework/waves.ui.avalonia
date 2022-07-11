@@ -1,13 +1,10 @@
 using System;
-using System.Linq;
-using System.Reflection;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Input;
-using Avalonia.Media;
 using Avalonia.Styling;
 using Waves.Core.Extensions;
 
@@ -16,7 +13,7 @@ namespace Waves.UI.Avalonia.Controls;
 /// <summary>
 /// Waves paged list box.
 /// </summary>
-public class WavesPagedListBox : ListBox, IStyleable
+public class WavesPagedListBox : ListBox, IStyleable, IDisposable
 {
     /// <summary>
     /// Defines <see cref="PageScrolled"/> property.
@@ -24,12 +21,49 @@ public class WavesPagedListBox : ListBox, IStyleable
     public static readonly StyledProperty<ICommand> PageScrolledProperty = AvaloniaProperty.Register<WavesPagedListBox, ICommand>(nameof(PageScrolled));
 
     private bool _isPaginationInitialized;
+    private double _verticalHeightMax = 0.0d;
+
+    private CompositeDisposable _disposables = new CompositeDisposable();
+    private CompositeDisposable _scrollViewerDisposables;
 
     /// <summary>
     /// Creates new instance of <see cref="WavesPagedListBox"/>.
     /// </summary>
     public WavesPagedListBox()
     {
+        this.GetObservable(ListBox.ScrollProperty)
+            .OfType<ScrollViewer>()
+            .Take(1)
+            .Subscribe(sv =>
+            {
+                _scrollViewerDisposables?.Dispose();
+                _scrollViewerDisposables = new CompositeDisposable();
+
+                sv.GetObservable(ScrollViewer.VerticalScrollBarMaximumProperty)
+                    .Subscribe(newMax => _verticalHeightMax = newMax)
+                    .DisposeWith(_scrollViewerDisposables);
+
+                async void OnNext(Vector offset)
+                {
+                    //// if (offset.Y <= double.Epsilon)
+                    //// {
+                    ////     // at top
+                    //// }
+
+                    var delta = Math.Abs(_verticalHeightMax - offset.Y);
+                    if (!(delta <= double.Epsilon) || _isPaginationInitialized)
+                    {
+                        return;
+                    }
+
+                    PageScrolled?.Execute(null);
+                    _isPaginationInitialized = true;
+                    UpdatePaginationDelay().FireAndForget();
+                }
+
+                sv.GetObservable(ScrollViewer.OffsetProperty)
+                    .Subscribe(OnNext).DisposeWith(_disposables);
+            }).DisposeWith(_disposables);
     }
 
     /// <summary>
@@ -45,42 +79,10 @@ public class WavesPagedListBox : ListBox, IStyleable
     Type IStyleable.StyleKey => typeof(ListBox);
 
     /// <inheritdoc />
-    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
+    public void Dispose()
     {
-        if (change.Property.Name.Equals(nameof(Scroll)) || change.Property.Name.Equals(nameof(IsPointerOver)))
-        {
-            OnScrollChanged(Scroll);
-        }
-
-        base.OnPropertyChanged(change);
-    }
-
-    private void OnScrollChanged(IScrollable scrollable)
-    {
-        if (!_isPaginationInitialized)
-        {
-            var maximumProperty = typeof(IScrollable)
-                .GetProperties((BindingFlags)int.MaxValue)
-                .FirstOrDefault(x => x.Name.Equals("VerticalScrollBarMaximum"));
-
-            var valueProperty = typeof(IScrollable)
-                .GetProperties((BindingFlags)int.MaxValue)
-                .FirstOrDefault(x => x.Name.Equals("VerticalScrollBarValue"));
-
-            if (maximumProperty != null && valueProperty != null)
-            {
-                var maximum = (double)(maximumProperty.GetValue(this) ?? 0);
-                var value = (double)(valueProperty.GetValue(this) ?? 0);
-
-                // if (offset / 2 > Bounds.Bottom)
-                // {
-                //     PageScrolled?.Execute(null);
-                // }
-            }
-
-            _isPaginationInitialized = true;
-            UpdatePaginationDelay().FireAndForget();
-        }
+        _disposables.Dispose();
+        _scrollViewerDisposables.Dispose();
     }
 
     /// <summary>
