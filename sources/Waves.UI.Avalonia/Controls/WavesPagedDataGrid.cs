@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Styling;
 using Waves.Core.Extensions;
@@ -23,7 +22,6 @@ public sealed class WavesPagedDataGrid : DataGrid, IStyleable
     public static readonly StyledProperty<ICommand> PageScrolledProperty = AvaloniaProperty.Register<WavesPagedDataGrid, ICommand>(nameof(PageScrolled));
 
     private bool _isPaginationInitialized;
-    private ScrollBar _scrollBar;
 
     /// <summary>
     /// Creates new instance of <see cref="WavesPagedDataGrid"/>.
@@ -31,7 +29,6 @@ public sealed class WavesPagedDataGrid : DataGrid, IStyleable
     public WavesPagedDataGrid()
     {
         PointerWheelChanged += OnPointerWheelChanged;
-        Sorting += OnSorting;
     }
 
     /// <summary>
@@ -46,13 +43,11 @@ public sealed class WavesPagedDataGrid : DataGrid, IStyleable
     /// <inheritdoc />
     Type IStyleable.StyleKey => typeof(DataGrid);
 
-    private void OnVerticalScroll(object? sender, ScrollEventArgs e)
-    {
-        if (e.ScrollEventType == ScrollEventType.EndScroll)
-        {
-        }
-    }
-
+    /// <summary>
+    /// On pointer wheel changed.
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="e">Args.</param>
     private void OnPointerWheelChanged(object? sender, PointerWheelEventArgs e)
     {
         if (!_isPaginationInitialized)
@@ -76,10 +71,9 @@ public sealed class WavesPagedDataGrid : DataGrid, IStyleable
         }
     }
 
-    private void OnSorting(object? sender, DataGridColumnEventArgs e)
-    {
-    }
-
+    /// <summary>
+    /// Update pagination delay.
+    /// </summary>
     private async Task UpdatePaginationDelay()
     {
         await Task.Delay(250);
