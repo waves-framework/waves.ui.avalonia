@@ -14,6 +14,7 @@
     <base:SystemColorToSolidColorBrushConverter x:Key="SystemColorToSolidColorBrushConverter" />
     <base:TypeToTypeNameConverter x:Key="TypeToTypeNameConverter" />
     <base:ZeroAmountToBoolConverter x:Key="ZeroAmountToBoolConverter" />
+    <base:EnumToBoolConverter x:Key="EnumToBoolConverter" />
 
     <!-- Inverse Converters -->
     <inverse:InverseBoolConverter x:Key="InverseBoolConverter" />
