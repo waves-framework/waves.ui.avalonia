@@ -68,6 +68,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <Import Project="..\..\build\stylecop\stylecop.targets" />
+  <Import Project="..\..\submodules\stylecop\stylecop.targets" />
 
 </Project>
