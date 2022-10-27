@@ -8,4 +8,4 @@
                       TransparencyLevelHint="AcrylicBlur"
                       Background="Transparent"
                       ExtendClientAreaToDecorationsHint="True"
-                      Title="Waves.UI.Showcase.Avalonia.App"/>
+                      Title="Waves.UI.Showcase.Avalonia.Desktop"/>

@@ -25,10 +25,14 @@
         <DependentUpon>TestUserControl2.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="App.axaml.cs">
+        <DependentUpon>App.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview2" />
+      <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.999-cibuild0025434-beta" />
       <PackageReference Include="ReactiveUI" Version="18.3.1" />
       <PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
       <PackageReference Update="StyleCop.Analyzers" Version="1.2.0-beta.435">

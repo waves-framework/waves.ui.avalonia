@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
 
-namespace Waves.UI.Showcase.Avalonia.App
+namespace Waves.UI.Showcase.Avalonia.Desktop
 {
     /// <summary>
     /// Program.
@@ -25,7 +25,7 @@ namespace Waves.UI.Showcase.Avalonia.App
         /// </summary>
         /// <returns>App builder.</returns>
         public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
+            => AppBuilder.Configure<Avalonia.App>()
                 .UsePlatformDetect()
                 .UseReactiveUI()
                 .LogToTrace();
