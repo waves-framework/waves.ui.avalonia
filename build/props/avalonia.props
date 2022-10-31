@@ -13,6 +13,10 @@
     <PackageLicenseFile>license.md</PackageLicenseFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <AvaloniaVersion>11.0.0-preview2</AvaloniaVersion>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\bin\avalonia\anyCPU\debug\</OutputPath>
   </PropertyGroup>

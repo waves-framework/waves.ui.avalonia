@@ -1,33 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="../../build/props/avalonia.props" />
-    
+    <Import Project="../../build/props/avalonia.props"/>
+
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <ItemGroup>
-      <ProjectReference Include="..\Waves.UI.Showcase.Avalonia\Waves.UI.Showcase.Avalonia.csproj" />
+        <ProjectReference Include="..\Waves.UI.Showcase.Avalonia\Waves.UI.Showcase.Avalonia.csproj"/>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <None Update="appsettings.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="nlog.config">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="nlog.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.999-cibuild0025434-beta" />
-      <PackageReference Include="ReactiveUI" Version="18.3.1" />
-      <PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
-      <PackageReference Update="StyleCop.Analyzers" Version="1.2.0-beta.435">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)"/>
+        <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
+        <PackageReference Include="ReactiveUI" Version="18.3.1"/>
+        <PackageReference Include="ReactiveUI.Fody" Version="18.3.1"/>
     </ItemGroup>
-    
+
 </Project>

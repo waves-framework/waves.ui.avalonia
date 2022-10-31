@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using Avalonia;
-using FluentAvalonia.Styling;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Waves.Core;
@@ -41,9 +40,9 @@ public class WavesApplication : Application
         Core.Start();
         Core.BuildContainer();
 
-        Styles.Add(new FluentAvaloniaTheme(new Uri("avares://ControlCatalog/Styles"))
-        {
-        });
+        // Styles.Add(new FluentAvaloniaTheme(new Uri("avares://ControlCatalog/Styles"))
+        // {
+        // });
         this.AddStyle(Constants.GenericDictionaryUri);
         this.AddStyle(_useDarkTheme ? Constants.DefaultDarkColorsUri : Constants.DefaultLightColorsUri);
 
