@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Threading;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -33,6 +34,9 @@ public class WavesNavigationService :
 {
     private readonly Dictionary<string, ContentControl> _contentControls;
     private List<IWavesDialogViewModel> _dialogSessions;
+
+    private Window _mainWindow;
+    private Control _mainPage;
 
     /// <summary>
     /// Creates new instance of <see cref="WavesNavigationService"/>.
@@ -118,6 +122,16 @@ public class WavesNavigationService :
     /// <inheritdoc />
     protected override async Task InitializeWindowAsync(IWavesWindow<object> view, IWavesViewModel viewModel)
     {
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop && _mainWindow == null)
+        {
+            _mainWindow = view as Window;
+
+            if (_mainWindow != null)
+            {
+                desktop.MainWindow = _mainWindow;
+            }
+        }
+
         var region = await InitializeComponents(view, viewModel);
         var contentControl = view as ContentControl;
         if (contentControl == null)
@@ -142,6 +156,16 @@ public class WavesNavigationService :
     /// <inheritdoc />
     protected override async Task InitializePageAsync(IWavesPage<object> view, IWavesViewModel viewModel, bool addToHistory = true)
     {
+        if (Application.Current?.ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform && _mainPage == null)
+        {
+            _mainPage = view as UserControl;
+
+            if (_mainPage != null)
+            {
+                singleViewPlatform.MainView = _mainPage;
+            }
+        }
+
         var region = await InitializeComponents(view, viewModel);
 
         void Action()

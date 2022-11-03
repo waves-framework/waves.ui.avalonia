@@ -6,7 +6,7 @@ using Avalonia.Android;
 namespace Waves.UI.Showcase.Avalonia.Android
 {
     /// <summary>
-    /// Main activitity.
+    /// Main activity.
     /// </summary>
     [Activity(
         Label = "AvaloniaApplication2.Android",

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Themes.Fluent;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Waves.Core;
@@ -14,14 +15,17 @@ namespace Waves.UI.Avalonia;
 /// </summary>
 public class WavesApplication : Application
 {
-    private ILogger<WavesApplication> _logger;
-
     private bool _useDarkTheme = true;
 
     /// <summary>
     /// Gets core.
     /// </summary>
     protected WavesCore Core { get; private set; }
+
+    /// <summary>
+    /// Gets logger.
+    /// </summary>
+    protected ILogger<WavesApplication> Logger { get; set; }
 
     /// <summary>
     /// Gets navigation service.
@@ -40,13 +44,13 @@ public class WavesApplication : Application
         Core.Start();
         Core.BuildContainer();
 
-        // Styles.Add(new FluentAvaloniaTheme(new Uri("avares://ControlCatalog/Styles"))
-        // {
-        // });
+        Styles.Add(new FluentTheme(new Uri("avares://ControlCatalog/Styles"))
+        {
+        });
         this.AddStyle(Constants.GenericDictionaryUri);
         this.AddStyle(_useDarkTheme ? Constants.DefaultDarkColorsUri : Constants.DefaultLightColorsUri);
 
-        _logger = Core.GetInstance<ILogger<WavesApplication>>();
+        Logger = Core.GetInstance<ILogger<WavesApplication>>();
         NavigationService = Core.GetInstance<IWavesNavigationService>();
     }
 
@@ -65,7 +69,7 @@ public class WavesApplication : Application
     /// <param name="e">Arguments.</param>
     private void OnTaskSchedulerUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
     {
-        _logger.LogError(e.Exception, "Application error occured");
+        Logger.LogError(e.Exception, "Application error occured");
         e.SetObserved();
     }
 }
