@@ -20,8 +20,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Props", "Props", "{2A729DDB-C7C0-4470-8A0E-A068B89E5EBC}"
 	ProjectSection(SolutionItems) = preProject
 		..\build\props\avalonia.props = ..\build\props\avalonia.props
-		..\build\props\avalonia-ios.props = ..\build\props\avalonia-ios.props
 		..\build\props\avalonia-wasm.props = ..\build\props\avalonia-wasm.props
+		..\build\props\avalonia-android.props = ..\build\props\avalonia-android.props
+		..\build\props\avalonia-ios.props = ..\build\props\avalonia-ios.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{6FAF2923-1520-49D9-9BA6-E491FCAAB014}"
@@ -44,6 +45,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waves.UI.Showcase.Avalonia.Web", "..\sources\Waves.UI.Showcase.Avalonia.Web\Waves.UI.Showcase.Avalonia.Web.csproj", "{DAC35184-C7A0-447C-8E55-24750DEB16C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{397C3D20-EA51-4523-BD3C-69A0E986AA24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waves.UI.Showcase.Avalonia.Android", "..\sources\Waves.UI.Showcase.Avalonia.Android\Waves.UI.Showcase.Avalonia.Android.csproj", "{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,6 +142,18 @@ Global
 		{DAC35184-C7A0-447C-8E55-24750DEB16C6}.Release|x64.Build.0 = Release|Any CPU
 		{DAC35184-C7A0-447C-8E55-24750DEB16C6}.Release|x86.ActiveCfg = Release|Any CPU
 		{DAC35184-C7A0-447C-8E55-24750DEB16C6}.Release|x86.Build.0 = Release|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Debug|x64.Build.0 = Debug|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Debug|x86.Build.0 = Debug|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Release|x64.ActiveCfg = Release|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Release|x64.Build.0 = Release|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Release|x86.ActiveCfg = Release|Any CPU
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,6 +169,7 @@ Global
 		{03CD73C8-138F-4F88-9A3B-B0240AA74363} = {294F7D7F-63B3-435D-869F-C68A47E65574}
 		{DAC35184-C7A0-447C-8E55-24750DEB16C6} = {03CD73C8-138F-4F88-9A3B-B0240AA74363}
 		{397C3D20-EA51-4523-BD3C-69A0E986AA24} = {294F7D7F-63B3-435D-869F-C68A47E65574}
+		{8AFFD0D2-D57C-401F-867F-85EAFA78F1FC} = {397C3D20-EA51-4523-BD3C-69A0E986AA24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {460996F2-AE58-4A57-A19C-4FC49DD35505}

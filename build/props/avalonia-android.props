@@ -3,41 +3,50 @@
   <Import Project="../../build/props/avalonia.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;</TargetFrameworks>
+    <TargetFrameworks>net7.0-android;</TargetFrameworks>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\bin\avalonia-wasm\anyCPU\debug\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\anyCPU\debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutputPath>..\..\bin\avalonia-wasm\x64\debug\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x64\debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutputPath>..\..\bin\avalonia-wasm\x86\debug\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x86\debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\bin\avalonia-wasm\anyCPU\release\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\anyCPU\release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutputPath>..\..\bin\avalonia-wasm\x86\release\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x86\release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutputPath>..\..\bin\avalonia-wasm\x64\release\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x64\release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
   </PropertyGroup>
 
   <ItemGroup>

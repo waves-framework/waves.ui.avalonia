@@ -11,6 +11,7 @@
     <PackageIcon>logo_128.png</PackageIcon>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageLicenseFile>license.md</PackageLicenseFile>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
