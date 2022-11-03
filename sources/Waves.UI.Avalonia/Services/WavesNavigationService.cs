@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ public class WavesNavigationService :
     WavesNavigationServiceBase<object>
 {
     private readonly Dictionary<string, ContentControl> _contentControls;
-    private List<IWavesDialogViewModel> _dialogSessions;
+    private readonly List<IWavesDialogViewModel> _dialogSessions;
 
-    private Window _mainWindow;
-    private Control _mainPage;
+    private Window? _mainWindow;
+    private Control? _mainPage;
 
     /// <summary>
     /// Creates new instance of <see cref="WavesNavigationService"/>.
@@ -122,6 +123,7 @@ public class WavesNavigationService :
     /// <inheritdoc />
     protected override async Task InitializeWindowAsync(IWavesWindow<object> view, IWavesViewModel viewModel)
     {
+        // first invoke of this method
         if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop && _mainWindow == null)
         {
             _mainWindow = view as Window;
@@ -144,7 +146,7 @@ public class WavesNavigationService :
             view.Show();
             OpenedWindows.Add(viewModel, view);
             RegisterView(contentControl);
-            Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            Logger.LogDebug("Navigation to view {ViewType} with data context {ViewModelType} in region {Region} completed", view.GetType(), viewModel.GetType(), region);
             viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
@@ -156,6 +158,7 @@ public class WavesNavigationService :
     /// <inheritdoc />
     protected override async Task InitializePageAsync(IWavesPage<object> view, IWavesViewModel viewModel, bool addToHistory = true)
     {
+        // first invoke of this method
         if (Application.Current?.ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform && _mainPage == null)
         {
             _mainPage = view as UserControl;
@@ -191,7 +194,7 @@ public class WavesNavigationService :
                     Histories[region].Count > 1,
                     _contentControls[region]));
 
-            Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            Logger.LogDebug("Navigation to view {ViewType} with data context {ViewModelType} in region {Region} completed", view.GetType(), viewModel.GetType(), region);
             viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
@@ -233,7 +236,7 @@ public class WavesNavigationService :
                     Histories[region].Count > 1,
                     _contentControls[region]));
 
-            Logger.LogDebug($"Navigation to view {view.GetType()} with data context {viewModel.GetType()} in region {region} completed");
+            Logger.LogDebug("Navigation to view {ViewType} with data context {ViewModelType} in region {Region} completed", view.GetType(), viewModel.GetType(), region);
             viewModel.RunPostInitializationAsync().FireAndForget();
         }
 
