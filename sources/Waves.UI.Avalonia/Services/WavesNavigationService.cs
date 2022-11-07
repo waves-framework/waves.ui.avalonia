@@ -13,6 +13,7 @@ using Waves.Core;
 using Waves.Core.Base.Attributes;
 using Waves.Core.Base.Enums;
 using Waves.Core.Extensions;
+using Waves.Core.Services.Interfaces;
 using Waves.UI.Avalonia.Controls;
 using Waves.UI.Base.EventArgs;
 using Waves.UI.Dialogs;
@@ -42,14 +43,14 @@ public class WavesNavigationService :
     /// <summary>
     /// Creates new instance of <see cref="WavesNavigationService"/>.
     /// </summary>
-    /// <param name="core">Core.</param>
+    /// <param name="serviceProvider">Service provider.</param>
     /// <param name="configuration">Configuration.</param>
     /// <param name="logger">Logger.</param>
     public WavesNavigationService(
-        WavesCore core,
+        IWavesServiceProvider serviceProvider,
         IConfiguration configuration,
         ILogger<WavesNavigationService> logger)
-        : base(core, configuration, logger)
+        : base(serviceProvider, configuration, logger)
     {
         _contentControls = new Dictionary<string, ContentControl>();
         _dialogSessions = new List<IWavesDialogViewModel>();
