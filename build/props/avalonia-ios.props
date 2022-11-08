@@ -3,7 +3,7 @@
   <Import Project="../../build/props/avalonia.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-ios;net7.0-ios;</TargetFrameworks>
+    <TargetFrameworks>net7.0-ios;</TargetFrameworks>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
