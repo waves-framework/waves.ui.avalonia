@@ -1,10 +1,13 @@
 using System;
 using System.Threading.Tasks;
+using Autofac;
 using Avalonia;
 using Avalonia.Themes.Fluent;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Waves.Core;
+using Waves.Core.Extensions;
+using Waves.Core.Services.Interfaces;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Services.Interfaces;
 
@@ -15,14 +18,17 @@ namespace Waves.UI.Avalonia;
 /// </summary>
 public class WavesApplication : Application
 {
-    private ILogger<WavesApplication> _logger;
-
     private bool _useDarkTheme = true;
 
     /// <summary>
     /// Gets core.
     /// </summary>
     protected WavesCore Core { get; private set; }
+
+    /// <summary>
+    /// Gets logger.
+    /// </summary>
+    protected ILogger<WavesApplication> Logger { get; set; }
 
     /// <summary>
     /// Gets navigation service.
@@ -39,14 +45,16 @@ public class WavesApplication : Application
         Core = new WavesCore();
         Core.AddServices(ConfigureServices);
         Core.Start();
-        Core.BuildContainer();
-
-        Styles.Add(new FluentTheme(new Uri("avares://ControlCatalog/Styles")) { Mode = FluentThemeMode.Dark });
+        var container = Core.BuildContainer();
+        var provider = container.Resolve<IWavesServiceProvider>();
+        Styles.Add(new FluentTheme(new Uri("avares://ControlCatalog/Styles"))
+        {
+        });
         this.AddStyle(Constants.GenericDictionaryUri);
         this.AddStyle(_useDarkTheme ? Constants.DefaultDarkColorsUri : Constants.DefaultLightColorsUri);
 
-        _logger = Core.GetInstance<ILogger<WavesApplication>>();
-        NavigationService = Core.GetInstance<IWavesNavigationService>();
+        Logger = provider.GetInstance<ILogger<WavesApplication>>();
+        NavigationService = provider.GetInstance<IWavesNavigationService>();
     }
 
     /// <summary>
@@ -64,7 +72,7 @@ public class WavesApplication : Application
     /// <param name="e">Arguments.</param>
     private void OnTaskSchedulerUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
     {
-        _logger.LogError(e.Exception, "Application error occured");
+        Logger.LogError(e.Exception, "Application error occured");
         e.SetObserved();
     }
 }

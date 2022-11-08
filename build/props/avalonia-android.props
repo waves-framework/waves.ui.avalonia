@@ -1,70 +1,53 @@
 <Project>
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;</TargetFrameworks>
-    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
-    <Configurations>Debug;Release</Configurations>
-    <Platforms>AnyCPU;x86;x64</Platforms>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <LangVersion>latest</LangVersion>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageIcon>logo_128.png</PackageIcon>
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <PackageLicenseFile>license.md</PackageLicenseFile>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+  <Import Project="../../build/props/avalonia.props" />
 
   <PropertyGroup>
-    <AvaloniaVersion>11.0.0-preview2</AvaloniaVersion>
+    <TargetFrameworks>net7.0-android;</TargetFrameworks>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\bin\avalonia\anyCPU\debug\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\anyCPU\debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutputPath>..\..\bin\avalonia\x64\debug\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x64\debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutputPath>..\..\bin\avalonia\x86\debug\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x86\debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\bin\avalonia\anyCPU\release\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\anyCPU\release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutputPath>..\..\bin\avalonia\x86\release\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x86\release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutputPath>..\..\bin\avalonia\x64\release\</OutputPath>
+    <OutputPath>..\..\bin\avalonia-android\x64\release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="..\..\files\images\logo_128.png">
-      <Pack>True</Pack>
-      <PackagePath/>
-    </None>
-    <None Include="..\..\readme.md">
-      <Pack>True</Pack>
-      <PackagePath/>
-    </None>
-    <None Include="..\..\license.md">
-      <Pack>True</Pack>
-      <PackagePath/>
-    </None>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">

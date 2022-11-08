@@ -17,18 +17,14 @@
         <DependentUpon>MainWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Presentation\View\UserControls\TestUserControl.axaml.cs">
-        <DependentUpon>MainPage.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Presentation\View\UserControls\TestUserControl2.axaml.cs">
-        <DependentUpon>TestUserControl2.axaml</DependentUpon>
+      <Compile Update="App.axaml.cs">
+        <DependentUpon>App.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.18" />
+      <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
       <PackageReference Include="ReactiveUI" Version="18.3.1" />
       <PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
     </ItemGroup>
