@@ -22,6 +22,7 @@
     <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
     <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}"/>  
     <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+    <Setter Property="Padding" Value="0,36,0,0"/>
     <Setter Property="Template">
         
         <ControlTemplate>
@@ -39,6 +40,7 @@
                     <VisualLayerManager.ChromeOverlayLayer>
                         <TitleBar />
                     </VisualLayerManager.ChromeOverlayLayer>
+                    
                     <Grid>
                         
                         <ContentPresenter Name="PART_ContentPresenter"
