@@ -23,7 +23,8 @@ namespace Waves.UI.Avalonia.Controls;
 public class WavesWindow :
     Window,
     IWavesWindow<object>,
-    IStyleable
+    IStyleable,
+    IStyledElement
 {
     /// <summary>
     ///     Defines <see cref="FrontContent" /> dependency property.

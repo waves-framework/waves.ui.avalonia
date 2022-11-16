@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;</TargetFrameworks>
+    <TargetFrameworks>net7.0;</TargetFrameworks>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU;x86;x64</Platforms>
@@ -15,7 +15,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AvaloniaVersion>11.0.0-preview2</AvaloniaVersion>
+    <AvaloniaVersion>11.0.0-preview4</AvaloniaVersion>
+    <AvaloniaSvgSkiaVersion>11.0.0-preview3</AvaloniaSvgSkiaVersion>
+    <FluentAvaloniaVersion>2.0.0-preview4</FluentAvaloniaVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

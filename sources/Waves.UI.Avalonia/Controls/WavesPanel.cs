@@ -9,7 +9,7 @@ namespace Waves.UI.Avalonia.Controls;
 /// Waves panel.
 /// </summary>
 [DefaultProperty(nameof(Content))]
-public class WavesPanel :
+public sealed class WavesPanel :
     UserControl,
     IStyleable
 {

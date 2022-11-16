@@ -23,7 +23,7 @@
     <!-- Text. -->
     <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
 
-    <!-- Button style. -->
+    <!-- Panel style. -->
     <Style Selector="controls|WavesPanel">
 
         <Setter Property="HorizontalContentAlignment"

@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Styling;
 using Microsoft.Extensions.Logging;
-using ReactiveUI;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Presentation.Interfaces.View.Controls;
 using Waves.UI.Services.Interfaces;
@@ -84,7 +81,7 @@ public class WavesPage :
     ///     <value>false</value>
     ///     if need to release only unmanaged resources.
     /// </param>
-    protected virtual async void Dispose(
+    protected async void Dispose(
         bool disposing)
     {
         if (!disposing)

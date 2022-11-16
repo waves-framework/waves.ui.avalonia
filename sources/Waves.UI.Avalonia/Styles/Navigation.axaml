@@ -1,0 +1,108 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia">
+
+    <Styles.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Opacity. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+    
+    <!-- Text. -->
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
+    
+    <!-- ~1~ Panel style. @1@ -->
+    <!-- <Style Selector="controls|WavesNavigationView.waves-default"> -->
+    <!--      -->
+    <!--     ~1~ <Setter Property="Background" @1@ -->
+    <!--     ~1~         Value="{DynamicResource Primary-200-Brush}" /> @1@ -->
+    <!--     <Setter Property="Background" -->
+    <!--             Value="Red" /> -->
+    <!--     <Setter Property="BorderBrush" -->
+    <!--             Value="{DynamicResource Primary-700-Brush}" /> -->
+    <!--     <Setter Property="Foreground" -->
+    <!--             Value="{DynamicResource Primary-Foreground-100-Brush}" /> -->
+    <!--      -->
+    <!--     <Setter Property="(Interaction.Behaviors)"> -->
+    <!--         <BehaviorCollectionTemplate> -->
+    <!--             <BehaviorCollection> -->
+    <!--                 <AdaptiveBehavior SourceControl="{Binding $parent[TopLevel]}"> -->
+    <!--                     <AdaptiveClassSetter MinWidth="0" MaxWidth="500" ClassName="small" /> -->
+    <!--                     <AdaptiveClassSetter MinWidth="900" MaxWidth="Infinity" ClassName="wide" /> -->
+    <!--                 </AdaptiveBehavior> -->
+    <!--             </BehaviorCollection> -->
+    <!--         </BehaviorCollectionTemplate> -->
+    <!--     </Setter> -->
+    <!--      -->
+    <!--     <Setter Property="Template"> -->
+    <!-- -->
+    <!--         <ControlTemplate> -->
+    <!--              -->
+    <!--             <Grid> -->
+    <!--                  -->
+    <!--                 <Grid.ColumnDefinitions> -->
+    <!--                     <ColumnDefinition Width="72"/> -->
+    <!--                     <ColumnDefinition Width="1"/> -->
+    <!--                     <ColumnDefinition Width="*"/> -->
+    <!--                 </Grid.ColumnDefinitions> -->
+    <!--                  -->
+    <!--                 <Grid.RowDefinitions> -->
+    <!--                     <RowDefinition Height="72"/> -->
+    <!--                     <RowDefinition Height="1"/> -->
+    <!--                     <RowDefinition Height="*"/> -->
+    <!--                 </Grid.RowDefinitions> -->
+    <!--                  -->
+    <!--                 <Grid x:Name="NavigationBarGrid"> -->
+    <!--                      -->
+    <!--                     <Border Background="{DynamicResource Primary-100-Brush}"/> -->
+    <!--                      -->
+    <!--                     <TextBlock Text="123"/> -->
+    <!--                      -->
+    <!--                 </Grid> -->
+    <!--                  -->
+    <!--                 <Grid x:Name="ContentGrid"> -->
+    <!--                      -->
+    <!--                     ~1~ <ContentPresenter x:Name="ContentPresenter" @1@ -->
+    <!--                     ~1~                   Content="{TemplateBinding Content}" @1@ -->
+    <!--                     ~1~                   Margin="{TemplateBinding Padding}" @1@ -->
+    <!--                     ~1~                   RecognizesAccessKey="True" @1@ -->
+    <!--                     ~1~                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" @1@ -->
+    <!--                     ~1~                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" /> @1@ -->
+    <!--                      -->
+    <!--                 </Grid> -->
+    <!--                  -->
+    <!--             </Grid> -->
+    <!-- -->
+    <!--         </ControlTemplate> -->
+    <!-- -->
+    <!--     </Setter> -->
+    <!-- -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="controls|WavesNavigationView /template/ Grid#NavigationBarGrid.small"> -->
+    <!--     <Setter Property="Column" Value="0"/> -->
+    <!--     <Setter Property="ColumnSpan" Value="1"/> -->
+    <!--     <Setter Property="Row" Value="0"/> -->
+    <!--     <Setter Property="RowSpan" Value="3"/> -->
+    <!-- </Style> -->
+    <!-- -->
+    <!-- <Style Selector="controls|WavesNavigationView /template/ Grid#NavigationBarGrid.wide"> -->
+    <!--     <Setter Property="Column" Value="0"/> -->
+    <!--     <Setter Property="ColumnSpan" Value="2"/> -->
+    <!--     <Setter Property="Row" Value="0"/> -->
+    <!--     <Setter Property="RowSpan" Value="1"/> -->
+    <!-- </Style> -->
+    
+</Styles>
