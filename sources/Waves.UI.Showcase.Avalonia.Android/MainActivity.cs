@@ -9,17 +9,12 @@ namespace Waves.UI.Showcase.Avalonia.Android
     /// Main activity.
     /// </summary>
     [Activity(
-        Label = "AvaloniaApplication2.Android",
+        Label = "Waves.UI.Showcase.Avalonia.Android",
         Theme = "@style/MyTheme.NoActionBar",
         Icon = "@drawable/icon",
         LaunchMode = LaunchMode.SingleInstance,
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
-    public class MainActivity : AvaloniaActivity<App>
+    public class MainActivity : AvaloniaMainActivity
     {
-        /// <inheritdoc/>
-        protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
-        {
-            return base.CustomizeAppBuilder(builder);
-        }
     }
 }

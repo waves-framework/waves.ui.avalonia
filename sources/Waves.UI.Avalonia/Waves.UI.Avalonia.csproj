@@ -19,7 +19,7 @@
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="Avalonia.Svg.Skia" Version="$(AvaloniaSvgSkiaVersion)" />
+        <PackageReference Include="Avalonia.Svg.Skia" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Xaml.Behaviors" Version="$(AvaloniaVersion)" />
