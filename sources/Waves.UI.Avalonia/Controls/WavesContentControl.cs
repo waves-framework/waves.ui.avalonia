@@ -12,7 +12,7 @@ namespace Waves.UI.Avalonia.Controls
     /// <summary>
     ///     Waves content control.
     /// </summary>
-    public sealed class WavesContentControl :
+    public class WavesContentControl :
         ContentControl,
         IWavesContentControl<object>,
         IStyleable

@@ -5,6 +5,6 @@
                       xmlns:controls="clr-namespace:Waves.UI.Avalonia.Controls;assembly=Waves.UI.Avalonia"
                       mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                       x:Class="Waves.UI.Showcase.Avalonia.Presentation.View.Windows.MainWindow"
-                      Background="{DynamicResource Primary-100-Brush}"
+                      Background="{DynamicResource Primary-200-Brush}"
                       ExtendClientAreaToDecorationsHint="True"
                       Title="Waves.UI.Showcase.Avalonia.Desktop"/>
