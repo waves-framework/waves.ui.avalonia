@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="../../build/props/avalonia.props" />
+
+    <PropertyGroup>
+        <Title>Waves.UI.Avalonia</Title>
+        <Authors>Egor Khindikaynen</Authors>
+        <Description>Waves.UI.Avalonia is UI-framework for developing simple cross-platform applications.</Description>
+        <Copyright>Copyright (c) 2020-2022 Egor Khindikaynen</Copyright>
+        <PackageProjectUrl>https://github.com/waves-framework/waves.ui.avalonia</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/waves-framework/waves.ui.avalonia</RepositoryUrl>
+        <PackageTags>waves ui avalonia framework</PackageTags>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia.Svg.Skia" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia.Xaml.Behaviors" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="FluentAvaloniaUI" Version="$(FluentAvaloniaVersion)" />
+        <PackageReference Include="ReactiveUI" Version="18.3.1" />
+        <PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
+    </ItemGroup>
+    
+    <ItemGroup Condition="'$(Configuration)'=='Debug'">
+      <ProjectReference Include="..\..\submodules\ui\sources\Waves.UI\Waves.UI.csproj" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(Configuration)'!='Debug'">
+        <PackageReference Include="Waves.UI" Version="2022.3.3-preview.3" />
+    </ItemGroup>
+    
+</Project>

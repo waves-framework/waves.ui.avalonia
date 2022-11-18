@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+
+    <system:Double x:Key="Opacity-100">1.0</system:Double>
+    <system:Double x:Key="Opacity-200">0.9</system:Double>
+    <system:Double x:Key="Opacity-300">0.86</system:Double>
+    <system:Double x:Key="Opacity-400">0.72</system:Double>
+    <system:Double x:Key="Opacity-500">0.62</system:Double>
+    <system:Double x:Key="Opacity-600">0.25</system:Double>
+    <system:Double x:Key="Opacity-700">0.46</system:Double>
+    <system:Double x:Key="Opacity-800">0.24</system:Double>
+    <system:Double x:Key="Opacity-900">0.12</system:Double>
+    <system:Double x:Key="Opacity-000">0.00</system:Double>
+
+</ResourceDictionary>

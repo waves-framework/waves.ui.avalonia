@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:base="clr-namespace:Waves.UI.Avalonia.Converters.Base"
+                    xmlns:inverse="clr-namespace:Waves.UI.Avalonia.Converters.Inverse">
+
+    <!-- Main Converters -->
+    <base:ColorToSolidColorBrushConverter x:Key="WavesColorToSolidColorBrushConverter" />
+    <base:ColorToTransparentColorConverter x:Key="WavesColorToTransparentColorConverter" />
+    <base:NullToBoolConverter x:Key="NullToBooleanConverter" />
+    <base:ProgressValueToDegreeConverter x:Key="ProgressValueToDegreeConverter" />
+    <base:SolidColorBrushToHexConverter x:Key="SolidColorBrushToHexConverter" />
+    <base:SolidColorBrushToSystemColorConverter x:Key="SolidColorBrushToSystemColorConverter" />
+    <base:StringIsNullOrEmptyToBoolConverter x:Key="StringIsNullOrEmptyToBoolConverter" />
+    <base:SystemColorToSolidColorBrushConverter x:Key="SystemColorToSolidColorBrushConverter" />
+    <base:TypeToTypeNameConverter x:Key="TypeToTypeNameConverter" />
+    <base:ZeroAmountToBoolConverter x:Key="ZeroAmountToBoolConverter" />
+    <base:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+
+    <!-- Inverse Converters -->
+    <inverse:InverseBoolConverter x:Key="InverseBoolConverter" />
+    <inverse:InverseNullToBoolConverter x:Key="InverseNullToBoolConverter" />
+    <inverse:InverseStringIsNullOrEmptyToBoolConverter x:Key="InverseStringIsNullOrEmptyToBoolConverter" />
+    <inverse:InverseZeroAmountToBoolConverter x:Key="InverseZeroAmountToBoolConverter" />
+
+</ResourceDictionary>

@@ -1,0 +1,227 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="https://github.com/waves-framework/waves.ui.avalonia">
+
+    <Styles.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Opacity. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Opacity.axaml" />
+
+                <!-- Padding. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Styles/Padding.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Styles.Resources>
+
+    <!-- Text. -->
+    <StyleInclude Source="avares://Waves.UI.Avalonia/Styles/Text.axaml" />
+    
+    <Style Selector="controls|WavesTabStrip">
+	    
+	    <Setter Property="Padding" Value="{DynamicResource StandardThickness}" />
+        
+	    <Setter Property="Template">
+            
+            <ControlTemplate>
+                
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    
+                    <ItemsPresenter Name="PART_ItemsPresenter"
+                                    Items="{TemplateBinding Items}"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}"
+                                    ItemTemplate="{TemplateBinding ItemTemplate}" />
+                </Border>
+                
+            </ControlTemplate>
+            
+        </Setter>
+        
+        <Setter Property="ItemsPanel">
+            <ItemsPanelTemplate>
+                <WrapPanel/>
+            </ItemsPanelTemplate>
+        </Setter>
+        
+    </Style>
+    
+    <Style Selector="controls|WavesTabStripItem">
+	    <Setter Property="Foreground" Value="{DynamicResource Primary-Foreground-300-Brush}" />
+	    <Setter Property="FontSize" Value="12" />
+		<Setter Property="FontWeight" Value="Bold" />
+	    <Setter Property="Padding" Value="{DynamicResource SmallThickness}"/>
+		<Setter Property="Margin" Value="0,0,0,0" />
+		<Setter Property="MinHeight" Value="42" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+	    <Setter Property="CornerRadius" Value="{DynamicResource StandardCornerRadius}"/>
+		<Setter Property="Template">
+			
+			<ControlTemplate>
+				
+				<Border Name="PART_LayoutRoot"
+				        BorderBrush="{TemplateBinding BorderBrush}"
+				        BorderThickness="{TemplateBinding BorderThickness}"
+				        CornerRadius="{TemplateBinding CornerRadius}"
+				        Padding="{TemplateBinding Padding}"
+				        Margin="{TemplateBinding Margin}">
+					
+					<Grid RowDefinitions="*,6">
+
+						<!-- dummy for selection -->
+						<Canvas Grid.RowSpan="2"
+						        Background="{DynamicResource Primary-100-Brush}"
+						        Opacity="0"/>
+						
+						<Border Grid.Row="0" 
+						        x:Name="SelectionBorder"
+						        Margin="-6,-3,-6,-3"
+						        CornerRadius="{TemplateBinding CornerRadius}"/>
+						
+						<ContentPresenter Grid.Row="0" Name="PART_ContentPresenter"
+						                  Background="{TemplateBinding Background}"
+						                  BorderBrush="{TemplateBinding BorderBrush}"
+						                  BorderThickness="{TemplateBinding BorderThickness}"
+						                  CornerRadius="{TemplateBinding CornerRadius}"
+						                  Content="{TemplateBinding Content}"
+						                  ContentTemplate="{TemplateBinding ContentTemplate}"
+						                  Padding="{TemplateBinding Padding}"
+						                  RecognizesAccessKey="True"
+						                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+						                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+						                  TextBlock.FontFamily="{TemplateBinding FontFamily}"
+						                  TextBlock.FontSize="{TemplateBinding FontSize}"
+						                  TextBlock.FontWeight="{TemplateBinding FontWeight}" />
+						
+						<Border Grid.Row="1"
+						        Name="PART_SelectedPipe"
+						        Background="{DynamicResource Accent-500-Brush}"
+						        CornerRadius="{TemplateBinding CornerRadius}"/>
+						
+					</Grid>
+					
+				</Border>
+				
+			</ControlTemplate>
+			
+		</Setter>
+		
+	</Style>
+
+	<!--  Normal state  -->
+	<Style Selector="controls|WavesTabStripItem /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="{Binding $parent[TabStripItem].Background}" />
+	</Style>
+    
+    <Style Selector="controls|WavesTabStripItem /template/ Border#SelectionBorder">
+	    <Setter Property="Background" Value="{Binding $parent[TabStripItem].Background}" />
+    </Style>
+    
+	<Style Selector="controls|WavesTabStripItem /template/ Border#PART_SelectedPipe">
+		<Setter Property="IsVisible" Value="False" />
+	</Style>
+    
+	<Style Selector="controls|WavesTabStripItem /template/ Border#PART_SelectedPipe">
+		<Setter Property="Height" Value="3" />
+		<Setter Property="Margin" Value="0,0,0,0" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Bottom" />
+	</Style>
+
+	<!--  Selected state  -->
+	<!--  We don't use selector to PART_LayoutRoot, so developer can override selected item background with TabStripItem.Background  -->
+	<Style Selector="controls|WavesTabStripItem:selected">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-100-Brush}" />
+	</Style>
+    
+    <Style Selector="controls|WavesTabStripItem:selected /template/ Border#PART_SelectedPipe">
+		<Setter Property="IsVisible" Value="True" />
+	</Style>
+
+	<!--  Pointer over state  -->
+	<Style Selector="controls|WavesTabStripItem:pointerover /template/ Border#SelectionBorder">
+		<Setter Property="Background" Value="{DynamicResource Primary-300-Brush}" />
+	</Style>
+    
+    <Style Selector="controls|WavesTabStripItem:pointerover /template/ Border#PART_LayoutRoot">
+	    <Setter Property="Background" Value="Transparent" />
+	    <Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-200-Brush}"/>
+    </Style>
+
+	<!--  Selected Pointer over state  -->
+	<Style Selector="controls|WavesTabStripItem:selected:pointerover /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-200-Brush}" />
+	</Style>
+    
+    <Style Selector="controls|WavesTabStripItem:selected:pointerover /template/ Border#SelectionBorder">
+	    <Setter Property="Background" Value="Transparent" />
+    </Style>
+    
+    <Style Selector="controls|WavesTabStripItem:selected:pointerover /template/ Border#SelectionBorder">
+	    <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+	<!--  Pressed state  -->
+	<Style Selector="controls|WavesTabStripItem:pressed /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-400-Brush}" />
+	</Style>
+
+    <!--  Selected Pressed state  -->
+	<Style Selector="controls|WavesTabStripItem:pressed /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-400-Brush}" />
+	</Style>
+
+	<!--  Disabled state  -->
+	<Style Selector="controls|WavesTabStripItem:disabled /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Primary-Foreground-700-Brush}" />
+	</Style>
+    
+    <!-- Animations -->
+    <Style Selector="TabStrip /template/ ContentPresenter#PART_ContentPresenter">
+	    <Setter Property="Transitions">
+		    <Transitions>
+			    <BrushTransition Duration="00:00:00.083" Property="Background" />
+		    </Transitions>
+	    </Setter>
+    </Style>
+    
+    <Style Selector="controls|WavesTabStripItem /template/ ContentPresenter#PART_ContentPresenter">
+	    <Setter Property="Transitions">
+		    <Transitions>
+			    <BrushTransition Duration="00:00:00.083" Property="Background" />
+		    </Transitions>
+	    </Setter>
+    </Style>
+    
+    <Style Selector="controls|WavesTabStripItem /template/ Border#SelectionBorder">
+	    <Setter Property="Transitions">
+		    <Transitions>
+			    <BrushTransition Duration="00:00:00.083" Property="Background" />
+		    </Transitions>
+	    </Setter>
+    </Style>
+    
+    <Style Selector="controls|WavesTabStripItem /template/ Border#PART_SelectedPipe">
+	    <Setter Property="Transitions">
+		    <Transitions>
+			    <BrushTransition Duration="00:00:00.083" Property="Background" />
+		    </Transitions>
+	    </Setter>
+    </Style>
+
+</Styles>

@@ -1,0 +1,9 @@
+[submodule "submodules/ui.showcase.common"]
+	path = submodules/ui.showcase.common
+	url = https://github.com/waves-framework/waves.ui.showcase.common.git
+[submodule "submodules/ui"]
+	path = submodules/ui
+	url = https://github.com/waves-framework/waves.ui.git
+[submodule "submodules/stylecop"]
+	path = submodules/stylecop
+	url = https://github.com/waves-framework/waves.stylecop.git

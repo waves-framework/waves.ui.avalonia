@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <Import Project="../../build/props/avalonia-wasm.props" />
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <!--Temporal hack that fixes compilation in VS-->
+        <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+        <EmccTotalMemory>16777216</EmccTotalMemory>
+    </PropertyGroup>
+
+    <!-- In debug, make builds faster by reducing optimizations -->
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <WasmNativeStrip>false</WasmNativeStrip>
+        <EmccCompileOptimizationFlag>-O1</EmccCompileOptimizationFlag>
+        <RunAOTCompilation>false</RunAOTCompilation>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <Optimize>true</Optimize>
+        <WasmNativeStrip>true</WasmNativeStrip>
+        <EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
+        <EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
+        <RunAOTCompilation>true</RunAOTCompilation>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Waves.UI.Showcase.Avalonia\Waves.UI.Showcase.Avalonia.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="nlog.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" PrivateAssets="all" />
+        <PackageReference Include="Avalonia.Web.Blazor" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+        <PackageReference Include="ReactiveUI" Version="18.3.1" />
+        <PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
+    </ItemGroup>
+
+</Project>
