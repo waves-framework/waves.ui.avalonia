@@ -58,7 +58,7 @@ public class WavesPage :
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "An error occured while initializing window");
+            _logger?.LogError(e, "An error occured while initializing window");
         }
 
         return Task.CompletedTask;
