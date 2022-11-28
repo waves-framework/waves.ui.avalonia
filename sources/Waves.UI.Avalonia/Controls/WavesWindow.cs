@@ -130,7 +130,7 @@ public class WavesWindow :
         }
         catch (Exception e)
         {
-            Logger.LogError(e, "An error occured while initializing window");
+            Logger?.LogError(e, "An error occured while initializing window");
         }
 
         return Task.CompletedTask;
@@ -166,7 +166,7 @@ public class WavesWindow :
         foreach (var control in _regionContentControls)
         {
             _navigationService.UnregisterContentControl(control.Key);
-            Logger.LogDebug($"Control {control.Value} from region {control.Key} unregistered");
+            Logger?.LogDebug($"Control {control.Value} from region {control.Key} unregistered");
         }
     }
 
