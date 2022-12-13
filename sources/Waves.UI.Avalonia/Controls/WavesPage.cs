@@ -54,11 +54,12 @@ public class WavesPage :
         try
         {
             _disposables = new List<IDisposable>();
+            _disposables.AddRange(this.FindVisualChildren<IDisposable>());
             _regionContentControls = this.FindRegions(_navigationService, _logger);
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "An error occured while initializing window");
+            _logger?.LogError(e, "An error occured while initializing window");
         }
 
         return Task.CompletedTask;
