@@ -14,6 +14,6 @@
 
     <Thickness x:Key="IndentH1">0,0,0,9</Thickness>
 
-    <CornerRadius x:Key="StandardCornerRadius">6,6,6,6</CornerRadius>
+    <CornerRadius x:Key="StandardCornerRadius">10</CornerRadius>
 
 </ResourceDictionary>
