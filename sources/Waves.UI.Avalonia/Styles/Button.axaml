@@ -106,7 +106,7 @@
         <Setter Property="BorderBrush"
                 Value="{DynamicResource Accent-700-Brush}" />
         <Setter Property="Foreground"
-                Value="{DynamicResource Accent-100-Brush}" />
+                Value="{DynamicResource Accent-900-Brush}" />
         <Setter Property="FontWeight"
                 Value="Bold" />
         <Setter Property="BorderThickness"
