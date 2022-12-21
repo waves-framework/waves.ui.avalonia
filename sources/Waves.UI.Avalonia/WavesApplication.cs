@@ -22,6 +22,11 @@ public class WavesApplication : Application
     private bool _useDarkTheme = true;
 
     /// <summary>
+    /// Gets or sets options type.
+    /// </summary>
+    public Type OptionsType { get; set; }
+
+    /// <summary>
     /// Gets core.
     /// </summary>
     protected WavesCore Core { get; private set; }
@@ -46,6 +51,7 @@ public class WavesApplication : Application
         Core = new WavesCore();
         Core.AddServices(ConfigureServices);
         Core.Start();
+        ConfigureOptions();
         var container = Core.BuildContainer();
         var provider = container.Resolve<IWavesServiceProvider>();
         Styles.Add(new FluentAvaloniaTheme(new Uri("avares://FluentAvalonia/Styling")));
@@ -62,6 +68,20 @@ public class WavesApplication : Application
     /// <param name="services">Services collection.</param>
     protected virtual void ConfigureServices(IServiceCollection services)
     {
+    }
+
+    /// <summary>
+    /// Configures options.
+    /// </summary>
+    /// <param name="type">Type.</param>
+    protected virtual void ConfigureOptions()
+    {
+        if (OptionsType == null)
+        {
+            return;
+        }
+
+        Core.InvokeGenericMethod("ConfigureOptions", OptionsType);
     }
 
     /// <summary>
