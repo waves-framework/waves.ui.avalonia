@@ -83,7 +83,7 @@
                 Value="{DynamicResource Primary-700-Brush}" />
         
         <Setter Property="SelectionBrush" 
-                Value="{DynamicResource Accent-300-Brush}" />
+                Value="{DynamicResource Accent-700-Brush}" />
         
         <Setter Property="BorderThickness" 
                 Value="1" />
@@ -92,7 +92,7 @@
                 Value="{DynamicResource StandardCornerRadius}" />
         
         <Setter Property="FontSize" 
-                Value="12" />
+                Value="14" />
         
         <Setter Property="MinHeight" 
                 Value="36" />
@@ -112,7 +112,8 @@
         <Setter Property="Template">
             
             <ControlTemplate>
-                
+
+                <!-- TODO: data validation style -->
                 <DataValidationErrors>
                     
                     <Panel>
@@ -220,9 +221,9 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Primary-500-Brush}" />
     </Style>
 
-    <Style Selector="TextBox.waves-default:pointerover /template/ TextBlock#PART_Watermark, TextBox:pointerover /template/ TextBlock#PART_FloatingWatermark">
-        <Setter Property="Foreground" Value="{DynamicResource Accent-500-Brush}" />
-    </Style>
+    <!-- <Style Selector="TextBox.waves-default:pointerover /template/ TextBlock#PART_Watermark, TextBox:pointerover /template/ TextBlock#PART_FloatingWatermark"> -->
+    <!--     <Setter Property="Foreground" Value="{DynamicResource Accent-500-Brush}" /> -->
+    <!-- </Style> -->
 
     <Style Selector="TextBox.waves-default:focus /template/ Border#BorderElement">
         <Setter Property="BorderBrush" Value="{DynamicResource Accent-500-Brush}" />
