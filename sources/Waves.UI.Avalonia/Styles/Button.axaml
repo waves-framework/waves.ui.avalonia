@@ -43,9 +43,10 @@
                 Value="36" />
         <Setter Property="IsTabStop"
                 Value="True" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="VerticalAlignment"
+                Value="Center"/>
         <Setter Property="Opacity"
                 Value="1.0" />
         <Setter Property="Padding"
@@ -115,8 +116,8 @@
                 Value="36" />
         <Setter Property="IsTabStop"
                 Value="True" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize"
+                Value="14" />
         <Setter Property="Opacity"
                 Value="1.0" />
         <Setter Property="Padding"
