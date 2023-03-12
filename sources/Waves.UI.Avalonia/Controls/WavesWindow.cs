@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Styling;
+using Avalonia.Threading;
 using Microsoft.Extensions.Logging;
 using ReactiveUI;
 using Waves.UI.Avalonia.Extensions;
@@ -167,6 +169,36 @@ public class WavesWindow :
         {
             _navigationService.UnregisterContentControl(control.Key);
             Logger?.LogDebug($"Control {control.Value} from region {control.Key} unregistered");
+        }
+    }
+
+    /// <inheritdoc />
+    protected override void OnClosed(EventArgs e)
+    {
+        base.OnClosed(e);
+        Shutdown();
+    }
+
+    /// <summary>
+    /// Shutdown app.
+    /// </summary>
+    private static void Shutdown()
+    {
+        switch (Application.Current?.ApplicationLifetime)
+        {
+            case IClassicDesktopStyleApplicationLifetime desktopApp:
+            {
+                if (desktopApp.Windows.Count == 0)
+                {
+                    desktopApp.Shutdown();
+                }
+
+                break;
+            }
+
+            case ISingleViewApplicationLifetime viewApp:
+                viewApp.MainView = null;
+                break;
         }
     }
 
