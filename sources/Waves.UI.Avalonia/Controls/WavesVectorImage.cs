@@ -10,6 +10,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Svg.Skia;
+using Avalonia.Threading;
 using Waves.UI.Avalonia.Extensions;
 using Waves.UI.Base.Enums;
 
@@ -491,7 +492,7 @@ namespace Waves.UI.Avalonia.Controls
             };
 
             image.Opacity = Opacity;
-            Content = image;
+            Dispatcher.UIThread.InvokeAsync(() => { Content = image; });
         }
 
         /// <summary>

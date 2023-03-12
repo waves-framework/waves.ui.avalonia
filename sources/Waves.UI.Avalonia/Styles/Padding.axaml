@@ -8,12 +8,12 @@
 
     <Thickness x:Key="StandardThickness">12,6,12,6</Thickness>
 
-    <Thickness x:Key="MediumThickness">18,12,18,12</Thickness>
+    <Thickness x:Key="MediumThickness">18</Thickness>
 
-    <Thickness x:Key="BigThickness">24,18,24,18</Thickness>
+    <Thickness x:Key="BigThickness">24</Thickness>
 
     <Thickness x:Key="IndentH1">0,0,0,9</Thickness>
 
-    <CornerRadius x:Key="StandardCornerRadius">6,6,6,6</CornerRadius>
+    <CornerRadius x:Key="StandardCornerRadius">10</CornerRadius>
 
 </ResourceDictionary>

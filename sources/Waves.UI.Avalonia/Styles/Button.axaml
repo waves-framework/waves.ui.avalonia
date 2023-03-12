@@ -44,7 +44,9 @@
         <Setter Property="IsTabStop"
                 Value="True" />
         <Setter Property="FontSize"
-                Value="12" />
+                Value="14" />
+        <Setter Property="VerticalAlignment"
+                Value="Center"/>
         <Setter Property="Opacity"
                 Value="1.0" />
         <Setter Property="Padding"
@@ -105,7 +107,7 @@
         <Setter Property="BorderBrush"
                 Value="{DynamicResource Accent-700-Brush}" />
         <Setter Property="Foreground"
-                Value="{DynamicResource Accent-100-Brush}" />
+                Value="{DynamicResource Accent-900-Brush}" />
         <Setter Property="FontWeight"
                 Value="Bold" />
         <Setter Property="BorderThickness"
@@ -115,7 +117,7 @@
         <Setter Property="IsTabStop"
                 Value="True" />
         <Setter Property="FontSize"
-                Value="12" />
+                Value="14" />
         <Setter Property="Opacity"
                 Value="1.0" />
         <Setter Property="Padding"

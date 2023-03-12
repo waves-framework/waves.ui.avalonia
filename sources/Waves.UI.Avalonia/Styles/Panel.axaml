@@ -39,7 +39,7 @@
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="Padding"
-                Value="{StaticResource StandardThickness}" />
+                Value="{StaticResource BigThickness}" />
         <Setter Property="CornerRadius"
                 Value="{DynamicResource StandardCornerRadius}" />
 

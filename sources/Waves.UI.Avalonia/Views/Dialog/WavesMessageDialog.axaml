@@ -1,0 +1,101 @@
+﻿<controls:WavesDialog xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:Waves.UI.Avalonia.Controls;assembly=Waves.UI.Avalonia"
+                      xmlns:dialogs="clr-namespace:Waves.UI.Dialogs;assembly=Waves.UI"
+                      DoneButtonCaption="{Binding DoneText}"
+                      CancelButtonCaption="{Binding CancelText}"
+                      Title="{Binding Title}"
+                      mc:Ignorable="d"
+                      MaxWidth="640"
+                      Margin="48"
+                      d:DesignHeight="450"
+                      d:DesignWidth="800"
+                      x:Class="Waves.UI.Avalonia.Views.Dialog.WavesMessageDialog">
+
+    <Design.DataContext>
+        <dialogs:WavesMessageDialogViewModel/>
+    </Design.DataContext>
+
+    <controls:WavesDialog.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- Converters. -->
+                <ResourceInclude Source="avares://Waves.UI.Avalonia/Converters/Converters.axaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </controls:WavesDialog.Resources>
+
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox IsReadOnly="True"
+                         Text="{Binding Text, Mode=OneWay}"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         AcceptsReturn="True"
+                         Padding="0,0,0,0"
+                         Margin="0,0,0,0"
+                         TextWrapping="WrapWithOverflow"
+                         VerticalAlignment="Top"
+                         Grid.Row="0"/>
+
+                <Grid Grid.Row="1"
+                      Margin="0,9,0,0">
+
+                    <!-- TODO -->
+                    <!-- <Grid.Style> -->
+                    <!--     <Style TargetType="{x:Type Grid}"> -->
+                    <!--         <Style.Triggers> -->
+                    <!--             <DataTrigger Binding="{Binding Sender, Converter={StaticResource NullToBooleanConverter}}" Value="True"> -->
+                    <!--                 <Setter Property="Visibility" Value="Collapsed" /> -->
+                    <!--             </DataTrigger> -->
+                    <!--         </Style.Triggers> -->
+                    <!--     </Style> -->
+                    <!-- </Grid.Style> -->
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="9"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Column="0">
+
+                        <TextBlock Text="Sender:"
+                                   Classes="Regular"/>
+
+                    </Grid>
+
+                    <Grid Column="2">
+
+                        <TextBlock Text="{Binding Sender}"
+                                   Classes="Regular"/>
+
+                    </Grid>
+
+                </Grid>
+
+
+            </Grid>
+
+        </ScrollViewer>
+
+    </Grid>
+
+</controls:WavesDialog>
