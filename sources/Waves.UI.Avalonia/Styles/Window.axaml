@@ -53,13 +53,13 @@
                         <Grid IsVisible="{TemplateBinding FrontContent, Converter={StaticResource InverseNullToBoolConverter}}">
                             
                             <Canvas Background="{DynamicResource Primary-100-Brush}"
-                                    Opacity="{DynamicResource Opacity-200}" 
+                                    Opacity="{DynamicResource Opacity-200}"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"/>
-                            
+
                             <ContentPresenter Name="PART_FrontContentPresenter"
                                               Content="{TemplateBinding FrontContent}"/>
-                            
+
                         </Grid>
                         
                     </Grid>

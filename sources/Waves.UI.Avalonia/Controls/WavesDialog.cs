@@ -264,7 +264,7 @@ public class WavesDialog :
     ///     <value>false</value>
     ///     if need to release only unmanaged resources.
     /// </param>
-    protected virtual async void Dispose(
+    protected void Dispose(
         bool disposing)
     {
         if (!disposing)
