@@ -54,7 +54,7 @@ public class WavesApplication : Application
         ConfigureOptions();
         var container = Core.BuildContainer();
         var provider = container.Resolve<IWavesServiceProvider>();
-        Styles.Add(new FluentAvaloniaTheme(new Uri("avares://FluentAvalonia/Styling")));
+        Styles.Add(new FluentAvaloniaTheme());
         this.AddStyle(Constants.GenericDictionaryUri);
         this.AddStyle(_useDarkTheme ? Constants.DefaultDarkColorsUri : Constants.DefaultLightColorsUri);
 

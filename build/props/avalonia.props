@@ -1,10 +1,10 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;</TargetFrameworks>
+    <TargetFrameworks>net7.0</TargetFrameworks>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <Configurations>Debug;Release</Configurations>
-    <Platforms>AnyCPU;x86;x64</Platforms>
+    <Platforms>AnyCPU</Platforms>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -15,38 +15,16 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AvaloniaVersion>11.0.0-preview4</AvaloniaVersion>
-    <FluentAvaloniaVersion>2.0.0-preview4</FluentAvaloniaVersion>
+    <AvaloniaVersion>11.0.0</AvaloniaVersion>
+    <FluentAvaloniaVersion>2.0.0</FluentAvaloniaVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\bin\avalonia\anyCPU\debug\</OutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutputPath>..\..\bin\avalonia\x64\debug\</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutputPath>..\..\bin\avalonia\x86\debug\</OutputPath>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\bin\avalonia\anyCPU\release\</OutputPath>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutputPath>..\..\bin\avalonia\x86\release\</OutputPath>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutputPath>..\..\bin\avalonia\x64\release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>

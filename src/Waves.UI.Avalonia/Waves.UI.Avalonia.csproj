@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="../../build/props/avalonia.props" />
+     <Import Project="../../build/props/avalonia.props" />
 
     <PropertyGroup>
         <Title>Waves.UI.Avalonia</Title>
@@ -24,12 +24,12 @@
         <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Xaml.Behaviors" Version="$(AvaloniaVersion)" />
         <PackageReference Include="FluentAvaloniaUI" Version="$(FluentAvaloniaVersion)" />
-        <PackageReference Include="ReactiveUI" Version="18.4.1" />
-        <PackageReference Include="ReactiveUI.Fody" Version="18.4.1" />
+        <PackageReference Include="ReactiveUI" Version="19.4.1" />
+        <PackageReference Include="ReactiveUI.Fody" Version="19.4.1" />
     </ItemGroup>
     
     <ItemGroup Condition="'$(Configuration)'=='Debug'">
-      <ProjectReference Include="..\..\submodules\ui\sources\Waves.UI\Waves.UI.csproj" />
+      <ProjectReference Include="..\..\submodules\ui\src\Waves.UI\Waves.UI.csproj" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(Configuration)'!='Debug'">
